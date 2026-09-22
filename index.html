@@ -1074,9 +1074,15 @@ function renderLessonDetail(main, lesson){
 /* ============================================================
    FLASHCARDS
    ============================================================ */
-let fcState = { unit:'all', type:'all', deck:[], idx:0, flipped:false, dir:'ar2en' };
+let fcState = { unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en' };
 const WORD_TYPES = ["noun","verb","adjective","pronoun","question","number","particle","phrase"];
 const WORD_TYPE_LABELS = { noun:"Nouns", verb:"Verbs", adjective:"Adjectives", pronoun:"Pronouns", question:"Question words", number:"Numbers", particle:"Particles", phrase:"Phrases" };
+let knownWords = loadProgress('knownWords', {});
+function isKnown(v){ return !!knownWords[v.en]; }
+function setKnown(v, known){
+  if(known) knownWords[v.en]=true; else delete knownWords[v.en];
+  saveProgress('knownWords', knownWords);
+}
 function renderFlashcards(main){
   buildDeck();
   main.appendChild(mkEl(`<div><h1>Flashcards</h1></div>`));
@@ -1084,11 +1090,13 @@ function renderFlashcards(main){
     <div class="row" style="margin-bottom:16px;">
       <select id="fcUnit"></select>
       <select id="fcType"></select>
+      <select id="fcStatus"></select>
       <select id="fcDir">
         <option value="ar2en">Arabic \u2192 English</option>
         <option value="en2ar">English \u2192 Arabic</option>
       </select>
       <button class="btn ghost" id="fcShuffle">Shuffle</button>
+      <span class="pill" id="fcKnownCount"></span>
     </div>
   `);
   main.appendChild(controls);
@@ -1102,6 +1110,12 @@ function renderFlashcards(main){
   WORD_TYPES.forEach(t=>typeSel.appendChild(mkEl(`<option value="${t}">${WORD_TYPE_LABELS[t]}</option>`)));
   typeSel.value = fcState.type;
   typeSel.onchange=()=>{ fcState.type=typeSel.value; buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
+  const statusSel = controls.querySelector('#fcStatus');
+  statusSel.appendChild(mkEl(`<option value="all">All cards</option>`));
+  statusSel.appendChild(mkEl(`<option value="known">Known</option>`));
+  statusSel.appendChild(mkEl(`<option value="unknown">Still learning</option>`));
+  statusSel.value = fcState.status;
+  statusSel.onchange=()=>{ fcState.status=statusSel.value; buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
   const dirSel = controls.querySelector('#fcDir');
   dirSel.value = fcState.dir;
   dirSel.onchange=()=>{ fcState.dir=dirSel.value; fcState.flipped=false; renderCardArea(); };
@@ -1114,10 +1128,26 @@ function renderFlashcards(main){
   function buildDeck(){
     fcState.deck = VOCAB.filter(v=>
       (fcState.unit==='all' || v.unit===Number(fcState.unit)) &&
-      (fcState.type==='all' || v.type===fcState.type)
+      (fcState.type==='all' || v.type===fcState.type) &&
+      (fcState.status==='all' || (fcState.status==='known')===isKnown(v))
     );
   }
+  function updateKnownCount(){
+    const el = document.getElementById('fcKnownCount');
+    if(el) el.textContent = `${VOCAB.filter(isKnown).length}/${VOCAB.length} known`;
+  }
+  function advanceAfterMark(){
+    if(fcState.status!=='all'){
+      buildDeck();
+      if(fcState.idx>=fcState.deck.length) fcState.idx=0;
+    } else {
+      fcState.idx=(fcState.idx+1)%fcState.deck.length;
+    }
+    fcState.flipped=false;
+    renderCardArea();
+  }
   function renderCardArea(){
+    updateKnownCount();
     const areaEl = document.getElementById('fcArea');
     if(!areaEl) return;
     areaEl.innerHTML='';
@@ -1125,15 +1155,25 @@ function renderFlashcards(main){
     const v = fcState.deck[fcState.idx];
     const showFront = fcState.dir==='ar2en' ? `<div class="arabic" style="font-size:34px;">${v.ar}</div><div class="translit">${v.tr}</div>` : `<div>${v.en}</div>`;
     const showBack = fcState.dir==='ar2en' ? `<div>${v.en}</div>` : `<div class="arabic" style="font-size:34px;">${v.ar}</div><div class="translit">${v.tr}</div>`;
+    const knownTag = isKnown(v) ? ` \u00b7 <span style="color:var(--good);">\u2713 known</span>` : '';
     const card = mkEl(`
       <div class="flashcard">
-        <span class="tag">Unit ${v.unit} \u00b7 ${WORD_TYPE_LABELS[v.type]} \u00b7 ${fcState.idx+1}/${fcState.deck.length}</span>
+        <span class="tag">Unit ${v.unit} \u00b7 ${WORD_TYPE_LABELS[v.type]} \u00b7 ${fcState.idx+1}/${fcState.deck.length}${knownTag}</span>
         <div id="fcContent">${fcState.flipped?showBack:showFront}</div>
         <span class="hint">click to flip</span>
       </div>
     `);
     card.onclick=()=>{ fcState.flipped=!fcState.flipped; renderCardArea(); };
     areaEl.appendChild(card);
+    const knowRow = mkEl(`
+      <div class="row">
+        <button class="btn ghost" id="fcStillLearning" style="border-color:var(--bad);color:var(--bad);">Still learning</button>
+        <button class="btn ghost" id="fcKnowIt" style="border-color:var(--good);color:var(--good);">\u2713 I know this</button>
+      </div>
+    `);
+    areaEl.appendChild(knowRow);
+    knowRow.querySelector('#fcKnowIt').onclick=()=>{ setKnown(v, true); advanceAfterMark(); };
+    knowRow.querySelector('#fcStillLearning').onclick=()=>{ setKnown(v, false); advanceAfterMark(); };
     const nav = mkEl(`
       <div class="row">
         <button class="btn ghost" id="fcPrev">&larr; Prev</button>
