@@ -1,0 +1,226 @@
+english,arabic,transliteration,unit,type
+Greetings! (Islamic greeting),السَّلامُ عَلَيكُم,assalaamu ʿalaykum,1,phrase
+"Hello, hi",أَهلاً,ahlan,1,phrase
+"Hello, welcome",أَهلاً وَسَهلاً,ahlan wa sahlan,1,phrase
+Hello (Levantine),مَرحَباً,marHaban,1,phrase
+I,أَنا,ana,1,pronoun
+my name,إسمي,ismii,1,noun
+from,مِن,min,1,particle
+the city of...,مَدينةَ,madiinat,1,noun
+in,في,fii,1,particle
+door,باب,baab,2,noun
+name,إسم,ism,2,noun
+what?,ما,maa,2,question
+"(reply to ahlan wa sahlan, m.)",أَهلاً بِكَ,ahlan bika,2,phrase
+"(reply to ahlan wa sahlan, f.)",أَهلاً بِكِ,ahlan biki,2,phrase
+(reply to assalaamu ʿalaykum),وَعَليكُمُ السَّلام,wa ʿalaykumu s-salaam,2,phrase
+"you, polite (m.)",حَضرَتُكَ,HaDratuka,2,pronoun
+"you, polite (f.)",حَضرَتُكِ,HaDratuki,2,pronoun
+Nice to meet you!,تَشَرَّفنا,tasharrafnaa,2,phrase
+you (masc.),أَنتَ,anta,2,pronoun
+you (fem.),أَنتِ,anti,2,pronoun
+where?,أَينَ,ayna,2,question
+from where?,مِن أَينَ,min ayna,2,question
+yes,نَعَم,naʿam,2,particle
+no,لا,laa,2,particle
+and,وَ,wa,3,particle
+"veil, head covering",حِجاب,Hijaab,3,noun
+house,بَيْت,bayt,3,noun
+street,شارِع,shaariʿ,3,noun
+"homework, duty",واجِب,waajib,3,noun
+news,أَخْبار,akhbaar,3,noun
+book,كِتاب,kitaab,3,noun
+my dear (m.),حَبيبي,Habiibii,3,noun
+my dear (f.),حَبيبَتي,Habiibtii,3,noun
+Good morning!,صَباحُ الخَيْر,SabaaH al-khayr,3,phrase
+(reply) Good morning!,صَباحُ النّور,SabaaH an-nuur,3,phrase
+hey... (addressing someone),يا,yaa,3,particle
+how?,كَيْفَ,kayfa,3,question
+How are you?,كَيْفَ الحال,kayfa al-Haal,3,phrase
+(reply) praise be to God,الحَمدُ لله,al-Hamdu lillaah,3,phrase
+"great, fine (m.)",جَيِّد,jayyid,3,adjective
+"great, fine (f.)",جَيِّدة,jayyida,3,adjective
+this (masc.),هٰذا,haadhaa,3,pronoun
+this (fem.),هٰذِهِ,haadhihi,3,pronoun
+"good, well (reply)",بِخَيْر,bi-khayr,3,phrase
+am/is/are not,لَيْسَ,laysa,3,particle
+"please, go ahead (m.)",تَفَضَّل,tafaDDal,4,verb
+"please, go ahead (f.)",تَفَضَّلي,tafaDDalii,4,verb
+"please, go ahead (pl.)",تَفَضَّلوا,tafaDDaluu,4,verb
+"my friend, boyfriend",صاحِبي,SaaHibii,4,noun
+"my friend, girlfriend",صاحِبَتي,SaaHibatii,4,noun
+"he, it (m.)",هُوَ,huwa,4,pronoun
+"she, it (f.)",هِيَ,hiya,4,pronoun
+his name,إسمُهُ,ismuhu,4,noun
+her name,إسمُها,ismuha,4,noun
+student (m.),طالِب,Taalib,4,noun
+student (f.),طالِبة,Taaliba,4,noun
+"professor, teacher (m.)",أُستاذ,ustaadh,4,noun
+"professor, teacher (f.)",أُستاذة,ustaadha,4,noun
+the university of...,جامِعَةَ,jaamiʿat,4,noun
+bread,خُبْز,khubz,4,noun
+chicken,دَجاج,dajaaj,4,noun
+neighbor (m.),جار,jaar,4,noun
+neighbor (f.),جارة,jaara,4,noun
+brother,أَخ,akh,4,noun
+sister,أُخْت,ukht,4,noun
+new (m.),جَديد,jadiid,4,adjective
+new (f.),جَديدة,jadiida,4,adjective
+Good evening!,مَساءُ الخَيْر,masaaʾ al-khayr,4,phrase
+(reply) Good evening!,مَساءُ النّور,masaaʾ an-nuur,4,phrase
+I have,عِندي,ʿindi,4,phrase
+I don't have,لَيْسَ عِندي,laysa ʿindi,4,phrase
+question,سُؤال,suʾaal,4,noun
+I love,أُحِبّ,uHibb,4,verb
+you (m.) love,تُحِبّ,tuHibb,4,verb
+you (f.) love,تُحِبّين,tuHibbiin,4,verb
+telephone number,رَقَم تِليفون,raqm tilifuun,4,noun
+zero,صِفْر,Sifr,4,number
+one,واحِد,waaHid,4,number
+two,اثنَيْن,ithnayn,4,number
+three,ثَلاثة,thalaatha,4,number
+four,أَرْبَعة,arbaʿa,4,number
+five,خَمْسة,khamsa,4,number
+six,سِتَّة,sitta,4,number
+seven,سَبْعة,sabʿa,4,number
+eight,ثَمانِية,thamaaniya,4,number
+nine,تِسْعة,tisʿa,4,number
+ten,عَشَرة,ʿashara,4,number
+bus,أوتوبيس,otobiis,5,noun
+lesson,دَرْس,dars,5,noun
+tea,شاي,shaay,5,noun
+"young people, guys",شَباب,shabaab,5,noun
+"good, kind-hearted (m.)",طَيِّب,Tayyib,5,adjective
+"good, kind-hearted (f.)",طَيِّبة,Tayyiba,5,adjective
+may I be excused? (m.),عَن إذنِكَ,ʿan idhnika,5,phrase
+may I be excused? (f.),عَن إذنِكِ,ʿan idhniki,5,phrase
+"class, classroom",فَصْل / صَفّ,faSl / Saff,5,noun
+good-bye,مَعَ السَّلامة,maʿa s-salaama,5,phrase
+(reply) good-bye,الله يِسَلِّمَك,allah yisallimak,5,phrase
+right! correct!,صَحيح,SaHiiH,5,adjective
+white,أَبْيَض,abyaD,5,adjective
+black,أَسْوَد,aswad,5,adjective
+green,أَخْضَر,akhDar,5,adjective
+thank you,شُكْراً,shukran,5,phrase
+you're welcome,عَفواً,ʿafwan,5,phrase
+please,مِن فَضلِكَ,min faDlika,5,phrase
+sorry! (m.),آسِف,aasif,5,adjective
+sorry! (f.),آسِفة,aasifa,5,adjective
+there is,هُناك,hunaak,5,particle
+there isn't,لَيْسَ هُناك,laysa hunaak,5,particle
+"that's all, only",فَقَط,faqaT,5,particle
+something,شَيْء,shayʾ,5,noun
+something else,شَيْء آخَر,shayʾ aakhar,5,noun
+I want,أُريد,uriid,5,verb
+you want (m.),تُريد,turiid,5,verb
+you want (f.),تُريدين,turiidiin,5,verb
+he wants,يُريد,yuriid,5,verb
+she wants,تُريد,turiid,5,verb
+ready (m.),جاهِز,jaahiz,6,adjective
+ready (f.),جاهِزة,jaahiza,6,adjective
+coffee,قَهْوة,qahwa,6,noun
+milk,حَليب,Haliib,6,noun
+sugar,سُكَّر,sukkar,6,noun
+medium sugar,سُكَّر وَسَط,sukkar wasaT,6,noun
+juice,عَصير,ʿaSiir,6,noun
+water,ماء,maaʾ,6,noun
+let's go!,هَيّا بِنا,hayyaa binaa,6,phrase
+I go,أَذْهَب,adhhab,6,verb
+you (m.) go,تَذْهَب,tadhhab,6,verb
+you (f.) go,تَذْهَبين,tadhhabiin,6,verb
+he goes,يَذْهَب,yadhhab,6,verb
+she goes,تَذْهَب,tadhhab,6,verb
+I drink,أَشْرَب,ashrab,6,verb
+you (m.) drink,تَشْرَب,tashrab,6,verb
+you (f.) drink,تَشْرَبين,tashrabiin,6,verb
+he drinks,يَشْرَب,yashrab,6,verb
+she drinks,تَشْرَب,tashrab,6,verb
+"car, automobile",سَيّارة,sayyaara,6,noun
+"watch, clock, hour",ساعة,saaʿa,6,noun
+tree,شَجَرة,shajara,6,noun
+strange (m.),غَريب,ghariib,6,adjective
+strange (f.),غَريبة,ghariiba,6,adjective
+"small, young (m.)",صَغير,Saghiir,6,adjective
+"small, young (f.)",صَغيرة,Saghiira,6,adjective
+"large, old-people (m.)",كَبير,kabiir,6,adjective
+"large, old-people (f.)",كَبيرة,kabiira,6,adjective
+easy (m.),سَهْل,sahl,6,adjective
+easy (f.),سَهْلة,sahla,6,adjective
+"difficult, hard (m.)",صَعْب,Saʿb,6,adjective
+"difficult, hard (f.)",صَعْبة,Saʿba,6,adjective
+"wide, spacious (m.)",واسِع,waasiʿ,6,adjective
+"wide, spacious (f.)",واسِعة,waasiʿa,6,adjective
+page,صَفْحة,Safha,7,noun
+piece of paper,وَرَقة,waraqa,7,noun
+room,غُرْفة,ghurfa,7,noun
+window,شُبّاك,shubbaak,7,noun
+chair,كُرْسي,kursii,7,noun
+table,طاوِلة,Taawila,7,noun
+dog,كَلْب,kalb,7,noun
+cat,قِطّة,qiTTa,7,noun
+money,مال,maal,7,noun
+"must, have to",لازِم,laazim,7,particle
+"possible, can",مُمكِن,mumkin,7,particle
+nothing,لا شَيْء,laa shayʾ,7,noun
+or,أَو,aw,7,particle
+"I see, watch",أُشاهِد,ushaahid,7,verb
+you (m.) see,تُشاهِد,tushaahid,7,verb
+you (f.) see,تُشاهِدين,tushaahidiin,7,verb
+he sees,يُشاهِد,yushaahid,7,verb
+she sees,تُشاهِد,tushaahid,7,verb
+movie,فيلم,film,7,noun
+"cinema, movies",السّينَما,as-sinamaa,7,noun
+"means, that is",يَعْني,yaʿnii,8,phrase
+building,بِناية,binaaya,8,noun
+"office, desk",مَكْتَب,maktab,8,noun
+"library, bookstore",مَكْتَبة,maktaba,8,noun
+word,كَلِمة,kalima,8,noun
+sentence,جُمْلة,jumla,8,noun
+"test, examination",إمْتِحان,imtiHaan,8,noun
+pen or pencil,قَلَم,qalam,8,noun
+"drill, exercise",تَمْرين,tamriin,8,noun
+"bathroom, toilet",الحَمّام,al-Hammaam,8,noun
+"close to, near (m.)",قَريب مِن,qariib min,8,adjective
+"close to, near (f.)",قَريبة مِن,qariiba min,8,adjective
+far from (m.),بَعيد عَن,baʿiid ʿan,8,adjective
+far from (f.),بَعيدة عَن,baʿiida ʿan,8,adjective
+tired (m.),تَعْبان,taʿbaan,8,adjective
+tired (f.),تَعْبانة,taʿbaana,8,adjective
+cold (m.),بَرْدان,bardaan,8,adjective
+cold (f.),بَرْدانة,bardaana,8,adjective
+hot (m.),حَرّان,Harraan,8,adjective
+hot (f.),حَرّانة,Harraana,8,adjective
+thirsty (m.),عَطْشان,ʿaTshaan,8,adjective
+thirsty (f.),عَطْشانة,ʿaTshaana,8,adjective
+hungry (m.),جَوْعان,jawʿaan,8,adjective
+hungry (f.),جَوْعانة,jawʿaana,8,adjective
+"upset, angry/sad (m.)",زَعْلان,zaʿlaan,8,adjective
+"upset, angry/sad (f.)",زَعْلانة,zaʿlaana,8,adjective
+exhausted (m.),خَلْصان,khalSaan,8,adjective
+exhausted (f.),خَلْصانة,khalSaana,8,adjective
+happy (m.),سَعيد,saʿiid,8,adjective
+happy (f.),سَعيدة,saʿiida,8,adjective
+sick (m.),مَريض,mariiD,8,adjective
+sick (f.),مَريضة,mariiDa,8,adjective
+a little,قَليلاً,qaliilan,8,particle
+what's wrong (m.)?,ما بِكَ؟,maa bika?,8,phrase
+what's wrong (f.)?,ما بِكِ؟,maa biki?,8,phrase
+feel better!,سَلامَتِك,salaamtik,8,phrase
+(reply),الله يِسَلِّمِك,allah yisallimik,8,phrase
+man,رَجُل,rajul,9,noun
+woman,اِمْرَأة,imraʾa,9,noun
+girl,بِنْت,bint,9,noun
+boy,وَلَد,walad,9,noun
+story,قِصّة,qiSSa,9,noun
+short (m.),قَصير,qaSiir,9,adjective
+short (f.),قَصيرة,qaSiira,9,adjective
+"tall, long (m.)",طَويل,Tawiil,9,adjective
+"tall, long (f.)",طَويلة,Tawiila,9,adjective
+beautiful (m.),جَميل,jamiil,9,adjective
+beautiful (f.),جَميلة,jamiila,9,adjective
+"nice, pleasant (m.)",لَطيف,laTiif,9,adjective
+"nice, pleasant (f.)",لَطيفة,laTiifa,9,adjective
+never mind! sorry!,مَعلِش,maʿlish,9,phrase
+problem,مُشْكِلة,mushkila,9,noun
+"wrong, a mistake",غَلَط,ghalaT,9,noun
+"sir, madam (Egyptian)",أَفَنْدِم,afandim,9,noun
