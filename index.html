@@ -538,6 +538,35 @@ const CASE_BANK = [
   targets:[{word:"الكَلْبُ",case:"nominative",why:"it's the subject of the sentence"},{word:"البَيْتِ",case:"genitive",why:"it's the object of the preposition \u0645\u0646 (from/of)"}]},
 ];
 
+// Word-recognition drill: "which grammatical role does this word/phrase play?" and
+// "is this a nominal or verbal sentence?", reusing CASE_BANK's sentences plus a few more
+// from the Nominal Sentence / Idafa / Pronouns lessons. sentenceType is null for standalone
+// phrases that aren't full sentences (used only for word-role questions, not nominal/verbal).
+const RECOGNITION_LABELS = ["Pronoun","Noun","Verb","Noun-adjective","Idafa","Preposition","Possessive pronoun"];
+const RECOGNITION_BANK = [
+{ar:"البَيتُ جَديدٌ",tr:"al-baytu jadiidun",en:"the house is new",sentenceType:"nominal",sentenceWhy:"it opens with a noun (the subject), not a verb",targets:[{word:"البَيتُ",label:"Noun",why:"it's the subject noun, meaning ‘the house’"},{word:"جَديدٌ",label:"Noun-adjective",why:"it's the adjective serving as the predicate, describing ‘the house’"}]},
+{ar:"أَنَا طَالِبٌ",tr:"anaa Taalibun",en:"I am a student",sentenceType:"nominal",sentenceWhy:"it opens with an independent pronoun, not a verb",targets:[{word:"أَنَا",label:"Pronoun",why:"independent subject pronoun, ‘I’"},{word:"طَالِبٌ",label:"Noun",why:"the predicate noun, ‘a student’"}]},
+{ar:"هِيَ مِن سُوريا",tr:"hiya min Suuriyaa",en:"she is from Syria",sentenceType:"nominal",sentenceWhy:"it opens with an independent pronoun, not a verb",targets:[{word:"هِيَ",label:"Pronoun",why:"independent subject pronoun, ‘she’"},{word:"مِن",label:"Preposition",why:"it introduces the prepositional-phrase predicate, ‘from Syria’"}]},
+{ar:"هٰذا كِتابٌ",tr:"haadhaa kitaabun",en:"this is a book",sentenceType:"nominal",sentenceWhy:"it opens with a demonstrative pronoun standing alone as the subject",targets:[{word:"هٰذا",label:"Pronoun",why:"demonstrative pronoun standing alone as the subject, ‘this’"},{word:"كِتابٌ",label:"Noun",why:"indefinite predicate noun, ‘a book’"}]},
+{ar:"هٰذا الكِتابُ جَديدٌ",tr:"haadhaa l-kitaabu jadiidun",en:"this book is new",sentenceType:"nominal",sentenceWhy:"the subject ‘this book’ is a noun phrase, and still no verb appears",targets:[{word:"جَديدٌ",label:"Noun-adjective",why:"the adjective serving as the predicate, describing ‘this book’"}]},
+{ar:"أُحِبُّ القَلَمَ الجَديدَ",tr:"uHibbu l-qalama l-jadiida",en:"I love the new pen",sentenceType:"verbal",sentenceWhy:"it opens with the conjugated verb meaning ‘I love’",targets:[{word:"أُحِبُّ",label:"Verb",why:"conjugated verb, ‘I love’"},{word:"القَلَمَ الجَديدَ",label:"Noun-adjective",why:"القَلَمَ (the pen) and its adjective الجَديدَ (new) agree in definiteness, gender, and case"}]},
+{ar:"هذا بَيْتُ الأُستاذِ",tr:"haadhaa baytu l-ustaadhi",en:"this is the professor's house",sentenceType:"nominal",sentenceWhy:"it opens with a demonstrative pronoun, not a verb",targets:[{word:"هذا",label:"Pronoun",why:"demonstrative pronoun, subject of the nominal sentence"},{word:"بَيْتُ الأُستاذِ",label:"Idafa",why:"بَيْتُ (house) + الأُستاذِ (the professor) = ‘the professor's house’"}]},
+{ar:"تَذْهَبُ الطّالِبَةُ إلى الجامِعَةِ",tr:"tadhhabu T-Taalibatu ilaa l-jaami\u02BFati",en:"the student goes to the university",sentenceType:"verbal",sentenceWhy:"it opens with the conjugated verb meaning ‘she goes’",targets:[{word:"تَذْهَبُ",label:"Verb",why:"conjugated verb, ‘she goes’"},{word:"إلى",label:"Preposition",why:"it introduces ‘to the university’"}]},
+{ar:"قَرَأَ الوَلَدُ الكِتابَ",tr:"qara\u02BEa l-waladu l-kitaaba",en:"the boy read the book",sentenceType:"verbal",sentenceWhy:"it opens with the conjugated (past-tense) verb meaning ‘read’",targets:[{word:"قَرَأَ",label:"Verb",why:"conjugated verb, ‘read’, and it opens the sentence"},{word:"الوَلَدُ",label:"Noun",why:"the subject noun, ‘the boy’"}]},
+{ar:"هذا كِتابُ الطّالِبِ",tr:"haadhaa kitaabu T-Taalibi",en:"this is the student's book",sentenceType:"nominal",sentenceWhy:"it opens with a demonstrative pronoun, not a verb",targets:[{word:"كِتابُ الطّالِبِ",label:"Idafa",why:"كِتابُ (book) + الطّالِبِ (the student) = ‘the student's book’"}]},
+{ar:"الطّالِبُ في الصَّفِّ",tr:"al-Taalibu fii S-Saffi",en:"the student is in the classroom",sentenceType:"nominal",sentenceWhy:"it opens with the subject noun, not a verb",targets:[{word:"الطّالِبُ",label:"Noun",why:"the subject noun, ‘the student’"},{word:"في",label:"Preposition",why:"it introduces ‘in the classroom’"}]},
+{ar:"الأُستاذُ في المَكْتَبَةِ",tr:"al-ustaadhu fii l-maktabati",en:"the professor is in the library",sentenceType:"nominal",sentenceWhy:"it opens with the subject noun, not a verb",targets:[{word:"الأُستاذُ",label:"Noun",why:"the subject noun, ‘the professor’"},{word:"في",label:"Preposition",why:"it introduces ‘in the library’"}]},
+{ar:"أَشْرَبُ الشّايَ",tr:"ashrabu sh-shaaya",en:"I drink the tea",sentenceType:"verbal",sentenceWhy:"it opens with the conjugated verb meaning ‘I drink’",targets:[{word:"أَشْرَبُ",label:"Verb",why:"conjugated verb, ‘I drink’"}]},
+{ar:"بابُ البَيْتِ كَبيرٌ",tr:"baabu l-bayti kabiirun",en:"the house's door is big",sentenceType:"nominal",sentenceWhy:"the subject ‘the house's door’ is a noun phrase (an idafa), and no verb appears",targets:[{word:"بابُ البَيْتِ",label:"Idafa",why:"بابُ (door) + البَيْتِ (the house) = ‘the house's door’"},{word:"كَبيرٌ",label:"Noun-adjective",why:"adjective serving as the predicate, describing the door"}]},
+{ar:"الكَلْبُ قَريبٌ مِنَ البَيْتِ",tr:"al-kalbu qariibun mina l-bayti",en:"the dog is close to the house",sentenceType:"nominal",sentenceWhy:"it opens with the subject noun, not a verb",targets:[{word:"الكَلْبُ",label:"Noun",why:"the subject noun, ‘the dog’"},{word:"مِنَ",label:"Preposition",why:"it introduces ‘close to/from the house’"}]},
+{ar:"كِتابي",tr:"kitaabii",en:"my book",sentenceType:null,sentenceWhy:null,targets:[{word:"كِتابي",label:"Possessive pronoun",why:"the suffix means ‘my’, attached to a form of the word for ‘book’"}]},
+{ar:"سَيّارَتُها",tr:"sayyaaratuha",en:"her car",sentenceType:null,sentenceWhy:null,targets:[{word:"سَيّارَتُها",label:"Possessive pronoun",why:"the suffix means ‘her’, attached to a form of the word for ‘car’"}]},
+{ar:"غُرْفَتي",tr:"ghurfatii",en:"my room",sentenceType:null,sentenceWhy:null,targets:[{word:"غُرْفَتي",label:"Possessive pronoun",why:"the suffix means ‘my’, attached to a form of the word for ‘room’"}]},
+{ar:"أُخْتي",tr:"ukhtii",en:"my sister",sentenceType:null,sentenceWhy:null,targets:[{word:"أُخْتي",label:"Possessive pronoun",why:"the suffix means ‘my’, attached to a form of the word for ‘sister’"}]},
+{ar:"جامِعةُ جورجتاون",tr:"jaamiʿatu Georgetown",en:"Georgetown University",sentenceType:null,sentenceWhy:null,targets:[{word:"جامِعةُ جورجتاون",label:"Idafa",why:"جامِعةُ (university) + جورجتاون (Georgetown) = ‘Georgetown University’"}]},
+{ar:"كِتاب",tr:"kitaab",en:"book",sentenceType:null,sentenceWhy:null,targets:[{word:"كِتاب",label:"Noun",why:"a plain common noun"}]},
+];
+
 const CROSSWORD = {
   rows:7, cols:5,
   cells: {
@@ -636,7 +665,7 @@ function renderHome(main){
         </div>
         <div class="card lesson-card" onclick="go('quiz')">
           <div class="num">Test yourself</div><h3>Quizzes</h3>
-          <p class="muted" style="margin:0;">Vocabulary, gender, definiteness, case endings, sun/moon letters, pronouns, verb conjugation, question words.</p>
+          <p class="muted" style="margin:0;">Vocabulary, gender, definiteness, case endings, sun/moon letters, pronouns, verb conjugation, question words, word recognition.</p>
         </div>
         <div class="card lesson-card" onclick="go('crossword')">
           <div class="num">Puzzle</div><h3>Crossword</h3>
@@ -1267,6 +1296,7 @@ const QUIZ_CATEGORIES = [
   {id:'pronoun', label:'Pronouns', desc:'Subject pronouns and possessive suffixes.'},
   {id:'verb', label:'Verb Conjugation', desc:'Pick the correctly conjugated form.'},
   {id:'qword', label:'Question Words', desc:'Match the interrogative particle to its meaning.'},
+  {id:'recognize', label:'Word Recognition', desc:'Spot the pronoun, verb, idafa, and more inside a real sentence.'},
 ];
 
 function renderQuizMenu(main, cat){
@@ -1364,6 +1394,7 @@ function genQuestions(cat, n){
   if(cat==='pronoun') return genPronounQuestions(n);
   if(cat==='verb') return genVerbQuestions(n);
   if(cat==='qword') return genQWordQuestions(n);
+  if(cat==='recognize') return genRecognitionQuestions(n);
   return [];
 }
 
@@ -1478,6 +1509,34 @@ function genQWordQuestions(n){
   for(let i=0;i<n;i++){
     const q = pick(QWORDS);
     qs.push(mcqFrom(q[2], QWORDS.map(x=>x[2]), `What does <span class="arabic big-ar">${q[1]}</span> (${q[0]}) mean?`, `${q[1]} (${q[0]}) = ${q[2]}`));
+  }
+  return qs;
+}
+function genRecognitionQuestions(n){
+  const qs=[];
+  const wordItems=[];
+  RECOGNITION_BANK.forEach(s=>s.targets.forEach(t=>wordItems.push({sentence:s, target:t})));
+  const sentenceItems = RECOGNITION_BANK.filter(s=>s.sentenceType);
+  for(let i=0;i<n;i++){
+    if(sentenceItems.length===0 || Math.random()<0.7){
+      const item = pick(wordItems);
+      const distractors = sample(RECOGNITION_LABELS.filter(l=>l!==item.target.label), 3);
+      const options = shuffle([item.target.label, ...distractors]);
+      qs.push({
+        prompt:`<span class="arabic big-ar">${item.sentence.ar}</span><br><span class="muted">${item.sentence.tr}</span><br>What role does <span class="arabic">${item.target.word}</span> play?`,
+        options, correct: options.indexOf(item.target.label),
+        explain: `${item.target.word} is a ${item.target.label}: ${item.target.why}. (“${item.sentence.en}”)`
+      });
+    } else {
+      const s = pick(sentenceItems);
+      const options = shuffle(['Nominal sentence','Verbal sentence']);
+      const correctText = s.sentenceType==='nominal' ? 'Nominal sentence' : 'Verbal sentence';
+      qs.push({
+        prompt:`<span class="arabic big-ar">${s.ar}</span><br><span class="muted">${s.tr}</span><br>Is this a nominal sentence or a verbal sentence?`,
+        options, correct: options.indexOf(correctText),
+        explain: `${correctText}: ${s.sentenceWhy}. (“${s.en}”)`
+      });
+    }
   }
   return qs;
 }
