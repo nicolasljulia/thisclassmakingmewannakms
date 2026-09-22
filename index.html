@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Arabic 1011 Companion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#faf7f2; --card:#ffffff; --text:#221f1c; --muted:#6b6258; --border:#e6ddd0;
+  --accent:#8c3a2b; --accent2:#2f6b5e; --accent-soft:#f3e3da; --good:#1c7f4d; --bad:#b5342a;
+  --chip:#f1ece2; --shadow: 0 2px 10px rgba(60,40,20,0.08);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1a1714; --card:#242019; --text:#f1ece2; --muted:#b3a798; --border:#3a352c;
+    --accent:#e2a186; --accent2:#7fd7bf; --accent-soft:#3a2a22; --good:#7ee3ad; --bad:#ff8a7a;
+    --chip:#2e2a22; --shadow: 0 2px 14px rgba(0,0,0,0.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1a1714; --card:#242019; --text:#f1ece2; --muted:#b3a798; --border:#3a352c;
+  --accent:#e2a186; --accent2:#7fd7bf; --accent-soft:#3a2a22; --good:#7ee3ad; --bad:#ff8a7a;
+  --chip:#2e2a22; --shadow: 0 2px 14px rgba(0,0,0,0.4);
+}
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+.arabic{ font-family:'Noto Naskh Arabic','Arial',sans-serif; direction:rtl; unicode-bidi:isolate; }
+a{color:var(--accent);}
+header.top{
+  position:sticky; top:0; z-index:20; background:var(--card); border-bottom:1px solid var(--border);
+  padding-top:calc(env(safe-area-inset-top,0px) + 10px);
+}
+.topwrap{max-width:1000px;margin:0 auto;padding:0 16px 10px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.brand{font-weight:700;font-size:18px;white-space:nowrap;}
+.brand span{color:var(--accent);}
+nav.tabs{display:flex;gap:6px;flex-wrap:wrap;}
+nav.tabs button{
+  border:1px solid var(--border); background:var(--chip); color:var(--text); padding:7px 13px;
+  border-radius:999px; font-size:14px; cursor:pointer; font-family:inherit; font-weight:500;
+}
+nav.tabs button.active{background:var(--accent); color:#fff; border-color:var(--accent);}
+main{max-width:1000px;margin:0 auto;padding:20px 16px 60px;}
+h1{font-size:26px;margin:0 0 6px;}
+h2{font-size:21px;margin:28px 0 10px;color:var(--accent);}
+h3{font-size:17px;margin:20px 0 8px;}
+p{line-height:1.6;color:var(--text);}
+.muted{color:var(--muted);}
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow);margin-bottom:16px;}
+.grid{display:grid;gap:14px;}
+.grid.cols2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+.grid.cols3{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));}
+.lesson-card{cursor:pointer;transition:transform .1s;}
+.lesson-card:hover{transform:translateY(-2px);}
+.lesson-card .num{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.05em;}
+.lesson-card h3{margin:4px 0 6px;}
+table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px;}
+th,td{border:1px solid var(--border);padding:7px 10px;text-align:left;vertical-align:middle;}
+th{background:var(--accent-soft);color:var(--text);font-weight:600;}
+td.ar, th.ar{text-align:center;}
+.big-ar{font-size:22px;}
+.pill{display:inline-block;background:var(--chip);border-radius:999px;padding:3px 10px;font-size:12px;margin-right:6px;color:var(--muted);}
+.btn{
+  border:1px solid var(--accent); background:var(--accent); color:#fff; padding:9px 16px; border-radius:9px;
+  font-family:inherit; font-size:14px; font-weight:600; cursor:pointer;
+}
+.btn.ghost{background:transparent;color:var(--accent);}
+.btn.secondary{background:var(--accent2);border-color:var(--accent2);}
+.btn:disabled{opacity:.4;cursor:default;}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
+.spacer{flex:1;}
+select,input[type=text]{
+  font-family:inherit;font-size:14px;padding:7px 10px;border-radius:8px;border:1px solid var(--border);
+  background:var(--card);color:var(--text);
+}
+/* flashcards */
+.flash-wrap{display:flex;flex-direction:column;align-items:center;gap:16px;}
+.flashcard{
+  width:100%;max-width:420px;min-height:220px;border-radius:18px;border:1px solid var(--border);
+  background:var(--card);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:28px;cursor:pointer;font-size:24px;position:relative;
+}
+.flashcard .tag{position:absolute;top:12px;left:14px;font-size:11px;color:var(--muted);}
+.flashcard .hint{position:absolute;bottom:12px;font-size:12px;color:var(--muted);}
+.flashcard .translit{font-size:15px;color:var(--muted);margin-top:8px;}
+/* matching */
+.match-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:560px;margin:0 auto;}
+.match-col{display:flex;flex-direction:column;gap:8px;}
+.tile{
+  border:1px solid var(--border);background:var(--card);border-radius:10px;padding:10px 12px;cursor:pointer;
+  font-size:15px;text-align:center;transition:.15s;
+}
+.tile.selected{border-color:var(--accent);background:var(--accent-soft);}
+.tile.correct{border-color:var(--good);background:var(--good);color:#fff;cursor:default;}
+.tile.wrong{border-color:var(--bad);background:var(--bad);color:#fff;}
+.tile.locked{opacity:.35;cursor:default;}
+/* quiz */
+.quiz-prompt{font-size:19px;margin-bottom:18px;line-height:1.5;}
+.quiz-options{display:grid;gap:10px;}
+.qopt{
+  text-align:left;border:1px solid var(--border);background:var(--card);border-radius:10px;padding:12px 14px;
+  font-family:inherit;font-size:15px;cursor:pointer;color:var(--text);
+}
+.qopt:hover{border-color:var(--accent);}
+.qopt.correct{background:var(--good);border-color:var(--good);color:#fff;}
+.qopt.wrong{background:var(--bad);border-color:var(--bad);color:#fff;}
+.qopt:disabled{cursor:default;}
+.progressbar{height:6px;background:var(--chip);border-radius:99px;overflow:hidden;margin-bottom:14px;}
+.progressbar>div{height:100%;background:var(--accent);}
+.explain{margin-top:14px;padding:12px 14px;border-radius:10px;background:var(--chip);font-size:14px;}
+.score-badge{font-weight:700;color:var(--accent);}
+/* crossword */
+.xw-wrap{display:flex;gap:24px;flex-wrap:wrap;}
+table.xw{border-collapse:collapse;}
+table.xw td{
+  width:34px;height:34px;border:1px solid var(--border);padding:0;text-align:center;position:relative;background:var(--card);
+}
+table.xw td.block{background:transparent;border:none;}
+table.xw td input{
+  width:100%;height:100%;border:none;background:transparent;text-align:center;text-transform:uppercase;
+  font-size:16px;font-family:inherit;color:var(--text);outline:none;
+}
+table.xw td input.correct{color:var(--good);}
+table.xw td input.wrong{color:var(--bad);}
+table.xw td .num{position:absolute;top:1px;left:2px;font-size:9px;color:var(--muted);}
+.clue-list{min-width:220px;}
+.clue-list h4{margin:0 0 6px;color:var(--accent2);}
+.clue-list ol{padding-left:18px;margin:0 0 16px;}
+.clue-list li{font-size:14px;margin-bottom:4px;}
+footer{max-width:1000px;margin:0 auto;padding:20px 16px 40px;color:var(--muted);font-size:12px;text-align:center;}
+.unit-tag{font-size:11px;background:var(--chip);border-radius:6px;padding:2px 7px;color:var(--muted);}
+@media (max-width:600px){
+  .match-grid{gap:12px;}
+  table.xw td{width:28px;height:28px;}
+  table.xw td input{font-size:13px;}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="topwrap">
+    <div class="brand">Arabic 1011 <span>Companion</span></div>
+    <nav class="tabs" id="mainNav"></nav>
+  </div>
+</header>
+<main id="main"></main>
+
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+
+const VOCAB = [
+// [english, arabic, transliteration, unit]
+["Greetings! (Islamic greeting)","السَّلامُ عَلَيكُم","assalaamu \u02BFalaykum",1],
+["Hello, hi","أَهلاً","ahlan",1],
+["Hello, welcome","أَهلاً وَسَهلاً","ahlan wa sahlan",1],
+["Hello (Levantine)","مَرحَباً","marHaban",1],
+["I","أَنا","ana",1],
+["my name","إسمي","ismii",1],
+["from","مِن","min",1],
+["the city of...","مَدينةَ","madiinat",1],
+["in","في","fii",1],
+["door","باب","baab",2],
+["name","إسم","ism",2],
+["what?","ما","maa",2],
+["(reply to ahlan wa sahlan, m.)","أَهلاً بِكَ","ahlan bika",2],
+["(reply to ahlan wa sahlan, f.)","أَهلاً بِكِ","ahlan biki",2],
+["(reply to assalaamu \u02BFalaykum)","وَعَليكُمُ السَّلام","wa \u02BFalaykumu s-salaam",2],
+["you, polite (m.)","حَضرَتُكَ","HaDratuka",2],
+["you, polite (f.)","حَضرَتُكِ","HaDratuki",2],
+["Nice to meet you!","تَشَرَّفنا","tasharrafnaa",2],
+["you (masc.)","أَنتَ","anta",2],
+["you (fem.)","أَنتِ","anti",2],
+["where?","أَينَ","ayna",2],
+["from where?","مِن أَينَ","min ayna",2],
+["yes","نَعَم","na\u02BFam",2],
+["no","لا","laa",2],
+["and","وَ","wa",3],
+["veil, head covering","حِجاب","Hijaab",3],
+["house","بَيْت","bayt",3],
+["street","شارِع","shaari\u02BF",3],
+["homework, duty","واجِب","waajib",3],
+["news","أَخْبار","akhbaar",3],
+["book","كِتاب","kitaab",3],
+["my dear (m.)","حَبيبي","Habiibii",3],
+["my dear (f.)","حَبيبَتي","Habiibtii",3],
+["Good morning!","صَباحُ الخَيْر","SabaaH al-khayr",3],
+["(reply) Good morning!","صَباحُ النّور","SabaaH an-nuur",3],
+["hey... (addressing someone)","يا","yaa",3],
+["how?","كَيْفَ","kayfa",3],
+["How are you?","كَيْفَ الحال","kayfa al-Haal",3],
+["(reply) praise be to God","الحَمدُ لله","al-Hamdu lillaah",3],
+["great, fine (m.)","جَيِّد","jayyid",3],
+["great, fine (f.)","جَيِّدة","jayyida",3],
+["this (masc.)","هٰذا","haadhaa",3],
+["this (fem.)","هٰذِهِ","haadhihi",3],
+["good, well (reply)","بِخَيْر","bi-khayr",3],
+["am/is/are not","لَيْسَ","laysa",3],
+["please, go ahead (m.)","تَفَضَّل","tafaDDal",4],
+["please, go ahead (f.)","تَفَضَّلي","tafaDDalii",4],
+["please, go ahead (pl.)","تَفَضَّلوا","tafaDDaluu",4],
+["my friend, boyfriend","صاحِبي","SaaHibii",4],
+["my friend, girlfriend","صاحِبَتي","SaaHibatii",4],
+["he, it (m.)","هُوَ","huwa",4],
+["she, it (f.)","هِيَ","hiya",4],
+["his name","إسمُهُ","ismuhu",4],
+["her name","إسمُها","ismuha",4],
+["student (m.)","طالِب","Taalib",4],
+["student (f.)","طالِبة","Taaliba",4],
+["professor, teacher (m.)","أُستاذ","ustaadh",4],
+["professor, teacher (f.)","أُستاذة","ustaadha",4],
+["the university of...","جامِعَةَ","jaami\u02BFat",4],
+["bread","خُبْز","khubz",4],
+["chicken","دَجاج","dajaaj",4],
+["neighbor (m.)","جار","jaar",4],
+["neighbor (f.)","جارة","jaara",4],
+["brother","أَخ","akh",4],
+["sister","أُخْت","ukht",4],
+["new (m.)","جَديد","jadiid",4],
+["new (f.)","جَديدة","jadiida",4],
+["Good evening!","مَساءُ الخَيْر","masaa\u02BE al-khayr",4],
+["(reply) Good evening!","مَساءُ النّور","masaa\u02BE an-nuur",4],
+["I have","عِندي","\u02BFindi",4],
+["I don't have","لَيْسَ عِندي","laysa \u02BFindi",4],
+["question","سُؤال","su\u02BEaal",4],
+["I love","أُحِبّ","uHibb",4],
+["you (m.) love","تُحِبّ","tuHibb",4],
+["you (f.) love","تُحِبّين","tuHibbiin",4],
+["telephone number","رَقَم تِليفون","raqm tilifuun",4],
+["zero","صِفْر","Sifr",4],
+["one","واحِد","waaHid",4],
+["two","اثنَيْن","ithnayn",4],
+["three","ثَلاثة","thalaatha",4],
+["four","أَرْبَعة","arba\u02BFa",4],
+["five","خَمْسة","khamsa",4],
+["six","سِتَّة","sitta",4],
+["seven","سَبْعة","sab\u02BFa",4],
+["eight","ثَمانِية","thamaaniya",4],
+["nine","تِسْعة","tis\u02BFa",4],
+["ten","عَشَرة","\u02BFashara",4],
+["bus","أوتوبيس","otobiis",5],
+["lesson","دَرْس","dars",5],
+["tea","شاي","shaay",5],
+["young people, guys","شَباب","shabaab",5],
+["good, kind-hearted (m.)","طَيِّب","Tayyib",5],
+["good, kind-hearted (f.)","طَيِّبة","Tayyiba",5],
+["may I be excused? (m.)","عَن إذنِكَ","\u02BFan idhnika",5],
+["may I be excused? (f.)","عَن إذنِكِ","\u02BFan idhniki",5],
+["class, classroom","فَصْل / صَفّ","faSl / Saff",5],
+["good-bye","مَعَ السَّلامة","ma\u02BFa s-salaama",5],
+["(reply) good-bye","الله يِسَلِّمَك","allah yisallimak",5],
+["right! correct!","صَحيح","SaHiiH",5],
+["white","أَبْيَض","abyaD",5],
+["black","أَسْوَد","aswad",5],
+["green","أَخْضَر","akhDar",5],
+["thank you","شُكْراً","shukran",5],
+["you're welcome","عَفواً","\u02BFafwan",5],
+["please","مِن فَضلِكَ","min faDlika",5],
+["sorry! (m.)","آسِف","aasif",5],
+["sorry! (f.)","آسِفة","aasifa",5],
+["there is","هُناك","hunaak",5],
+["there isn't","لَيْسَ هُناك","laysa hunaak",5],
+["that's all, only","فَقَط","faqaT",5],
+["something","شَيْء","shay\u02BE",5],
+["something else","شَيْء آخَر","shay\u02BE aakhar",5],
+["I want","أُريد","uriid",5],
+["you want (m.)","تُريد","turiid",5],
+["you want (f.)","تُريدين","turiidiin",5],
+["he wants","يُريد","yuriid",5],
+["she wants","تُريد","turiid",5],
+["ready (m.)","جاهِز","jaahiz",6],
+["ready (f.)","جاهِزة","jaahiza",6],
+["coffee","قَهْوة","qahwa",6],
+["milk","حَليب","Haliib",6],
+["sugar","سُكَّر","sukkar",6],
+["medium sugar","سُكَّر وَسَط","sukkar wasaT",6],
+["juice","عَصير","\u02BFaSiir",6],
+["water","ماء","maa\u02BE",6],
+["let's go!","هَيّا بِنا","hayyaa binaa",6],
+["I go","أَذْهَب","adhhab",6],
+["you (m.) go","تَذْهَب","tadhhab",6],
+["you (f.) go","تَذْهَبين","tadhhabiin",6],
+["he goes","يَذْهَب","yadhhab",6],
+["she goes","تَذْهَب","tadhhab",6],
+["I drink","أَشْرَب","ashrab",6],
+["you (m.) drink","تَشْرَب","tashrab",6],
+["you (f.) drink","تَشْرَبين","tashrabiin",6],
+["he drinks","يَشْرَب","yashrab",6],
+["she drinks","تَشْرَب","tashrab",6],
+["car, automobile","سَيّارة","sayyaara",6],
+["watch, clock, hour","ساعة","saa\u02BFa",6],
+["tree","شَجَرة","shajara",6],
+["strange (m.)","غَريب","ghariib",6],
+["strange (f.)","غَريبة","ghariiba",6],
+["small, young (m.)","صَغير","Saghiir",6],
+["small, young (f.)","صَغيرة","Saghiira",6],
+["large, old-people (m.)","كَبير","kabiir",6],
+["large, old-people (f.)","كَبيرة","kabiira",6],
+["easy (m.)","سَهْل","sahl",6],
+["easy (f.)","سَهْلة","sahla",6],
+["difficult, hard (m.)","صَعْب","Sa\u02BFb",6],
+["difficult, hard (f.)","صَعْبة","Sa\u02BFba",6],
+["wide, spacious (m.)","واسِع","waasi\u02BF",6],
+["wide, spacious (f.)","واسِعة","waasi\u02BFa",6],
+["page","صَفْحة","Safha",7],
+["piece of paper","وَرَقة","waraqa",7],
+["room","غُرْفة","ghurfa",7],
+["window","شُبّاك","shubbaak",7],
+["chair","كُرْسي","kursii",7],
+["table","طاوِلة","Taawila",7],
+["dog","كَلْب","kalb",7],
+["cat","قِطّة","qiTTa",7],
+["money","مال","maal",7],
+["must, have to","لازِم","laazim",7],
+["possible, can","مُمكِن","mumkin",7],
+["nothing","لا شَيْء","laa shay\u02BE",7],
+["or","أَو","aw",7],
+["I see, watch","أُشاهِد","ushaahid",7],
+["you (m.) see","تُشاهِد","tushaahid",7],
+["you (f.) see","تُشاهِدين","tushaahidiin",7],
+["he sees","يُشاهِد","yushaahid",7],
+["she sees","تُشاهِد","tushaahid",7],
+["movie","فيلم","film",7],
+["cinema, movies","السّينَما","as-sinamaa",7],
+["means, that is","يَعْني","ya\u02BFnii",8],
+["building","بِناية","binaaya",8],
+["office, desk","مَكْتَب","maktab",8],
+["library, bookstore","مَكْتَبة","maktaba",8],
+["word","كَلِمة","kalima",8],
+["sentence","جُمْلة","jumla",8],
+["test, examination","إمْتِحان","imtiHaan",8],
+["pen or pencil","قَلَم","qalam",8],
+["drill, exercise","تَمْرين","tamriin",8],
+["bathroom, toilet","الحَمّام","al-Hammaam",8],
+["close to, near (m.)","قَريب مِن","qariib min",8],
+["close to, near (f.)","قَريبة مِن","qariiba min",8],
+["far from (m.)","بَعيد عَن","ba\u02BFiid \u02BFan",8],
+["far from (f.)","بَعيدة عَن","ba\u02BFiida \u02BFan",8],
+["tired (m.)","تَعْبان","ta\u02BFbaan",8],
+["tired (f.)","تَعْبانة","ta\u02BFbaana",8],
+["cold (m.)","بَرْدان","bardaan",8],
+["cold (f.)","بَرْدانة","bardaana",8],
+["hot (m.)","حَرّان","Harraan",8],
+["hot (f.)","حَرّانة","Harraana",8],
+["thirsty (m.)","عَطْشان","\u02BFaTshaan",8],
+["thirsty (f.)","عَطْشانة","\u02BFaTshaana",8],
+["hungry (m.)","جَوْعان","jaw\u02BFaan",8],
+["hungry (f.)","جَوْعانة","jaw\u02BFaana",8],
+["upset, angry/sad (m.)","زَعْلان","za\u02BFlaan",8],
+["upset, angry/sad (f.)","زَعْلانة","za\u02BFlaana",8],
+["exhausted (m.)","خَلْصان","khalSaan",8],
+["exhausted (f.)","خَلْصانة","khalSaana",8],
+["happy (m.)","سَعيد","sa\u02BFiid",8],
+["happy (f.)","سَعيدة","sa\u02BFiida",8],
+["sick (m.)","مَريض","mariiD",8],
+["sick (f.)","مَريضة","mariiDa",8],
+["a little","قَليلاً","qaliilan",8],
+["what's wrong (m.)?","ما بِكَ؟","maa bika?",8],
+["what's wrong (f.)?","ما بِكِ؟","maa biki?",8],
+["feel better!","سَلامَتِك","salaamtik",8],
+["(reply)","الله يِسَلِّمِك","allah yisallimik",8],
+["man","رَجُل","rajul",9],
+["woman","اِمْرَأة","imra\u02BEa",9],
+["girl","بِنْت","bint",9],
+["boy","وَلَد","walad",9],
+["story","قِصّة","qiSSa",9],
+["short (m.)","قَصير","qaSiir",9],
+["short (f.)","قَصيرة","qaSiira",9],
+["tall, long (m.)","طَويل","Tawiil",9],
+["tall, long (f.)","طَويلة","Tawiila",9],
+["beautiful (m.)","جَميل","jamiil",9],
+["beautiful (f.)","جَميلة","jamiila",9],
+["nice, pleasant (m.)","لَطيف","laTiif",9],
+["nice, pleasant (f.)","لَطيفة","laTiifa",9],
+["never mind! sorry!","مَعلِش","ma\u02BFlish",9],
+["problem","مُشْكِلة","mushkila",9],
+["wrong, a mistake","غَلَط","ghalaT",9],
+["sir, madam (Egyptian)","أَفَنْدِم","afandim",9],
+].map(v=>({en:v[0],ar:v[1],tr:v[2],unit:v[3]}));
+
+const ALPHABET = [
+["alif","ا","ا","ـا","ـا","glottal seat / aa",false,"none"],
+["baa","ب","بـ","ـبـ","ـب","b",true,"sun"],
+["taa","ت","تـ","ـتـ","ـت","t",true,"sun"],
+["thaa","ث","ثـ","ـثـ","ـث","th (think)",true,"sun"],
+["jiim","ج","جـ","ـجـ","ـج","j",true,"moon"],
+["Haa","ح","حـ","ـحـ","ـح","emphatic h",true,"moon"],
+["khaa","خ","خـ","ـخـ","ـخ","kh (Bach)",true,"moon"],
+["daal","د","د","ـد","ـد","d",false,"sun"],
+["dhaal","ذ","ذ","ـذ","ـذ","th (this)",false,"sun"],
+["raa","ر","ر","ـر","ـر","rolled r",false,"sun"],
+["zaay","ز","ز","ـز","ـز","z",false,"sun"],
+["siin","س","سـ","ـسـ","ـس","s",true,"sun"],
+["shiin","ش","شـ","ـشـ","ـش","sh",true,"sun"],
+["Saad","ص","صـ","ـصـ","ـص","emphatic s",true,"sun"],
+["Daad","ض","ضـ","ـضـ","ـض","emphatic d",true,"sun"],
+["Taa","ط","طـ","ـطـ","ـط","emphatic t",true,"sun"],
+["Zaa","ظ","ظـ","ـظـ","ـظ","emphatic dh",true,"sun"],
+["\u02BFayn","ع","عـ","ـعـ","ـع","pharyngeal",true,"moon"],
+["ghayn","غ","غـ","ـغـ","ـغ","like French r",true,"moon"],
+["faa","ف","فـ","ـفـ","ـف","f",true,"moon"],
+["qaaf","ق","قـ","ـقـ","ـق","back-of-throat k",true,"moon"],
+["kaaf","ك","كـ","ـكـ","ـك","k",true,"moon"],
+["laam","ل","لـ","ـلـ","ـل","l",true,"sun"],
+["miim","م","مـ","ـمـ","ـم","m",true,"moon"],
+["nuun","ن","نـ","ـنـ","ـن","n",true,"sun"],
+["haa","ه","هـ","ـهـ","ـه","h",true,"moon"],
+["waaw","و","و","ـو","ـو","w / uu",false,"moon"],
+["yaa","ي","يـ","ـيـ","ـي","y / ii",true,"moon"],
+].map(a=>({name:a[0],iso:a[1],init:a[2],med:a[3],fin:a[4],sound:a[5],connects:a[6],type:a[7]}));
+
+const NONCONNECTORS = ["ا","و","ر","ز","د","ذ"];
+
+const PRONOUNS = [
+["I","أَنَا","ي","-ii","إسمي","ismii"],
+["you (m. sg.)","أَنْتَ","كَ","-ka","إسمُكَ","ismuka"],
+["you (f. sg.)","أَنْتِ","كِ","-ki","إسمُكِ","ismuki"],
+["he / it (m.)","هُوَ","هُ","-hu","إسمُهُ","ismuhu"],
+["she / it (f.)","هِيَ","ها","-ha","إسمُها","ismuha"],
+["we","نَحْنُ","نا","-naa","إسمُنا","ismunaa"],
+["you (m. dual)","أَنْتُمَا","كُمَا","-kumaa","إسمُكُما","ismukumaa"],
+["you (f. dual)","أَنْتُمَا","كُمَا","-kumaa","إسمُكُما","ismukumaa"],
+["they (m. dual)","هُمَا","هُمَا","-humaa","إسمُهُما","ismuhumaa"],
+["they (f. dual)","هُمَا","هُمَا","-humaa","إسمُهُما","ismuhumaa"],
+["you (m. pl.)","أَنْتُمْ","كُمْ","-kum","إسمُكُم","ismukum"],
+["you (f. pl.)","أَنْتُنَّ","كُنَّ","-kunna","إسمُكُنَّ","ismukunna"],
+["they (m. pl.)","هُمْ","هُمْ","-hum","إسمُهُم","ismuhum"],
+["they (f. pl.)","هُنَّ","هُنَّ","-hunna","إسمُهُنَّ","ismuhunna"],
+].map(p=>({meaning:p[0],subj:p[1],suf:p[2],sufTr:p[3],example:p[4],exampleTr:p[5]}));
+
+const QWORDS = [
+["hal","هَل","yes/no questions"],
+["man","مَن","who?"],
+["maa","ما","what? (no verb follows)"],
+["maadhaa","ماذا","what? (verb follows)"],
+["kayfa","كَيفَ","how?"],
+["ayna","أَينَ","where?"],
+["mataa","مَتى","when?"],
+["kam","كَم","how much / how many?"],
+["ayy / ayya","أَيّ / أَيّة","which?"],
+["limaadhaa","لِماذا","why?"],
+];
+
+// Present-tense conjugation paradigms. Each has 13 persons in fixed order.
+const PERSONS = ["I","you (m. sg.)","you (f. sg.)","he","she","we","you (m. dual)","you (f. dual)","they (m. dual)","they (f. dual)","you (m. pl.)","you (f. pl.)","they (m. pl.)","they (f. pl.)"];
+// Note: PERSONS has 14 entries because m./f. dual "you" share a form; paradigms below list 13 unique forms
+// (you-dual m and f are identical), so we index carefully per verb.
+
+const VERBS_FULL = {
+  "shaahada (to watch)": ["أُشاهِدُ","تُشاهِدُ","تُشاهِدِينَ","يُشاهِدُ","تُشاهِدُ","نُشاهِدُ","تُشاهِدَانِ","تُشاهِدَانِ","يُشاهِدَانِ","تُشاهِدَانِ","تُشاهِدُونَ","تُشاهِدْنَ","يُشاهِدُونَ","يُشاهِدْنَ"],
+  "\u02BFamila (to do, work)": ["أَعْمَلُ","تَعْمَلُ","تَعْمَلِينَ","يَعْمَلُ","تَعْمَلُ","نَعْمَلُ","تَعْمَلَانِ","تَعْمَلَانِ","يَعْمَلَانِ","تَعْمَلَانِ","تَعْمَلُونَ","تَعْمَلْنَ","يَعْمَلُونَ","يَعْمَلْنَ"],
+  "dhahaba (to go)": ["أَذْهَبُ","تَذْهَبُ","تَذْهَبِينَ","يَذْهَبُ","تَذْهَبُ","نَذْهَبُ","تَذْهَبَانِ","تَذْهَبَانِ","يَذْهَبَانِ","تَذْهَبَانِ","تَذْهَبُونَ","تَذْهَبْنَ","يَذْهَبُونَ","يَذْهَبْنَ"],
+  "shariba (to drink)": ["أَشْرَبُ","تَشْرَبُ","تَشْرَبِينَ","يَشْرَبُ","تَشْرَبُ","نَشْرَبُ","تَشْرَبَانِ","تَشْرَبَانِ","يَشْرَبَانِ","تَشْرَبَانِ","تَشْرَبُونَ","تَشْرَبْنَ","يَشْرَبُونَ","يَشْرَبْنَ"],
+};
+// Partial paradigms - only textbook-confirmed persons (index: 0 I, 1 you-m, 2 you-f, 3 he, 4 she)
+const VERBS_PARTIAL = {
+  "araada (to want)": ["أُريدُ","تُريدُ","تُريدِينَ","يُريدُ","تُريدُ"],
+  "aHabba (to love)": ["أُحِبُّ","تُحِبُّ","تُحِبِّينَ",null,null],
+};
+// Dictionary (citation) form of each verb: third person masculine singular past tense,
+// the form Arabic dictionaries and courses use to name a verb.
+const VERB_CITATIONS = {
+  "shaahada (to watch)": "شَاهَدَ",
+  "\u02BFamila (to do, work)": "عَمِلَ",
+  "dhahaba (to go)": "ذَهَبَ",
+  "shariba (to drink)": "شَرِبَ",
+  "araada (to want)": "أَرَادَ",
+  "aHabba (to love)": "أَحَبَّ",
+};
+
+const GENDER_BANK = [
+["كِتاب","kitaab","book","m"],
+["طالِبة","Taaliba","student (f.)","f"],
+["بَيْت","bayt","house","m"],
+["سَيّارة","sayyaara","car","f"],
+["جامِعة","jaami\u02BFa","university","f"],
+["قَلَم","qalam","pen","m"],
+["مَكْتَبة","maktaba","library","f"],
+["باب","baab","door","m"],
+["أُخْت","ukht","sister","f"],
+["أُستاذ","ustaadh","professor (m.)","m"],
+["غُرْفة","ghurfa","room","f"],
+["رَجُل","rajul","man","m"],
+["بِنْت","bint","girl","f"],
+["شَجَرة","shajara","tree","f"],
+["كَلْب","kalb","dog","m"],
+["صَفّ","Saff","class","m"],
+["قِطّة","qiTTa","cat","f"],
+["وَلَد","walad","boy","m"],
+];
+
+const DEFINITENESS_BANK = [
+["الكِتاب","al-kitaab","the book",true,"has the definite article \u0627\u0644"],
+["كِتابٌ","kitaabun","a book",false,"indefinite: it has tanwiin, and neither \u0627\u0644 nor a possessive suffix"],
+["كِتابي","kitaabii","my book",true,"has a possessive pronoun suffix (\u064A my)"],
+["بَيْتُ الأُستاذِ","baytu l-ustaadhi","the professor's house",true,"\"bayt\" is the first noun of an idafa whose last noun (al-ustaadh) is definite"],
+["طالِبةٌ جَديدةٌ","Taalibatun jadiidatun","a new student",false,"indefinite, since both words end in tanwiin"],
+["جامِعةُ جورجتاون","jaami\u02BFatu Georgetown","Georgetown University",true,"idafa whose second term is a definite proper noun"],
+["سَيّارَتُها","sayyaaratuha","her car",true,"has a possessive pronoun suffix (ها her)"],
+["الأُستاذة","al-ustaadha","the professor (f.)",true,"has the definite article \u0627\u0644"],
+["قَلَمٌ","qalamun","a pen",false,"indefinite: just tanwiin, no other marker of definiteness"],
+["غُرْفَتي","ghurfatii","my room",true,"has a possessive pronoun suffix (\u064A my)"],
+["كِتابُ الطّالِبِ","kitaabu T-Taalibi","the student's book",true,"\"kitaab\" is the first noun of an idafa whose last noun is definite"],
+["بَيْتٌ جَميلٌ","baytun jamiilun","a beautiful house",false,"indefinite, since both words end in tanwiin"],
+["البَيْتُ الجَديدُ","al-baytu l-jadiidu","the new house",true,"has \u0627\u0644 (and so does its adjective, to agree)"],
+["أُخْتي","ukhtii","my sister",true,"has a possessive pronoun suffix (\u064A my)"],
+];
+
+const CASE_BANK = [
+{ar:"الطّالِبُ في الصَّفِّ", tr:"al-Taalibu fii S-Saffi", en:"the student is in the classroom",
+  targets:[{word:"الطّالِبُ",case:"nominative",why:"it's the subject of the sentence"},{word:"الصَّفِّ",case:"genitive",why:"it's the object of the preposition \u0641\u064A (in)"}]},
+{ar:"أُحِبُّ القَلَمَ الجَديدَ", tr:"uHibbu l-qalama l-jadiida", en:"I love the new pen",
+  targets:[{word:"القَلَمَ",case:"accusative",why:"it's the direct object of \u0623\u064F\u062D\u0650\u0628\u0651\u064F (I love)"}]},
+{ar:"هذا بَيْتُ الأُستاذِ", tr:"haadhaa baytu l-ustaadhi", en:"this is the professor's house",
+  targets:[{word:"بَيْتُ",case:"nominative",why:"it's the predicate of the nominal sentence"},{word:"الأُستاذِ",case:"genitive",why:"it's the second noun of an idafa"}]},
+{ar:"تَذْهَبُ الطّالِبَةُ إلى الجامِعَةِ", tr:"tadhhabu T-Taalibatu ilaa l-jaami\u02BFati", en:"the student goes to the university",
+  targets:[{word:"الطّالِبَةُ",case:"nominative",why:"it's the subject doing the going"},{word:"الجامِعَةِ",case:"genitive",why:"it's the object of the preposition \u0625\u0644\u0649 (to)"}]},
+{ar:"قَرَأَ الوَلَدُ الكِتابَ", tr:"qara\u02BEa l-waladu l-kitaaba", en:"the boy read the book",
+  targets:[{word:"الوَلَدُ",case:"nominative",why:"it's the subject, the one who read"},{word:"الكِتابَ",case:"accusative",why:"it's the direct object, the thing read"}]},
+{ar:"هذا كِتابُ الطّالِبِ", tr:"haadhaa kitaabu T-Taalibi", en:"this is the student's book",
+  targets:[{word:"كِتابُ",case:"nominative",why:"it's the predicate of the sentence"},{word:"الطّالِبِ",case:"genitive",why:"it's the second noun of an idafa"}]},
+{ar:"الأُستاذُ في المَكْتَبَةِ", tr:"al-ustaadhu fii l-maktabati", en:"the professor is in the library",
+  targets:[{word:"الأُستاذُ",case:"nominative",why:"it's the subject of the sentence"},{word:"المَكْتَبَةِ",case:"genitive",why:"it's the object of the preposition \u0641\u064A (in)"}]},
+{ar:"أَشْرَبُ الشّايَ", tr:"ashrabu sh-shaaya", en:"I drink the tea",
+  targets:[{word:"الشّايَ",case:"accusative",why:"it's the direct object of \u0623\u064E\u0634\u0652\u0631\u064E\u0628\u064F (I drink)"}]},
+{ar:"بابُ البَيْتِ كَبيرٌ", tr:"baabu l-bayti kabiirun", en:"the house's door is big",
+  targets:[{word:"بابُ",case:"nominative",why:"it's the subject (and first term of an idafa)"},{word:"البَيْتِ",case:"genitive",why:"it's the second term of the idafa"}]},
+{ar:"الكَلْبُ قَريبٌ مِنَ البَيْتِ", tr:"al-kalbu qariibun mina l-bayti", en:"the dog is close to the house",
+  targets:[{word:"الكَلْبُ",case:"nominative",why:"it's the subject of the sentence"},{word:"البَيْتِ",case:"genitive",why:"it's the object of the preposition \u0645\u0646 (from/of)"}]},
+];
+
+const CROSSWORD = {
+  rows:7, cols:5,
+  cells: {
+    // key "r,c" -> {letter, num?}
+  },
+  words: [
+    {dir:"across", num:4, r:3, c:0, word:"KITAB", clue:"4-Across: book"},
+    {dir:"down", num:1, r:0, c:2, word:"BAYT", clue:"1-Down: house"},
+    {dir:"down", num:2, r:2, c:1, word:"BINT", clue:"2-Down: girl"},
+    {dir:"down", num:3, r:2, c:3, word:"DARS", clue:"3-Down: lesson"},
+    {dir:"down", num:4, r:3, c:0, word:"KALB", clue:"4-Down: dog"},
+    {dir:"down", num:5, r:3, c:4, word:"BAB", clue:"5-Down: door"},
+  ]
+};
+
+/* ============================================================
+   UTIL
+   ============================================================ */
+function shuffle(arr){
+  const a = arr.slice();
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function sample(arr,n){ return shuffle(arr).slice(0,n); }
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function mkEl(html){ const d=document.createElement('div'); d.innerHTML=html.trim(); return d.firstElementChild; }
+function escapeHtml(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function saveProgress(key,val){
+  try{ localStorage.setItem('ar1011_'+key, JSON.stringify(val)); }catch(e){}
+}
+function loadProgress(key,fallback){
+  try{ const v=localStorage.getItem('ar1011_'+key); return v?JSON.parse(v):fallback; }catch(e){ return fallback; }
+}
+
+/* ============================================================
+   NAV / ROUTER
+   ============================================================ */
+const TABS = [
+  {id:'home',label:'Home'},
+  {id:'lessons',label:'Lessons'},
+  {id:'flashcards',label:'Flashcards'},
+  {id:'matching',label:'Matching'},
+  {id:'quiz',label:'Quiz'},
+  {id:'crossword',label:'Crossword'},
+];
+let currentTab = 'home';
+
+function renderNav(){
+  const nav = document.getElementById('mainNav');
+  nav.innerHTML='';
+  TABS.forEach(t=>{
+    const b=document.createElement('button');
+    b.textContent=t.label;
+    b.className = t.id===currentTab ? 'active':'';
+    b.onclick=()=>go(t.id);
+    nav.appendChild(b);
+  });
+}
+function go(tab, param){
+  currentTab = tab;
+  renderNav();
+  const main = document.getElementById('main');
+  main.innerHTML='';
+  window.scrollTo(0,0);
+  if(tab==='home') renderHome(main);
+  else if(tab==='lessons') renderLessonsList(main, param);
+  else if(tab==='flashcards') renderFlashcards(main);
+  else if(tab==='matching') renderMatching(main);
+  else if(tab==='quiz') renderQuizMenu(main, param);
+  else if(tab==='crossword') renderCrossword(main);
+}
+
+/* ============================================================
+   HOME
+   ============================================================ */
+function renderHome(main){
+  main.appendChild(mkEl(`
+    <div>
+      <h1>Arabic 1011 Companion</h1>
+      <div class="grid cols3" style="margin-top:20px;">
+        <div class="card lesson-card" onclick="go('lessons')">
+          <div class="num">Study</div><h3>Lessons</h3>
+          <p class="muted" style="margin:0;">18 grammar topics: the alphabet, hamza, gender, idafa, pronouns, verb conjugation, case endings, and more.</p>
+        </div>
+        <div class="card lesson-card" onclick="go('flashcards')">
+          <div class="num">Drill</div><h3>Flashcards</h3>
+          <p class="muted" style="margin:0;">All ${VOCAB.length} vocabulary words and phrases from units 1-9, filterable by unit.</p>
+        </div>
+        <div class="card lesson-card" onclick="go('matching')">
+          <div class="num">Play</div><h3>Matching game</h3>
+          <p class="muted" style="margin:0;">Match Arabic words to their English meaning against the clock.</p>
+        </div>
+        <div class="card lesson-card" onclick="go('quiz')">
+          <div class="num">Test yourself</div><h3>Quizzes</h3>
+          <p class="muted" style="margin:0;">Vocabulary, gender, definiteness, case endings, sun/moon letters, pronouns, verb conjugation, question words.</p>
+        </div>
+        <div class="card lesson-card" onclick="go('crossword')">
+          <div class="num">Puzzle</div><h3>Crossword</h3>
+          <p class="muted" style="margin:0;">A small vocabulary crossword using transliterated answers.</p>
+        </div>
+        <div class="card">
+          <div class="num">Coverage</div><h3>${VOCAB.length} words &middot; 28 letters &middot; 9 units</h3>
+          <p class="muted" style="margin:0;">Every New Vocabulary list from Alif Baa units 1-9, plus every grammar point from the syllabus through Unit 9.</p>
+        </div>
+      </div>
+    </div>
+  `));
+}
+
+/* ============================================================
+   LESSONS
+   ============================================================ */
+const LESSONS = [];
+function addLesson(title, bodyHtml){ LESSONS.push({id:LESSONS.length+1, title, body:bodyHtml}); }
+
+function alphabetTable(){
+  let rows = ALPHABET.map(a=>`<tr><td>${a.name}</td><td class="ar big-ar">${a.iso}</td><td class="ar big-ar">${a.init}</td><td class="ar big-ar">${a.med}</td><td class="ar big-ar">${a.fin}</td><td>${a.sound}</td></tr>`).join('');
+  return `<table><tr><th>Name</th><th class="ar">Isolated</th><th class="ar">Initial</th><th class="ar">Medial</th><th class="ar">Final</th><th>Sound</th></tr>${rows}</table>`;
+}
+
+addLesson("The Alphabet", `
+<p>Arabic has 28 letters. All of them are consonants except for three that can also serve as long vowels (alif, waaw, and yaa). The script is written and read from right to left, and letters within a word are joined together in a connected, cursive style rather than printed as separate blocks the way English letters are. There is no such thing as capitalization in Arabic: a letter looks the same whether it starts a sentence, a name, or the middle of an ordinary word.</p>
+<p>Every letter changes shape depending on where it sits in a word: alone (isolated), at the start of a word (initial), in the middle (medial), or at the end (final). The core skeleton of the letter stays recognizable across all four forms, but connecting strokes get added or dropped depending on position. Learning to recognize a letter in all four forms, not just its isolated "flashcard" shape, is most of the work of learning to read Arabic.</p>
+${alphabetTable()}
+<h3>Letters that only differ by their dots</h3>
+<p>A lot of the alphabet is built from a small number of base shapes, distinguished only by the number and placement of small dots above or below the letter. Recognizing these families makes the alphabet much less intimidating:</p>
+<ul>
+<li>ب ت ث share one shape, distinguished only by dots: ب has one dot below, ت has two dots above, ث has three dots above.</li>
+<li>ج ح خ share one shape: ح has no dot, ج has one dot below, خ has one dot above.</li>
+<li>د ذ share one shape: د has no dot, ذ has one dot above.</li>
+<li>ر ز share one shape: ر has no dot, ز has one dot above.</li>
+<li>س ش share one shape: س has no dots, ش has three dots above.</li>
+<li>ص ض share one shape: ص has no dot, ض has one dot above.</li>
+<li>ط ظ share one shape: ط has no dot, ظ has one dot above.</li>
+<li>ع غ share one shape: ع has no dot, غ has one dot above.</li>
+<li>ف ق share a related shape: ف has one dot above, ق has two dots above.</li>
+</ul>
+<p>Once you notice this pattern, the alphabet stops being 28 unrelated shapes to memorize and becomes closer to a dozen base shapes plus a dotting rule.</p>
+<h3>The six non-connecting letters</h3>
+<p>Every letter connects to the letter before it and the letter after it, with one exception: six letters only connect backward, to the letter before them, and never forward to the letter that follows.</p>
+<p class="arabic big-ar" style="text-align:center;">ا&nbsp;&nbsp;و&nbsp;&nbsp;ر&nbsp;&nbsp;ز&nbsp;&nbsp;د&nbsp;&nbsp;ذ</p>
+<p style="text-align:center;">alif, waaw, raa, zaay, daal, dhaal</p>
+<p>This is why a word can appear to have a sudden "break" partway through: if one of these six letters shows up in the middle of a word, the next letter starts fresh in its isolated or initial form instead of connecting to what came before. You can spot these six letters instantly in the table above: they're the ones whose medial and final columns look identical to each other, since nothing can attach after them to change their shape.</p>
+<h3>Emphatic consonants</h3>
+<p>Four letters (ص ض ط ظ) are called "emphatic" versions of other consonants (س د ت ذ respectively). They are pronounced with the back of the tongue pulled up and back toward the throat, which gives them a deeper, heavier sound and also darkens the vowels sitting next to them. Along with ق, خ, غ, ح, and ع, these letters are pronounced further back in the mouth and throat than their English-sounding counterparts, and getting comfortable with them is one of the main pronunciation challenges for a new learner.</p>
+`);
+
+addLesson("Vowels, Sukuun, and Shadda", `
+<h3>Short vowels (the harakaat)</h3>
+<p>Short vowels are not separate letters. They are small marks, called harakaat, written above or below a consonant. Ordinary printed Arabic (newspapers, novels, street signs) leaves them out entirely, on the assumption that a fluent reader can supply the correct vowel from context and grammar. Textbooks, the Qur'an, children's books, and dictionaries write them in fully so that beginners and reciters get the pronunciation exactly right.</p>
+<table><tr><th>Mark</th><th>Name</th><th>Sound</th><th class="ar">Example</th></tr>
+<tr><td class="ar big-ar">بَ</td><td>fatHa</td><td>a short "a," close to the vowel in "cat"</td><td class="ar big-ar">بَ</td></tr>
+<tr><td class="ar big-ar">بُ</td><td>Damma</td><td>a short "u," close to the vowel in "put"</td><td class="ar big-ar">بُ</td></tr>
+<tr><td class="ar big-ar">بِ</td><td>kasra</td><td>a short "i," close to the vowel in "sit"</td><td class="ar big-ar">بِ</td></tr>
+</table>
+<p>Every consonant in a fully vowelled word carries exactly one of these three marks (or a sukuun, described below). There is no such thing as a bare, vowel-less consonant sitting on its own in the middle of normal pronunciation, unless it is marked with sukuun.</p>
+<h3>Long vowels</h3>
+<p>Long vowels are written as full letters, not as small marks, which is why they never disappear from ordinary print the way short vowels do. Alif (ا) lengthens a preceding fatHa into "aa." Waaw (و) lengthens a preceding Damma into "uu." Yaa (ي) lengthens a preceding kasra into "ii." A word like كِتاب (kitaab) has one written short vowel (the kasra under the ك) and one written long vowel (the alif), and that's exactly what you hear: a short "i" followed by a long "aa."</p>
+<h3>Diphthongs</h3>
+<p>Two very common combinations don't fit neatly into "short vowel" or "long vowel": a fatHa followed by a waaw with sukuun makes an "aw" sound, close to the vowel in the English word "how." A fatHa followed by a yaa with sukuun makes an "ay" sound, close to the vowel in the English word "my." You'll hear these constantly, for example in the way "bayt" (house) and "yawm" (day) are pronounced.</p>
+<h3>Sukuun (ْ)</h3>
+<p>The sukuun is a small circle written above a letter to show that this letter has no vowel after it at all. It marks the end of a syllable and the start of a consonant cluster. In a word like أَخْت (ukht, sister), the خ carries a sukuun: you say the "kh" sound and move straight into the "t" with no vowel in between.</p>
+<h3>Shadda (ّ)</h3>
+<p>The shadda is a small w-shaped mark written above a letter to show that the consonant is doubled, held for roughly twice as long as a single consonant. Rather than writing the same letter twice, Arabic writes it once with a shadda on top. You have to actually hold the doubled sound when you pronounce it: دَرَّس (darrasa, "he taught") has a genuinely longer, doubled "r" sound compared to a word with a single ر.</p>
+<h3>Tanwiin: the "n" endings</h3>
+<p>Tanwiin doubles up a short vowel mark to add an "n" sound to the very end of an indefinite noun or adjective. It only appears in fully vowelled, formal writing, and it is closely tied to the case system (see the Case Endings lesson).</p>
+<table><tr><th>Mark</th><th>Name</th><th>Pronounced</th></tr>
+<tr><td class="ar big-ar">كتابًا</td><td>tanwiin al-fatH</td><td>-an</td></tr>
+<tr><td class="ar big-ar">كتابٌ</td><td>tanwiin aD-Damm</td><td>-un</td></tr>
+<tr><td class="ar big-ar">كتابٍ</td><td>tanwiin al-kasr</td><td>-in</td></tr>
+</table>
+<p>Notice that tanwiin al-fatH is normally written over an extra alif at the end of the word, even though that alif isn't part of the word's spelling otherwise. That extra alif is silent; it just carries the tanwiin mark. The one common exception is a word that already ends in taa marbuuTa or in a hamza sitting on the line: those don't need the extra alif, since there's already a letter there to carry the mark.</p>
+<p class="muted">These three endings are exactly the case endings covered in the Case Endings lesson later on. Tanwiin is simply what the case endings look like on an indefinite noun; the same three vowel qualities appear as plain short vowels, with no "n" sound, on a definite noun.</p>
+`);
+
+addLesson("Hamza and Alif Madda", `
+<h3>What hamza is</h3>
+<p>Hamza (ء) represents a glottal stop, the small catch in your throat that separates the two syllables of "uh-oh" in English. It's a genuine consonant with its own sound, but for historical reasons it isn't counted among the 28 letters of the alphabet chart, and it doesn't have one fixed shape. Instead, it gets written on top of, or underneath, a "seat" letter, or sometimes sits by itself on the line.</p>
+<table><tr><th class="ar">Form</th><th>When it's used</th></tr>
+<tr><td class="ar big-ar">أ</td><td>hamza on an alif seat, carrying a fatHa or Damma</td></tr>
+<tr><td class="ar big-ar">إ</td><td>hamza under an alif seat, carrying a kasra</td></tr>
+<tr><td class="ar big-ar">ؤ</td><td>hamza on a waaw seat</td></tr>
+<tr><td class="ar big-ar">ئ</td><td>hamza on a dotless yaa seat</td></tr>
+<tr><td class="ar big-ar">ء</td><td>hamza alone on the line, with no seat</td></tr>
+</table>
+<p>Which seat gets used depends mostly on the strongest vowel touching the hamza: a kasra nearby tends to pull in a yaa seat, a Damma tends to pull in a waaw seat, and a fatHa (or no vowel at all, just a preceding one) tends to pull in an alif seat. At the beginning of a word, hamza is always written on an alif, either أ or إ.</p>
+<h3>Hamzat al-qaT\u02BF: the "cutting" hamza</h3>
+<ul>
+<li>Written as a hamza sitting on an alif: أَ إِ أُ</li>
+<li>Always pronounced and always heard, no matter what comes before it in the sentence.</li>
+<li>This is the default, ordinary kind of hamza. Most words that start with a glottal stop start with hamzat al-qaT\u02BF.</li>
+<li>Example: <span class="arabic">أُخْت</span> (ukht, "sister"). Say it after any word, and you'll still hear the glottal stop clearly.</li>
+</ul>
+<h3>Hamzat al-waSl: the "connecting" hamza</h3>
+<ul>
+<li>Written as a plain alif, sometimes marked with a small ص (waSla) sign on top to flag it explicitly: ٱ or simply ا with no hamza mark at all.</li>
+<li>Elidable. When the word before it ends in a vowel sound, the hamzat al-waSl and its vowel both disappear in pronunciation, and the two words glide together as though they were one.</li>
+<li>It shows up in a short, specific list of places: at the start of the definite article ال, at the start of a handful of common nouns (اسم "name," ابن "son," ابنة "daughter," امرأة "woman," اثنان "two"), and at the start of certain verb forms you'll meet later in the course.</li>
+</ul>
+<p>A quick, reliable test: put و ("and") or ف ("so, and then") in front of the word in question and pronounce the whole thing out loud. If the hamza vanishes and you glide straight into the next consonant, it was hamzat al-waSl. If you can still clearly hear the glottal stop, it was hamzat al-qaT\u02BF all along.</p>
+<p><span class="arabic">وَأَب</span> (wa-ab): the hamza is still heard, so this is hamzat al-qaT\u02BF.<br>
+<span class="arabic">وَالبَيْت</span> (wa-l-bayt): the alif's hamza disappears and the ل is pronounced directly after wa, so this is hamzat al-waSl.</p>
+<h3>Alif madda (آ)</h3>
+<p>Every now and then a word would technically start with two alifs in a row: a hamza-bearing alif immediately followed by a plain long-vowel alif. Rather than write that awkward pair, Arabic collapses the two into a single alif topped with a small wavy line, pronounced as one long "aa." You'll see this spelling convention in words borrowed into religious and formal vocabulary, and it's worth recognizing on sight rather than sounding out letter by letter.</p>
+<h3>Taa marbuuTa (ة)</h3>
+<p>Taa marbuuTa isn't part of the 28-letter alphabet chart either. It only ever shows up at the very end of a noun or adjective, and in the overwhelming majority of cases it marks that word as feminine. In isolation, or at the end of a sentence, it's pronounced as a plain "-a" sound, exactly like a fatHa with nothing after it. As soon as anything gets attached after it, such as a possessive suffix, or as soon as it becomes the first noun of an idafa, it switches to being pronounced as a full "-at," with a genuine ت sound.</p>
+<p><span class="arabic">طَالِبَة</span> (Taaliba, "a student"), pronounced with a plain "-a" on its own, versus <span class="arabic">طَالِبَةُ الجَامِعَة</span> (Taalibatu l-jaami\u02BFa, "the university's student"), where the taa marbuuTa is now pronounced as "-at" because it's the first noun of an idafa.</p>
+`);
+
+addLesson("The Definite Article and Sun/Moon Letters", `
+<h3>The definite article</h3>
+<p><span class="arabic">ال</span> (al-) is the definite article, the rough equivalent of English "the." It is always written attached directly to the front of the noun or adjective it modifies, never as a separate word. <span class="arabic">كِتَاب</span> means "a book," and <span class="arabic">الكِتَاب</span> means "the book."</p>
+<p>Proper nouns count as definite whether or not they actually carry ال. Country and city names are the trickiest part: most non-Arabic place names simply don't take ال (أمريكا, "America"), while Arab city and country names have to be memorized one by one, since there's no rule that predicts which ones do and which don't. بيروت and دمشق never take ال, while القاهرة always does.</p>
+<h3>Why the ل sometimes isn't pronounced</h3>
+<p>Say صَباحُ النُّور (SabaaH an-nuur) out loud: you won't hear a ل at all. Instead, you hear a doubled ن. Now say صَباحُ الخَيْر (SabaaH al-khayr): here the ل is pronounced completely normally. The difference comes down to which consonant follows ال.</p>
+<p>Fourteen letters "swallow" the ل of ال: when one of them follows the definite article, the ل is not pronounced, and the following letter is doubled instead (marked with a shadda in vowelled text) to make up for the missing sound. These are called sun letters, الحُروف الشَّمسِيّة, named for the word شَمس ("sun"), because ش happens to be one of them.</p>
+<p>The other fourteen letters leave the ل alone and let it be pronounced normally. These are called moon letters, الحُروف القَمَرِيّة, named for the word قَمَر ("moon"), because ق happens to be one of them.</p>
+<p class="arabic big-ar" style="text-align:center;">الحروف الشمسية: ت ث د ذ ر ز س ش ص ض ط ظ ل ن</p>
+<p class="arabic big-ar" style="text-align:center;">الحروف القمرية: أ ب ج ح خ ع غ ف ق ك م ه و ي</p>
+<p>There's a physical reason behind the split, not just a list to memorize by rote: every sun letter is pronounced with the tip of the tongue at or near the back of the top teeth, which happens to be the exact same spot the tongue goes to for ل itself. Because the tongue is already headed there for the next sound, it's easier to just extend that same consonant than to also form a separate ل first. Moon letters are pronounced in a variety of other places in the mouth and throat, far enough from where ل is made that there's no natural reason for the tongue to skip it.</p>
+<h3>Some example words in both directions</h3>
+<table><tr><th class="ar">Word</th><th>Type</th><th>How ال is pronounced</th></tr>
+<tr><td class="ar big-ar">الشَّمْس</td><td>sun letter (ش)</td><td>ash-shams, doubled ش, no ل sound</td></tr>
+<tr><td class="ar big-ar">الدَّرْس</td><td>sun letter (د)</td><td>ad-dars, doubled د, no ل sound</td></tr>
+<tr><td class="ar big-ar">النُّور</td><td>sun letter (ن)</td><td>an-nuur, doubled ن, no ل sound</td></tr>
+<tr><td class="ar big-ar">القَمَر</td><td>moon letter (ق)</td><td>al-qamar, ل pronounced normally</td></tr>
+<tr><td class="ar big-ar">البَيْت</td><td>moon letter (ب)</td><td>al-bayt, ل pronounced normally</td></tr>
+<tr><td class="ar big-ar">الكِتاب</td><td>moon letter (ك)</td><td>al-kitaab, ل pronounced normally</td></tr>
+</table>
+<p class="muted">One more detail worth knowing: this sun/moon rule only ever affects the pronunciation of ال. It never affects the spelling. الشَّمْس is still written with a ل right there on the page, even though you don't say it; you just have to remember, as a matter of pronunciation rather than spelling, that a shadda goes on the following sun letter instead.</p>
+`);
+
+addLesson("Gender", `
+<h3>The basic rule</h3>
+<p>Every Arabic noun is grammatically masculine or feminine. There's no neuter, no "it" category the way some other languages have one. Nouns describing people generally have a distinct masculine form and a distinct feminine form to match the actual gender of the person being described. Nouns for objects, ideas, and animals are still masculine or feminine, but which one they are is often just a fact about the word, in the same way "la table" happens to be feminine in French for no logical reason.</p>
+<p>Fortunately, gender in Arabic is largely predictable from spelling. Almost every feminine noun and adjective ends in taa marbuuTa (ة). If you hear a noun end in a plain "-a" sound, your best guess should be that it's feminine and spelled with ة.</p>
+<table><tr><th>Masculine</th><th>Feminine</th><th>Meaning</th></tr>
+<tr><td class="ar big-ar">طَالِب</td><td class="ar big-ar">طَالِبَة</td><td>student</td></tr>
+<tr><td class="ar big-ar">جَدِيد</td><td class="ar big-ar">جَدِيدَة</td><td>new</td></tr>
+<tr><td class="ar big-ar">كَبِير</td><td class="ar big-ar">كَبِيرَة</td><td>big, old</td></tr>
+</table>
+<h3>Feminine nouns without ة</h3>
+<p>A small set of nouns are feminine even though they don't end in taa marbuuTa, simply because they refer to female people or animals. You just have to memorize these directly: <span class="arabic">أُخْت</span> (sister) and <span class="arabic">بِنْت</span> (girl) are both feminine with no ة anywhere in the word.</p>
+<p>Beyond the words you've met so far in this course, two other spellings also mark a noun as feminine even without a taa marbuuTa: a word ending in alif maqsuura (ى, a shortened, undotted version of long "aa") and a word ending in alif mamduuda (اء, a long "aa" followed by hamza). You'll run into more of these as your vocabulary grows; for now, the important habit is not to assume a word is masculine just because it lacks ة.</p>
+<h3>Why gender matters so much</h3>
+<p>Gender isn't just a label attached to a noun. It controls the form of every adjective describing that noun (see the Adjectives lesson), every demonstrative pointing to it (see Demonstrative Pronouns), the pronoun used to refer back to it, and the verb form used if it's the subject of a sentence. Getting a noun's gender right the first time you learn it saves you from having to constantly correct a whole chain of agreement later on.</p>
+`);
+
+addLesson("Number: Singular, Dual, and Plural", `
+<h3>Three numbers, not two</h3>
+<p>English really only distinguishes singular and plural. Arabic has a third category in between: the dual, used for exactly two of something, with its own dedicated ending distinct from both the singular and the ordinary plural.</p>
+<h3>Dual</h3>
+<p>Form the dual by adding a suffix to the singular noun: <span class="arabic">ـانِ</span> (-aani) when the noun is functioning as the subject of a sentence, or <span class="arabic">ـيْنِ</span> (-ayni) in most other grammatical positions. In everyday speech, people generally just use -ayni for both situations rather than switching between the two.</p>
+<p><span class="arabic">طَالِبَتَانِ</span> or <span class="arabic">طَالِبَتَيْنِ</span>, both meaning "two female students," depending on the noun's role in the sentence.</p>
+<h3>Sound plurals</h3>
+<p>Some nouns and adjectives, especially ones describing people, form their plural with a regular, predictable suffix rather than by changing internally. These are called "sound" plurals because the root stays intact and sounds the same throughout.</p>
+<ul>
+<li>Sound masculine plural: <span class="arabic">ـونَ / ـينَ</span> (-uuna or -iina, depending on grammatical role), as in <span class="arabic">مُدَرِّسُونَ</span> (teachers, m.)</li>
+<li>Sound feminine plural: <span class="arabic">ـاتٌ</span> (-aat), as in <span class="arabic">طَالِبَاتٌ</span> (students, f.)</li>
+</ul>
+<h3>Broken plurals</h3>
+<p>Most Arabic nouns, though, don't add a suffix at all. Instead they rearrange their own internal vowels into a completely different pattern, the way English "mouse" becomes "mice" instead of "mouses." These are called broken plurals, and there is no single rule that tells you in advance which pattern a given noun's plural will follow: you learn each noun's plural as its own separate piece of vocabulary, right alongside the singular.</p>
+<p><span class="arabic">كِتَاب</span> becomes <span class="arabic">كُتُب</span> (book, books). <span class="arabic">بَيْت</span> becomes <span class="arabic">بُيُوت</span> (house, houses). Notice that the three root consonants (ك ت ب, ب ي ت) stay exactly the same in both forms; only the vowel pattern around them changes. The Roots and Patterns lesson explains this system in more depth, since it's the same logic behind how whole families of related words are built.</p>
+<h3>A rule that trips people up: plural non-human agreement</h3>
+<p>When the noun being pluralized refers to people, the words that agree with it (adjectives, verbs, pronouns) go into a genuine plural form of their own. But when the plural noun refers to things rather than people, Arabic treats it grammatically as feminine singular for agreement purposes, no matter how many things there actually are. You'll see this rule again in the Adjectives lesson; it's worth flagging early, since it looks like an exception at first but is actually completely regular once you know to expect it.</p>
+`);
+
+addLesson("Definiteness", `
+<h3>Definite versus indefinite</h3>
+<p>Every Arabic noun is either definite ("the book," "my book," "David's book") or indefinite ("a book," "some book"). Definiteness affects word endings (see Case Endings), adjective agreement (see Adjectives), and sentence structure (see The Nominal Sentence), so it's worth being able to identify at a glance.</p>
+<h3>Three ways a noun becomes definite</h3>
+<ol>
+<li>It takes the definite article ال: <span class="arabic">الكِتَاب</span> (the book).</li>
+<li>It has a possessive pronoun suffix attached directly to it: <span class="arabic">كِتَابِي</span> (my book).</li>
+<li>It is the first noun of an idafa whose very last noun is itself definite: <span class="arabic">كِتَابُ الطَّالِب</span> (the student's book).</li>
+</ol>
+<p>These three are the ones this course focuses on, since they cover the overwhelming majority of everyday sentences. Two more categories are worth knowing about as well, even before you formally study them: proper nouns (names of people, cities, and countries) count as definite on their own, with no ال needed, and a demonstrative placed directly before a noun (هذا الكتاب, "this book") also produces a definite phrase.</p>
+<p>A noun with none of the markers above is indefinite. In fully vowelled, formal writing, an indefinite noun takes a tanwiin ending rather than a plain short vowel (see the Case Endings lesson for the full comparison).</p>
+<h3>Why this matters for adjectives</h3>
+<p>An adjective has to match the definiteness of the noun it describes, on top of matching its gender and number. If the noun carries ال, its adjective needs its own ال too, even though the adjective itself never determines whether the phrase counts as definite in the first place.</p>
+<p><span class="arabic">بَيْتٌ جَدِيدٌ</span> (a new house, both words indefinite) compared with <span class="arabic">البَيْتُ الجَدِيدُ</span> (the new house, both words definite, note ال showing up on the adjective too).</p>
+<p><span class="arabic">بَيْتِي الجَدِيدُ</span> (my new house): the noun is made definite here by the possessive suffix, not by ال, but the adjective still needs ال in order to agree.</p>
+`);
+
+addLesson("Idafa: the Possessive (Construct) Phrase", `
+<h3>What idafa does</h3>
+<p>Idafa is how Arabic expresses possession, or an "of" relationship, without using a separate word that means "of." Two or more nouns are simply placed next to each other in a row, and the relationship between them is understood automatically: the second noun defines, specifies, or possesses the first.</p>
+<h3>The rules</h3>
+<ul>
+<li>Only the very last noun in the chain is allowed to carry ال or a tanwiin ending.</li>
+<li>Every noun before the last one never takes ال and never takes tanwiin. It just sits there bare, letting the final noun's definiteness carry back across the whole phrase. This is sometimes described as "definiteness by addition": the phrase as a whole becomes definite because its last piece is definite, even though the earlier nouns have no definiteness marker of their own.</li>
+<li>If the first noun in the chain ends in taa marbuuTa, that ة switches to being pronounced as a full "-t" sound, since it's no longer sitting at the true end of the phrase.</li>
+<li>The second noun, and any noun after it, sits in the genitive case (see Case Endings). This is one of the two main situations that trigger the genitive, alongside being the object of a preposition.</li>
+</ul>
+<p><span class="arabic">جَامِعَةُ جُورجْتَاون</span> (Georgetown University, literally "the university of Georgetown"). <span class="arabic">بَيْتُ الأُسْتَاذِ</span> (the professor's house).</p>
+<h3>Where adjectives go in an idafa</h3>
+<p>An adjective describing any noun inside an idafa goes after the entire phrase, not right after the specific noun it modifies. That can create some ambiguity on paper, but gender and number agreement almost always makes it clear which noun the adjective is actually describing.</p>
+<p><span class="arabic">غُرْفَةُ الطَّالِبَةِ الجَدِيدَةِ</span> (the new [female] student's room): جَدِيدَةِ is feminine singular, matching الطَّالِبَةِ (the student), so we know the room belongs to a new student, rather than reading it as "the student's new room." If the writer meant the room itself was new, غرفة is also feminine singular, so context and emphasis (or rewording the sentence) would be needed to disambiguate; in practice, spoken cues and surrounding context usually settle it instantly.</p>
+<h3>Suffixes replace the second noun</h3>
+<p>A possessive pronoun suffix (see Subject Pronouns and Possessive Suffixes) attaches to the last noun of an idafa in place of writing out a second noun. <span class="arabic">كِتَابُ الطَّالِب</span> (the student's book) becomes <span class="arabic">كِتَابُهُ</span> (his book) once you replace "the student" with the suffix meaning "his."</p>
+<h3>Idafa chains longer than two nouns</h3>
+<p>Idafa isn't limited to two nouns. You can chain three or more together, and the same rules just keep applying down the line: every noun except the very last stays bare, with no ال and no tanwiin, and only the final noun in the chain can carry either of those markers. <span class="arabic">بَابُ بَيْتِ الأُسْتَاذِ</span> means "the door of the professor's house," literally "door of house of the-professor," with each noun in the chain feeding definiteness back from the one after it.</p>
+`);
+
+addLesson("Subject Pronouns and Possessive Suffixes", `
+<h3>Independent subject pronouns</h3>
+<p>Arabic marks gender in both the second person (you) and the third person (he/she), and it has a dedicated dual form for exactly two people, on top of the ordinary singular and plural. Because the verb ending already encodes who the subject is (see Present-Tense Verb Conjugation), independent subject pronouns like أنا or هو are often left out of a sentence entirely; they get used mainly for emphasis, contrast, or at the very start of a nominal sentence with no verb.</p>
+<h3>Possessive suffixes</h3>
+<p>Possessive pronouns in Arabic aren't separate words the way "my" or "his" are in English. They are suffixes, attached directly onto the end of the noun they possess, and attaching one automatically makes that noun definite (see Definiteness). One irregularity to remember: when a possessive suffix is attached to a word that ends in taa marbuuTa (ة), that ة is written and pronounced as ت.</p>
+<table><tr><th>Meaning</th><th class="ar">Subject</th><th class="ar">Suffix</th><th>Example</th></tr>
+${PRONOUNS.map(p=>`<tr><td>${p.meaning}</td><td class="ar big-ar">${p.subj}</td><td class="ar big-ar">${p.suf}</td><td>${p.example} (${p.exampleTr})</td></tr>`).join('')}
+</table>
+<h3>Suffixes on prepositions</h3>
+<p>The same set of suffixes attaches to prepositions as well, to build words like "from him" or "with them" without a separate pronoun word.</p>
+<p><span class="arabic">مِن + هُ = مِنْهُ</span> (from him). <span class="arabic">مَعَ + هُم = مَعَهُم</span> (with them). <span class="arabic">إلى + كَ = إلَيْكَ</span> (to you).</p>
+<h3>Stacking suffixes with idafa</h3>
+<p>Since a possessive suffix takes the place of a second noun in an idafa, you can end up with a fairly compact phrase that packs in a lot of meaning: <span class="arabic">اسْمُ أُخْتِي</span> means "my sister's name," built from اسم (name) as the first term of the idafa and أُخْتِي (my sister, itself أُخْت plus the "my" suffix) as the second term.</p>
+`);
+
+addLesson("Object Pronoun Suffixes", `
+<h3>How object pronouns work</h3>
+<p>Direct object pronouns (me, you, us, him, her, them) are suffixes too, just like possessive pronouns, except that they attach to the end of a verb instead of a noun. They are identical to the possessive suffixes covered in the previous lesson, with exactly one exception: "me" as an object is <span class="arabic">ـنِي</span> (-nii), not <span class="arabic">ـي</span> (-ii) the way "my" is on a noun. The extra ن there exists purely to keep the vowel sounds from running together awkwardly.</p>
+<table><tr><th>English</th><th class="ar">Arabic</th><th>Transliteration</th></tr>
+<tr><td>He sees me</td><td class="ar big-ar">يُشَاهِدُنِي</td><td>yushaahidunii</td></tr>
+<tr><td>I study it (m.)</td><td class="ar big-ar">أَدرُسُهُ</td><td>adrusuhu</td></tr>
+<tr><td>She drinks it (f.)</td><td class="ar big-ar">تَشرَبُهَا</td><td>tashrabuhaa</td></tr>
+<tr><td>They like us</td><td class="ar big-ar">يُحِبُّونَنَا</td><td>yuHibbuunanaa</td></tr>
+<tr><td>I like you (f.)</td><td class="ar big-ar">أُحِبُّكِ</td><td>uHibbuki</td></tr>
+</table>
+<p>Notice how compact this makes Arabic compared to English. A whole subject-verb-object sentence like "they like us" collapses into a single word, يُحِبُّونَنَا, made up of a prefix marking the subject (they), the verb root, a suffix marking plural masculine subject, and finally the object suffix "us" tacked on the end.</p>
+`);
+
+addLesson("Present-Tense Verb Conjugation", `
+<h3>How the present tense is built</h3>
+<p>Arabic's present tense (al-mudaari\u02BF) is built from a verb's three-consonant root wrapped inside a template of prefixes and suffixes that mark the subject's person, gender, and number. Nearly every verb follows the exact same skeleton of prefixes and suffixes, which means that once you've internalized the pattern with one verb, you can conjugate almost any new verb correctly the moment you learn its root.</p>
+<h3>Full paradigm: shaahada (to watch)</h3>
+<table><tr><th>Pronoun</th><th>Meaning</th><th class="ar">Form</th></tr>
+${PERSONS.map((per,i)=>`<tr><td></td><td>${per}</td><td class="ar big-ar">${VERBS_FULL["shaahada (to watch)"][i]}</td></tr>`).join('')}
+</table>
+<h3>The underlying pattern</h3>
+<ul>
+<li>Prefix by person: أ- for "I," ت- for "you" and for "she," ي- for "he" and for "they" (masculine), ن- for "we."</li>
+<li>Suffix by number and gender: nothing extra for the plain singular forms, ـِين for "you, feminine singular," ـَان for both dual forms, ـُون for "you/they, masculine plural," and ـنَ for "you/they, feminine plural."</li>
+</ul>
+<p>Other verbs you already know slot into these exact same prefixes and suffixes; only the vowel sitting in the middle of the root shifts a little from verb to verb, depending on the verb's particular pattern. Compare the "I" and "he" forms across a few verbs you've learned:</p>
+<table><tr><th>Verb</th><th>Meaning</th><th class="ar">"I" form</th><th class="ar">"he" form</th></tr>
+<tr><td>dhahaba</td><td>to go</td><td class="ar big-ar">أَذْهَب</td><td class="ar big-ar">يَذْهَب</td></tr>
+<tr><td>shariba</td><td>to drink</td><td class="ar big-ar">أَشْرَب</td><td class="ar big-ar">يَشْرَب</td></tr>
+<tr><td>\u02BFamila</td><td>to do, to work</td><td class="ar big-ar">أَعْمَل</td><td class="ar big-ar">يَعْمَل</td></tr>
+<tr><td>araada</td><td>to want</td><td class="ar big-ar">أُرِيد</td><td class="ar big-ar">يُرِيد</td></tr>
+<tr><td>aHabba</td><td>to like, to love</td><td class="ar big-ar">أُحِبّ</td><td class="ar big-ar">يُحِبّ</td></tr>
+</table>
+<p>Try the Verb Conjugation quiz to drill the full paradigm across all of these verbs, including the dual and plural forms.</p>
+<h3>Negating the present tense</h3>
+<p>To say you don't do something, put <span class="arabic">لا</span> directly in front of the conjugated verb. The verb itself doesn't change form.</p>
+<p><span class="arabic">لا أَذْهَبُ إلى الجَامِعَةِ اليَوْم</span> (I'm not going to the university today). <span class="arabic">هُوَ لا يَشْرَبُ القَهْوَة</span> (he doesn't drink coffee).</p>
+`);
+
+addLesson("The Nominal Sentence", `
+<h3>No verb "to be"</h3>
+<p>Arabic has no present-tense equivalent of "is," "am," or "are." An ordinary descriptive sentence, such as "the house is new" or "I am a student," is built simply by placing a subject directly next to its description, with nothing at all standing in between them. This kind of sentence, one that opens with a noun rather than a verb, is called a nominal sentence, made up of a subject (مُبْتَدَأ, "that which is begun with") and a predicate (خَبَر, "news, information").</p>
+<p><span class="arabic">البَيتُ جَديدٌ</span> (the house [is] new). <span class="arabic">أَنَا طَالِبٌ</span> (I [am] a student). <span class="arabic">هِيَ مِن سُوريا</span> (she [is] from Syria, where the predicate here is a whole prepositional phrase rather than a single adjective).</p>
+<h3>Agreement</h3>
+<p>The predicate has to agree with the subject in gender and number, exactly the way an adjective would. If the subject is feminine, an adjectival predicate needs to be feminine too; if the subject is plural (referring to people), the predicate needs to be plural as well.</p>
+<h3>Definite subject, indefinite predicate</h3>
+<p>A nominal sentence pairs a definite subject with an indefinite predicate. That pattern is actually what signals "this is a sentence" in the first place. If both halves were definite, the phrase would stop being a sentence and collapse into a single, longer noun phrase instead: البَيْتُ الجَدِيدُ isn't a sentence meaning "the house is new," it's just a noun phrase meaning "the new house." Keeping track of which half is definite and which is indefinite is what tells you whether you're looking at a full sentence or just a longer description of one thing.</p>
+<h3>Negating a nominal sentence</h3>
+<p>To negate a nominal sentence, use <span class="arabic">لَيْسَ</span> (laysa, "is not/are not") right before the predicate. <span class="arabic">البَيْتُ لَيْسَ جَديدًا</span> (the house is not new). You already know لَيْسَ from the Unit 3 vocabulary list; this is the grammatical job it's doing whenever it shows up.</p>
+`);
+
+addLesson("Question Words", `
+<h3>Forming a question</h3>
+<p>To turn a plain statement into a question, place an interrogative particle at the very start of the sentence. Nothing else about the sentence's word order needs to change.</p>
+<table><tr><th class="ar">Particle</th><th>Sounds like</th><th>Meaning</th></tr>
+${QWORDS.map(q=>`<tr><td class="ar big-ar">${q[1]}</td><td>${q[0]}</td><td>${q[2]}</td></tr>`).join('')}
+</table>
+<h3>ما versus ماذا</h3>
+<p>Both words translate to "what," but they aren't interchangeable. Use ما when nothing follows but a noun, as in <span class="arabic">ما إسمُكَ؟</span> (what is your name?). Use ماذا when a verb follows, as in <span class="arabic">ماذا تَدرُس؟</span> (what do you study?). This split trips up a lot of learners at first, since English "what" doesn't make that distinction at all.</p>
+<h3>Question words combined with prepositions</h3>
+<p>Several prepositions combine directly with question words to ask more specific questions. The preposition always comes first, attached to the front.</p>
+<table><tr><th>Meaning</th><th class="ar">Arabic</th></tr>
+<tr><td>from where?</td><td class="ar big-ar">مِن أَينَ؟</td></tr>
+<tr><td>in which?</td><td class="ar big-ar">في أَيّ؟</td></tr>
+<tr><td>with whom?</td><td class="ar big-ar">مَعَ مَن؟</td></tr>
+<tr><td>to where?</td><td class="ar big-ar">إلى أَين؟</td></tr>
+<tr><td>why? (literally "for what")</td><td class="ar big-ar">لِماذا؟</td></tr>
+<tr><td>to whom? for whom?</td><td class="ar big-ar">لِمَن؟</td></tr>
+</table>
+<h3>hal, and questions with no particle at all</h3>
+<p>هَل turns a statement into a plain yes or no question, with no real English equivalent word; it just signals "this is a yes/no question" the way rising intonation does in spoken English. In casual speech, Arabic speakers often skip هَل entirely and rely on intonation alone, the same way an English speaker can turn "you're coming?" into a question just by the tone of voice, without adding "do."</p>
+`);
+
+addLesson("Demonstrative Pronouns", `
+<h3>this / this is</h3>
+<table><tr><th>Meaning</th><th class="ar">Arabic</th><th>Sounds like</th></tr>
+<tr><td>this / this is (masculine)</td><td class="ar big-ar">هٰذا</td><td>haadhaa</td></tr>
+<tr><td>this / this is (feminine)</td><td class="ar big-ar">هٰذِهِ</td><td>haadhihi</td></tr>
+</table>
+<p>Like an adjective, هذا and هذه agree in gender with whatever they point to, and they can do two different jobs depending on where they sit in the sentence.</p>
+<h3>Standing alone, as the subject of a nominal sentence</h3>
+<p><span class="arabic">هٰذا كِتابٌ</span> (this is a book). Here هذا is the subject and كتابٌ, indefinite, is the predicate, following the same definite-subject-plus-indefinite-predicate pattern from the Nominal Sentence lesson.</p>
+<h3>Sitting directly before a definite noun, as a modifier</h3>
+<p><span class="arabic">هٰذا الكِتابُ جَديدٌ</span> (this book is new). Here هذا الكتابُ together forms the definite subject ("this book"), and جديدٌ, indefinite, is the predicate describing it. The presence of ال on الكِتابُ is what signals that هذا is modifying the noun rather than standing alone as a separate pronoun.</p>
+<p>Telling these two patterns apart comes down to definiteness: هذا كتابٌ (indefinite noun right after هذا) is a full sentence meaning "this is a book," while هذا الكتابُ (definite noun right after هذا) is just a phrase meaning "this book," which then needs its own predicate to become a complete sentence.</p>
+<p class="muted">You'll also meet plural and dual demonstratives (such as هؤلاء for "these") and the "that" set (ذلك and تلك) as the course continues; the pattern of agreement works the same way once you learn those forms.</p>
+`);
+
+addLesson("Adjectives and Agreement", `
+<h3>Word order</h3>
+<p>Adjectives in Arabic follow the noun they describe, the reverse of English word order. "A big house" is بَيْتٌ كَبِيرٌ, literally "house big."</p>
+<h3>Three-way agreement</h3>
+<p>An adjective has to agree with its noun in three separate ways at the same time: gender, number, and definiteness.</p>
+<ul>
+<li><b>Gender:</b> a masculine noun takes a masculine adjective; a feminine noun (usually marked by ة) takes a feminine adjective (usually also marked by ة).</li>
+<li><b>Definiteness:</b> if the noun carries ال, the adjective needs its own ال as well. The article isn't shared between the two words; each one carries it separately.</li>
+<li><b>Number:</b> an adjective describing a plural noun that refers to people takes a genuine plural form of its own. But an adjective describing a plural noun for a non-human thing is put into the feminine singular, regardless of how many things are actually being described. This is the same rule mentioned at the end of the Number lesson, and it holds completely consistently once you know to expect it.</li>
+</ul>
+<table><tr><th class="ar">Phrase</th><th>Transliteration</th><th>Meaning</th></tr>
+<tr><td class="ar big-ar">بَيْتٌ كَبِيرٌ</td><td>baytun kabiirun</td><td>a big house</td></tr>
+<tr><td class="ar big-ar">البَيْتُ الكَبِيرُ</td><td>al-baytu l-kabiiru</td><td>the big house</td></tr>
+<tr><td class="ar big-ar">بُيُوتٌ كَبِيرَةٌ</td><td>buyuutun kabiiratun</td><td>big houses (plural noun for a thing, but singular feminine adjective)</td></tr>
+</table>
+<h3>Stacking more than one adjective</h3>
+<p>When a noun is described by more than one adjective, they simply line up one after another, each one separately agreeing with the noun, sometimes joined by و ("and") between them: بَيْتٌ كَبِيرٌ وَجَديدٌ (a big and new house).</p>
+<h3>Adjectives inside an idafa</h3>
+<p>As mentioned in the Idafa lesson, an adjective describing any part of an idafa phrase goes after the entire phrase rather than right after the specific noun it's modifying. Gender and number agreement is usually what tells you which noun in the idafa the adjective actually belongs to.</p>
+`);
+
+addLesson("Roots and Patterns", `
+<h3>The root and pattern system</h3>
+<p>Most Arabic words are built from a root: a set of three consonants (occasionally four) that carries a word's core meaning. That root gets dropped into a pattern, a fixed arrangement of vowels and sometimes extra consonants, which shapes the root into a specific noun, adjective, or verb. Learning to spot the root hiding inside an unfamiliar word is one of the single most useful reading skills you can build in Arabic, because the same root keeps resurfacing across an entire family of related words.</p>
+<h3>Root family: ك ت ب (the idea of "writing")</h3>
+<table><tr><th class="ar">Word</th><th>Sounds like</th><th>Meaning</th></tr>
+<tr><td class="ar big-ar">كَتَبَ</td><td>kataba</td><td>he wrote</td></tr>
+<tr><td class="ar big-ar">كِتاب</td><td>kitaab</td><td>book</td></tr>
+<tr><td class="ar big-ar">كَاتِب</td><td>kaatib</td><td>writer</td></tr>
+<tr><td class="ar big-ar">مَكْتَب</td><td>maktab</td><td>office, desk (literally, a place where writing happens)</td></tr>
+<tr><td class="ar big-ar">مَكْتَبَة</td><td>maktaba</td><td>library, bookstore (another "place of writing")</td></tr>
+</table>
+<h3>Root family: د ر س (the idea of "study")</h3>
+<table><tr><th class="ar">Word</th><th>Sounds like</th><th>Meaning</th></tr>
+<tr><td class="ar big-ar">دَرَسَ</td><td>darasa</td><td>he studied</td></tr>
+<tr><td class="ar big-ar">دَرْس</td><td>dars</td><td>lesson</td></tr>
+<tr><td class="ar big-ar">مُدَرِّس</td><td>mudarris</td><td>teacher, instructor</td></tr>
+<tr><td class="ar big-ar">مَدْرَسَة</td><td>madrasa</td><td>school</td></tr>
+</table>
+<p>Notice the same مَـ prefix pattern showing up in both families to mean "a place where the root's action happens": مَكْتَب (place of writing) and مَدْرَسَة (place of study) are built the exact same way, just from different roots.</p>
+<h3>Recognizing shared adjective patterns</h3>
+<p>The adjectives جَمِيل، لَطِيف، طَوِيل، صَغِير، كَبِير، and قَصِير all share the same skeleton once you strip their three root consonants back out: a fatHa on the first consonant, then a long "ii" sound right before the last consonant. Once you notice that shared shape, you can make a reasonable guess that an unfamiliar word built the same way is probably an adjective too, and you can predict how to pronounce it even before you've looked it up.</p>
+<p>Plurals work through the same root-and-pattern logic, which is why broken plurals aren't actually random, even though they have to be memorized individually: كِتَاب becomes كُتُب, and بَيْت becomes بُيُوت, by pouring the same three root consonants into a different, but still recognizable, pattern.</p>
+`);
+
+addLesson("Case Endings (i\u02BFraab)", `
+<h3>What i\u02BFraab is</h3>
+<p>Formal, fully vowelled Arabic marks a noun or adjective's grammatical role in the sentence with a short-vowel ending. This system is called i\u02BFraab, and it's one of the clearest differences between formal Arabic (al-fuS-Haa) and the everyday spoken dialects (al-\u02BFaammiyya): spoken Arabic has largely dropped these endings and relies on word order to convey meaning instead, the same way English does.</p>
+<h3>The three cases</h3>
+<table><tr><th>Case</th><th class="ar">Name</th><th>Ending</th><th>Used for</th></tr>
+<tr><td>Nominative</td><td class="ar big-ar">مَرْفُوع</td><td>Damma (-u, or -un when indefinite)</td><td>the subject of a sentence; the predicate of a nominal sentence</td></tr>
+<tr><td>Accusative</td><td class="ar big-ar">مَنْصُوب</td><td>fatHa (-a, or -an when indefinite)</td><td>the direct object of a verb, and various adverbial expressions</td></tr>
+<tr><td>Genitive</td><td class="ar big-ar">مَجْرُور</td><td>kasra (-i, or -in when indefinite)</td><td>the object of a preposition; the second (and later) noun of an idafa</td></tr>
+</table>
+<h3>Definite versus indefinite endings</h3>
+<p>A definite noun (one with ال, a possessive suffix, or standing as the first noun of an idafa) takes the plain short vowel by itself. An indefinite noun takes the doubled version of that same vowel, tanwiin, adding an "n" sound on top (see the Vowels lesson for more on tanwiin itself).</p>
+<table><tr><th>Case</th><th>Definite ending</th><th>Indefinite (tanwiin) ending</th><th class="ar">Example</th></tr>
+<tr><td>Nominative</td><td>-u</td><td>-un</td><td class="ar big-ar">الطَّالِبُ / طَالِبٌ</td></tr>
+<tr><td>Accusative</td><td>-a</td><td>-an</td><td class="ar big-ar">الطَّالِبَ / طَالِباً</td></tr>
+<tr><td>Genitive</td><td>-i</td><td>-in</td><td class="ar big-ar">الطَّالِبِ / طَالِبٍ</td></tr>
+</table>
+<p>All three of الطَّالِبُ, الطَّالِبَ, and الطَّالِبِ simply mean "the student." The case ending doesn't change what the word means; it only marks the job that word is doing inside its sentence. That's exactly why these endings are treated as largely optional in ordinary speech: the meaning is already clear from word order and context alone, so most speakers drop the endings outside of very formal writing or careful public speaking.</p>
+<h3>Seeing all three cases in one sentence</h3>
+<p class="arabic big-ar" style="text-align:center;">قَرَأَ الطَّالِبُ الكِتَابَ في المَكْتَبَةِ</p>
+<p class="muted" style="text-align:center;">qara\u02BEa T-Taalibu l-kitaaba fi l-maktabati: the student read the book in the library</p>
+<ul>
+<li>الطَّالِبُ takes the nominative ending, since it's the subject: the one doing the reading.</li>
+<li>الكِتَابَ takes the accusative ending, since it's the direct object: the thing being read.</li>
+<li>المَكْتَبَةِ takes the genitive ending, since it's the object of the preposition في ("in").</li>
+</ul>
+<h3>Nouns that skip tanwiin entirely</h3>
+<p>A category of nouns called diptotes, which includes many proper nouns and certain plural patterns, never takes tanwiin at all, and uses a plain fatHa for the genitive instead of a kasra. You don't need to identify diptotes yet; just know that if you eventually see a proper noun's ending look slightly "off" compared to the pattern above, that's very likely why.</p>
+<p class="muted">For now, the goal set by the course is recognition rather than production: being able to identify these marks as grammatical endings when you see or hear them, such as the Damma on السَّلامُ in السَّلامُ عَلَيكُم, without necessarily producing them correctly yourself in every sentence you speak.</p>
+`);
+
+addLesson("Numbers 0-10", `
+<table><tr><th>English</th><th class="ar">Arabic</th><th>Sounds like</th></tr>
+${VOCAB.filter(v=>v.unit===4 && ["zero","one","two","three","four","five","six","seven","eight","nine","ten"].includes(v.en)).map(v=>`<tr><td>${v.en}</td><td class="ar big-ar">${v.ar}</td><td>${v.tr}</td></tr>`).join('')}
+</table>
+<h3>Two sets of numerals</h3>
+<p>Arabic uses its own set of digit symbols, sometimes called Arabic-Indic numerals, alongside the digits 0 through 9 that English uses. Arabic-Indic numerals are written left to right even though the surrounding text runs right to left, which can look surprising the first time you see a multi-digit number sitting inside an Arabic sentence.</p>
+<h3>A preview of how numbers 3 through 10 are actually used</h3>
+<p>Once you start building full sentences with numbers, you'll run into a genuinely surprising rule: the numbers 3 through 10 take the opposite gender of the noun they're counting. A feminine noun pairs with a number written in what looks like its masculine form, and a masculine noun pairs with a number written in what looks like its feminine form (the one ending in ة). On top of that, the noun being counted goes into the plural and into the genitive case. You aren't expected to produce this yet; it's simply useful to know it's coming, so the numbers you're memorizing now click into place naturally once the full rule is introduced.</p>
+`);
+
+
+function renderLessonsList(main, openId){
+  if(openId){
+    const lesson = LESSONS.find(l=>l.id===openId);
+    if(lesson){ renderLessonDetail(main, lesson); return; }
+  }
+  main.appendChild(mkEl(`<div><h1>Lessons</h1></div>`));
+  const grid = mkEl(`<div class="grid cols2"></div>`);
+  LESSONS.forEach(l=>{
+    const card = mkEl(`<div class="card lesson-card"><div class="num">Lesson ${l.id}</div><h3>${l.title}</h3></div>`);
+    card.onclick=()=>go('lessons', l.id);
+    grid.appendChild(card);
+  });
+  main.appendChild(grid);
+}
+function renderLessonDetail(main, lesson){
+  main.appendChild(mkEl(`
+    <div class="row" style="margin-bottom:6px;">
+      <button class="btn ghost" onclick="go('lessons')">&larr; All lessons</button>
+    </div>
+  `));
+  main.appendChild(mkEl(`<div class="card"><div class="pill">Lesson ${lesson.id} of ${LESSONS.length}</div><h1 style="margin-top:10px;">${lesson.title}</h1>${lesson.body}</div>`));
+  const nrow = mkEl(`<div class="row"></div>`);
+  if(lesson.id>1){
+    const b=mkEl(`<button class="btn ghost">&larr; ${LESSONS[lesson.id-2].title}</button>`);
+    b.onclick=()=>go('lessons', lesson.id-1);
+    nrow.appendChild(b);
+  }
+  nrow.appendChild(mkEl(`<div class="spacer"></div>`));
+  if(lesson.id<LESSONS.length){
+    const b=mkEl(`<button class="btn">${LESSONS[lesson.id].title} &rarr;</button>`);
+    b.onclick=()=>go('lessons', lesson.id+1);
+    nrow.appendChild(b);
+  }
+  main.appendChild(nrow);
+}
+
+/* ============================================================
+   FLASHCARDS
+   ============================================================ */
+let fcState = { unit:'all', deck:[], idx:0, flipped:false, dir:'ar2en' };
+function renderFlashcards(main){
+  buildDeck();
+  main.appendChild(mkEl(`<div><h1>Flashcards</h1></div>`));
+  const controls = mkEl(`
+    <div class="row" style="margin-bottom:16px;">
+      <select id="fcUnit"></select>
+      <select id="fcDir">
+        <option value="ar2en">Arabic \u2192 English</option>
+        <option value="en2ar">English \u2192 Arabic</option>
+      </select>
+      <button class="btn ghost" id="fcShuffle">Shuffle</button>
+    </div>
+  `);
+  main.appendChild(controls);
+  const unitSel = controls.querySelector('#fcUnit');
+  unitSel.appendChild(mkEl(`<option value="all">All units</option>`));
+  for(let u=1; u<=9; u++) unitSel.appendChild(mkEl(`<option value="${u}">Unit ${u}</option>`));
+  unitSel.value = fcState.unit;
+  unitSel.onchange=()=>{ fcState.unit=unitSel.value; buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
+  const dirSel = controls.querySelector('#fcDir');
+  dirSel.value = fcState.dir;
+  dirSel.onchange=()=>{ fcState.dir=dirSel.value; fcState.flipped=false; renderCardArea(); };
+  controls.querySelector('#fcShuffle').onclick=()=>{ fcState.deck=shuffle(fcState.deck); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
+
+  const area = mkEl(`<div class="flash-wrap" id="fcArea"></div>`);
+  main.appendChild(area);
+  renderCardArea();
+
+  function buildDeck(){
+    fcState.deck = fcState.unit==='all' ? VOCAB.slice() : VOCAB.filter(v=>v.unit===Number(fcState.unit));
+  }
+  function renderCardArea(){
+    const areaEl = document.getElementById('fcArea');
+    if(!areaEl) return;
+    areaEl.innerHTML='';
+    if(fcState.deck.length===0){ areaEl.appendChild(mkEl(`<p class="muted">No cards.</p>`)); return; }
+    const v = fcState.deck[fcState.idx];
+    const showFront = fcState.dir==='ar2en' ? `<div class="arabic" style="font-size:34px;">${v.ar}</div><div class="translit">${v.tr}</div>` : `<div>${v.en}</div>`;
+    const showBack = fcState.dir==='ar2en' ? `<div>${v.en}</div>` : `<div class="arabic" style="font-size:34px;">${v.ar}</div><div class="translit">${v.tr}</div>`;
+    const card = mkEl(`
+      <div class="flashcard">
+        <span class="tag">Unit ${v.unit} \u00b7 ${fcState.idx+1}/${fcState.deck.length}</span>
+        <div id="fcContent">${fcState.flipped?showBack:showFront}</div>
+        <span class="hint">click to flip</span>
+      </div>
+    `);
+    card.onclick=()=>{ fcState.flipped=!fcState.flipped; renderCardArea(); };
+    areaEl.appendChild(card);
+    const nav = mkEl(`
+      <div class="row">
+        <button class="btn ghost" id="fcPrev">&larr; Prev</button>
+        <button class="btn" id="fcNext">Next &rarr;</button>
+      </div>
+    `);
+    areaEl.appendChild(nav);
+    nav.querySelector('#fcPrev').onclick=()=>{ fcState.idx=(fcState.idx-1+fcState.deck.length)%fcState.deck.length; fcState.flipped=false; renderCardArea(); };
+    nav.querySelector('#fcNext').onclick=()=>{ fcState.idx=(fcState.idx+1)%fcState.deck.length; fcState.flipped=false; renderCardArea(); };
+  }
+}
+
+/* ============================================================
+   MATCHING GAME
+   ============================================================ */
+let matchState = { pairs:[], selectedLeft:null, selectedRight:null, matched:0, mistakes:0, leftOrder:[], rightOrder:[] };
+function renderMatching(main){
+  main.appendChild(mkEl(`<div><h1>Matching Game</h1></div>`));
+  const stats = mkEl(`<div class="row" style="margin-bottom:10px;"><span class="pill" id="mStats"></span><button class="btn ghost" id="mNew">New round</button></div>`);
+  main.appendChild(stats);
+  const gridWrap = mkEl(`<div class="match-grid" id="mGrid"></div>`);
+  main.appendChild(gridWrap);
+  stats.querySelector('#mNew').onclick=newRound;
+  newRound();
+
+  function newRound(){
+    matchState.pairs = sample(VOCAB, 8);
+    matchState.selectedLeft=null; matchState.selectedRight=null; matchState.matched=0; matchState.mistakes=0;
+    matchState.leftOrder = shuffle(matchState.pairs.map((p,i)=>i));
+    matchState.rightOrder = shuffle(matchState.pairs.map((p,i)=>i));
+    draw();
+  }
+  function draw(){
+    document.getElementById('mStats').textContent = `Matched ${matchState.matched}/${matchState.pairs.length} \u00b7 Mistakes: ${matchState.mistakes}`;
+    const g = document.getElementById('mGrid');
+    g.innerHTML='';
+    const leftCol = mkEl(`<div class="match-col"></div>`);
+    const rightCol = mkEl(`<div class="match-col"></div>`);
+    matchState.leftOrder.forEach(i=>{
+      const p = matchState.pairs[i];
+      const t = mkEl(`<div class="tile arabic" data-i="${i}">${p.ar}</div>`);
+      if(p._done) t.classList.add('correct','locked');
+      t.onclick=()=>selectLeft(i,t);
+      leftCol.appendChild(t);
+    });
+    matchState.rightOrder.forEach(i=>{
+      const p = matchState.pairs[i];
+      const t = mkEl(`<div class="tile" data-i="${i}">${p.en}</div>`);
+      if(p._done) t.classList.add('correct','locked');
+      t.onclick=()=>selectRight(i,t);
+      rightCol.appendChild(t);
+    });
+    g.appendChild(leftCol); g.appendChild(rightCol);
+  }
+  function selectLeft(i,elm){
+    if(matchState.pairs[i]._done) return;
+    document.querySelectorAll('.match-col:first-child .tile').forEach(t=>t.classList.remove('selected'));
+    elm.classList.add('selected');
+    matchState.selectedLeft=i;
+    tryMatch();
+  }
+  function selectRight(i,elm){
+    if(matchState.pairs[i]._done) return;
+    document.querySelectorAll('.match-col:last-child .tile').forEach(t=>t.classList.remove('selected'));
+    elm.classList.add('selected');
+    matchState.selectedRight=i;
+    tryMatch();
+  }
+  function tryMatch(){
+    if(matchState.selectedLeft===null || matchState.selectedRight===null) return;
+    if(matchState.selectedLeft===matchState.selectedRight){
+      matchState.pairs[matchState.selectedLeft]._done=true;
+      matchState.matched++;
+    } else {
+      matchState.mistakes++;
+    }
+    matchState.selectedLeft=null; matchState.selectedRight=null;
+    setTimeout(draw, 250);
+  }
+}
+
+/* ============================================================
+   QUIZ ENGINE
+   ============================================================ */
+const QUIZ_CATEGORIES = [
+  {id:'vocab', label:'Vocabulary', desc:'Match Arabic words to their English meaning (and back).'},
+  {id:'gender', label:'Gender', desc:'Masculine or feminine?'},
+  {id:'definite', label:'Definiteness', desc:'Identify whether a phrase is definite, and why.'},
+  {id:'case', label:'Case Endings', desc:'Nominative, accusative, or genitive?'},
+  {id:'sunmoon', label:'Sun & Moon Letters', desc:'Does \u0644 assimilate after \u0627\u0644?'},
+  {id:'pronoun', label:'Pronouns', desc:'Subject pronouns and possessive suffixes.'},
+  {id:'verb', label:'Verb Conjugation', desc:'Pick the correctly conjugated form.'},
+  {id:'qword', label:'Question Words', desc:'Match the interrogative particle to its meaning.'},
+];
+
+function renderQuizMenu(main, cat){
+  if(cat){ startQuiz(main, cat); return; }
+  main.appendChild(mkEl(`<div><h1>Quizzes</h1></div>`));
+  const grid = mkEl(`<div class="grid cols2"></div>`);
+  QUIZ_CATEGORIES.forEach(c=>{
+    const card = mkEl(`<div class="card lesson-card"><h3>${c.label}</h3><p class="muted" style="margin:0;">${c.desc}</p></div>`);
+    card.onclick=()=>go('quiz', c.id);
+    grid.appendChild(card);
+  });
+  main.appendChild(grid);
+}
+
+let quizState = {};
+function startQuiz(main, cat){
+  const catInfo = QUIZ_CATEGORIES.find(c=>c.id===cat);
+  const questions = genQuestions(cat, 12);
+  quizState = { cat, questions, idx:0, score:0, answered:false };
+  const wrap = mkEl(`<div></div>`);
+  wrap.appendChild(mkEl(`<div class="row" style="margin-bottom:10px;"><button class="btn ghost" id="qBack">&larr; Categories</button><div class="spacer"></div><span class="pill">${catInfo.label}</span></div>`));
+  wrap.appendChild(mkEl(`<div class="progressbar"><div id="qProgress" style="width:0%"></div></div>`));
+  wrap.appendChild(mkEl(`<div class="card" id="qCard"></div>`));
+  main.appendChild(wrap);
+  wrap.querySelector('#qBack').onclick=()=>go('quiz');
+  renderQuestion();
+
+  function renderQuestion(){
+    const q = quizState.questions[quizState.idx];
+    document.getElementById('qProgress').style.width = ((quizState.idx)/quizState.questions.length*100)+'%';
+    const card = document.getElementById('qCard');
+    card.innerHTML='';
+    card.appendChild(mkEl(`<div class="quiz-prompt">${q.prompt}</div>`));
+    const opts = mkEl(`<div class="quiz-options"></div>`);
+    q.options.forEach((opt,i)=>{
+      const b = mkEl(`<button class="qopt">${opt}</button>`);
+      b.onclick=()=>answer(i,b);
+      opts.appendChild(b);
+    });
+    card.appendChild(opts);
+    const explain = mkEl(`<div id="qExplain"></div>`);
+    card.appendChild(explain);
+    const nav = mkEl(`<div class="row" style="margin-top:14px;"><span class="score-badge" id="qScore">Score: ${quizState.score}/${quizState.idx}</span><div class="spacer"></div><button class="btn" id="qNext" disabled>Next</button></div>`);
+    card.appendChild(nav);
+    nav.querySelector('#qNext').onclick=next;
+  }
+  function answer(i, btnEl){
+    if(quizState.answered) return;
+    quizState.answered=true;
+    const q = quizState.questions[quizState.idx];
+    const allBtns = document.querySelectorAll('.qopt');
+    allBtns.forEach((b,bi)=>{
+      b.disabled=true;
+      if(bi===q.correct) b.classList.add('correct');
+      else if(bi===i) b.classList.add('wrong');
+    });
+    if(i===q.correct) quizState.score++;
+    if(q.explain) document.getElementById('qExplain').appendChild(mkEl(`<div class="explain">${q.explain}</div>`));
+    document.getElementById('qScore').textContent = `Score: ${quizState.score}/${quizState.idx+1}`;
+    document.getElementById('qNext').disabled=false;
+  }
+  function next(){
+    quizState.idx++;
+    quizState.answered=false;
+    if(quizState.idx>=quizState.questions.length){ renderFinal(); return; }
+    renderQuestion();
+  }
+  function renderFinal(){
+    document.getElementById('qProgress').style.width='100%';
+    const card = document.getElementById('qCard');
+    const pct = Math.round(quizState.score/quizState.questions.length*100);
+    card.innerHTML='';
+    card.appendChild(mkEl(`
+      <div style="text-align:center;padding:20px 0;">
+        <h2 style="margin-top:0;">Quiz complete</h2>
+        <p style="font-size:32px;font-weight:700;color:var(--accent);">${quizState.score} / ${quizState.questions.length}</p>
+        <p class="muted">${pct}% correct</p>
+        <div class="row" style="justify-content:center;margin-top:16px;">
+          <button class="btn" id="qAgain">Try again</button>
+          <button class="btn ghost" id="qMenu">Other categories</button>
+        </div>
+      </div>
+    `));
+    card.querySelector('#qAgain').onclick=()=>go('quiz', cat);
+    card.querySelector('#qMenu').onclick=()=>go('quiz');
+  }
+}
+
+function genQuestions(cat, n){
+  if(cat==='vocab') return genVocabQuestions(n);
+  if(cat==='gender') return genGenderQuestions(n);
+  if(cat==='definite') return genDefiniteQuestions(n);
+  if(cat==='case') return genCaseQuestions(n);
+  if(cat==='sunmoon') return genSunMoonQuestions(n);
+  if(cat==='pronoun') return genPronounQuestions(n);
+  if(cat==='verb') return genVerbQuestions(n);
+  if(cat==='qword') return genQWordQuestions(n);
+  return [];
+}
+
+function mcqFrom(correctText, distractorPool, promptHtml, explain){
+  const distractors = sample(distractorPool.filter(d=>d!==correctText), 3);
+  const options = shuffle([correctText, ...distractors]);
+  return { prompt: promptHtml, options, correct: options.indexOf(correctText), explain };
+}
+
+function genVocabQuestions(n){
+  const qs=[];
+  const allEn = VOCAB.map(v=>v.en);
+  for(let i=0;i<n;i++){
+    const v = pick(VOCAB);
+    if(Math.random()<0.5){
+      qs.push(mcqFrom(v.en, allEn, `What does <span class="arabic big-ar">${v.ar}</span> <span class="muted">(${v.tr})</span> mean?`, `${v.ar} = ${v.en}`));
+    } else {
+      const allArWithSameEn = mcqFrom(v.ar, VOCAB.map(x=>x.ar), `Which word means "${v.en}"?`, `${v.en} = ${v.ar} (${v.tr})`);
+      allArWithSameEn.options = allArWithSameEn.options.map(o=>`<span class="arabic big-ar">${o}</span>`);
+      allArWithSameEn.prompt = allArWithSameEn.prompt;
+      qs.push(allArWithSameEn);
+    }
+  }
+  return qs;
+}
+function genGenderQuestions(n){
+  const qs=[]; const pool = shuffle(GENDER_BANK).slice(0, Math.min(n, GENDER_BANK.length));
+  pool.forEach(g=>{
+    const [ar,tr,en,gender]=g;
+    const options = shuffle(['masculine','feminine']);
+    qs.push({ prompt:`Is <span class="arabic big-ar">${ar}</span> <span class="muted">(${tr})</span> masculine or feminine?`, options, correct: options.indexOf(gender==='m'?'masculine':'feminine'),
+      explain: (gender==='m' ? `${ar} is masculine. It doesn't end in \u0629.` : `${ar} is feminine.`) + ` (\u201c${en}\u201d)` });
+  });
+  while(qs.length<n) qs.push(qs[qs.length % pool.length]);
+  return qs.slice(0,n);
+}
+function genDefiniteQuestions(n){
+  const qs=[]; const pool = shuffle(DEFINITENESS_BANK).slice(0, Math.min(n, DEFINITENESS_BANK.length));
+  pool.forEach(d=>{
+    const [ar,tr,en,isDef,reason]=d;
+    const options = shuffle(['Definite','Indefinite']);
+    qs.push({ prompt:`<span class="arabic big-ar">${ar}</span><br><span class="muted">${tr}</span><br>Is this definite or indefinite?`, options, correct: options.indexOf(isDef?'Definite':'Indefinite'), explain: reason + ` (\u201c${en}\u201d)` });
+  });
+  while(qs.length<n) qs.push(qs[qs.length % pool.length]);
+  return qs.slice(0,n);
+}
+function genCaseQuestions(n){
+  const qs=[];
+  const flat=[];
+  CASE_BANK.forEach(s=>s.targets.forEach(t=>flat.push({sentence:s, target:t})));
+  const pool = shuffle(flat).slice(0, Math.min(n, flat.length));
+  pool.forEach(item=>{
+    const options = shuffle(['nominative','accusative','genitive']);
+    qs.push({
+      prompt:`<span class="arabic big-ar">${item.sentence.ar}</span><br><span class="muted">${item.sentence.tr}</span><br>What case is <span class="arabic">${item.target.word}</span> in?`,
+      options, correct: options.indexOf(item.target.case),
+      explain: `${item.target.word} is ${item.target.case}: ${item.target.why}. (\u201c${item.sentence.en}\u201d)`
+    });
+  });
+  while(qs.length<n) qs.push(qs[qs.length % pool.length]);
+  return qs.slice(0,n);
+}
+function genSunMoonQuestions(n){
+  const qs=[]; const pool = shuffle(ALPHABET).slice(0, Math.min(n, ALPHABET.length));
+  pool.forEach(a=>{
+    const options = shuffle(['Sun letter (\u0644 not pronounced)','Moon letter (\u0644 pronounced)']);
+    const correctText = a.type==='sun' ? 'Sun letter (\u0644 not pronounced)' : 'Moon letter (\u0644 pronounced)';
+    qs.push({ prompt:`If <span class="arabic big-ar">${a.iso}</span> (${a.name}) follows <span class="arabic">ال</span>, what happens to the \u0644?`, options, correct: options.indexOf(correctText),
+      explain: a.type==='sun' ? `${a.name} is a sun letter, so the \u0644 assimilates and the letter doubles (gets a shadda).` : `${a.name} is a moon letter, so the \u0644 is pronounced normally.` });
+  });
+  while(qs.length<n) qs.push(qs[qs.length % pool.length]);
+  return qs.slice(0,n);
+}
+function genPronounQuestions(n){
+  const qs=[];
+  for(let i=0;i<n;i++){
+    const p = pick(PRONOUNS);
+    if(Math.random()<0.5){
+      qs.push(mcqFrom(p.meaning, PRONOUNS.map(x=>x.meaning), `What does the subject pronoun <span class="arabic big-ar">${p.subj}</span> mean?`, `${p.subj} = ${p.meaning}`));
+    } else {
+      qs.push(mcqFrom(p.meaning, PRONOUNS.map(x=>x.meaning), `The possessive suffix <span class="arabic big-ar">${p.suf}</span> (${p.sufTr}) attached to a noun means "... of whom"? Pick the matching person:`, `${p.suf} (${p.sufTr}) = ${p.meaning}, e.g. ${p.example}`));
+    }
+  }
+  return qs;
+}
+function genVerbQuestions(n){
+  const qs=[];
+  const fullVerbs = Object.keys(VERBS_FULL);
+  const partialVerbs = Object.keys(VERBS_PARTIAL);
+  for(let i=0;i<n;i++){
+    let verb, forms, maxIdx;
+    if(Math.random()<0.75){ verb=pick(fullVerbs); forms=VERBS_FULL[verb]; maxIdx=forms.length; }
+    else { verb=pick(partialVerbs); forms=VERBS_PARTIAL[verb]; maxIdx=5; }
+    let pIdx;
+    do{ pIdx = Math.floor(Math.random()*maxIdx); } while(!forms[pIdx]);
+    const correct = forms[pIdx];
+    const distractorPool = forms.filter((f,fi)=>f && fi!==pIdx);
+    const distractors = sample(distractorPool, Math.min(3, distractorPool.length));
+    while(distractors.length<3) distractors.push(pick(Object.values(VERBS_FULL).flat().filter(f=>f&&f!==correct)));
+    const options = shuffle([correct, ...distractors]);
+    qs.push({
+      prompt:`How do you say <span class="arabic big-ar">${PRONOUNS[pIdx].subj}</span> with <span class="arabic big-ar">${VERB_CITATIONS[verb]}</span> <span class="muted">(${verb})</span>?`,
+      options: options.map(o=>`<span class="arabic big-ar">${o}</span>`),
+      correct: options.indexOf(correct),
+      explain: `${PRONOUNS[pIdx].meaning} + ${verb.split(' ')[0]} = ${correct}`
+    });
+  }
+  return qs;
+}
+function genQWordQuestions(n){
+  const qs=[]; const pool=[];
+  for(let i=0;i<n;i++){
+    const q = pick(QWORDS);
+    qs.push(mcqFrom(q[2], QWORDS.map(x=>x[2]), `What does <span class="arabic big-ar">${q[1]}</span> (${q[0]}) mean?`, `${q[1]} (${q[0]}) = ${q[2]}`));
+  }
+  return qs;
+}
+
+/* ============================================================
+   CROSSWORD
+   ============================================================ */
+function buildCrosswordGrid(){
+  const grid = Array.from({length:CROSSWORD.rows}, ()=>Array(CROSSWORD.cols).fill(null));
+  CROSSWORD.words.forEach(w=>{
+    for(let i=0;i<w.word.length;i++){
+      const r = w.dir==='across' ? w.r : w.r+i;
+      const c = w.dir==='across' ? w.c+i : w.c;
+      grid[r][c] = grid[r][c] || { letter:w.word[i] };
+    }
+  });
+  // assign numbers
+  const numbered = {};
+  CROSSWORD.words.forEach(w=>{ numbered[w.r+','+w.c] = w.num; });
+  return {grid, numbered};
+}
+function renderCrossword(main){
+  main.appendChild(mkEl(`<div><h1>Crossword</h1></div>`));
+  const {grid, numbered} = buildCrosswordGrid();
+  const wrap = mkEl(`<div class="xw-wrap"></div>`);
+  const tableEl = document.createElement('table');
+  tableEl.className='xw';
+  for(let r=0;r<CROSSWORD.rows;r++){
+    const tr = document.createElement('tr');
+    for(let c=0;c<CROSSWORD.cols;c++){
+      const td = document.createElement('td');
+      if(grid[r][c]){
+        const key=r+','+c;
+        if(numbered[key]) td.appendChild(mkEl(`<span class="num">${numbered[key]}</span>`));
+        const inp = document.createElement('input');
+        inp.maxLength=1;
+        inp.dataset.r=r; inp.dataset.c=c; inp.dataset.letter=grid[r][c].letter;
+        inp.oninput=(e)=>{ e.target.value = e.target.value.toUpperCase().slice(-1); };
+        td.appendChild(inp);
+      } else {
+        td.className='block';
+      }
+      tr.appendChild(td);
+    }
+    tableEl.appendChild(tr);
+  }
+  wrap.appendChild(tableEl);
+  const clues = mkEl(`<div class="clue-list"></div>`);
+  const across = CROSSWORD.words.filter(w=>w.dir==='across');
+  const down = CROSSWORD.words.filter(w=>w.dir==='down');
+  clues.appendChild(mkEl(`<div><h4>Across</h4><ol>${across.map(w=>`<li><b>${w.num}.</b> ${w.clue.split(': ')[1]}</li>`).join('')}</ol></div>`));
+  clues.appendChild(mkEl(`<div><h4>Down</h4><ol>${down.map(w=>`<li><b>${w.num}.</b> ${w.clue.split(': ')[1]}</li>`).join('')}</ol></div>`));
+  wrap.appendChild(clues);
+  main.appendChild(wrap);
+  const controls = mkEl(`<div class="row" style="margin-top:16px;"><button class="btn" id="xwCheck">Check</button><button class="btn ghost" id="xwReveal">Reveal</button><span id="xwMsg" class="pill"></span></div>`);
+  main.appendChild(controls);
+  controls.querySelector('#xwCheck').onclick=()=>{
+    let correct=0, total=0;
+    tableEl.querySelectorAll('input').forEach(inp=>{
+      total++;
+      const ok = inp.value.toUpperCase()===inp.dataset.letter;
+      inp.classList.toggle('correct', ok && inp.value!=='');
+      inp.classList.toggle('wrong', !ok && inp.value!=='');
+      if(ok) correct++;
+    });
+    controls.querySelector('#xwMsg').textContent = `${correct}/${total} correct`;
+  };
+  controls.querySelector('#xwReveal').onclick=()=>{
+    tableEl.querySelectorAll('input').forEach(inp=>{
+      inp.value = inp.dataset.letter;
+      inp.classList.add('correct'); inp.classList.remove('wrong');
+    });
+    controls.querySelector('#xwMsg').textContent = 'Revealed';
+  };
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+go('home');
+</script>
+</body>
+</html>
