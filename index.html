@@ -456,15 +456,18 @@ const PERSONS = ["I","you (m. sg.)","you (f. sg.)","he","she","we","you (m. dual
 // (you-dual m and f are identical), so we index carefully per verb.
 
 const VERBS_FULL = {
-  "shaahada (to watch)": ["أُشاهِدُ","تُشاهِدُ","تُشاهِدِينَ","يُشاهِدُ","تُشاهِدُ","نُشاهِدُ","تُشاهِدَانِ","تُشاهِدَانِ","يُشاهِدَانِ","تُشاهِدَانِ","تُشاهِدُونَ","تُشاهِدْنَ","يُشاهِدُونَ","يُشاهِدْنَ"],
+  "shaahada (to watch)": ["أُشَاهِدُ","تُشَاهِدُ","تُشَاهِدِينَ","يُشَاهِدُ","تُشَاهِدُ","نُشَاهِدُ","تُشَاهِدَانِ","تُشَاهِدَانِ","يُشَاهِدَانِ","تُشَاهِدَانِ","تُشَاهِدُونَ","تُشَاهِدْنَ","يُشَاهِدُونَ","يُشَاهِدْنَ"],
   "\u02BFamila (to do, work)": ["أَعْمَلُ","تَعْمَلُ","تَعْمَلِينَ","يَعْمَلُ","تَعْمَلُ","نَعْمَلُ","تَعْمَلَانِ","تَعْمَلَانِ","يَعْمَلَانِ","تَعْمَلَانِ","تَعْمَلُونَ","تَعْمَلْنَ","يَعْمَلُونَ","يَعْمَلْنَ"],
   "dhahaba (to go)": ["أَذْهَبُ","تَذْهَبُ","تَذْهَبِينَ","يَذْهَبُ","تَذْهَبُ","نَذْهَبُ","تَذْهَبَانِ","تَذْهَبَانِ","يَذْهَبَانِ","تَذْهَبَانِ","تَذْهَبُونَ","تَذْهَبْنَ","يَذْهَبُونَ","يَذْهَبْنَ"],
   "shariba (to drink)": ["أَشْرَبُ","تَشْرَبُ","تَشْرَبِينَ","يَشْرَبُ","تَشْرَبُ","نَشْرَبُ","تَشْرَبَانِ","تَشْرَبَانِ","يَشْرَبَانِ","تَشْرَبَانِ","تَشْرَبُونَ","تَشْرَبْنَ","يَشْرَبُونَ","يَشْرَبْنَ"],
-};
-// Partial paradigms - only textbook-confirmed persons (index: 0 I, 1 you-m, 2 you-f, 3 he, 4 she)
-const VERBS_PARTIAL = {
-  "araada (to want)": ["أُريدُ","تُريدُ","تُريدِينَ","يُريدُ","تُريدُ"],
-  "aHabba (to love)": ["أُحِبُّ","تُحِبُّ","تُحِبِّينَ",null,null],
+  "araada (to want)": ["أُرِيدُ","تُرِيدُ","تُرِيدِينَ","يُرِيدُ","تُرِيدُ","نُرِيدُ","تُرِيدَانِ","تُرِيدَانِ","يُرِيدَانِ","تُرِيدَانِ","تُرِيدُونَ","تُرِدْنَ","يُرِيدُونَ","يُرِدْنَ"],
+  "aHabba (to love)": ["أُحِبُّ","تُحِبُّ","تُحِبِّينَ","يُحِبُّ","تُحِبُّ","نُحِبُّ","تُحِبَّانِ","تُحِبَّانِ","يُحِبَّانِ","تُحِبَّانِ","تُحِبُّونَ","تُحْبِبْنَ","يُحِبُّونَ","يُحْبِبْنَ"],
+  "darasa (to study)": ["أَدْرُسُ","تَدْرُسُ","تَدْرُسِينَ","يَدْرُسُ","تَدْرُسُ","نَدْرُسُ","تَدْرُسَانِ","تَدْرُسَانِ","يَدْرُسَانِ","تَدْرُسَانِ","تَدْرُسُونَ","تَدْرُسْنَ","يَدْرُسُونَ","يَدْرُسْنَ"],
+  "sakana (to live)": ["أَسْكُنُ","تَسْكُنُ","تَسْكُنِينَ","يَسْكُنُ","تَسْكُنُ","نَسْكُنُ","تَسْكُنَانِ","تَسْكُنَانِ","يَسْكُنَانِ","تَسْكُنَانِ","تَسْكُنُونَ","تَسْكُنَّ","يَسْكُنُونَ","يَسْكُنَّ"],
+  "kataba (to write)": ["أَكْتُبُ","تَكْتُبُ","تَكْتُبِينَ","يَكْتُبُ","تَكْتُبُ","نَكْتُبُ","تَكْتُبَانِ","تَكْتُبَانِ","يَكْتُبَانِ","تَكْتُبَانِ","تَكْتُبُونَ","تَكْتُبْنَ","يَكْتُبُونَ","يَكْتُبْنَ"],
+  "qara\u02BEa (to read)": ["أَقْرَأُ","تَقْرَأُ","تَقْرَئِينَ","يَقْرَأُ","تَقْرَأُ","نَقْرَأُ","تَقْرَآنِ","تَقْرَآنِ","يَقْرَآنِ","تَقْرَآنِ","تَقْرَأُونَ","تَقْرَأْنَ","يَقْرَأُونَ","يَقْرَأْنَ"],
+  "akala (to eat)": ["آكُلُ","تَأْكُلُ","تَأْكُلِينَ","يَأْكُلُ","تَأْكُلُ","نَأْكُلُ","تَأْكُلَانِ","تَأْكُلَانِ","يَأْكُلَانِ","تَأْكُلَانِ","تَأْكُلُونَ","تَأْكُلْنَ","يَأْكُلُونَ","يَأْكُلْنَ"],
+  "istama\u02BFa (to listen)": ["أَسْتَمِعُ","تَسْتَمِعُ","تَسْتَمِعِينَ","يَسْتَمِعُ","تَسْتَمِعُ","نَسْتَمِعُ","تَسْتَمِعَانِ","تَسْتَمِعَانِ","يَسْتَمِعَانِ","تَسْتَمِعَانِ","تَسْتَمِعُونَ","تَسْتَمِعْنَ","يَسْتَمِعُونَ","يَسْتَمِعْنَ"],
 };
 // Dictionary (citation) form of each verb: third person masculine singular past tense,
 // the form Arabic dictionaries and courses use to name a verb.
@@ -475,6 +478,36 @@ const VERB_CITATIONS = {
   "shariba (to drink)": "شَرِبَ",
   "araada (to want)": "أَرَادَ",
   "aHabba (to love)": "أَحَبَّ",
+  "darasa (to study)": "دَرَسَ",
+  "sakana (to live)": "سَكَنَ",
+  "kataba (to write)": "كَتَبَ",
+  "qara\u02BEa (to read)": "قَرَأَ",
+  "akala (to eat)": "أَكَلَ",
+  "istama\u02BFa (to listen)": "اسْتَمَعَ",
+};
+
+// English gloss for each verb, used on the Conjugations tab.
+const VERB_GLOSSES = {
+  "shaahada (to watch)": "to watch",
+  "ʿamila (to do, work)": "to do, to work",
+  "dhahaba (to go)": "to go",
+  "shariba (to drink)": "to drink",
+  "araada (to want)": "to want",
+  "aHabba (to love)": "to love, to like",
+  "darasa (to study)": "to study",
+  "sakana (to live)": "to live",
+  "kataba (to write)": "to write",
+  "qaraʾa (to read)": "to read",
+  "akala (to eat)": "to eat",
+  "istamaʿa (to listen)": "to listen",
+};
+// Notes on genuinely irregular forms, shown on the Conjugations tab for the verbs they apply to.
+const VERB_NOTES = {
+  "aHabba (to love)": "Doubled (geminate) root ح-ب-ب. The feminine plural forms unfold the doubled consonant instead of following the regular pattern the rest of the paradigm would suggest.",
+  "araada (to want)": "Hollow root (weak middle radical). The long ي shortens in the feminine plural, instead of staying long the way the rest of the paradigm would suggest.",
+  "akala (to eat)": "Hamza-initial root. The “I” form's prefix hamza and the root's own initial hamza merge into a single alif madda (آ), rather than appearing as two separate hamzas.",
+  "qaraʾa (to read)": "Hamza-final root. The hamza stays seated on the line even before the ونَ plural ending, rather than shifting to a waw-seat; the dual forms use alif madda (آ) since the root-final hamza is immediately followed by the dual's long alif.",
+  "sakana (to live)": "Sound root, but its final radical ن collides with the feminine plural suffix نَ. The two merge into a single geminated ن with shadda.",
 };
 
 const GENDER_BANK = [
@@ -615,6 +648,7 @@ const TABS = [
   {id:'matching',label:'Matching'},
   {id:'quiz',label:'Quiz'},
   {id:'crossword',label:'Crossword'},
+  {id:'conjugations',label:'Conjugations'},
 ];
 let currentTab = 'home';
 
@@ -641,6 +675,7 @@ function go(tab, param){
   else if(tab==='matching') renderMatching(main);
   else if(tab==='quiz') renderQuizMenu(main, param);
   else if(tab==='crossword') renderCrossword(main);
+  else if(tab==='conjugations') renderConjugations(main, param);
 }
 
 /* ============================================================
@@ -670,6 +705,10 @@ function renderHome(main){
         <div class="card lesson-card" onclick="go('crossword')">
           <div class="num">Puzzle</div><h3>Crossword</h3>
           <p class="muted" style="margin:0;">A small vocabulary crossword using transliterated answers.</p>
+        </div>
+        <div class="card lesson-card" onclick="go('conjugations')">
+          <div class="num">Reference</div><h3>Conjugations</h3>
+          <p class="muted" style="margin:0;">All 12 present-tense verb paradigms, filled out in full, with notes on the irregular ones.</p>
         </div>
         <div class="card">
           <div class="num">Coverage</div><h3>${VOCAB.length} words &middot; 28 letters &middot; 9 units</h3>
@@ -1482,14 +1521,12 @@ function genPronounQuestions(n){
 }
 function genVerbQuestions(n){
   const qs=[];
-  const fullVerbs = Object.keys(VERBS_FULL);
-  const partialVerbs = Object.keys(VERBS_PARTIAL);
+  const allVerbs = Object.keys(VERBS_FULL);
   for(let i=0;i<n;i++){
-    let verb, forms, maxIdx;
-    if(Math.random()<0.75){ verb=pick(fullVerbs); forms=VERBS_FULL[verb]; maxIdx=forms.length; }
-    else { verb=pick(partialVerbs); forms=VERBS_PARTIAL[verb]; maxIdx=5; }
+    const verb = pick(allVerbs);
+    const forms = VERBS_FULL[verb];
     let pIdx;
-    do{ pIdx = Math.floor(Math.random()*maxIdx); } while(!forms[pIdx]);
+    do{ pIdx = Math.floor(Math.random()*forms.length); } while(!forms[pIdx]);
     const correct = forms[pIdx];
     const distractorPool = forms.filter((f,fi)=>f && fi!==pIdx);
     const distractors = sample(distractorPool, Math.min(3, distractorPool.length));
@@ -1611,6 +1648,43 @@ function renderCrossword(main){
     });
     controls.querySelector('#xwMsg').textContent = 'Revealed';
   };
+}
+
+/* ============================================================
+   CONJUGATIONS
+   ============================================================ */
+function renderConjugations(main, verbKey){
+  if(verbKey && VERBS_FULL[verbKey]){ renderConjugationDetail(main, verbKey); return; }
+  main.appendChild(mkEl(`<div><h1>Conjugations</h1></div>`));
+  const grid = mkEl(`<div class="grid cols2"></div>`);
+  Object.keys(VERBS_FULL).forEach(key=>{
+    const card = mkEl(`<div class="card lesson-card"><div class="arabic big-ar">${VERB_CITATIONS[key]}</div><h3>${VERB_GLOSSES[key]}</h3></div>`);
+    card.onclick=()=>go('conjugations', key);
+    grid.appendChild(card);
+  });
+  main.appendChild(grid);
+}
+function renderConjugationDetail(main, verbKey){
+  const forms = VERBS_FULL[verbKey];
+  const mkTable = (indices) => `<table><tr><th>Pronoun</th><th class="ar">Subject</th><th class="ar">Form</th></tr>${
+    indices.map(i=>`<tr><td>${PRONOUNS[i].meaning}</td><td class="ar big-ar">${PRONOUNS[i].subj}</td><td class="ar big-ar">${forms[i]}</td></tr>`).join('')
+  }</table>`;
+  const note = VERB_NOTES[verbKey];
+  main.appendChild(mkEl(`
+    <div>
+      <div class="row" style="margin-bottom:6px;">
+        <button class="btn ghost" onclick="go('conjugations')">&larr; All verbs</button>
+      </div>
+      <h1><span class="arabic">${VERB_CITATIONS[verbKey]}</span> <span class="muted" style="font-size:0.6em;">(${VERB_GLOSSES[verbKey]})</span></h1>
+      <h3>Singular</h3>
+      ${mkTable([0,1,2,3,4])}
+      <h3>Dual</h3>
+      ${mkTable([6,8,9])}
+      <h3>Plural</h3>
+      ${mkTable([5,10,11,12,13])}
+      ${note ? `<h3>Irregularity note</h3><p class="muted">${note}</p>` : ''}
+    </div>
+  `));
 }
 
 /* ============================================================

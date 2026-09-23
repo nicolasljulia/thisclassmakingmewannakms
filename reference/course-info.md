@@ -44,9 +44,10 @@ This distinction matters if a future update needs to check something against "th
 - Final exam: 25% (oral 5%, writing 5%, computerized 15%)
 
 ## Verb conjugation accuracy notes
-The site's verb data (VERBS_FULL, VERBS_PARTIAL, VERB_CITATIONS in index.html) intentionally limits itself to forms that are directly confirmed by course materials:
-- shaahada (to watch), 'amila (to do/work), dhahaba (to go), shariba (to drink): full 13-person paradigms, confirmed via instructor handouts and the same regular Form I / Form III conjugation pattern.
-- araada (to want), aHabba (to love): only 5 persons confirmed (I, you-m, you-f, he, she). These are irregular verbs (hollow and doubled roots) where the unconfirmed dual/plural forms have known irregularities (e.g. vowel shortening) that weren't worth guessing at. Don't add more persons to these two without a source to confirm the exact spelling.
+The site's verb data (VERBS_FULL, VERB_CITATIONS, VERB_GLOSSES, VERB_NOTES in index.html) now has complete, instructor-confirmed 14-person paradigms for all 12 verbs, transcribed from a filled-out class worksheet and shown in full on the Conjugations tab:
+- shaahada (to watch), 'amila (to do/work), dhahaba (to go), shariba (to drink), darasa (to study), sakana (to live), kataba (to write), akala (to eat), istama'a (to listen): regular Form I conjugation pattern (sakana and akala have one irregularity each, see VERB_NOTES).
+- araada (to want), aHabba (to love), qara'a (to read): irregular (hollow root, doubled root, and hamza-final root respectively). Previously araada and aHabba were limited to 5 confirmed persons (I, you-m, you-f, he, she) until the full paradigms, including the irregular dual/plural forms, were supplied and cross-checked.
+- Don't add or edit any conjugated form without a source to confirm the exact spelling; a single wrong diacritic (e.g. a missing fatha or kasra) is easy to introduce and hard to spot by eye.
 
 ## Vocabulary source
 All 225 vocabulary entries come from the "New Vocabulary" tables in Alif Baa units 1 through 9, cross-checked against the student's own class study guide and handout photos. Some masculine/feminine adjective pairs that the textbook lists on one row (e.g. "great, fine (m./f.)") are split into two separate flashcard entries on the site, for finer-grained drilling. That's why the site's vocab count (225) is higher than a simple textbook line count (198) would suggest; it's not missing or duplicated data, just a different granularity choice.
