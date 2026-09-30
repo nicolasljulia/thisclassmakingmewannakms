@@ -571,58 +571,81 @@ const QWORDS = [
    ============================================================ */
 const CONJUGATIONS = [
   { root:"دَرَسَ", mudari:"دَرَسَ \u201c To study \u201d", english:"to study",
+    form:"I",
     forms:["أَدْرُسُ","تَدْرُسُ","تَدْرُسِينَ","يَدْرُسُ","تَدْرُسُ","نَدْرُسُ","تَدْرُسَانِ","يَدْرُسَانِ","تَدْرُسَانِ","تَدْرُسُونَ","تَدْرُسْنَ","يَدْرُسُونَ","يَدْرُسْنَ"], book:'alifbaa' },
   { root:"سَكَنَ", mudari:"سَكَنَ \u201c To live \u201d", english:"to live",
+    form:"I",
     note:"Sound root, but its final radical ن collides with the feminine plural suffix نَ and the two merge with a shadda: تَسْكُنَّ (taskunna), يَسْكُنَّ (yaskunna).",
     forms:["أَسْكُنُ","تَسْكُنُ","تَسْكُنِينَ","يَسْكُنُ","تَسْكُنُ","نَسْكُنُ","تَسْكُنَانِ","يَسْكُنَانِ","تَسْكُنَانِ","تَسْكُنُونَ","تَسْكُنَّ","يَسْكُنُونَ","يَسْكُنَّ"], book:'alifbaa' },
   { root:"أَحَبَّ", mudari:"حَبَّ \u201c To love/to like \u201d", english:"to love, to like",
+    form:"IV",
     note:"Doubled (geminate) root ح-ب-ب. The feminine plural forms unfold the doubled consonant: تُحْبِبْنَ (tuHbibna) and يُحْبِبْنَ (yuHbibna), not the تُحِبِّنَ pattern the rest of the paradigm would suggest.",
     forms:["أُحِبُّ","تُحِبُّ","تُحِبِّينَ","يُحِبُّ","تُحِبُّ","نُحِبُّ","تُحِبَّانِ","يُحِبَّانِ","تُحِبَّانِ","تُحِبُّونَ","تُحْبِبْنَ","يُحِبُّونَ","يُحْبِبْنَ"], book:'alifbaa' },
   { root:"شَرِبَ", mudari:"شَرِبَ \u201c To drink \u201d", english:"to drink",
+    form:"I",
     forms:["أَشْرَبُ","تَشْرَبُ","تَشْرَبِينَ","يَشْرَبُ","تَشْرَبُ","نَشْرَبُ","تَشْرَبَانِ","يَشْرَبَانِ","تَشْرَبَانِ","تَشْرَبُونَ","تَشْرَبْنَ","يَشْرَبُونَ","يَشْرَبْنَ"], book:'alifbaa' },
   { root:"أَرَادَ", mudari:"أَرَادَ \u201c To want \u201d", english:"to want",
+    form:"IV",
     note:"Hollow root. The long ي shortens in the feminine plural: تُرِدْنَ (turidna) and يُرِدْنَ (yuridna).",
     forms:["أُرِيدُ","تُرِيدُ","تُرِيدِينَ","يُرِيدُ","تُرِيدُ","نُرِيدُ","تُرِيدَانِ","يُرِيدَانِ","تُرِيدَانِ","تُرِيدُونَ","تُرِدْنَ","يُرِيدُونَ","يُرِدْنَ"], book:'alifbaa' },
   { root:"عَمِلَ", mudari:"عَمِلَ \u201c To do \u201d", english:"to do, to work",
+    form:"I",
     forms:["أَعْمَلُ","تَعْمَلُ","تَعْمَلِينَ","يَعْمَلُ","تَعْمَلُ","نَعْمَلُ","تَعْمَلَانِ","يَعْمَلَانِ","تَعْمَلَانِ","تَعْمَلُونَ","تَعْمَلْنَ","يَعْمَلُونَ","يَعْمَلْنَ"], book:'alifbaa' },
   { root:"ذَهَبَ", mudari:"ذَهَبَ \u201c To go \u201d", english:"to go",
+    form:"I",
     forms:["أَذْهَبُ","تَذْهَبُ","تَذْهَبِينَ","يَذْهَبُ","تَذْهَبُ","نَذْهَبُ","تَذْهَبَانِ","يَذْهَبَانِ","تَذْهَبَانِ","تَذْهَبُونَ","تَذْهَبْنَ","يَذْهَبُونَ","يَذْهَبْنَ"], book:'alifbaa' },
   { root:"شَاهَدَ", mudari:"شَاهَدَ \u201c To watch \u201d", english:"to watch",
+    form:"III",
     forms:["أُشَاهِدُ","تُشَاهِدُ","تُشَاهِدِينَ","يُشَاهِدُ","تُشَاهِدُ","نُشَاهِدُ","تُشَاهِدَانِ","يُشَاهِدَانِ","تُشَاهِدَانِ","تُشَاهِدُونَ","تُشَاهِدْنَ","يُشَاهِدُونَ","يُشَاهِدْنَ"], book:'alifbaa' },
   { root:"كَتَبَ", mudari:"كَتَبَ \u201c To write \u201d", english:"to write",
+    form:"I",
     forms:["أَكْتُبُ","تَكْتُبُ","تَكْتُبِينَ","يَكْتُبُ","تَكْتُبُ","نَكْتُبُ","تَكْتُبَانِ","يَكْتُبَانِ","تَكْتُبَانِ","تَكْتُبُونَ","تَكْتُبْنَ","يَكْتُبُونَ","يَكْتُبْنَ"], book:'alifbaa' },
   { root:"قَرَأَ", mudari:"قَرَأَ \u201c To read \u201d", english:"to read",
+    form:"I",
     note:"Hamza-final root. The hamza stays seated on the line even before the ونَ plural ending (تَقْرَأُونَ). The dual uses alif madda (تَقْرَآنِ).",
     forms:["أَقْرَأُ","تَقْرَأُ","تَقْرَئِينَ","يَقْرَأُ","تَقْرَأُ","نَقْرَأُ","تَقْرَآنِ","يَقْرَآنِ","تَقْرَآنِ","تَقْرَأُونَ","تَقْرَأْنَ","يَقْرَأُونَ","يَقْرَأْنَ"], book:'alifbaa' },
   { root:"أَكَلَ", mudari:"أَكَلَ \u201c To eat \u201d", english:"to eat",
+    form:"I",
     note:"Hamza-initial root. The “I” form is آكُلُ (aakulu): the prefix hamza and the root's own initial hamza merge into an alif madda.",
     forms:["آكُلُ","تَأْكُلُ","تَأْكُلِينَ","يَأْكُلُ","تَأْكُلُ","نَأْكُلُ","تَأْكُلَانِ","يَأْكُلَانِ","تَأْكُلَانِ","تَأْكُلُونَ","تَأْكُلْنَ","يَأْكُلُونَ","يَأْكُلْنَ"], book:'alifbaa' },
   { root:"اسْتَمَعَ", mudari:"اسْتَمَعَ \u201c To listen \u201d", english:"to listen",
+    form:"X",
     forms:["أَسْتَمِعُ","تَسْتَمِعُ","تَسْتَمِعِينَ","يَسْتَمِعُ","تَسْتَمِعُ","نَسْتَمِعُ","تَسْتَمِعَانِ","يَسْتَمِعَانِ","تَسْتَمِعَانِ","تَسْتَمِعُونَ","تَسْتَمِعْنَ","يَسْتَمِعُونَ","يَسْتَمِعْنَ"], book:'alifbaa' },
   { root:"عَرَفَ", mudari:"عَرَفَ \u201c To know \u201d", english:"to know",
+    form:"I",
     forms:["أَعْرِفُ","تَعْرِفُ","تَعْرِفِينَ","يَعْرِفُ","تَعْرِفُ","نَعْرِفُ","تَعْرِفَانِ","يَعْرِفَانِ","تَعْرِفَانِ","تَعْرِفُونَ","تَعْرِفْنَ","يَعْرِفُونَ","يَعْرِفْنَ"], book:'alkitaab' },
   { root:"فَهِمَ", mudari:"فَهِمَ \u201c To understand \u201d", english:"to understand",
+    form:"I",
     forms:["أَفْهَمُ","تَفْهَمُ","تَفْهَمِينَ","يَفْهَمُ","تَفْهَمُ","نَفْهَمُ","تَفْهَمَانِ","يَفْهَمَانِ","تَفْهَمَانِ","تَفْهَمُونَ","تَفْهَمْنَ","يَفْهَمُونَ","يَفْهَمْنَ"], book:'alkitaab' },
   { root:"دَرَّسَ", mudari:"دَرَّسَ \u201c To teach \u201d", english:"to teach",
+    form:"II",
     forms:["أُدَرِّسُ","تُدَرِّسُ","تُدَرِّسِينَ","يُدَرِّسُ","تُدَرِّسُ","نُدَرِّسُ","تُدَرِّسَانِ","يُدَرِّسَانِ","تُدَرِّسَانِ","تُدَرِّسُونَ","تُدَرِّسْنَ","يُدَرِّسُونَ","يُدَرِّسْنَ"], book:'alkitaab' },
   { root:"تَرْجَمَ", mudari:"تَرْجَمَ \u201c To translate \u201d", english:"to translate",
     note:"A quadriliteral verb (four root consonants, ت-ر-ج-م), not a triliteral Form II. It conjugates the same way Form II does (Damma prefix, kasra before the final radical), just with an extra consonant: يُترْجِمُ.",
     forms:["أُتَرْجِمُ","تُتَرْجِمُ","تُتَرْجِمِينَ","يُتَرْجِمُ","تُتَرْجِمُ","نُتَرْجِمُ","تُتَرْجِمَانِ","يُتَرْجِمَانِ","تُتَرْجِمَانِ","تُتَرْجِمُونَ","تُتَرْجِمْنَ","يُتَرْجِمُونَ","يُتَرْجِمْنَ"], book:'alkitaab' },
   { root:"تَكَلَّمَ", mudari:"تَكَلَّمَ \u201c To speak \u201d", english:"to speak",
+    form:"V",
     forms:["أَتَكَلَّمُ","تَتَكَلَّمُ","تَتَكَلَّمِينَ","يَتَكَلَّمُ","تَتَكَلَّمُ","نَتَكَلَّمُ","تَتَكَلَّمَانِ","يَتَكَلَّمَانِ","تَتَكَلَّمَانِ","تَتَكَلَّمُونَ","تَتَكَلَّمْنَ","يَتَكَلَّمُونَ","يَتَكَلَّمْنَ"], book:'alkitaab' },
   { root:"أَرْسَلَ", mudari:"أَرْسَلَ \u201c To send \u201d", english:"to send",
+    form:"IV",
     forms:["أُرْسِلُ","تُرْسِلُ","تُرْسِلِينَ","يُرْسِلُ","تُرْسِلُ","نُرْسِلُ","تُرْسِلَانِ","يُرْسِلَانِ","تُرْسِلَانِ","تُرْسِلُونَ","تُرْسِلْنَ","يُرْسِلُونَ","يُرْسِلْنَ"], book:'alkitaab' },
   { root:"حَفِظَ", mudari:"حَفِظَ \u201c To memorize \u201d", english:"to memorize",
+    form:"I",
     forms:["أَحْفَظُ","تَحْفَظُ","تَحْفَظِينَ","يَحْفَظُ","تَحْفَظُ","نَحْفَظُ","تَحْفَظَانِ","يَحْفَظَانِ","تَحْفَظَانِ","تَحْفَظُونَ","تَحْفَظْنَ","يَحْفَظُونَ","يَحْفَظْنَ"], book:'alkitaab' },
   { root:"تَذَكَّرَ", mudari:"تَذَكَّرَ \u201c To remember \u201d", english:"to remember",
+    form:"V",
     forms:["أَتَذَكَّرُ","تَتَذَكَّرُ","تَتَذَكَّرِينَ","يَتَذَكَّرُ","تَتَذَكَّرُ","نَتَذَكَّرُ","تَتَذَكَّرَانِ","يَتَذَكَّرَانِ","تَتَذَكَّرَانِ","تَتَذَكَّرُونَ","تَتَذَكَّرْنَ","يَتَذَكَّرُونَ","يَتَذَكَّرْنَ"], book:'alkitaab' },
   { root:"سَافَرَ", mudari:"سَافَرَ \u201c To travel \u201d", english:"to travel",
+    form:"III",
     forms:["أُسَافِرُ","تُسَافِرُ","تُسَافِرِينَ","يُسَافِرُ","تُسَافِرُ","نُسَافِرُ","تُسَافِرَانِ","يُسَافِرَانِ","تُسَافِرَانِ","تُسَافِرُونَ","تُسَافِرْنَ","يُسَافِرُونَ","يُسَافِرْنَ"], book:'alkitaab' },
   { root:"تَخَصَّصَ", mudari:"تَخَصَّصَ \u201c To specialize in \u201d", english:"to specialize in",
+    form:"V",
     forms:["أَتَخَصَّصُ","تَتَخَصَّصُ","تَتَخَصَّصِينَ","يَتَخَصَّصُ","تَتَخَصَّصُ","نَتَخَصَّصُ","تَتَخَصَّصَانِ","يَتَخَصَّصَانِ","تَتَخَصَّصَانِ","تَتَخَصَّصُونَ","تَتَخَصَّصْنَ","يَتَخَصَّصُونَ","يَتَخَصَّصْنَ"], book:'alkitaab' },
   { root:"قَبِلَ", mudari:"قَبِلَ \u201c To accept \u201d", english:"to accept",
+    form:"I",
     forms:["أَقْبَلُ","تَقْبَلُ","تَقْبَلِينَ","يَقْبَلُ","تَقْبَلُ","نَقْبَلُ","تَقْبَلَانِ","يَقْبَلَانِ","تَقْبَلَانِ","تَقْبَلُونَ","تَقْبَلْنَ","يَقْبَلُونَ","يَقْبَلْنَ"], book:'alkitaab' },
   { root:"تَزَوَّجَ", mudari:"تَزَوَّجَ \u201c To get married/to marry \u201d", english:"to get married, to marry",
+    form:"V",
     forms:["أَتَزَوَّجُ","تَتَزَوَّجُ","تَتَزَوَّجِينَ","يَتَزَوَّجُ","تَتَزَوَّجُ","نَتَزَوَّجُ","تَتَزَوَّجَانِ","يَتَزَوَّجَانِ","تَتَزَوَّجَانِ","تَتَزَوَّجُونَ","تَتَزَوَّجْنَ","يَتَزَوَّجُونَ","يَتَزَوَّجْنَ"], book:'alkitaab' },
 ];
 // forms index: 0 ana, 1 anta, 2 anti, 3 huwa, 4 hiya, 5 naHnu,
@@ -719,6 +742,64 @@ const RECOGNITION_BANK = [
 {ar:"جامِعةُ جورجتاون",tr:"jaamiʿatu Georgetown",en:"Georgetown University",sentenceType:null,sentenceWhy:null,targets:[{word:"جامِعةُ جورجتاون",label:"Idafa",why:"جامِعةُ (university) + جورجتاون (Georgetown) = ‘Georgetown University’"}]},
 {ar:"كِتاب",tr:"kitaab",en:"book",sentenceType:null,sentenceWhy:null,targets:[{word:"كِتاب",label:"Noun",why:"a plain common noun"}]},
 ];
+const VERB_FORM_TEMPLATES = {
+  "I": {past:"فَعَلَ", present:"يَفْعَلُ"},
+  "II": {past:"فَعَّلَ", present:"يُفَعِّلُ"},
+  "III": {past:"فاعَلَ", present:"يُفاعِلُ"},
+  "IV": {past:"أفْعَلَ", present:"يُفْعِلُ"},
+  "V": {past:"تَفَعَّلَ", present:"يَتَفَعَّلُ"},
+  "VI": {past:"تَفاعَلَ", present:"يَتَفاعَلُ"},
+  "VII": {past:"اِنفَعَلَ", present:"يَنفَعِلُ"},
+  "VIII": {past:"اِفتَعَلَ", present:"يَفتَعِلُ"},
+  "IX": {past:"اِفعَلَّ", present:"يَفعَلُّ"},
+  "X": {past:"اِستَفعَلَ", present:"يَستَفعِلُ"},
+};
+const CONNECTORS_BANK = [
+  {ar:"وَ", meaning:"and", note:"the plainest connector; joins two equal items or clauses"},
+  {ar:"أو", meaning:"or", note:"a plain either/or choice"},
+  {ar:"أم", meaning:"or (in a question)", note:"used specifically inside a direct either/or question: \"is it X or Y?\""},
+  {ar:"لكن", meaning:"but", note:"contrasts two ideas, usually written with the connector فَ or simply on its own after a pause"},
+  {ar:"فَ", meaning:"so, and then, and so", note:"connects a cause to a result, or continues a sequence of events; attaches directly to the next word with no space"},
+];
+const HOLLOW_VERB_BANK = [
+  {meaning:"to sleep", past:"نامَ", present:"يَنامُ", root:"ن-و-م", weak:"و", vowel:"aa"},
+  {meaning:"to walk, go, move, travel", past:"سارَ", present:"يَسيرُ", root:"س-ي-ر", weak:"ي", vowel:"ii"},
+  {meaning:"to say", past:"قالَ", present:"يَقولُ", root:"ق-و-ل", weak:"و", vowel:"uu"},
+  {meaning:"to be", past:"كانَ", present:"يَكونُ", root:"ك-و-ن", weak:"و", vowel:"uu"},
+];
+const PARTICIPLE_BANK = [
+  {kind:"active", verb:"سَكَنَ", verbMeaning:"to live", participle:"ساكِن", meaning:"residing, a resident"},
+  {kind:"active", verb:"عَمِلَ", verbMeaning:"to work", participle:"عامِل", meaning:"working, a worker"},
+  {kind:"active", verb:"كَتَبَ", verbMeaning:"to write", participle:"كاتِب", meaning:"writing, a writer"},
+  {kind:"passive", verb:"كَتَبَ", verbMeaning:"to write", participle:"مَكتوب", meaning:"written"},
+  {kind:"passive", verb:"عَرَفَ", verbMeaning:"to know", participle:"مَعروف", meaning:"known"},
+  {kind:"active", verb:null, verbMeaning:"to specialize in (derived form)", participle:"مُتَخَصِّص", meaning:"specializing in, specialist in"},
+  {kind:"active", verb:"دَرَّسَ", verbMeaning:"to teach", participle:"مُدَرِّس", meaning:"teacher"},
+  {kind:"passive", verb:null, verbMeaning:"to employ, give a position to (derived form)", participle:"مُوَظَّف", meaning:"employee"},
+];
+const MASDAR_BANK = [
+  {verb:"سافَرَ", verbMeaning:"to travel", masdar:"السَّفَر", meaning:"traveling, travel"},
+  {verb:"عَمِلَ", verbMeaning:"to work", masdar:"العَمَل", meaning:"work"},
+  {verb:"دَرَّسَ", verbMeaning:"to teach", masdar:"التَدريس", meaning:"teaching"},
+  {verb:"تَرجَمَ", verbMeaning:"to translate", masdar:"التَرجَمة", meaning:"translation"},
+];
+const IDAFA_BANK = [
+  {first:"بَيْتُ", second:"الأُستاذِ", meaning:"the professor's house"},
+  {first:"كِتابُ", second:"الطّالِبِ", meaning:"the student's book"},
+  {first:"بابُ", second:"البَيْتِ", meaning:"the house's door"},
+  {first:"جامِعةُ", second:"جورجتاون", meaning:"Georgetown University"},
+  {first:"عِلمُ", second:"النَفس", meaning:"psychology (literally: the science of the self)"},
+  {first:"عِلمُ", second:"الاجتِماع", meaning:"sociology (literally: the science of society)"},
+  {first:"عِلمُ", second:"الإنسان", meaning:"anthropology (literally: the science of the human being)"},
+];
+const VERB_FORM_HINTS = {
+  "I": "the plain, unmodified pattern",
+  "II": "the doubled middle consonant marks it, often causative",
+  "III": "the long alif after the first consonant marks it, often implies doing something with or to another person",
+  "IV": "the hamza prefix marks it",
+  "V": "the تَ prefix plus doubled middle consonant marks it, often the reflexive of Form II",
+  "X": "the اِسْتَ prefix marks it",
+};
 const CROSSWORD = {
   rows:7, cols:5,
   cells: {
@@ -821,7 +902,7 @@ function renderHome(main){
         </div>
         <div class="card lesson-card" onclick="go('quiz')">
           <div class="num">Test yourself</div><h3>Quizzes</h3>
-          <p class="muted" style="margin:0;">${QUIZ_CATEGORIES.length} categories: vocabulary, gender, definiteness, case endings, sun/moon letters, pronouns, verb conjugation, question words, sentence type, plural type, and word recognition.</p>
+          <p class="muted" style="margin:0;">${QUIZ_CATEGORIES.length} categories covering both books: vocabulary, gender, definiteness, case endings, sun/moon letters, pronouns, verb conjugation, question words, sentence type, plural type, word recognition, verb forms, idafa, participles, hollow verbs, the verbal noun, and connectors.</p>
         </div>
         <div class="card lesson-card" onclick="go('crossword')">
           <div class="num">Puzzle</div><h3>Crossword</h3>
@@ -1637,6 +1718,12 @@ const QUIZ_CATEGORIES = [
   {id:'sentype', label:'Sentence Type', desc:'Nominal sentence or verbal sentence?'},
   {id:'plural', label:'Plural Type', desc:'Sound masculine, sound feminine, or broken?'},
   {id:'recognize', label:'Word Recognition', desc:'Spot the pronoun, verb, idafa, and more inside a real sentence.'},
+  {id:'verbforms', label:'Verb Forms', desc:'Which of the ten forms (awzaan) is this verb?'},
+  {id:'idafa', label:'Idafa', desc:'Which word is the second, genitive term of the idafa?'},
+  {id:'participle', label:'Participles', desc:'Active or passive? Match a verb to its participle.'},
+  {id:'hollow', label:'Hollow Verbs', desc:'Stem vowel and weak middle radical in نام, سار, قال, كان.'},
+  {id:'masdar', label:'Verbal Noun', desc:'Match a verb to its masdar.'},
+  {id:'connectors', label:'Connectors', desc:'و, أو, أم, لكن, فَ: which one and why?'},
 ];
 
 function renderQuizMenu(main, cat){
@@ -1737,6 +1824,12 @@ function genQuestions(cat, n){
   if(cat==='sentype') return genSentypeQuestions(n);
   if(cat==='plural') return genPluralQuestions(n);
   if(cat==='recognize') return genRecognitionQuestions(n);
+  if(cat==='verbforms') return genVerbFormsQuestions(n);
+  if(cat==='idafa') return genIdafaQuestions(n);
+  if(cat==='participle') return genParticipleQuestions(n);
+  if(cat==='hollow') return genHollowVerbQuestions(n);
+  if(cat==='masdar') return genMasdarQuestions(n);
+  if(cat==='connectors') return genConnectorsQuestions(n);
   return [];
 }
 
@@ -1876,6 +1969,106 @@ function genRecognitionQuestions(n){
         explain: `${correctText}: ${s.sentenceWhy}. (“${s.en}”)`
       });
     }
+  }
+  return qs;
+}
+
+function genVerbFormsQuestions(n){
+  const qs=[];
+  const pool = CONJUGATIONS.filter(v=>v.form);
+  const forms = [...new Set(pool.map(v=>v.form))];
+  const items = shuffle(pool).slice(0, Math.min(n, pool.length));
+  items.forEach(v=>{
+    const distractors = sample(forms.filter(f=>f!==v.form), Math.min(3, forms.length-1));
+    const options = shuffle([v.form, ...distractors]);
+    qs.push({
+      prompt:`What form (wazn) is <span class="arabic big-ar">${v.root}</span> <span class="muted">(${v.english})</span>?`,
+      options: options.map(o=>'Form '+o),
+      correct: options.indexOf(v.form),
+      explain: `${v.root} is Form ${v.form} (${VERB_FORM_TEMPLATES[v.form].past} / ${VERB_FORM_TEMPLATES[v.form].present}): ${VERB_FORM_HINTS[v.form]}.`
+    });
+  });
+  while(qs.length<n) qs.push(qs[qs.length % items.length]);
+  return qs.slice(0,n);
+}
+function genIdafaQuestions(n){
+  const qs=[]; const pool = shuffle(IDAFA_BANK).slice(0, Math.min(n, IDAFA_BANK.length));
+  pool.forEach(item=>{
+    const options = shuffle([item.first, item.second]);
+    qs.push({
+      prompt:`<span class="arabic big-ar">${item.first} ${item.second}</span><br><span class="muted">${item.meaning}</span><br>Which word is the second term of this idafa (definite, and in the genitive case)?`,
+      options: options.map(o=>`<span class="arabic big-ar">${o}</span>`),
+      correct: options.indexOf(item.second),
+      explain: `${item.second} is the second term: only it can carry ال or tanwiin, and it's what makes the whole phrase definite. ${item.first} (the first term) always stays bare.`
+    });
+  });
+  while(qs.length<n) qs.push(qs[qs.length % pool.length]);
+  return qs.slice(0,n);
+}
+function genParticipleQuestions(n){
+  const qs=[];
+  for(let i=0;i<n;i++){
+    const p = pick(PARTICIPLE_BANK);
+    if(Math.random()<0.5){
+      const options = shuffle(['Active participle (ism al-faaʿil)','Passive participle (ism al-mafʿuul)']);
+      const correctText = p.kind==='active' ? 'Active participle (ism al-faaʿil)' : 'Passive participle (ism al-mafʿuul)';
+      qs.push({
+        prompt:`<span class="arabic big-ar">${p.participle}</span> <span class="muted">(${p.meaning})</span><br>Active or passive participle?`,
+        options, correct: options.indexOf(correctText),
+        explain: `${p.participle} is ${p.kind==='active'?'an active':'a passive'} participle${p.verb?` of ${p.verb} (${p.verbMeaning})`:''}, meaning “${p.meaning}”.`
+      });
+    } else {
+      const q = mcqFrom(p.participle, PARTICIPLE_BANK.map(x=>x.participle),
+        `What is the ${p.kind} participle meaning “${p.meaning}”${p.verb?` (from ${p.verb}, “${p.verbMeaning}”)`:''}?`,
+        `${p.participle} = ${p.meaning}`);
+      q.options = q.options.map(o=>`<span class="arabic big-ar">${o}</span>`);
+      qs.push(q);
+    }
+  }
+  return qs;
+}
+function genHollowVerbQuestions(n){
+  const qs=[];
+  for(let i=0;i<n;i++){
+    const v = pick(HOLLOW_VERB_BANK);
+    if(Math.random()<0.5){
+      const options = shuffle(['aa','ii','uu']);
+      qs.push({
+        prompt:`<span class="arabic big-ar">${v.past} → ${v.present}</span><br><span class="muted">${v.meaning}</span><br>What's the present-tense stem vowel?`,
+        options, correct: options.indexOf(v.vowel),
+        explain: `${v.present} has a long ${v.vowel} in the stem (root ${v.root}).`
+      });
+    } else {
+      const options = shuffle(['و (waaw)','ي (yaa)']);
+      const correctText = v.weak==='و' ? 'و (waaw)' : 'ي (yaa)';
+      qs.push({
+        prompt:`<span class="arabic big-ar">${v.past} → ${v.present}</span><br><span class="muted">${v.meaning}</span><br>Which letter is the weak middle radical?`,
+        options, correct: options.indexOf(correctText),
+        explain: `The root is ${v.root}; the middle radical is the weak letter ${correctText}, which surfaces as a long vowel in the present tense.`
+      });
+    }
+  }
+  return qs;
+}
+function genMasdarQuestions(n){
+  const qs=[];
+  for(let i=0;i<n;i++){
+    const m = pick(MASDAR_BANK);
+    const q = mcqFrom(m.masdar, MASDAR_BANK.map(x=>x.masdar),
+      `What is the verbal noun (masdar) of <span class="arabic big-ar">${m.verb}</span> <span class="muted">(${m.verbMeaning})</span>?`,
+      `${m.masdar} = ${m.meaning}`);
+    q.options = q.options.map(o=>`<span class="arabic big-ar">${o}</span>`);
+    qs.push(q);
+  }
+  return qs;
+}
+function genConnectorsQuestions(n){
+  const qs=[];
+  for(let i=0;i<n;i++){
+    const c = pick(CONNECTORS_BANK);
+    qs.push(mcqFrom(c.meaning, CONNECTORS_BANK.map(x=>x.meaning),
+      `What does <span class="arabic big-ar">${c.ar}</span> mean here?`,
+      `${c.ar} = ${c.meaning}. ${c.note}`));
   }
   return qs;
 }

@@ -2,16 +2,11 @@
 
 Outstanding work on the Arabic 1011 Companion site, handed off from here. Read `CLAUDE.md` first, everything below assumes you already know the architecture, the book-separation rule, and the testing workflow described there. Nothing here is code, just a description of what's missing or worth adding; how to build it is up to you.
 
-## 1. More Al-Kitaab-specific quiz categories
+## 1. More Al-Kitaab-specific quiz categories (done)
 
-The Quiz tab has 10 categories right now, two of them (Sentence Type, Plural Type) written specifically for Al-Kitaab grammar. The Al-Kitaab lessons cover several more grammar points that would make good quiz material but don't have a quiz yet:
+The Quiz tab now has 17 categories. Built since this was written: Verb Forms, Idafa, Participles, Hollow Verbs (the four originally suggested here), plus Verbal Noun and Connectors (added at the same time to give every remaining Al-Kitaab lesson a quiz). Each draws only from content already on the site (`CONJUGATIONS[i].form` plus `VERB_FORM_HINTS`/`VERB_FORM_TEMPLATES`, `IDAFA_BANK`, `PARTICIPLE_BANK`, `HOLLOW_VERB_BANK`, `MASDAR_BANK`, `CONNECTORS_BANK`), no invented vocabulary or forms.
 
-- **Verb forms (al-awzaan).** Given a verb (either its dictionary form or its present-tense form), ask which of the ten forms (I through X) it belongs to. The Verb Forms lesson already has the full past/present template table for all ten forms, and the Conjugations tab's 12 Al-Kitaab verbs span Forms I, II, III, IV, and V plus one quadriliteral, real, sourced examples to build questions from rather than needing new ones.
-- **Idafa.** Given a two- or three-noun idafa phrase, ask which noun is genitive, or which noun could take ال, or which noun the whole phrase's definiteness comes from. The Idafa lesson (both the Alif Baa one and the Al-Kitaab "Idafa, Continued" one) and the Case Endings lesson have several worked examples already.
-- **Active vs. passive participle.** Given a participle, ask whether it's ism al-faa'il or ism al-maf'uul, or given a verb, ask for its participle. The Participles lesson has a small table of examples; it would need to be extended with more entries to make a real quiz bank (5-6 pairs is thin for a quiz, aim for at least 12-15).
-- **Hollow and irregular verbs.** Given نام / سار / قال / كان, ask for the present-tense stem vowel, or ask which letter is the weak middle radical. Keep this one modest, there are only four verbs in the Hollow and Irregular Verbs lesson and no full conjugation paradigms for them (see the accuracy note in `reference/course-info.md` about not guessing at unconfirmed hollow-verb forms), so don't build questions that require forms beyond what's already in that lesson.
-
-Follow the same pattern as the existing quiz categories: a data bank constant, a `genXQuestions(n)` function, an entry in `QUIZ_CATEGORIES`, a case in the `genQuestions()` switch. Keep English translations out of the pre-answer prompt for any of these (same reasoning as the existing Gender/Definiteness/Case/Sentence Type quizzes: English can give away a grammar answer that should come from reading the Arabic).
+One thing worth knowing if the Participles quiz ever feels repetitive: its bank is 8 pairs, thinner than the 12-15 originally suggested. Getting to 12-15 would mean extrapolating the regular فاعِل/مَفعول pattern onto other already-confirmed Form I roots (شرب، ذهب، قرأ، درس، أكل، فهم، حفظ، قبل) rather than pulling from a source that states the participle directly; that's a mechanical, exceptionless rule for sound Form I roots, but it wasn't done here to stay consistent with this project's general rule of not extrapolating forms, so it's a judgment call for whoever revisits this.
 
 ## 2. Crossword needs more content
 
