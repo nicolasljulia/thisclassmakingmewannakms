@@ -158,8 +158,8 @@ footer{max-width:1000px;margin:0 auto;padding:20px 16px 40px;color:var(--muted);
    DATA
    ============================================================ */
 
-const VOCAB = [
-// [english, arabic, transliteration, unit, type]
+const ALIFBAA_VOCAB = [
+// [english, arabic, transliteration, unit]
 ["Greetings! (Islamic greeting)","السَّلامُ عَلَيكُم","assalaamu \u02BFalaykum",1,"phrase"],
 ["Hello, hi","أَهلاً","ahlan",1,"phrase"],
 ["Hello, welcome","أَهلاً وَسَهلاً","ahlan wa sahlan",1,"phrase"],
@@ -385,7 +385,118 @@ const VOCAB = [
 ["problem","مُشْكِلة","mushkila",9,"noun"],
 ["wrong, a mistake","غَلَط","ghalaT",9,"noun"],
 ["sir, madam (Egyptian)","أَفَنْدِم","afandim",9,"noun"],
-].map(v=>({en:v[0],ar:v[1],tr:v[2],unit:v[3],type:v[4]}));
+].map(v=>({en:v[0],ar:v[1],tr:v[2],unit:v[3],type:v[4],book:'alifbaa'}));
+
+const KITAAB_VOCAB = [
+// [english, arabic, transliteration, lesson]
+["literature","الأَدَب","al-adab",1,"noun"],
+["United Nations","الأُمَم المُتَّحِدة","al-umam al-muttaHida",1,"noun"],
+["I study","أَدرُس","adrus",1,"verb"],
+["I live, reside","أَسكُن","askun",1,"verb"],
+["she works","تَعمَل","ta\u02BFmal",1,"verb"],
+["he works","يَعمَل","ya\u02BFmal",1,"verb"],
+["Egyptian (m./f.)","مِصريّ / ة","miSriyy / miSriyya",1,"adjective"],
+["area, region","مِنطَقة","minTaqa",1,"noun"],
+["the same...","نَفس الـ","nafs al-",1,"particle"],
+["father","والِد","waalid",1,"noun"],
+["my father","والِدي","waalidii",1,"noun"],
+["mother","والِدة","waalida",1,"noun"],
+["my mother","والِدَتي","waalidatii",1,"noun"],
+["family","أُسرة","usra",2,"noun"],
+["also","أيضاً","ayDan",2,"particle"],
+["translation (from... to)","التَرجَمة (مِن...إلى)","at-tarjama (min... ilaa)",2,"noun"],
+["translator","مُتَرجِم / ة","mutarjim / a",2,"noun"],
+["where (not in questions)","حَيثُ","Haythu",2,"particle"],
+["specializing in, specialist in","مُتَخَصِّص / ة في","mutakhaSSiS / a fii",2,"adjective"],
+["maternal aunt","خالة","khaala",2,"noun"],
+["always","دائماً","daa'iman",2,"particle"],
+["her name","اسمها","ismuha",2,"noun"],
+["work","الشُغل (= العَمَل)","ash-shughl",2,"noun"],
+["busy (with)","مَشغول / ة (بـ)","mashghuul / a (bi)",2,"adjective"],
+["work","العَمَل (= الشُغل)","al-\u02BFamal",2,"noun"],
+["really!, truly","فِعلاً","fi\u02BFlan",2,"particle"],
+["admission(s)","القَبول","al-qubuul",2,"noun"],
+["belonging to (preposition)","لِ","li",2,"particle"],
+["I have","لي","lii",2,"phrase"],
+["Maha has","لها","laha",2,"phrase"],
+["language","لُغة","lugha",2,"noun"],
+["evening","المَساء","al-masaa'",2,"noun"],
+["daytime","النَهار","an-nahaar",2,"noun"],
+["only; lonely (adj.)","وَحيد / ة","waHiid / a",2,"adjective"],
+["employee","مُوَظَّف / ة","muwaZZaf / a",2,"noun"],
+["his family","أسرتُهُ","usratuhu",3,"noun"],
+["now","الآن","al-aan",3,"particle"],
+["son (pl. أبناء)","ابن","ibn",3,"noun"],
+["cousin, male, paternal (pl. أبناء عَمّ)","ابن عَمّ","ibn \u02BFamm",3,"noun"],
+["army (pl. جُيوش)","جَيش","jaysh",3,"noun"],
+["actually, in reality","في الحَقيقة","fi l-Haqiiqa",3,"phrase"],
+["he teaches","يُدَرِّس","yudarris",3,"verb"],
+["letter (pl. رَسائِل)","رِسالة","risaala",3,"noun"],
+["husband (pl. أزواج)","زَوج","zawj",3,"noun"],
+["her husband","زَوجُها","zawjuha",3,"noun"],
+["wife (pl. زَوجات)","زَوجة","zawja",3,"noun"],
+["picture (pl. صُوَر)","صورة","Suura",3,"noun"],
+["officer (pl. ضُبّاط)","ضابِط","DaabiT",3,"noun"],
+["I know","أعرِف","a\u02BFrif",3,"verb"],
+["science (pl. عُلوم)","عِلم","\u02BFilm",3,"noun"],
+["political science","العُلوم السِّياسِيّة","al-\u02BFuluum as-siyaasiyya",3,"noun"],
+["paternal uncle (pl. أعمام)","عَمّ","\u02BFamm",3,"noun"],
+["my (paternal) uncle","عَمّي","\u02BFammii",3,"noun"],
+["extended family (pl. عائِلات)","عائِلة","\u02BFaa'ila",3,"noun"],
+["relative (pl. أقارِب)","قَريب","qariib",3,"noun"],
+["college, school in a university (pl. كُلِّيّات)","كُلِّيّة","kulliyya",3,"noun"],
+["first","أوَّل","awwal",4,"number"],
+["primary, elementary","ابتِدائيّ","ibtidaa'iyy",4,"adjective"],
+["I memorize","أحفَظ","aHfaZ",4,"verb"],
+["school (pl. مَدارِس)","مَدرَسة","madrasa",4,"noun"],
+["I remember","أتَذَكَّر","atadhakkar",4,"verb"],
+["fourth","رابِع","raabi\u02BF",4,"number"],
+["classmate, colleague, m. (pl. زُمَلاء)","زَميل","zamiil",4,"noun"],
+["classmate, colleague, f. (pl. زَميلات)","زَميلة","zamiila",4,"noun"],
+["traveling (noun)","السَّفَر (إلى)","as-safar (ilaa)",4,"noun"],
+["she travels","تُسافِر (إلى)","tusaafir (ilaa)",4,"verb"],
+["friend, f. (pl. صَديقات)","صَديقة","Sadiiqa",4,"noun"],
+["friend, m. (pl. أصدِقاء)","صَديق","Sadiiq",4,"noun"],
+["childhood","الطُّفولة","aT-Tufuula",4,"noun"],
+["individual, person (pl. أفراد)","فَرد","fard",4,"noun"],
+["before","قَبلَ","qabla",4,"particle"],
+["all, every","كُلّ","kull",4,"particle"],
+["he was","كانَ","kaana",4,"verb"],
+["I was","كُنتُ","kuntu",4,"verb"],
+["of ... descent","مِن أصل","min aSl",5,"phrase"],
+["cold (adj.)","بارِد","baarid",5,"adjective"],
+["very","جِدّاً","jiddan",5,"particle"],
+["weather","الجَوّ (= الطَّقس)","al-jaww",5,"noun"],
+["I like, love","أُحِبّ","uHibb",5,"verb"],
+["hot (adj.)","حارّ","Haarr",5,"adjective"],
+["the best...","أحسَن","aHsan",5,"adjective"],
+["sometimes","أحياناً","aHyaanan",5,"particle"],
+["autumn","الخَريف","al-khariif",5,"noun"],
+["degree","دَرَجة","daraja",5,"noun"],
+["temperature","دَرَجة الحَرارة","darajat al-Haraara",5,"noun"],
+["spring (season)","الرَّبيع","ar-rabii\u02BF",5,"noun"],
+["humidity","الرُّطوبة","ar-ruTuuba",5,"noun"],
+["crowding, overcrowdedness","الازدِحام","al-izdiHaam",5,"noun"],
+["on account of, because of","بِسَبَب","bisabab",5,"particle"],
+["winter","الشِّتاء","ash-shitaa'",5,"noun"],
+["I feel, have feelings of","أشعُر بـ","ash\u02BFur bi",5,"verb"],
+["summer","الصَّيف","aS-Sayf",5,"noun"],
+["weather","الطَّقس (= الجَوّ)","aT-Taqs",5,"noun"],
+["high (fem.)","عالِية","\u02BFaaliya",5,"adjective"],
+["season (pl. فُصول)","فَصل","faSl",5,"noun"],
+["semester","فَصل دِراسيّ","faSl diraasiyy",5,"noun"],
+["only","فَقَط","faqaT",5,"particle"],
+["a lot, much (adv.)","كَثيراً","kathiiran",5,"particle"],
+["as far as ... is concerned","بِالنِّسبة لِ","bi-n-nisbati li",5,"phrase"],
+["loneliness","الوِحدة","al-waHda",5,"noun"],
+].map(v=>({en:v[0],ar:v[1],tr:v[2],unit:v[3],type:v[4],book:'alkitaab'}));
+
+const VOCAB = ALIFBAA_VOCAB.concat(KITAAB_VOCAB);
+
+const BOOKS = [
+  {id:'alifbaa', label:'Alif Baa', unitLabel:'Unit', unitCount:9},
+  {id:'alkitaab', label:'Al-Kitaab', unitLabel:'Lesson', unitCount:5},
+];
 
 const ALPHABET = [
 ["alif","ا","ا","ـا","ـا","glottal seat / aa",false,"none"],
@@ -451,64 +562,73 @@ const QWORDS = [
 ];
 
 // Present-tense conjugation paradigms. Each has 13 persons in fixed order.
-const PERSONS = ["I","you (m. sg.)","you (f. sg.)","he","she","we","you (m. dual)","you (f. dual)","they (m. dual)","they (f. dual)","you (m. pl.)","you (f. pl.)","they (m. pl.)","they (f. pl.)"];
-// Note: PERSONS has 14 entries because m./f. dual "you" share a form; paradigms below list 13 unique forms
-// (you-dual m and f are identical), so we index carefully per verb.
-
-const VERBS_FULL = {
-  "shaahada (to watch)": ["أُشَاهِدُ","تُشَاهِدُ","تُشَاهِدِينَ","يُشَاهِدُ","تُشَاهِدُ","نُشَاهِدُ","تُشَاهِدَانِ","تُشَاهِدَانِ","يُشَاهِدَانِ","تُشَاهِدَانِ","تُشَاهِدُونَ","تُشَاهِدْنَ","يُشَاهِدُونَ","يُشَاهِدْنَ"],
-  "\u02BFamila (to do, work)": ["أَعْمَلُ","تَعْمَلُ","تَعْمَلِينَ","يَعْمَلُ","تَعْمَلُ","نَعْمَلُ","تَعْمَلَانِ","تَعْمَلَانِ","يَعْمَلَانِ","تَعْمَلَانِ","تَعْمَلُونَ","تَعْمَلْنَ","يَعْمَلُونَ","يَعْمَلْنَ"],
-  "dhahaba (to go)": ["أَذْهَبُ","تَذْهَبُ","تَذْهَبِينَ","يَذْهَبُ","تَذْهَبُ","نَذْهَبُ","تَذْهَبَانِ","تَذْهَبَانِ","يَذْهَبَانِ","تَذْهَبَانِ","تَذْهَبُونَ","تَذْهَبْنَ","يَذْهَبُونَ","يَذْهَبْنَ"],
-  "shariba (to drink)": ["أَشْرَبُ","تَشْرَبُ","تَشْرَبِينَ","يَشْرَبُ","تَشْرَبُ","نَشْرَبُ","تَشْرَبَانِ","تَشْرَبَانِ","يَشْرَبَانِ","تَشْرَبَانِ","تَشْرَبُونَ","تَشْرَبْنَ","يَشْرَبُونَ","يَشْرَبْنَ"],
-  "araada (to want)": ["أُرِيدُ","تُرِيدُ","تُرِيدِينَ","يُرِيدُ","تُرِيدُ","نُرِيدُ","تُرِيدَانِ","تُرِيدَانِ","يُرِيدَانِ","تُرِيدَانِ","تُرِيدُونَ","تُرِدْنَ","يُرِيدُونَ","يُرِدْنَ"],
-  "aHabba (to love)": ["أُحِبُّ","تُحِبُّ","تُحِبِّينَ","يُحِبُّ","تُحِبُّ","نُحِبُّ","تُحِبَّانِ","تُحِبَّانِ","يُحِبَّانِ","تُحِبَّانِ","تُحِبُّونَ","تُحْبِبْنَ","يُحِبُّونَ","يُحْبِبْنَ"],
-  "darasa (to study)": ["أَدْرُسُ","تَدْرُسُ","تَدْرُسِينَ","يَدْرُسُ","تَدْرُسُ","نَدْرُسُ","تَدْرُسَانِ","تَدْرُسَانِ","يَدْرُسَانِ","تَدْرُسَانِ","تَدْرُسُونَ","تَدْرُسْنَ","يَدْرُسُونَ","يَدْرُسْنَ"],
-  "sakana (to live)": ["أَسْكُنُ","تَسْكُنُ","تَسْكُنِينَ","يَسْكُنُ","تَسْكُنُ","نَسْكُنُ","تَسْكُنَانِ","تَسْكُنَانِ","يَسْكُنَانِ","تَسْكُنَانِ","تَسْكُنُونَ","تَسْكُنَّ","يَسْكُنُونَ","يَسْكُنَّ"],
-  "kataba (to write)": ["أَكْتُبُ","تَكْتُبُ","تَكْتُبِينَ","يَكْتُبُ","تَكْتُبُ","نَكْتُبُ","تَكْتُبَانِ","تَكْتُبَانِ","يَكْتُبَانِ","تَكْتُبَانِ","تَكْتُبُونَ","تَكْتُبْنَ","يَكْتُبُونَ","يَكْتُبْنَ"],
-  "qara\u02BEa (to read)": ["أَقْرَأُ","تَقْرَأُ","تَقْرَئِينَ","يَقْرَأُ","تَقْرَأُ","نَقْرَأُ","تَقْرَآنِ","تَقْرَآنِ","يَقْرَآنِ","تَقْرَآنِ","تَقْرَأُونَ","تَقْرَأْنَ","يَقْرَأُونَ","يَقْرَأْنَ"],
-  "akala (to eat)": ["آكُلُ","تَأْكُلُ","تَأْكُلِينَ","يَأْكُلُ","تَأْكُلُ","نَأْكُلُ","تَأْكُلَانِ","تَأْكُلَانِ","يَأْكُلَانِ","تَأْكُلَانِ","تَأْكُلُونَ","تَأْكُلْنَ","يَأْكُلُونَ","يَأْكُلْنَ"],
-  "istama\u02BFa (to listen)": ["أَسْتَمِعُ","تَسْتَمِعُ","تَسْتَمِعِينَ","يَسْتَمِعُ","تَسْتَمِعُ","نَسْتَمِعُ","تَسْتَمِعَانِ","تَسْتَمِعَانِ","يَسْتَمِعَانِ","تَسْتَمِعَانِ","تَسْتَمِعُونَ","تَسْتَمِعْنَ","يَسْتَمِعُونَ","يَسْتَمِعْنَ"],
-};
-// Dictionary (citation) form of each verb: third person masculine singular past tense,
-// the form Arabic dictionaries and courses use to name a verb.
-const VERB_CITATIONS = {
-  "shaahada (to watch)": "شَاهَدَ",
-  "\u02BFamila (to do, work)": "عَمِلَ",
-  "dhahaba (to go)": "ذَهَبَ",
-  "shariba (to drink)": "شَرِبَ",
-  "araada (to want)": "أَرَادَ",
-  "aHabba (to love)": "أَحَبَّ",
-  "darasa (to study)": "دَرَسَ",
-  "sakana (to live)": "سَكَنَ",
-  "kataba (to write)": "كَتَبَ",
-  "qara\u02BEa (to read)": "قَرَأَ",
-  "akala (to eat)": "أَكَلَ",
-  "istama\u02BFa (to listen)": "اسْتَمَعَ",
-};
-
-// English gloss for each verb, used on the Conjugations tab.
-const VERB_GLOSSES = {
-  "shaahada (to watch)": "to watch",
-  "ʿamila (to do, work)": "to do, to work",
-  "dhahaba (to go)": "to go",
-  "shariba (to drink)": "to drink",
-  "araada (to want)": "to want",
-  "aHabba (to love)": "to love, to like",
-  "darasa (to study)": "to study",
-  "sakana (to live)": "to live",
-  "kataba (to write)": "to write",
-  "qaraʾa (to read)": "to read",
-  "akala (to eat)": "to eat",
-  "istamaʿa (to listen)": "to listen",
-};
-// Notes on genuinely irregular forms, shown on the Conjugations tab for the verbs they apply to.
-const VERB_NOTES = {
-  "aHabba (to love)": "Doubled (geminate) root ح-ب-ب. The feminine plural forms unfold the doubled consonant instead of following the regular pattern the rest of the paradigm would suggest.",
-  "araada (to want)": "Hollow root (weak middle radical). The long ي shortens in the feminine plural, instead of staying long the way the rest of the paradigm would suggest.",
-  "akala (to eat)": "Hamza-initial root. The “I” form's prefix hamza and the root's own initial hamza merge into a single alif madda (آ), rather than appearing as two separate hamzas.",
-  "qaraʾa (to read)": "Hamza-final root. The hamza stays seated on the line even before the ونَ plural ending, rather than shifting to a waw-seat; the dual forms use alif madda (آ) since the root-final hamza is immediately followed by the dual's long alif.",
-  "sakana (to live)": "Sound root, but its final radical ن collides with the feminine plural suffix نَ. The two merge into a single geminated ن with shadda.",
-};
+/* ============================================================
+   CONJUGATIONS
+   Filled-out versions of the class's own verb conjugation worksheets.
+   Each verb: root (dictionary/citation form), mudari (bare "he" present-tense
+   form used as the verb's label), english meaning, and the 13 present-tense
+   forms in worksheet order (singular x5, dual x3, plural x5).
+   ============================================================ */
+const CONJUGATIONS = [
+  { root:"دَرَسَ", mudari:"دَرَسَ \u201c To study \u201d", english:"to study",
+    forms:["أَدْرُسُ","تَدْرُسُ","تَدْرُسِينَ","يَدْرُسُ","تَدْرُسُ","نَدْرُسُ","تَدْرُسَانِ","يَدْرُسَانِ","تَدْرُسَانِ","تَدْرُسُونَ","تَدْرُسْنَ","يَدْرُسُونَ","يَدْرُسْنَ"], book:'alifbaa' },
+  { root:"سَكَنَ", mudari:"سَكَنَ \u201c To live \u201d", english:"to live",
+    note:"Sound root, but its final radical ن collides with the feminine plural suffix نَ and the two merge with a shadda: تَسْكُنَّ (taskunna), يَسْكُنَّ (yaskunna).",
+    forms:["أَسْكُنُ","تَسْكُنُ","تَسْكُنِينَ","يَسْكُنُ","تَسْكُنُ","نَسْكُنُ","تَسْكُنَانِ","يَسْكُنَانِ","تَسْكُنَانِ","تَسْكُنُونَ","تَسْكُنَّ","يَسْكُنُونَ","يَسْكُنَّ"], book:'alifbaa' },
+  { root:"أَحَبَّ", mudari:"حَبَّ \u201c To love/to like \u201d", english:"to love, to like",
+    note:"Doubled (geminate) root ح-ب-ب. The feminine plural forms unfold the doubled consonant: تُحْبِبْنَ (tuHbibna) and يُحْبِبْنَ (yuHbibna), not the تُحِبِّنَ pattern the rest of the paradigm would suggest.",
+    forms:["أُحِبُّ","تُحِبُّ","تُحِبِّينَ","يُحِبُّ","تُحِبُّ","نُحِبُّ","تُحِبَّانِ","يُحِبَّانِ","تُحِبَّانِ","تُحِبُّونَ","تُحْبِبْنَ","يُحِبُّونَ","يُحْبِبْنَ"], book:'alifbaa' },
+  { root:"شَرِبَ", mudari:"شَرِبَ \u201c To drink \u201d", english:"to drink",
+    forms:["أَشْرَبُ","تَشْرَبُ","تَشْرَبِينَ","يَشْرَبُ","تَشْرَبُ","نَشْرَبُ","تَشْرَبَانِ","يَشْرَبَانِ","تَشْرَبَانِ","تَشْرَبُونَ","تَشْرَبْنَ","يَشْرَبُونَ","يَشْرَبْنَ"], book:'alifbaa' },
+  { root:"أَرَادَ", mudari:"أَرَادَ \u201c To want \u201d", english:"to want",
+    note:"Hollow root. The long ي shortens in the feminine plural: تُرِدْنَ (turidna) and يُرِدْنَ (yuridna).",
+    forms:["أُرِيدُ","تُرِيدُ","تُرِيدِينَ","يُرِيدُ","تُرِيدُ","نُرِيدُ","تُرِيدَانِ","يُرِيدَانِ","تُرِيدَانِ","تُرِيدُونَ","تُرِدْنَ","يُرِيدُونَ","يُرِدْنَ"], book:'alifbaa' },
+  { root:"عَمِلَ", mudari:"عَمِلَ \u201c To do \u201d", english:"to do, to work",
+    forms:["أَعْمَلُ","تَعْمَلُ","تَعْمَلِينَ","يَعْمَلُ","تَعْمَلُ","نَعْمَلُ","تَعْمَلَانِ","يَعْمَلَانِ","تَعْمَلَانِ","تَعْمَلُونَ","تَعْمَلْنَ","يَعْمَلُونَ","يَعْمَلْنَ"], book:'alifbaa' },
+  { root:"ذَهَبَ", mudari:"ذَهَبَ \u201c To go \u201d", english:"to go",
+    forms:["أَذْهَبُ","تَذْهَبُ","تَذْهَبِينَ","يَذْهَبُ","تَذْهَبُ","نَذْهَبُ","تَذْهَبَانِ","يَذْهَبَانِ","تَذْهَبَانِ","تَذْهَبُونَ","تَذْهَبْنَ","يَذْهَبُونَ","يَذْهَبْنَ"], book:'alifbaa' },
+  { root:"شَاهَدَ", mudari:"شَاهَدَ \u201c To watch \u201d", english:"to watch",
+    forms:["أُشَاهِدُ","تُشَاهِدُ","تُشَاهِدِينَ","يُشَاهِدُ","تُشَاهِدُ","نُشَاهِدُ","تُشَاهِدَانِ","يُشَاهِدَانِ","تُشَاهِدَانِ","تُشَاهِدُونَ","تُشَاهِدْنَ","يُشَاهِدُونَ","يُشَاهِدْنَ"], book:'alifbaa' },
+  { root:"كَتَبَ", mudari:"كَتَبَ \u201c To write \u201d", english:"to write",
+    forms:["أَكْتُبُ","تَكْتُبُ","تَكْتُبِينَ","يَكْتُبُ","تَكْتُبُ","نَكْتُبُ","تَكْتُبَانِ","يَكْتُبَانِ","تَكْتُبَانِ","تَكْتُبُونَ","تَكْتُبْنَ","يَكْتُبُونَ","يَكْتُبْنَ"], book:'alifbaa' },
+  { root:"قَرَأَ", mudari:"قَرَأَ \u201c To read \u201d", english:"to read",
+    note:"Hamza-final root. The hamza stays seated on the line even before the ونَ plural ending (تَقْرَأُونَ). The dual uses alif madda (تَقْرَآنِ).",
+    forms:["أَقْرَأُ","تَقْرَأُ","تَقْرَئِينَ","يَقْرَأُ","تَقْرَأُ","نَقْرَأُ","تَقْرَآنِ","يَقْرَآنِ","تَقْرَآنِ","تَقْرَأُونَ","تَقْرَأْنَ","يَقْرَأُونَ","يَقْرَأْنَ"], book:'alifbaa' },
+  { root:"أَكَلَ", mudari:"أَكَلَ \u201c To eat \u201d", english:"to eat",
+    note:"Hamza-initial root. The “I” form is آكُلُ (aakulu): the prefix hamza and the root's own initial hamza merge into an alif madda.",
+    forms:["آكُلُ","تَأْكُلُ","تَأْكُلِينَ","يَأْكُلُ","تَأْكُلُ","نَأْكُلُ","تَأْكُلَانِ","يَأْكُلَانِ","تَأْكُلَانِ","تَأْكُلُونَ","تَأْكُلْنَ","يَأْكُلُونَ","يَأْكُلْنَ"], book:'alifbaa' },
+  { root:"اسْتَمَعَ", mudari:"اسْتَمَعَ \u201c To listen \u201d", english:"to listen",
+    forms:["أَسْتَمِعُ","تَسْتَمِعُ","تَسْتَمِعِينَ","يَسْتَمِعُ","تَسْتَمِعُ","نَسْتَمِعُ","تَسْتَمِعَانِ","يَسْتَمِعَانِ","تَسْتَمِعَانِ","تَسْتَمِعُونَ","تَسْتَمِعْنَ","يَسْتَمِعُونَ","يَسْتَمِعْنَ"], book:'alifbaa' },
+  { root:"عَرَفَ", mudari:"عَرَفَ \u201c To know \u201d", english:"to know",
+    forms:["أَعْرِفُ","تَعْرِفُ","تَعْرِفِينَ","يَعْرِفُ","تَعْرِفُ","نَعْرِفُ","تَعْرِفَانِ","يَعْرِفَانِ","تَعْرِفَانِ","تَعْرِفُونَ","تَعْرِفْنَ","يَعْرِفُونَ","يَعْرِفْنَ"], book:'alkitaab' },
+  { root:"فَهِمَ", mudari:"فَهِمَ \u201c To understand \u201d", english:"to understand",
+    forms:["أَفْهَمُ","تَفْهَمُ","تَفْهَمِينَ","يَفْهَمُ","تَفْهَمُ","نَفْهَمُ","تَفْهَمَانِ","يَفْهَمَانِ","تَفْهَمَانِ","تَفْهَمُونَ","تَفْهَمْنَ","يَفْهَمُونَ","يَفْهَمْنَ"], book:'alkitaab' },
+  { root:"دَرَّسَ", mudari:"دَرَّسَ \u201c To teach \u201d", english:"to teach",
+    forms:["أُدَرِّسُ","تُدَرِّسُ","تُدَرِّسِينَ","يُدَرِّسُ","تُدَرِّسُ","نُدَرِّسُ","تُدَرِّسَانِ","يُدَرِّسَانِ","تُدَرِّسَانِ","تُدَرِّسُونَ","تُدَرِّسْنَ","يُدَرِّسُونَ","يُدَرِّسْنَ"], book:'alkitaab' },
+  { root:"تَرْجَمَ", mudari:"تَرْجَمَ \u201c To translate \u201d", english:"to translate",
+    note:"A quadriliteral verb (four root consonants, ت-ر-ج-م), not a triliteral Form II. It conjugates the same way Form II does (Damma prefix, kasra before the final radical), just with an extra consonant: يُترْجِمُ.",
+    forms:["أُتَرْجِمُ","تُتَرْجِمُ","تُتَرْجِمِينَ","يُتَرْجِمُ","تُتَرْجِمُ","نُتَرْجِمُ","تُتَرْجِمَانِ","يُتَرْجِمَانِ","تُتَرْجِمَانِ","تُتَرْجِمُونَ","تُتَرْجِمْنَ","يُتَرْجِمُونَ","يُتَرْجِمْنَ"], book:'alkitaab' },
+  { root:"تَكَلَّمَ", mudari:"تَكَلَّمَ \u201c To speak \u201d", english:"to speak",
+    forms:["أَتَكَلَّمُ","تَتَكَلَّمُ","تَتَكَلَّمِينَ","يَتَكَلَّمُ","تَتَكَلَّمُ","نَتَكَلَّمُ","تَتَكَلَّمَانِ","يَتَكَلَّمَانِ","تَتَكَلَّمَانِ","تَتَكَلَّمُونَ","تَتَكَلَّمْنَ","يَتَكَلَّمُونَ","يَتَكَلَّمْنَ"], book:'alkitaab' },
+  { root:"أَرْسَلَ", mudari:"أَرْسَلَ \u201c To send \u201d", english:"to send",
+    forms:["أُرْسِلُ","تُرْسِلُ","تُرْسِلِينَ","يُرْسِلُ","تُرْسِلُ","نُرْسِلُ","تُرْسِلَانِ","يُرْسِلَانِ","تُرْسِلَانِ","تُرْسِلُونَ","تُرْسِلْنَ","يُرْسِلُونَ","يُرْسِلْنَ"], book:'alkitaab' },
+  { root:"حَفِظَ", mudari:"حَفِظَ \u201c To memorize \u201d", english:"to memorize",
+    forms:["أَحْفَظُ","تَحْفَظُ","تَحْفَظِينَ","يَحْفَظُ","تَحْفَظُ","نَحْفَظُ","تَحْفَظَانِ","يَحْفَظَانِ","تَحْفَظَانِ","تَحْفَظُونَ","تَحْفَظْنَ","يَحْفَظُونَ","يَحْفَظْنَ"], book:'alkitaab' },
+  { root:"تَذَكَّرَ", mudari:"تَذَكَّرَ \u201c To remember \u201d", english:"to remember",
+    forms:["أَتَذَكَّرُ","تَتَذَكَّرُ","تَتَذَكَّرِينَ","يَتَذَكَّرُ","تَتَذَكَّرُ","نَتَذَكَّرُ","تَتَذَكَّرَانِ","يَتَذَكَّرَانِ","تَتَذَكَّرَانِ","تَتَذَكَّرُونَ","تَتَذَكَّرْنَ","يَتَذَكَّرُونَ","يَتَذَكَّرْنَ"], book:'alkitaab' },
+  { root:"سَافَرَ", mudari:"سَافَرَ \u201c To travel \u201d", english:"to travel",
+    forms:["أُسَافِرُ","تُسَافِرُ","تُسَافِرِينَ","يُسَافِرُ","تُسَافِرُ","نُسَافِرُ","تُسَافِرَانِ","يُسَافِرَانِ","تُسَافِرَانِ","تُسَافِرُونَ","تُسَافِرْنَ","يُسَافِرُونَ","يُسَافِرْنَ"], book:'alkitaab' },
+  { root:"تَخَصَّصَ", mudari:"تَخَصَّصَ \u201c To specialize in \u201d", english:"to specialize in",
+    forms:["أَتَخَصَّصُ","تَتَخَصَّصُ","تَتَخَصَّصِينَ","يَتَخَصَّصُ","تَتَخَصَّصُ","نَتَخَصَّصُ","تَتَخَصَّصَانِ","يَتَخَصَّصَانِ","تَتَخَصَّصَانِ","تَتَخَصَّصُونَ","تَتَخَصَّصْنَ","يَتَخَصَّصُونَ","يَتَخَصَّصْنَ"], book:'alkitaab' },
+  { root:"قَبِلَ", mudari:"قَبِلَ \u201c To accept \u201d", english:"to accept",
+    forms:["أَقْبَلُ","تَقْبَلُ","تَقْبَلِينَ","يَقْبَلُ","تَقْبَلُ","نَقْبَلُ","تَقْبَلَانِ","يَقْبَلَانِ","تَقْبَلَانِ","تَقْبَلُونَ","تَقْبَلْنَ","يَقْبَلُونَ","يَقْبَلْنَ"], book:'alkitaab' },
+  { root:"تَزَوَّجَ", mudari:"تَزَوَّجَ \u201c To get married/to marry \u201d", english:"to get married, to marry",
+    forms:["أَتَزَوَّجُ","تَتَزَوَّجُ","تَتَزَوَّجِينَ","يَتَزَوَّجُ","تَتَزَوَّجُ","نَتَزَوَّجُ","تَتَزَوَّجَانِ","يَتَزَوَّجَانِ","تَتَزَوَّجَانِ","تَتَزَوَّجُونَ","تَتَزَوَّجْنَ","يَتَزَوَّجُونَ","يَتَزَوَّجْنَ"], book:'alkitaab' },
+];
+// forms index: 0 ana, 1 anta, 2 anti, 3 huwa, 4 hiya, 5 naHnu,
+// 6 antumaa, 7 humaa(m), 8 humaa(f), 9 antum, 10 antunna, 11 hum, 12 hunna
+const CONJ_PRONOUNS = ["أَنَا","أَنْتَ","أَنْتِ","هُوَ","هِيَ","نَحْنُ","أَنْتُمَا","هُمَا (m.)","هُمَا (f.)","أَنْتُمْ","أَنْتُنَّ","هُمْ","هُنَّ"];
+const CONJ_PERSON_LABELS = ["I","you (m. sg.)","you (f. sg.)","he","she","we","you (dual)","they (m. dual)","they (f. dual)","you (m. pl.)","you (f. pl.)","they (m. pl.)","they (f. pl.)"];
 
 const GENDER_BANK = [
 ["كِتاب","kitaab","book","m"],
@@ -599,7 +719,6 @@ const RECOGNITION_BANK = [
 {ar:"جامِعةُ جورجتاون",tr:"jaamiʿatu Georgetown",en:"Georgetown University",sentenceType:null,sentenceWhy:null,targets:[{word:"جامِعةُ جورجتاون",label:"Idafa",why:"جامِعةُ (university) + جورجتاون (Georgetown) = ‘Georgetown University’"}]},
 {ar:"كِتاب",tr:"kitaab",en:"book",sentenceType:null,sentenceWhy:null,targets:[{word:"كِتاب",label:"Noun",why:"a plain common noun"}]},
 ];
-
 const CROSSWORD = {
   rows:7, cols:5,
   cells: {
@@ -649,6 +768,7 @@ const TABS = [
   {id:'quiz',label:'Quiz'},
   {id:'crossword',label:'Crossword'},
   {id:'conjugations',label:'Conjugations'},
+  {id:'homework',label:'Homework'},
 ];
 let currentTab = 'home';
 
@@ -676,6 +796,7 @@ function go(tab, param){
   else if(tab==='quiz') renderQuizMenu(main, param);
   else if(tab==='crossword') renderCrossword(main);
   else if(tab==='conjugations') renderConjugations(main, param);
+  else if(tab==='homework') renderHomework(main);
 }
 
 /* ============================================================
@@ -688,19 +809,19 @@ function renderHome(main){
       <div class="grid cols3" style="margin-top:20px;">
         <div class="card lesson-card" onclick="go('lessons')">
           <div class="num">Study</div><h3>Lessons</h3>
-          <p class="muted" style="margin:0;">18 grammar topics: the alphabet, hamza, gender, idafa, pronouns, verb conjugation, case endings, and more.</p>
+          <p class="muted" style="margin:0;">${LESSONS.length} grammar topics across both books: the alphabet, hamza, gender, idafa, verb forms, hollow verbs, participles, and more.</p>
         </div>
         <div class="card lesson-card" onclick="go('flashcards')">
           <div class="num">Drill</div><h3>Flashcards</h3>
-          <p class="muted" style="margin:0;">All ${VOCAB.length} vocabulary words and phrases from units 1-9, filterable by unit.</p>
+          <p class="muted" style="margin:0;">All ${VOCAB.length} vocabulary words and phrases from both books, filterable by book, unit, word type, and known/unknown status.</p>
         </div>
         <div class="card lesson-card" onclick="go('matching')">
           <div class="num">Play</div><h3>Matching game</h3>
-          <p class="muted" style="margin:0;">Match Arabic words to their English meaning against the clock.</p>
+          <p class="muted" style="margin:0;">Match Arabic words to their English meaning against the clock, for either book.</p>
         </div>
         <div class="card lesson-card" onclick="go('quiz')">
           <div class="num">Test yourself</div><h3>Quizzes</h3>
-          <p class="muted" style="margin:0;">Vocabulary, gender, definiteness, case endings, sun/moon letters, pronouns, verb conjugation, question words, word recognition.</p>
+          <p class="muted" style="margin:0;">${QUIZ_CATEGORIES.length} categories: vocabulary, gender, definiteness, case endings, sun/moon letters, pronouns, verb conjugation, question words, sentence type, plural type, and word recognition.</p>
         </div>
         <div class="card lesson-card" onclick="go('crossword')">
           <div class="num">Puzzle</div><h3>Crossword</h3>
@@ -708,11 +829,15 @@ function renderHome(main){
         </div>
         <div class="card lesson-card" onclick="go('conjugations')">
           <div class="num">Reference</div><h3>Conjugations</h3>
-          <p class="muted" style="margin:0;">All 12 present-tense verb paradigms, filled out in full, with notes on the irregular ones.</p>
+          <p class="muted" style="margin:0;">All ${CONJUGATIONS.length} verb conjugation sheets from class, fully filled out with singular, dual, and plural forms, plus notes on the irregular ones.</p>
+        </div>
+        <div class="card lesson-card" onclick="go('homework')">
+          <div class="num">Schedule</div><h3>Homework</h3>
+          <p class="muted" style="margin:0;">The full daily assignment schedule for both books, in class and at home, week by week.</p>
         </div>
         <div class="card">
-          <div class="num">Coverage</div><h3>${VOCAB.length} words &middot; 28 letters &middot; 9 units</h3>
-          <p class="muted" style="margin:0;">Every New Vocabulary list from Alif Baa units 1-9, plus every grammar point from the syllabus through Unit 9.</p>
+          <div class="num">Coverage</div><h3>${VOCAB.length} words &middot; 28 letters &middot; 2 books</h3>
+          <p class="muted" style="margin:0;">Every New Vocabulary list from Alif Baa units 1-9 and Al-Kitaab lessons 1-5, plus every grammar point covered so far.</p>
         </div>
       </div>
     </div>
@@ -723,7 +848,9 @@ function renderHome(main){
    LESSONS
    ============================================================ */
 const LESSONS = [];
-function addLesson(title, bodyHtml){ LESSONS.push({id:LESSONS.length+1, title, body:bodyHtml}); }
+let __currentLessonBook = 'alifbaa';
+function setLessonBook(b){ __currentLessonBook = b; }
+function addLesson(title, bodyHtml){ LESSONS.push({id:LESSONS.length+1, title, body:bodyHtml, book:__currentLessonBook}); }
 
 function alphabetTable(){
   let rows = ALPHABET.map(a=>`<tr><td>${a.name}</td><td class="ar big-ar">${a.iso}</td><td class="ar big-ar">${a.init}</td><td class="ar big-ar">${a.med}</td><td class="ar big-ar">${a.fin}</td><td>${a.sound}</td></tr>`).join('');
@@ -947,7 +1074,7 @@ addLesson("Present-Tense Verb Conjugation", `
 <p>Arabic's present tense (al-mudaari\u02BF) is built from a verb's three-consonant root wrapped inside a template of prefixes and suffixes that mark the subject's person, gender, and number. Nearly every verb follows the exact same skeleton of prefixes and suffixes, which means that once you've internalized the pattern with one verb, you can conjugate almost any new verb correctly the moment you learn its root.</p>
 <h3>Full paradigm: shaahada (to watch)</h3>
 <table><tr><th>Pronoun</th><th>Meaning</th><th class="ar">Form</th></tr>
-${PERSONS.map((per,i)=>`<tr><td></td><td>${per}</td><td class="ar big-ar">${VERBS_FULL["shaahada (to watch)"][i]}</td></tr>`).join('')}
+${CONJ_PERSON_LABELS.map((per,i)=>`<tr><td></td><td>${per}</td><td class="ar big-ar">${CONJUGATIONS.find(v=>v.english==="to watch").forms[i]}</td></tr>`).join('')}
 </table>
 <h3>The underlying pattern</h3>
 <ul>
@@ -1094,7 +1221,7 @@ addLesson("Case Endings (i\u02BFraab)", `
 
 addLesson("Numbers 0-10", `
 <table><tr><th>English</th><th class="ar">Arabic</th><th>Sounds like</th></tr>
-${VOCAB.filter(v=>v.unit===4 && ["zero","one","two","three","four","five","six","seven","eight","nine","ten"].includes(v.en)).map(v=>`<tr><td>${v.en}</td><td class="ar big-ar">${v.ar}</td><td>${v.tr}</td></tr>`).join('')}
+${VOCAB.filter(v=>v.book==='alifbaa' && v.unit===4 && ["zero","one","two","three","four","five","six","seven","eight","nine","ten"].includes(v.en)).map(v=>`<tr><td>${v.en}</td><td class="ar big-ar">${v.ar}</td><td>${v.tr}</td></tr>`).join('')}
 </table>
 <h3>Two sets of numerals</h3>
 <p>Arabic uses its own set of digit symbols, sometimes called Arabic-Indic numerals, alongside the digits 0 through 9 that English uses. Arabic-Indic numerals are written left to right even though the surrounding text runs right to left, which can look surprising the first time you see a multi-digit number sitting inside an Arabic sentence.</p>
@@ -1102,6 +1229,147 @@ ${VOCAB.filter(v=>v.unit===4 && ["zero","one","two","three","four","five","six",
 <p>Once you start building full sentences with numbers, you'll run into a genuinely surprising rule: the numbers 3 through 10 take the opposite gender of the noun they're counting. A feminine noun pairs with a number written in what looks like its masculine form, and a masculine noun pairs with a number written in what looks like its feminine form (the one ending in ة). On top of that, the noun being counted goes into the plural and into the genitive case. You aren't expected to produce this yet; it's simply useful to know it's coming, so the numbers you're memorizing now click into place naturally once the full rule is introduced.</p>
 `);
 
+setLessonBook('alkitaab');
+
+addLesson("Gender Review: mudhakkar and mu'annath", `
+<p>Al-Kitaab picks up gender exactly where Alif Baa left off, but starts using the Arabic grammatical terms directly instead of just "masculine" and "feminine": <span class="arabic">مُذَكَّر</span> (mudhakkar, masculine) and <span class="arabic">مُؤَنَّث</span> (mu'annath, feminine). The rule you already know still holds: a word ending in taa marbuuTa (ة) is almost always mu'annath, and everything that agrees with it (adjectives, demonstratives, verbs) has to agree in gender too.</p>
+<p>Two new wrinkles show up in Al-Kitaab's own vocabulary: words like <span class="arabic">زَميل / زَميلة</span> (classmate, m./f.) and <span class="arabic">صَديق / صَديقة</span> (friend, m./f.) are exactly the masculine/feminine noun pairs you'd expect. But a handful of professions and roles, like <span class="arabic">مُوَظَّف / ة</span> (employee) and <span class="arabic">مُتَرجِم / ة</span> (translator), follow the same pattern too, which is worth noticing since it confirms the ة rule works just as well for professions as it does for ordinary nouns and adjectives.</p>
+`);
+
+addLesson("The Nominal Sentence, Reviewed and Negated", `
+<p>You already know the core idea from Alif Baa: a nominal sentence (<span class="arabic">الجُملة الاسمِيّة</span>) is a subject followed directly by its description, with no verb "to be" in between. Al-Kitaab spends real time on how to negate this kind of sentence, since it isn't as simple as just adding "not" in front.</p>
+<h3>Negating with laysa</h3>
+<p>To say a nominal sentence is NOT true, use a special negating verb, <span class="arabic">لَيسَ</span> (laysa), which itself conjugates for person even though it only ever appears in this one "past-tense-shaped" form set. It goes right where the missing "is/am/are" would be, before the predicate.</p>
+<table><tr><th>Meaning</th><th class="ar">Arabic</th></tr>
+<tr><td>I am not a translator</td><td class="ar big-ar">لَستُ مُتَرجِماً</td></tr>
+<tr><td>She is not busy</td><td class="ar big-ar">لَيسَت مَشغولة</td></tr>
+<tr><td>They are not employees</td><td class="ar big-ar">لَيسوا مُوَظَّفين</td></tr>
+</table>
+<p>Notice that laysa is followed by an accusative predicate (see the Case Endings lesson) when the sentence is fully vowelled: <span class="arabic">لَستُ مُتَرجِماً</span> ends in <span class="arabic">-اً</span>, the indefinite accusative ending, not the plain <span class="arabic">-ٌ</span> nominative you'd see in a normal (non-negated) nominal sentence.</p>
+<h3>Fronting the predicate</h3>
+<p>Arabic word order is more flexible than English. When the predicate is a prepositional phrase (like "with me" or "in the office"), it's actually very common, and often more natural, to put the predicate FIRST, before the subject, especially when introducing new information. <span class="arabic">عِندي أُخت</span> ("I have a sister," literally "at me [is] a sister") puts <span class="arabic">عِندي</span> first because that's the point of the sentence: the existence of a sister, not who "I" am.</p>
+`);
+
+addLesson("The Verbal Sentence", `
+<p>So far, every sentence you've built without a real verb has been a nominal sentence. Al-Kitaab now introduces the other basic sentence type: the verbal sentence (<span class="arabic">الجُملة الفِعلِيّة</span>), which starts with a conjugated verb rather than a noun.</p>
+<h3>Word order: verb first</h3>
+<p>In formal written Arabic, a verbal sentence puts the verb BEFORE the subject: <span class="arabic">يَدرُسُ أحمد التاريخ</span> (Ahmad studies history), literally "studies Ahmad the-history." This is the reverse of English, and also the reverse of how you'd say it as a nominal sentence with a fronted subject (<span class="arabic">أحمد يَدرُسُ التاريخ</span>), which is also grammatical and common, especially in speech, but carries a slightly different emphasis (more like "as for Ahmad, he studies history").</p>
+<h3>Agreement quirk: verb-subject order flips the number agreement</h3>
+<p>When the verb comes first, before its subject, the verb stays SINGULAR even if the subject that follows is plural. <span class="arabic">يَدرُسُ الطُلّابُ العَربِيّة</span> (the students study Arabic) uses the singular يَدرُسُ, not the plural يَدرُسون, because the verb arrived before it "knew" the subject was plural. If the subject comes first instead (making it technically a nominal sentence with a verbal predicate), the verb does agree in number: <span class="arabic">الطُلّابُ يَدرُسونَ العَربِيّة</span>.</p>
+<h3>Negating a verbal sentence</h3>
+<p>Present-tense verbs are negated with <span class="arabic">لا</span> right before the verb, exactly as covered in the Present-Tense Verb Conjugation lesson: <span class="arabic">لا يَدرُسُ أحمد التاريخ</span> (Ahmad doesn't study history).</p>
+<h3>Converting a nominal sentence into a verbal one</h3>
+<p>A useful exercise Al-Kitaab uses: take a nominal sentence built around an active participle or a simple description, and rebuild it as a verbal sentence using the matching verb. <span class="arabic">هي تَعمَل في مَكتَب</span> (nominal-feeling, "she works in an office," built around the plain present-tense verb used descriptively) versus a version built around a true action reading of the same verb form. The underlying skill is recognizing that many Arabic present-tense verbs double as ongoing, descriptive statements, not just single actions, which is part of why Arabic doesn't need a separate "is working" progressive tense the way English does.</p>
+`);
+
+addLesson("Idafa, Continued", `
+<p>The Idafa lesson from Alif Baa covered the core rules: noun plus noun, only the last noun takes ال or tanwiin, the earlier nouns stay bare. Al-Kitaab puts idafa to heavy use in describing family and academic relationships, which is a good place to see the pattern stretch across longer chains and get used alongside possessive suffixes.</p>
+<h3>Idafa with a possessive suffix as the last term</h3>
+<p>Since a possessive suffix already makes a noun definite (see Subject Pronouns and Possessive Suffixes), it can stand in for the whole final noun of an idafa. <span class="arabic">ابن عَمّي</span> (my paternal cousin) is an idafa (ابن + عمّ) where the second noun, عمّ, carries the "my" suffix instead of being spelled out as a separate word.</p>
+<h3>Long idafa chains in family vocabulary</h3>
+<p>Arabic kinship terms build up through idafa rather than through separate compound words: <span class="arabic">ابن عَمّ</span> (paternal male cousin, literally "son of a paternal uncle"), <span class="arabic">زَوجة عَمّي</span> (my paternal uncle's wife). Each of these is just the same idafa rule applied once or twice in a row, which is worth remembering when a family tree in the textbook starts looking complicated: it's still just "noun of noun," repeated.</p>
+<h3>An idafa hiding inside a compound topic name</h3>
+<p>Academic subjects are usually themselves idafa constructions: <span class="arabic">عِلمُ النَفس</span> (psychology, literally "the science of the self"), <span class="arabic">عِلمُ الاجتِماع</span> (sociology, "the science of society/gathering"), <span class="arabic">عِلمُ الإنسان</span> (anthropology, "the science of the human being"). Recognizing عِلمُ as the first term of an idafa, rather than a stand-alone word, helps you guess the pattern for other fields of study you haven't memorized yet.</p>
+`);
+
+addLesson("Plurals: Sound and Broken", `
+<p>Alif Baa introduced the idea that Arabic has three grammatical numbers and that most plurals are "broken" (an internal vowel change) rather than "sound" (a simple suffix). Al-Kitaab is where you actually start memorizing plurals systematically, since nearly every new noun from here on is taught together with its plural form.</p>
+<h3>Sound plurals, reviewed</h3>
+<ul>
+<li>Sound masculine plural: <span class="arabic">ـونَ / ـينَ</span>, used mainly for human male nouns and active participles: <span class="arabic">مُوَظَّف &rarr; مُوَظَّفونَ</span> (employee &rarr; employees)</li>
+<li>Sound feminine plural: <span class="arabic">ـاتٌ</span>, used for most human female nouns and many non-human feminine nouns: <span class="arabic">زَميلة &rarr; زَميلات</span> (classmate, f. &rarr; classmates, f.)</li>
+</ul>
+<h3>Broken plurals: patterns worth recognizing</h3>
+<p>A broken plural rearranges a noun's root consonants into a new internal pattern. There's no single universal rule, but a handful of patterns come up constantly enough in this vocabulary that they're worth learning as patterns, not just word by word:</p>
+<table><tr><th>Singular pattern</th><th class="ar">Example</th><th>Plural pattern</th><th class="ar">Example</th></tr>
+<tr><td>fa\u02BFl</td><td class="ar big-ar">زَوج &rarr; أزواج</td><td>af\u02BFaal</td><td class="ar big-ar">husband &rarr; husbands</td></tr>
+<tr><td>fu\u02BFl</td><td class="ar big-ar">عِلم &rarr; عُلوم</td><td>fu\u02BFuul</td><td class="ar big-ar">science &rarr; sciences</td></tr>
+<tr><td>fa\u02BFiil</td><td class="ar big-ar">قَريب &rarr; أقارِب</td><td>afaa\u02BFil</td><td class="ar big-ar">relative &rarr; relatives</td></tr>
+<tr><td>faa\u02BFil</td><td class="ar big-ar">ضابِط &rarr; ضُبّاط</td><td>fu\u02BFaal</td><td class="ar big-ar">officer &rarr; officers</td></tr>
+</table>
+<p>Every new noun from here on should be memorized together with its plural, the same way you'd memorize an irregular English plural like "mouse, mice." Over time, you'll start recognizing these patterns on sight instead of needing to memorize each one as a total surprise.</p>
+<h3>Non-human plural agreement, reviewed</h3>
+<p>As covered in the Adjectives lesson, any adjective, demonstrative, or verb agreeing with a plural noun that refers to things rather than people is put in the feminine singular, no matter how many things there are. This single rule explains a lot of sentences that otherwise look like they have a gender or number mismatch.</p>
+`);
+
+addLesson("Verb Forms (al-Awzaan)", `
+<p>Arabic organizes derived verbs into ten numbered patterns, called forms or <span class="arabic">أوزان</span> (awzaan, "weights" or "measures"). Every form takes the same three (or sometimes four) root consonants and drops them into a different template, producing a related but distinct meaning. You've actually already met several of these without the label: <span class="arabic">شاهَدَ</span> (Form III), <span class="arabic">أراد</span> and <span class="arabic">أحَبَّ</span> (Form IV), <span class="arabic">تَكَلَّمَ</span> and <span class="arabic">تَذَكَّرَ</span> (Form V).</p>
+<h3>Why this matters for reading</h3>
+<p>Once you can recognize the SHAPE of a verb form, you can guess its root even in an unfamiliar word, and you can often guess its general meaning relationship to the plain Form I verb: Form II often makes a verb causative (<span class="arabic">دَرَسَ</span> "he studied" &rarr; <span class="arabic">دَرَّسَ</span> "he taught," literally "he caused to study"), Form III often implies doing something with or to another person (<span class="arabic">سافَرَ</span>, "to travel," implies going somewhere involving others or a destination), and Form V is very often the reflexive of Form II (<span class="arabic">تَعَلَّمَ</span> "to learn," the reflexive counterpart of <span class="arabic">عَلَّمَ</span> "to teach").</p>
+<h3>The ten forms, past tense (huwa) and present tense (huwa)</h3>
+<table><tr><th>Form</th><th class="ar">Past</th><th class="ar">Present</th></tr>
+<tr><td>I</td><td class="ar big-ar">فَعَلَ</td><td class="ar big-ar">يَفْعَلُ</td></tr>
+<tr><td>II</td><td class="ar big-ar">فَعَّلَ</td><td class="ar big-ar">يُفَعِّلُ</td></tr>
+<tr><td>III</td><td class="ar big-ar">فاعَلَ</td><td class="ar big-ar">يُفاعِلُ</td></tr>
+<tr><td>IV</td><td class="ar big-ar">أفْعَلَ</td><td class="ar big-ar">يُفْعِلُ</td></tr>
+<tr><td>V</td><td class="ar big-ar">تَفَعَّلَ</td><td class="ar big-ar">يَتَفَعَّلُ</td></tr>
+<tr><td>VI</td><td class="ar big-ar">تَفاعَلَ</td><td class="ar big-ar">يَتَفاعَلُ</td></tr>
+<tr><td>VII</td><td class="ar big-ar">اِنفَعَلَ</td><td class="ar big-ar">يَنفَعِلُ</td></tr>
+<tr><td>VIII</td><td class="ar big-ar">اِفتَعَلَ</td><td class="ar big-ar">يَفتَعِلُ</td></tr>
+<tr><td>IX</td><td class="ar big-ar">اِفعَلَّ</td><td class="ar big-ar">يَفعَلُّ</td></tr>
+<tr><td>X</td><td class="ar big-ar">اِستَفعَلَ</td><td class="ar big-ar">يَستَفعِلُ</td></tr>
+</table>
+<p>Forms IX is rare (mostly colors and physical defects) and won't come up much. Forms VII, VIII, and X are extremely common; you already have one Form VIII verb from your own conjugation worksheets, <span class="arabic">اِسْتَمَعَ</span> ("to listen") is actually Form X, since it follows the استفعل template exactly (اِستَفعَلَ pattern, root س-م-ع).</p>
+`);
+
+addLesson("Hollow and Irregular Verbs", `
+<p>Every verb you've conjugated so far has had three ordinary consonants as its root. A hollow verb (<span class="arabic">الفِعل الأجوَف</span>) has a weak letter, و or ي, as its MIDDLE root consonant, and that weak letter behaves very differently depending on what follows it.</p>
+<h3>Four common hollow and irregular verbs</h3>
+<table><tr><th>Meaning</th><th class="ar">Past (huwa)</th><th class="ar">Present (huwa)</th></tr>
+<tr><td>to sleep</td><td class="ar big-ar">نامَ</td><td class="ar big-ar">يَنامُ</td></tr>
+<tr><td>to walk, go, move, travel</td><td class="ar big-ar">سارَ</td><td class="ar big-ar">يَسيرُ</td></tr>
+<tr><td>to say</td><td class="ar big-ar">قالَ</td><td class="ar big-ar">يَقولُ</td></tr>
+<tr><td>to be</td><td class="ar big-ar">كانَ</td><td class="ar big-ar">يَكونُ</td></tr>
+</table>
+<p>Notice the middle letter shows up as a long vowel in the present tense (aa, ii, or uu depending on the verb), matching exactly the same "hollow verb" behavior you saw with <span class="arabic">أراد &rarr; يُريد</span> in the Conjugations section: the long vowel shortens or drops entirely in certain forms, especially before a consonant-starting suffix like the feminine plural ـنَ.</p>
+<h3>kaana: a verb you'll use constantly</h3>
+<p><span class="arabic">كانَ</span> is the closest thing Arabic has to a past-tense "to be." It turns a nominal sentence into a statement about the past: <span class="arabic">كانَ الطَّقسُ بارِداً</span> (the weather was cold). Just like with <span class="arabic">لَيسَ</span>, the predicate after كان is accusative in fully vowelled Arabic (بارِداً, not بارِدٌ). كانَ conjugates through all the same persons as any other past-tense verb, and its present tense يَكونُ is used for "will be" or "would be" type meanings, since plain present tense already covers ordinary "is/are."</p>
+`);
+
+addLesson("Active and Passive Participles", `
+<p>A participle in Arabic is a noun-like word built from a verb's root, describing someone or something as the doer (active) or the receiver (passive) of the verb's action. English does something similar with "-ing" and "-ed" forms (the teaching professor, the assigned homework), though the Arabic system is more systematic and used far more often, frequently standing in for what English would phrase as a full verb.</p>
+<h3>Active participle: ism al-faa\u02BFil</h3>
+<p>The active participle (<span class="arabic">اسم الفاعِل</span>, "the noun of the doer") for a plain Form I verb follows the pattern <span class="arabic">فاعِل</span>. It describes someone actively doing, or currently in the state of doing, the verb's action.</p>
+<table><tr><th>Verb</th><th>Meaning</th><th class="ar">Active participle</th><th>Meaning</th></tr>
+<tr><td class="ar">سَكَنَ</td><td>to live</td><td class="ar big-ar">ساكِن</td><td>residing, a resident</td></tr>
+<tr><td class="ar">عَمِلَ</td><td>to work</td><td class="ar big-ar">عامِل</td><td>working, a worker</td></tr>
+<tr><td class="ar">كَتَبَ</td><td>to write</td><td class="ar big-ar">كاتِب</td><td>writing, a writer</td></tr>
+</table>
+<p>You've actually already met one of these as ordinary vocabulary: <span class="arabic">مُتَخَصِّص</span> (specializing in, specialist in) is the active participle of a derived-form verb, following that form's own participle pattern rather than the plain فاعِل shape.</p>
+<h3>Passive participle: ism al-maf\u02BFuul</h3>
+<p>The passive participle (<span class="arabic">اسم المَفعول</span>, "the noun of the thing acted upon") for a plain Form I verb follows the pattern <span class="arabic">مَفعول</span>. It describes something that has had the verb's action done to it.</p>
+<table><tr><th>Verb</th><th>Meaning</th><th class="ar">Passive participle</th><th>Meaning</th></tr>
+<tr><td class="ar">كَتَبَ</td><td>to write</td><td class="ar big-ar">مَكتوب</td><td>written</td></tr>
+<tr><td class="ar">عَرَفَ</td><td>to know</td><td class="ar big-ar">مَعروف</td><td>known</td></tr>
+</table>
+<p>Derived-form verbs (Forms II through X) have their own, different participle patterns rather than فاعِل/مَفعول, generally built by prefixing <span class="arabic">مُـ</span> to a shape closely related to the verb's own present-tense stem. <span class="arabic">مُوَظَّف</span> (employee, literally "one who has been given a position") is a passive participle of a Form II verb, and <span class="arabic">مُدَرِّس</span> (teacher, from Form II <span class="arabic">دَرَّسَ</span>) is that same form's active participle.</p>
+`);
+
+addLesson("The Verbal Noun (al-Masdar)", `
+<p>The verbal noun, or masdar (<span class="arabic">المَصدَر</span>, literally "the source"), is a noun that names the action or concept of a verb, roughly matching English gerunds ("studying," "traveling") or action nouns ("study," "travel"). Every Arabic verb has one, and just like plurals and participles, masdars mostly have to be learned form by form and root by root rather than derived by one universal rule, at least for Form I verbs.</p>
+<h3>Masdars you already know as vocabulary</h3>
+<table><tr><th class="ar">Verb</th><th>Meaning</th><th class="ar">Masdar</th><th>Meaning</th></tr>
+<tr><td class="ar">سافَرَ</td><td>to travel</td><td class="ar big-ar">السَّفَر</td><td>traveling, travel</td></tr>
+<tr><td class="ar">عَمِلَ</td><td>to work</td><td class="ar big-ar">العَمَل</td><td>work</td></tr>
+<tr><td class="ar">دَرَّسَ</td><td>to teach</td><td class="ar big-ar">التَدريس</td><td>teaching</td></tr>
+<tr><td class="ar">تَرجَمَ</td><td>to translate</td><td class="ar big-ar">التَرجَمة</td><td>translation</td></tr>
+</table>
+<p>A footnote worth remembering from your own vocabulary list: <span class="arabic">السَّفَر</span> is explicitly a noun (a masdar), not a participle or adjective. That means it can't be used to build a sentence like "I am traveling"; for that, you need the actual conjugated verb, <span class="arabic">أُسافِر</span>.</p>
+<h3>Why masdars matter beyond vocabulary</h3>
+<p>Masdars let Arabic turn a whole action into the subject or object of a sentence, the way English uses "-ing" forms: <span class="arabic">السَّفَرُ ممتِع</span> ("traveling is fun," literally "the-traveling [is] enjoyable") treats السَّفَر as an ordinary noun functioning as the subject of a nominal sentence.</p>
+`);
+
+addLesson("Connectors: and, or, but, so", `
+<p>Al-Kitaab introduces a small set of connecting words that let you combine simple sentences into longer, more natural-sounding ones. Each attaches directly to the front of the word that follows it, the same way the definite article ال does.</p>
+<table><tr><th>Meaning</th><th class="ar">Arabic</th><th>Notes</th></tr>
+<tr><td>and</td><td class="ar big-ar">وَ</td><td>the plainest connector; joins two equal items or clauses</td></tr>
+<tr><td>or</td><td class="ar big-ar">أو</td><td>a plain either/or choice</td></tr>
+<tr><td>or (in a question)</td><td class="ar big-ar">أم</td><td>used specifically inside a direct either/or question: "is it X or Y?"</td></tr>
+<tr><td>but</td><td class="ar big-ar">لكن</td><td>contrasts two ideas, usually written with the connector فَ or simply on its own after a pause</td></tr>
+<tr><td>so, and then, and so</td><td class="ar big-ar">فَ</td><td>connects a cause to a result, or continues a sequence of events; attaches directly to the next word with no space</td></tr>
+</table>
+<p>These connectors are part of what your own course journal-writing assignments explicitly ask you to use (alongside phrases like <span class="arabic">حَيث</span> "where," <span class="arabic">فِعلاً</span> "really," and <span class="arabic">أيضاً</span> "also") to make longer, more connected writing instead of a string of short, disconnected sentences.</p>
+`);
 
 function renderLessonsList(main, openId){
   if(openId){
@@ -1109,13 +1377,19 @@ function renderLessonsList(main, openId){
     if(lesson){ renderLessonDetail(main, lesson); return; }
   }
   main.appendChild(mkEl(`<div><h1>Lessons</h1></div>`));
-  const grid = mkEl(`<div class="grid cols2"></div>`);
-  LESSONS.forEach(l=>{
-    const card = mkEl(`<div class="card lesson-card"><div class="num">Lesson ${l.id}</div><h3>${l.title}</h3></div>`);
-    card.onclick=()=>go('lessons', l.id);
-    grid.appendChild(card);
+  BOOKS.forEach(b=>{
+    const bookLessons = LESSONS.filter(l=>l.book===b.id);
+    if(bookLessons.length===0) return;
+    main.appendChild(mkEl(`<h2 style="margin-top:26px;">${b.label}</h2>`));
+    const grid = mkEl(`<div class="grid cols2"></div>`);
+    bookLessons.forEach(l=>{
+      const numInBook = bookLessons.indexOf(l)+1;
+      const card = mkEl(`<div class="card lesson-card"><div class="num">${b.label}, Lesson ${numInBook}</div><h3>${l.title}</h3></div>`);
+      card.onclick=()=>go('lessons', l.id);
+      grid.appendChild(card);
+    });
+    main.appendChild(grid);
   });
-  main.appendChild(grid);
 }
 function renderLessonDetail(main, lesson){
   main.appendChild(mkEl(`
@@ -1123,7 +1397,10 @@ function renderLessonDetail(main, lesson){
       <button class="btn ghost" onclick="go('lessons')">&larr; All lessons</button>
     </div>
   `));
-  main.appendChild(mkEl(`<div class="card"><div class="pill">Lesson ${lesson.id} of ${LESSONS.length}</div><h1 style="margin-top:10px;">${lesson.title}</h1>${lesson.body}</div>`));
+  const bookInfo = BOOKS.find(b=>b.id===lesson.book);
+  const bookLessons = LESSONS.filter(l=>l.book===lesson.book);
+  const numInBook = bookLessons.indexOf(lesson)+1;
+  main.appendChild(mkEl(`<div class="card"><div class="pill">${bookInfo.label} \u00b7 Lesson ${numInBook} of ${bookLessons.length}</div><h1 style="margin-top:10px;">${lesson.title}</h1>${lesson.body}</div>`));
   const nrow = mkEl(`<div class="row"></div>`);
   if(lesson.id>1){
     const b=mkEl(`<button class="btn ghost">&larr; ${LESSONS[lesson.id-2].title}</button>`);
@@ -1142,13 +1419,15 @@ function renderLessonDetail(main, lesson){
 /* ============================================================
    FLASHCARDS
    ============================================================ */
-let fcState = { unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en' };
+let fcState = { book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en' };
 const WORD_TYPES = ["noun","verb","adjective","pronoun","question","number","particle","phrase"];
 const WORD_TYPE_LABELS = { noun:"Nouns", verb:"Verbs", adjective:"Adjectives", pronoun:"Pronouns", question:"Question words", number:"Numbers", particle:"Particles", phrase:"Phrases" };
 let knownWords = loadProgress('knownWords', {});
-function isKnown(v){ return !!knownWords[v.en]; }
+function vocabKey(v){ return v.book+'|'+v.en+'|'+v.ar; }
+function isKnown(v){ return !!knownWords[vocabKey(v)]; }
 function setKnown(v, known){
-  if(known) knownWords[v.en]=true; else delete knownWords[v.en];
+  const key = vocabKey(v);
+  if(known) knownWords[key]=true; else delete knownWords[key];
   saveProgress('knownWords', knownWords);
 }
 function renderFlashcards(main){
@@ -1156,22 +1435,32 @@ function renderFlashcards(main){
   main.appendChild(mkEl(`<div><h1>Flashcards</h1></div>`));
   const controls = mkEl(`
     <div class="row" style="margin-bottom:16px;">
+      <select id="fcBook"></select>
       <select id="fcUnit"></select>
       <select id="fcType"></select>
       <select id="fcStatus"></select>
       <select id="fcDir">
-        <option value="ar2en">Arabic \u2192 English</option>
-        <option value="en2ar">English \u2192 Arabic</option>
+        <option value="ar2en">Arabic → English</option>
+        <option value="en2ar">English → Arabic</option>
       </select>
       <button class="btn ghost" id="fcShuffle">Shuffle</button>
       <span class="pill" id="fcKnownCount"></span>
     </div>
   `);
   main.appendChild(controls);
+  const bookSel = controls.querySelector('#fcBook');
+  BOOKS.forEach(b=>bookSel.appendChild(mkEl(`<option value="${b.id}">${b.label}</option>`)));
+  bookSel.value = fcState.book;
+  bookSel.onchange=()=>{ fcState.book=bookSel.value; fcState.unit='all'; populateUnitOptions(); buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
   const unitSel = controls.querySelector('#fcUnit');
-  unitSel.appendChild(mkEl(`<option value="all">All units</option>`));
-  for(let u=1; u<=9; u++) unitSel.appendChild(mkEl(`<option value="${u}">Unit ${u}</option>`));
-  unitSel.value = fcState.unit;
+  function populateUnitOptions(){
+    const b = BOOKS.find(x=>x.id===fcState.book);
+    unitSel.innerHTML='';
+    unitSel.appendChild(mkEl(`<option value="all">All ${b.unitLabel.toLowerCase()}s</option>`));
+    for(let u=1; u<=b.unitCount; u++) unitSel.appendChild(mkEl(`<option value="${u}">${b.unitLabel} ${u}</option>`));
+    unitSel.value = fcState.unit;
+  }
+  populateUnitOptions();
   unitSel.onchange=()=>{ fcState.unit=unitSel.value; buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
   const typeSel = controls.querySelector('#fcType');
   typeSel.appendChild(mkEl(`<option value="all">All word types</option>`));
@@ -1195,6 +1484,7 @@ function renderFlashcards(main){
 
   function buildDeck(){
     fcState.deck = VOCAB.filter(v=>
+      v.book===fcState.book &&
       (fcState.unit==='all' || v.unit===Number(fcState.unit)) &&
       (fcState.type==='all' || v.type===fcState.type) &&
       (fcState.status==='all' || (fcState.status==='known')===isKnown(v))
@@ -1202,7 +1492,8 @@ function renderFlashcards(main){
   }
   function updateKnownCount(){
     const el = document.getElementById('fcKnownCount');
-    if(el) el.textContent = `${VOCAB.filter(isKnown).length}/${VOCAB.length} known`;
+    const pool = VOCAB.filter(v=>v.book===fcState.book);
+    if(el) el.textContent = `${pool.filter(isKnown).length}/${pool.length} known`;
   }
   function advanceAfterMark(){
     if(fcState.status!=='all'){
@@ -1221,12 +1512,13 @@ function renderFlashcards(main){
     areaEl.innerHTML='';
     if(fcState.deck.length===0){ areaEl.appendChild(mkEl(`<p class="muted">No cards.</p>`)); return; }
     const v = fcState.deck[fcState.idx];
+    const bookInfo = BOOKS.find(b=>b.id===v.book);
     const showFront = fcState.dir==='ar2en' ? `<div class="arabic" style="font-size:34px;">${v.ar}</div><div class="translit">${v.tr}</div>` : `<div>${v.en}</div>`;
     const showBack = fcState.dir==='ar2en' ? `<div>${v.en}</div>` : `<div class="arabic" style="font-size:34px;">${v.ar}</div><div class="translit">${v.tr}</div>`;
-    const knownTag = isKnown(v) ? ` \u00b7 <span style="color:var(--good);">\u2713 known</span>` : '';
+    const knownTag = isKnown(v) ? ` · <span style="color:var(--good);">✓ known</span>` : '';
     const card = mkEl(`
       <div class="flashcard">
-        <span class="tag">Unit ${v.unit} \u00b7 ${WORD_TYPE_LABELS[v.type]} \u00b7 ${fcState.idx+1}/${fcState.deck.length}${knownTag}</span>
+        <span class="tag">${bookInfo.label}, ${bookInfo.unitLabel} ${v.unit} · ${WORD_TYPE_LABELS[v.type]} · ${fcState.idx+1}/${fcState.deck.length}${knownTag}</span>
         <div id="fcContent">${fcState.flipped?showBack:showFront}</div>
         <span class="hint">click to flip</span>
       </div>
@@ -1236,7 +1528,7 @@ function renderFlashcards(main){
     const knowRow = mkEl(`
       <div class="row">
         <button class="btn ghost" id="fcStillLearning" style="border-color:var(--bad);color:var(--bad);">Still learning</button>
-        <button class="btn ghost" id="fcKnowIt" style="border-color:var(--good);color:var(--good);">\u2713 I know this</button>
+        <button class="btn ghost" id="fcKnowIt" style="border-color:var(--good);color:var(--good);">✓ I know this</button>
       </div>
     `);
     areaEl.appendChild(knowRow);
@@ -1258,17 +1550,22 @@ function renderFlashcards(main){
    MATCHING GAME
    ============================================================ */
 let matchState = { pairs:[], selectedLeft:null, selectedRight:null, matched:0, mistakes:0, leftOrder:[], rightOrder:[] };
+let matchBook = 'alifbaa';
 function renderMatching(main){
   main.appendChild(mkEl(`<div><h1>Matching Game</h1></div>`));
-  const stats = mkEl(`<div class="row" style="margin-bottom:10px;"><span class="pill" id="mStats"></span><button class="btn ghost" id="mNew">New round</button></div>`);
+  const stats = mkEl(`<div class="row" style="margin-bottom:10px;"><select id="mBook"></select><span class="pill" id="mStats"></span><button class="btn ghost" id="mNew">New round</button></div>`);
   main.appendChild(stats);
+  const bookSel = stats.querySelector('#mBook');
+  BOOKS.forEach(b=>bookSel.appendChild(mkEl(`<option value="${b.id}">${b.label}</option>`)));
+  bookSel.value = matchBook;
+  bookSel.onchange=()=>{ matchBook=bookSel.value; newRound(); };
   const gridWrap = mkEl(`<div class="match-grid" id="mGrid"></div>`);
   main.appendChild(gridWrap);
   stats.querySelector('#mNew').onclick=newRound;
   newRound();
 
   function newRound(){
-    matchState.pairs = sample(VOCAB, 8);
+    matchState.pairs = sample(VOCAB.filter(v=>v.book===matchBook), 8);
     matchState.selectedLeft=null; matchState.selectedRight=null; matchState.matched=0; matchState.mistakes=0;
     matchState.leftOrder = shuffle(matchState.pairs.map((p,i)=>i));
     matchState.rightOrder = shuffle(matchState.pairs.map((p,i)=>i));
@@ -1335,6 +1632,8 @@ const QUIZ_CATEGORIES = [
   {id:'pronoun', label:'Pronouns', desc:'Subject pronouns and possessive suffixes.'},
   {id:'verb', label:'Verb Conjugation', desc:'Pick the correctly conjugated form.'},
   {id:'qword', label:'Question Words', desc:'Match the interrogative particle to its meaning.'},
+  {id:'sentype', label:'Sentence Type', desc:'Nominal sentence or verbal sentence?'},
+  {id:'plural', label:'Plural Type', desc:'Sound masculine, sound feminine, or broken?'},
   {id:'recognize', label:'Word Recognition', desc:'Spot the pronoun, verb, idafa, and more inside a real sentence.'},
 ];
 
@@ -1433,6 +1732,8 @@ function genQuestions(cat, n){
   if(cat==='pronoun') return genPronounQuestions(n);
   if(cat==='verb') return genVerbQuestions(n);
   if(cat==='qword') return genQWordQuestions(n);
+  if(cat==='sentype') return genSentypeQuestions(n);
+  if(cat==='plural') return genPluralQuestions(n);
   if(cat==='recognize') return genRecognitionQuestions(n);
   return [];
 }
@@ -1521,22 +1822,20 @@ function genPronounQuestions(n){
 }
 function genVerbQuestions(n){
   const qs=[];
-  const allVerbs = Object.keys(VERBS_FULL);
   for(let i=0;i<n;i++){
-    const verb = pick(allVerbs);
-    const forms = VERBS_FULL[verb];
-    let pIdx;
-    do{ pIdx = Math.floor(Math.random()*forms.length); } while(!forms[pIdx]);
+    const v = pick(CONJUGATIONS);
+    const forms = v.forms;
+    const pIdx = Math.floor(Math.random()*forms.length);
     const correct = forms[pIdx];
-    const distractorPool = forms.filter((f,fi)=>f && fi!==pIdx);
+    const distractorPool = forms.filter((f,fi)=>fi!==pIdx);
     const distractors = sample(distractorPool, Math.min(3, distractorPool.length));
-    while(distractors.length<3) distractors.push(pick(Object.values(VERBS_FULL).flat().filter(f=>f&&f!==correct)));
+    while(distractors.length<3) distractors.push(pick(CONJUGATIONS.flatMap(x=>x.forms).filter(f=>f!==correct)));
     const options = shuffle([correct, ...distractors]);
     qs.push({
-      prompt:`How do you say <span class="arabic big-ar">${PRONOUNS[pIdx].subj}</span> with <span class="arabic big-ar">${VERB_CITATIONS[verb]}</span> <span class="muted">(${verb})</span>?`,
+      prompt:`How do you say <span class="arabic big-ar">${CONJ_PRONOUNS[pIdx]}</span> with <span class="arabic big-ar">${v.root}</span> <span class="muted">(${v.english})</span>?`,
       options: options.map(o=>`<span class="arabic big-ar">${o}</span>`),
       correct: options.indexOf(correct),
-      explain: `${PRONOUNS[pIdx].meaning} + ${verb.split(' ')[0]} = ${correct}`
+      explain: `${CONJ_PERSON_LABELS[pIdx]} + ${v.english} = ${correct}`
     });
   }
   return qs;
@@ -1549,6 +1848,7 @@ function genQWordQuestions(n){
   }
   return qs;
 }
+
 function genRecognitionQuestions(n){
   const qs=[];
   const wordItems=[];
@@ -1576,6 +1876,64 @@ function genRecognitionQuestions(n){
     }
   }
   return qs;
+}
+
+const SENTENCE_TYPE_BANK = [
+  ["البَيتُ جَديدٌ", "al-baytu jadiidun", "nominal", "it opens with a noun (البَيتُ) followed directly by its description, with no verb"],
+  ["أَنَا طَالِبٌ", "ana Taalibun", "nominal", "it opens with the pronoun أَنَا followed directly by its description"],
+  ["هِيَ مِن سوريا", "hiya min suuriya", "nominal", "it opens with the pronoun هِيَ followed by a prepositional phrase describing it"],
+  ["هٰذا كِتابٌ", "haadhaa kitaabun", "nominal", "it opens with the demonstrative هٰذا followed directly by its description"],
+  ["يَدرُسُ أحمد التاريخ", "yadrusu aHmad at-taariikh", "verbal", "it opens with a conjugated verb (يَدرُسُ), before the subject أحمد"],
+  ["لا يَدرُسُ أحمد التاريخ", "laa yadrusu aHmad at-taariikh", "verbal", "it opens with a negated conjugated verb, before the subject"],
+  ["قَرَأَ الطّالِبُ الكِتابَ", "qara'a T-Taalibu l-kitaaba", "verbal", "it opens with the past-tense verb قَرَأَ, before the subject الطّالِبُ"],
+  ["تُسافِرُ مها إلى مِصر", "tusaafiru maha ilaa miSr", "verbal", "it opens with the conjugated verb تُسافِرُ, before the subject مها"],
+  ["كانَ الطَّقسُ بارِداً", "kaana T-Taqsu baaridan", "verbal", "it opens with the past-tense verb كانَ, before its subject الطَّقسُ"],
+  ["أُسرَتي كَبيرة", "usratii kabiira", "nominal", "it opens with the noun أُسرَتي (my family) followed directly by its description"],
+];
+function genSentypeQuestions(n){
+  const qs=[]; const pool = shuffle(SENTENCE_TYPE_BANK).slice(0, Math.min(n, SENTENCE_TYPE_BANK.length));
+  pool.forEach(s=>{
+    const [ar,tr,type,why]=s;
+    const options = shuffle(['Nominal sentence (jumla ismiyya)','Verbal sentence (jumla fi\u02BFliyya)']);
+    const correctText = type==='nominal' ? 'Nominal sentence (jumla ismiyya)' : 'Verbal sentence (jumla fi\u02BFliyya)';
+    qs.push({ prompt:`<span class="arabic big-ar">${ar}</span><br><span class="muted">${tr}</span><br>Is this a nominal sentence or a verbal sentence?`, options, correct: options.indexOf(correctText), explain: `This is a ${type} sentence: ${why}.` });
+  });
+  while(qs.length<n) qs.push(qs[qs.length % pool.length]);
+  return qs.slice(0,n);
+}
+
+const PLURAL_BANK = [
+  ["مُدَرِّس","مُدَرِّسونَ","mudarris / mudarrisuun","teacher / teachers","sound masculine"],
+  ["زَوجة","زَوجات","zawja / zawjaat","wife / wives","sound feminine"],
+  ["عائِلة","عائِلات","\u02BFaa'ila / \u02BFaa'ilaat","family / families","sound feminine"],
+  ["كُلِّيّة","كُلِّيّات","kulliyya / kulliyyaat","college / colleges","sound feminine"],
+  ["زَميلة","زَميلات","zamiila / zamiilaat","classmate f. / classmates f.","sound feminine"],
+  ["صَديقة","صَديقات","Sadiiqa / Sadiiqaat","friend f. / friends f.","sound feminine"],
+  ["كِتاب","كُتُب","kitaab / kutub","book / books","broken"],
+  ["بَيْت","بُيُوت","bayt / buyuut","house / houses","broken"],
+  ["ابن","أبناء","ibn / abnaa'","son / sons","broken"],
+  ["رِسالة","رَسائِل","risaala / rasaa'il","letter / letters","broken"],
+  ["زَوج","أزواج","zawj / azwaaj","husband / husbands","broken"],
+  ["صورة","صُوَر","Suura / Suwar","picture / pictures","broken"],
+  ["ضابِط","ضُبّاط","DaabiT / Dubbaat","officer / officers","broken"],
+  ["عِلم","عُلوم","\u02BFilm / \u02BFuluum","science / sciences","broken"],
+  ["عَمّ","أعمام","\u02BFamm / a\u02BFmaam","uncle / uncles","broken"],
+  ["قَريب","أقارِب","qariib / aqaarib","relative / relatives","broken"],
+  ["مَدرَسة","مَدارِس","madrasa / madaaris","school / schools","broken"],
+  ["زَميل","زُمَلاء","zamiil / zumalaa'","classmate m. / classmates m.","broken"],
+  ["صَديق","أصدِقاء","Sadiiq / aSdiqaa'","friend m. / friends m.","broken"],
+  ["فَرد","أفراد","fard / afraad","individual / individuals","broken"],
+];
+function genPluralQuestions(n){
+  const qs=[]; const pool = shuffle(PLURAL_BANK).slice(0, Math.min(n, PLURAL_BANK.length));
+  pool.forEach(p=>{
+    const [sing,plur,tr,en,type]=p;
+    const options = shuffle(['sound masculine','sound feminine','broken']);
+    qs.push({ prompt:`<span class="arabic big-ar">${sing} \u2192 ${plur}</span><br><span class="muted">${tr} (${en})</span><br>What kind of plural is this?`, options, correct: options.indexOf(type),
+      explain: type==='broken' ? `${plur} is a broken plural: the root's internal vowels rearrange into a new pattern rather than taking a simple suffix.` : `${plur} is a ${type} plural: it just adds the regular ${type==='sound masculine' ? '\u0648\u0646/\u064a\u0646' : '\u0627\u062a'} suffix to the singular.` });
+  });
+  while(qs.length<n) qs.push(qs[qs.length % pool.length]);
+  return qs.slice(0,n);
 }
 
 /* ============================================================
@@ -1651,40 +2009,276 @@ function renderCrossword(main){
 }
 
 /* ============================================================
-   CONJUGATIONS
+   HOMEWORK / DAILY ASSIGNMENTS
    ============================================================ */
-function renderConjugations(main, verbKey){
-  if(verbKey && VERBS_FULL[verbKey]){ renderConjugationDetail(main, verbKey); return; }
-  main.appendChild(mkEl(`<div><h1>Conjugations</h1></div>`));
-  const grid = mkEl(`<div class="grid cols2"></div>`);
-  Object.keys(VERBS_FULL).forEach(key=>{
-    const card = mkEl(`<div class="card lesson-card"><div class="arabic big-ar">${VERB_CITATIONS[key]}</div><h3>${VERB_GLOSSES[key]}</h3></div>`);
-    card.onclick=()=>go('conjugations', key);
-    grid.appendChild(card);
-  });
-  main.appendChild(grid);
+const HOMEWORK = [
+{book:'alifbaa', week:1, day:"Wed", date:"Aug 26", topic:"Introductions",
+  inClass:["Course objectives and syllabus","Practice the letters and sounds","Introduce yourself in Arabic","Worksheets from the instructor"],
+  homework:["Buy Alif Baa; read Preface pp. vii-x and Introduction pp. 2-10","Study the alphabet chart p. 2 and listen to letter pronunciation on ShareStream","Study the transliteration chart pp. 11-12","Study pp. 14-17"]},
+{book:'alifbaa', week:1, day:"Thu", date:"Aug 27", topic:"Letters and sounds",
+  inClass:["Practice the letters and sounds","Introduce yourself in Arabic","Practice connecting and writing the letters"],
+  homework:["Study pp. 20-32 and do the listening exercises","Practice writing the letters; watch the letter-writing videos","Hand in Drills 1, 2, 4, 7, 8 (pp. 21-36)"]},
+{book:'alifbaa', week:2, day:"Mon", date:"Aug 31", topic:"Unit One",
+  inClass:["Activate new vocabulary","Introduce yourself","Practice connecting and writing the letters","Subject pronouns and verb conjugation"],
+  homework:["Practice writing the letters; watch the writing and pronunciation videos","Hand in Drills 10, 11, 13 (pp. 38-40)"]},
+{book:'alifbaa', week:2, day:"Tue", date:"Sep 1", topic:"Unit Two",
+  inClass:["Activate new vocabulary","Dictations","Long and short vowels, sukuun, shadda, hamza","Speaking and conversation"],
+  homework:["Study pp. 34-37 and do the listening exercises","Practice writing the letters","Hand in Drills 1-5, 7, 8, 10, 11 (pp. 48-59); study the vocab on ShareStream"]},
+{book:'alifbaa', week:2, day:"Wed", date:"Sep 2", topic:"Unit Three",
+  inClass:["Activate new vocabulary","Dictation","Alif madda","SabaaH il-khayr and al-Hamdu lillah","Speaking and conversation"],
+  homework:["Study pp. 46-57 and do the listening exercises","Practice writing the letters","Hand in Drills 1-3, 5-8 (pp. 67-80); study the vocab"]},
+{book:'alifbaa', week:2, day:"Thu", date:"Sep 3", topic:"Unit Four",
+  inClass:["Activate new vocabulary","Arabic numbers","Dictation and additional practice","Speaking and conversation"],
+  homework:["Study pp. 66-83 and do the listening exercises","Hand in Drills 1-3 (pp. 93-95) and Drills 7-10, 13 (pp. 103-109); study the vocab"]},
+{book:'alifbaa', week:3, day:"Mon", date:"Sep 7", topic:"Holiday", inClass:["No class"], homework:[]},
+{book:'alifbaa', week:3, day:"Tue", date:"Sep 8", topic:"Unit Five",
+  inClass:["Activate new vocabulary","Drills 10-12, practice connecting letters, dictations","Roots","Speaking and conversation"],
+  homework:["Study pp. 92-99, listening exercises; hand in Drills 1-5 (pp. 118-124)","Study pp. 100-115, listening exercises; hand in Drills 7, 8, 10, 11, 12, 14, 15 (pp. 125-137)"]},
+{book:'alifbaa', week:3, day:"Wed", date:"Sep 9", topic:"Quiz I (Units 1-4)",
+  inClass:["Quiz I: dictation, letter connection, and vocabulary"], homework:["Study for the quiz"]},
+{book:'alifbaa', week:3, day:"Thu", date:"Sep 10", topic:"Unit Six",
+  inClass:["Activate new vocabulary","Read Arabic signs","Dictation","Gender and taa marbuuTa; adjectives"],
+  homework:["Study pp. 118-132; hand in Drills 1-4, 6-8, 10 (pp. 148-161)","Study pp. 133-144, listening exercises; hand in Drills 14, 16, 18, 20, 22 (pp. 134-142)"]},
+{book:'alifbaa', week:4, day:"Mon", date:"Sep 14", topic:"Unit Six, continued",
+  inClass:["Practice connecting letters, dictation","itfaDDal / itfaDDalii","The nominal sentence (jumla ismiyya)"],
+  homework:["Study pp. 146-159 and 163-167, listening exercises; study the vocab","Hand in Drills 1-4 and 6-10 (pp. 173-190)"]},
+{book:'alifbaa', week:4, day:"Tue", date:"Sep 15", topic:"Unit Seven",
+  inClass:["Activate new vocabulary","Definite article and laam alif","Sun letters and moon letters","Arabic expressions p. 166"],
+  homework:["Study pp. 170-182 and 183-191, listening exercises","Hand in Drills 1, 2, 3, 5, 6, 8, 9 (pp. 196-203)"]},
+{book:'alifbaa', week:4, day:"Wed", date:"Sep 16", topic:"Quiz II (Units 5-6)",
+  inClass:["Quiz II","With a partner, prepare a 3-minute skit for Sept 22 using vocab and structures learned"],
+  homework:["Study for Quiz II","Prepare a vocab list with your partner for the skit"]},
+{book:'alifbaa', week:4, day:"Thu", date:"Sep 17", topic:"Unit Eight",
+  inClass:["Presentation of skits","Activate new vocabulary","Dictation","Hamzat al-waSl and hamzat al-qaT\u02BF"],
+  homework:["Study pp. 194-208, listening exercises; study the vocab","Hand in Drills 11 and 13 (p. 205)"]},
+{book:'alifbaa', week:5, day:"Mon", date:"Sep 21", topic:"Review",
+  inClass:["Speaking and conversation","Worksheets"], homework:["Review all vocabulary"]},
+{book:'alifbaa', week:5, day:"Tue", date:"Sep 22", topic:"Unit Nine",
+  inClass:["Activate new vocabulary","Dictation","Tanwiin","Speaking and conversation"],
+  homework:["Study pp. 212-225, listening exercises","Worksheet from the instructor"]},
+{book:'alifbaa', week:5, day:"Wed", date:"Sep 23", topic:"Unit Ten, Quiz III",
+  inClass:["Drill 1 (p. 222)","Introduction to the Al-Kitaab textbook and its structure","Quiz III on Units 1-10: dictation, letter connection, vocabulary"],
+  homework:["Drill 2: read the three handwriting samples and write a similar paragraph about yourself","Practice reading Drill 1 (p. 222) at home","Purchase Al-Kitaab Part One; read \u201cPreface to the Second Edition\u201d and \u201cPreface to the Student\u201d","Study for Quiz III"]},
+
+{book:'alkitaab', week:5, day:"Thu", date:"Sep 24", topic:"Lesson 1: <span class='arabic'>\u0623\u0646\u0627 \u0645\u0647\u0627</span> (I am Maha)",
+  inClass:["Work on activating the new vocabulary: Drill 3","Watch the story on ShareStream","Continue work on nisba (the relative adjective)"],
+  homework:["Read the Preface pp. xi-xviii; learn the new vocabulary p. 2","Write Drills 1 and 2","Watch the story on ShareStream","Write Drills 4 and 5 (questions 1 to 9)"]},
+{book:'alkitaab', week:6, day:"Mon", date:"Sep 28", topic:"Gender and the definite article",
+  inClass:["Mudhakkar and mu'annath (masculine and feminine)","The definite article","Drills 6 and 9","Drill 3"],
+  homework:["Study grammar pp. 7 and 10","Write Drills 8 (A and B) and 10","Prepare Drill 3 for class"]},
+{book:'alkitaab', week:6, day:"Tue", date:"Sep 29", topic:"Nominal and verbal sentences",
+  inClass:["The nominal sentence and the verbal sentence","Review of nisba"],
+  homework:["Study grammar pp. 11-12","Write Drills 12 and 13"]},
+{book:'alkitaab', week:6, day:"Wed", date:"Sep 30", topic:"Negating the nominal sentence",
+  inClass:["The nominal sentence and its negation (laysa / laysat) and fronting the predicate","Drill 7 p. 6","Conversation and vocab activation p. 17","Question words"],
+  homework:["Read the culture note p. 5","Write 5 sentences using the vocabulary from the start of the lesson","Study the vocabulary on p. 17","Journal submission due"]},
+{book:'alkitaab', week:6, day:"Thu", date:"Oct 1", topic:"Participles and the verbal noun",
+  inClass:["Active participle (ism al-faa\u02BFil) and passive participle (ism al-maf\u02BFuul)","Verbal noun (maSdar)","Short quiz"],
+  homework:["Study grammar pp. 13-15","Write Drills 14 and 17","Write five questions using the vocabulary on p. 17","Study for the quiz"]},
+{book:'alkitaab', week:7, day:"Mon", date:"Oct 5", topic:"Case endings",
+  inClass:["Case endings: nominative (al-marfuu\u02BF), accusative (al-manSuub), genitive (al-majruur)","Short quiz on vocabulary and numbers 1-10"],
+  homework:["Journal submission due","Study for the short quiz on vocabulary and numbers 1-10"]},
+{book:'alkitaab', week:7, day:"Tue", date:"Oct 6", topic:"Lesson 2: <span class='arabic'>\u0623\u0646\u0627 \u0641\u0639\u0651\u0627\u0644 \u0648\u062d\u064a\u062f\u0629</span> (I am an active only child)",
+  inClass:["Activate the new vocabulary: Drill 2","Watch the story on ShareStream","Connectors: <span class='arabic'>\u0648 / \u0623\u0648 / \u0623\u0645 / \u0644\u0643\u0646 / \u0641</span> (and / or / but / so)"],
+  homework:["Study the vocabulary p. 19; write Drill 1; watch the story on ShareStream","Read the culture note p. 21 and watch it on ShareStream","Write Drill 3"]},
+{book:'alkitaab', week:7, day:"Wed", date:"Oct 7", topic:"Plurals",
+  inClass:["The plural","Conversation activity, vocabulary review, listening activity"],
+  homework:["Study grammar pp. 22-26 (also on ShareStream)","Memorize the plural tables (study them aloud)","Write Drills 4 and 5"]},
+{book:'alkitaab', week:7, day:"Thu", date:"Oct 8", topic:"Plurals, continued",
+  inClass:["Conversation; review the plural","Work on grammar and Drill 6; conversation Drill 15; Drill 16"],
+  homework:["Review and memorize the plural forms for class","Write 15 sentences using at least three plural nouns"]},
+{book:'alkitaab', week:8, day:"Mon", date:"Oct 12", topic:"Midsemester holiday", inClass:["No class"], homework:[]},
+{book:'alkitaab', week:8, day:"Tue", date:"Oct 13", topic:"Review",
+  inClass:["Review","Worksheets","Short quiz on plurals"],
+  homework:["Study for the quiz on plurals","Listen to ShareStream","Write Drills 10 and 14"]},
+{book:'alkitaab', week:8, day:"Wed", date:"Oct 14", topic:"Review",
+  inClass:["Worksheets, review","Reading activities: Drills 11 and 12"],
+  homework:["Study grammar pp. 27-28","Write Drill 7","Write Drill 15 (full sentences)"]},
+{book:'alkitaab', week:8, day:"Thu", date:"Oct 15", topic:"Midterm Exam",
+  inClass:["First term exam, covering Alif Baa and Lesson 1 of Al-Kitaab"],
+  homework:["Study for the midterm","Write a 50-word paragraph about yourself using the vocabulary and grammar from Lessons 1 and 2, including connectors like <span class='arabic'>\u062d\u064a\u062b, \u0641\u0639\u0644\u0627\u064b, \u0648\u0644\u0643\u0646, \u0623\u064a\u0636\u0627\u064b</span>"]},
+{book:'alkitaab', week:9, day:"Mon", date:"Oct 19", topic:"Lesson 3: <span class='arabic'>\u0639\u0627\u0626\u0644\u0629 \u0648\u0627\u0644\u062f\u064a</span> (My father's family)",
+  inClass:["Activate the new vocabulary","Watch the story","Possessive pronouns"],
+  homework:["Study the vocabulary p. 36; write Drills 1 and 3","Watch and listen to Maha's story on ShareStream","Write Drill 4 (be as elaborate and detailed as you can)","Read the culture note p. 40"]},
+{book:'alkitaab', week:9, day:"Tue", date:"Oct 20", topic:"Idafa",
+  inClass:["Idafa","Drill 11","Short quiz on Lesson 3"],
+  homework:["Study grammar pp. 41-43","Write Drills 6 and 7","Study for the quiz on Lesson 3"]},
+{book:'alkitaab', week:9, day:"Wed", date:"Oct 21", topic:"Drills and dictation",
+  inClass:["Drills 5, 8, 9","Dictation of a sentence or two","Reading Drills 10 and 12"],
+  homework:["Prepare Drill 8 for class","Read the culture note p. 48"]},
+{book:'alkitaab', week:9, day:"Thu", date:"Oct 22", topic:"Lesson Two Exam",
+  inClass:["Exam on Lesson Two (review all vocabulary from previous lessons too)"],
+  homework:["Study for the exam","Write Drills 15 and 16"]},
+{book:'alkitaab', week:10, day:"Mon", date:"Oct 26", topic:"Review",
+  inClass:["Drill 14","Review of nisba, the nominal sentence, and the plural"],
+  homework:["Write Drill 17","Bring photos of your family and friends and be ready to talk about them"]},
+{book:'alkitaab', week:10, day:"Tue", date:"Oct 27", topic:"kaana",
+  inClass:["Activate vocabulary p. 50","Review the lesson","The nominal sentence in the past (kaana)"],
+  homework:["Study the vocabulary p. 50","Journal submission due"]},
+{book:'alkitaab', week:10, day:"Wed", date:"Oct 28", topic:"Lesson 4: <span class='arabic'>\u0643\u064a\u0641 \u0623\u062d\u0641\u0638 \u0643\u0644 \u0627\u0644\u0623\u0633\u0645\u0627\u0621\u061f</span> (How do I remember all these names?)",
+  inClass:["Activate Lesson 4 vocabulary: Drills 3 and 4","Watch the story"],
+  homework:["Study the new vocabulary p. 52; write Drills 1 and 2","Read the culture note p. 55 and watch the DVD","Watch and listen to Maha's story on ShareStream"]},
+{book:'alkitaab', week:10, day:"Thu", date:"Oct 29", topic:"Lesson Three Exam",
+  inClass:["Exam on Lesson Three"], homework:["Study for the exam"]},
+{book:'alkitaab', week:11, day:"Mon", date:"Nov 2", topic:"The verbal sentence",
+  inClass:["Watch video, Drill 6","The present-tense verb and its negation","The verbal sentence; changing a nominal sentence into a verbal sentence"],
+  homework:["Write Drill 18","Study grammar pp. 56-58","Write Drill 7"]},
+{book:'alkitaab', week:11, day:"Tue", date:"Nov 3", topic:"Verb forms and irregular verbs",
+  inClass:["Drill 10","Verb forms (awzaan al-fi\u02BFl) for basic three-consonant verbs","Review of hamzat al-qaT\u02BF and hamzat al-waSl","Irregular verbs: <span class='arabic'>\u0646\u0627\u0645, \u0633\u0627\u0631, \u0642\u0627\u0644, \u0643\u0627\u0646</span>; how their internal vowels change"],
+  homework:["Write Drill 8 (A and B): pick three new verbs, build a conjugation chart for them, and write ten sentences using new and old verbs with various pronouns","Write Drill 9"]},
+{book:'alkitaab', week:11, day:"Wed", date:"Nov 4", topic:"Listening and reading",
+  inClass:["Drill 15","Drill 17, and read Drill 20"],
+  homework:["Prepare Drill 17 before class","Write Drills 13 and 14 (listening)"]},
+{book:'alkitaab', week:11, day:"Thu", date:"Nov 5", topic:"Review, short quiz",
+  inClass:["Vocabulary activation and conversation in class","Short quiz"],
+  homework:["Study grammar p. 61; write Drill 11","Study grammar p. 62; write Drill 12","Study for the quiz"]},
+{book:'alkitaab', week:12, day:"Mon", date:"Nov 9", topic:"Review of verb forms",
+  inClass:["Review verb forms for basic consonants","Read the stories"],
+  homework:["Write a short story (150+ words) using Maha's story in Lessons 3 and 4 as a model, using new vocabulary, various conjugation forms, and verbal sentences; pictures and drawings welcome","Journal submission due"]},
+{book:'alkitaab', week:12, day:"Tue", date:"Nov 10", topic:"Review",
+  inClass:["Review","Drill 16","Write Drill 19"],
+  homework:["Write 10 sentences from the vocabulary sentences on ShareStream","Review Lesson Four"]},
+{book:'alkitaab', week:12, day:"Wed", date:"Nov 11", topic:"Lesson Four Exam",
+  inClass:["Exam on Lesson Four"], homework:["Study for the exam"]},
+{book:'alkitaab', week:12, day:"Thu", date:"Nov 12", topic:"Lesson 5: <span class='arabic'>\u0623\u0646\u0627 \u0644\u0627 \u0623\u062d\u0628 \u0645\u062f\u064a\u0646\u0629 \u0646\u064a\u0648\u064a\u0648\u0631\u0643</span> (I don't like New York City)",
+  inClass:["Activate the new vocabulary","The absolute object (al-maf\u02BFuul al-muTlaq)"],
+  homework:["Study the vocabulary p. 70; write Drill 1 p. 71"]},
+{book:'alkitaab', week:13, day:"Mon", date:"Nov 16", topic:"The verbal noun and the accusative noun",
+  inClass:["Activate the new vocabulary; watch the story","Drill 2 p. 72","The verbal noun (maSdar)","The accusative noun (al-ism al-manSuub)"],
+  homework:["Watch and listen to Maha's story on ShareStream","Write Drill 3"]},
+{book:'alkitaab', week:13, day:"Tue", date:"Nov 17", topic:"Review, short quiz",
+  inClass:["Drills 5 and 6","Short quiz"],
+  homework:["Study grammar pp. 73 and 75","Write Drill 4","Study for the quiz"]},
+{book:'alkitaab', week:13, day:"Wed", date:"Nov 18", topic:"Drills",
+  inClass:["Drill 8","Drill 9 p. 77","Drill 10"],
+  homework:["Write Drill 7 p. 76"]},
+{book:'alkitaab', week:13, day:"Thu", date:"Nov 19", topic:"Conversation",
+  inClass:["Conversation","Drill 11 p. 78","Drill 12"],
+  homework:["Write Drill 9 p. 77; Drill 15","Journal submission due"]},
+{book:'alkitaab', week:14, day:"Mon", date:"Nov 23", topic:"Final speaking test",
+  inClass:["In-class final speaking test"], homework:["Prepare for the final oral exam"]},
+{book:'alkitaab', week:14, day:"Tue", date:"Nov 24", topic:"Final speaking test",
+  inClass:["In-class final speaking test"], homework:["Prepare for the final oral exam"]},
+{book:'alkitaab', week:14, day:"Wed", date:"Nov 25", topic:"Thanksgiving holiday", inClass:["No class"], homework:[]},
+{book:'alkitaab', week:14, day:"Thu", date:"Nov 27", topic:"Thanksgiving holiday", inClass:["No class"], homework:[]},
+{book:'alkitaab', week:15, day:"Mon", date:"Nov 30", topic:"Video project",
+  inClass:["Video project presentations"], homework:["Prepare your video project, presented today"]},
+{book:'alkitaab', week:15, day:"Tue", date:"Dec 1", topic:"General review",
+  inClass:["General review of Alif Baa and Lesson One of Al-Kitaab"], homework:["General review of all lessons"]},
+{book:'alkitaab', week:15, day:"Wed", date:"Dec 2", topic:"PowerPoint presentations",
+  inClass:["PowerPoint presentations"], homework:["Prepare your PowerPoint presentation"]},
+{book:'alkitaab', week:15, day:"Thu", date:"Dec 3", topic:"General review",
+  inClass:["General review of Lessons Two and Three"], homework:["Review Lessons Two and Three"]},
+{book:'alkitaab', week:16, day:"Mon", date:"Dec 7", topic:"Final writing test",
+  inClass:["In-class final writing test"], homework:["Prepare for the final writing exam"]},
+{book:'alkitaab', week:16, day:"Tue", date:"Dec 8", topic:"General review, evaluations",
+  inClass:["General review of Lessons Four and Five","Complete course evaluation in class or at home"],
+  homework:["Review Lessons Four and Five","Complete course evaluations"]},
+];
+const FINAL_EXAM = "Final Exam: Thursday, December 17, 7:00-9:00 PM. Place TBA.";
+
+let hwState = { book:'alifbaa' };
+function renderHomework(main){
+  main.appendChild(mkEl(`<div><h1>Homework and Daily Assignments</h1></div>`));
+  const controls = mkEl(`<div class="row" style="margin-bottom:16px;"><select id="hwBook"></select></div>`);
+  main.appendChild(controls);
+  const bookSel = controls.querySelector('#hwBook');
+  BOOKS.forEach(b=>bookSel.appendChild(mkEl(`<option value="${b.id}">${b.label}</option>`)));
+  bookSel.value = hwState.book;
+  const area = mkEl(`<div id="hwArea"></div>`);
+  main.appendChild(area);
+  bookSel.onchange=()=>{ hwState.book=bookSel.value; draw(); };
+  draw();
+
+  function draw(){
+    const areaEl = document.getElementById('hwArea');
+    areaEl.innerHTML='';
+    const rows = HOMEWORK.filter(h=>h.book===hwState.book);
+    const weeks = [...new Set(rows.map(r=>r.week))];
+    weeks.forEach(w=>{
+      areaEl.appendChild(mkEl(`<h2 style="margin-top:24px;">Week ${w}</h2>`));
+      rows.filter(r=>r.week===w).forEach(r=>{
+        const card = mkEl(`<div class="card"></div>`);
+        card.appendChild(mkEl(`<div class="row" style="margin-bottom:8px;"><span class="pill">${r.day}, ${r.date}</span><b>${r.topic}</b></div>`));
+        if(r.inClass.length){
+          card.appendChild(mkEl(`<h3 style="margin:10px 0 4px;">In class</h3>`));
+          const ul = mkEl(`<ul style="margin:0 0 10px;"></ul>`);
+          r.inClass.forEach(i=>ul.appendChild(mkEl(`<li>${i}</li>`)));
+          card.appendChild(ul);
+        }
+        if(r.homework.length){
+          card.appendChild(mkEl(`<h3 style="margin:10px 0 4px;">Homework</h3>`));
+          const ul = mkEl(`<ul style="margin:0;"></ul>`);
+          r.homework.forEach(i=>ul.appendChild(mkEl(`<li>${i}</li>`)));
+          card.appendChild(ul);
+        }
+        areaEl.appendChild(card);
+      });
+    });
+    if(hwState.book==='alkitaab'){
+      areaEl.appendChild(mkEl(`<p class="muted" style="margin-top:16px;">${FINAL_EXAM}</p>`));
+    }
+  }
 }
-function renderConjugationDetail(main, verbKey){
-  const forms = VERBS_FULL[verbKey];
-  const mkTable = (indices) => `<table><tr><th>Pronoun</th><th class="ar">Subject</th><th class="ar">Form</th></tr>${
-    indices.map(i=>`<tr><td>${PRONOUNS[i].meaning}</td><td class="ar big-ar">${PRONOUNS[i].subj}</td><td class="ar big-ar">${forms[i]}</td></tr>`).join('')
-  }</table>`;
-  const note = VERB_NOTES[verbKey];
-  main.appendChild(mkEl(`
-    <div>
-      <div class="row" style="margin-bottom:6px;">
-        <button class="btn ghost" onclick="go('conjugations')">&larr; All verbs</button>
-      </div>
-      <h1><span class="arabic">${VERB_CITATIONS[verbKey]}</span> <span class="muted" style="font-size:0.6em;">(${VERB_GLOSSES[verbKey]})</span></h1>
-      <h3>Singular</h3>
-      ${mkTable([0,1,2,3,4])}
-      <h3>Dual</h3>
-      ${mkTable([6,8,9])}
-      <h3>Plural</h3>
-      ${mkTable([5,10,11,12,13])}
-      ${note ? `<h3>Irregularity note</h3><p class="muted">${note}</p>` : ''}
-    </div>
-  `));
+
+
+let conjState = { idx: 0 };
+function renderConjugations(main, param){
+  if(param !== undefined) conjState.idx = Number(param);
+  main.appendChild(mkEl(`<div><h1>Verb Conjugations</h1></div>`));
+  BOOKS.forEach(b=>{
+    const bookVerbs = CONJUGATIONS.map((v,i)=>({v,i})).filter(x=>x.v.book===b.id);
+    if(bookVerbs.length===0) return;
+    main.appendChild(mkEl(`<h2 style="margin-top:20px;">${b.label}</h2>`));
+    const picker = mkEl(`<div class="grid cols3" style="margin-bottom:20px;"></div>`);
+    bookVerbs.forEach(({v,i})=>{
+      const card = mkEl(`<div class="card lesson-card" style="padding:12px 16px;${i===conjState.idx?'border-color:var(--accent);':''}">
+        <div class="arabic big-ar" style="text-align:center;">${v.root}</div>
+        <div class="muted" style="text-align:center;">${v.english}</div>
+      </div>`);
+      card.onclick = ()=>go('conjugations', i);
+      picker.appendChild(card);
+    });
+    main.appendChild(picker);
+  });
+
+  const v = CONJUGATIONS[conjState.idx];
+  const bookInfo = BOOKS.find(b=>b.id===v.book);
+  const card = mkEl(`<div class="card"></div>`);
+  card.appendChild(mkEl(`<div class="row" style="margin-bottom:10px;"><span class="pill">${bookInfo.label}</span><span class="pill">Conjugate \u201c${v.root}\u201d with the following pronouns</span></div>`));
+  card.appendChild(mkEl(`<div class="arabic big-ar" style="text-align:center;margin-bottom:4px;">${v.root}</div>`));
+  card.appendChild(mkEl(`<div class="muted" style="text-align:center;margin-bottom:16px;">"${v.english}"</div>`));
+
+  function block(title, indices){
+    const t = mkEl(`<div style="margin-bottom:18px;"></div>`);
+    t.appendChild(mkEl(`<h3 style="margin-top:0;">${title}</h3>`));
+    const rows = indices.map(i => `<tr><td class="ar big-ar">${CONJ_PRONOUNS[i]}</td><td class="ar big-ar">${v.forms[i]}</td></tr>`).join('');
+    t.appendChild(mkEl(`<table><tr><th class="ar">الضمير</th><th class="ar">المضارع</th></tr>${rows}</table>`));
+    return t;
+  }
+  const grid = mkEl(`<div class="grid cols3"></div>`);
+  grid.appendChild(block("Singular", [0,1,2,3,4]));
+  grid.appendChild(block("Dual", [6,7,8]));
+  grid.appendChild(block("Plural", [5,9,10,11,12]));
+  card.appendChild(grid);
+  if(v.note){
+    card.appendChild(mkEl(`<div><h3 style="margin-top:0;">Irregularity note</h3><p class="muted">${v.note}</p></div>`));
+  }
+  main.appendChild(card);
+
+  const nav = mkEl(`<div class="row" style="margin-top:16px;"></div>`);
+  if(conjState.idx>0){
+    const b = mkEl(`<button class="btn ghost">&larr; ${CONJUGATIONS[conjState.idx-1].english}</button>`);
+    b.onclick = ()=>go('conjugations', conjState.idx-1);
+    nav.appendChild(b);
+  }
+  nav.appendChild(mkEl(`<div class="spacer"></div>`));
+  if(conjState.idx<CONJUGATIONS.length-1){
+    const b = mkEl(`<button class="btn">${CONJUGATIONS[conjState.idx+1].english} &rarr;</button>`);
+    b.onclick = ()=>go('conjugations', conjState.idx+1);
+    nav.appendChild(b);
+  }
+  main.appendChild(nav);
 }
 
 /* ============================================================
