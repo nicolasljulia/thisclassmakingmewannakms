@@ -90,6 +90,7 @@ select,input[type=text]{
 .flashcard .tag{position:absolute;top:12px;left:14px;font-size:11px;color:var(--muted);}
 .flashcard .hint{position:absolute;bottom:12px;font-size:12px;color:var(--muted);}
 .flashcard .translit{font-size:15px;color:var(--muted);margin-top:8px;}
+body.hide-translit .tr-toggle{display:none;}
 /* matching */
 .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:560px;margin:0 auto;}
 .match-col{display:flex;flex-direction:column;gap:8px;}
@@ -148,6 +149,7 @@ footer{max-width:1000px;margin:0 auto;padding:20px 16px 40px;color:var(--muted);
   <div class="topwrap">
     <div class="brand">Arabic 1011 <span>Companion</span></div>
     <nav class="tabs" id="mainNav"></nav>
+    <button id="translitToggle" class="btn ghost" style="margin-left:auto;"></button>
   </div>
 </header>
 <main id="main"></main>
@@ -853,6 +855,19 @@ const TABS = [
 ];
 let currentTab = 'home';
 
+let globalShowTranslit = loadProgress('showTranslit', true);
+function applyTranslitVisibility(){
+  document.body.classList.toggle('hide-translit', !globalShowTranslit);
+  const btn = document.getElementById('translitToggle');
+  if(btn) btn.textContent = globalShowTranslit ? 'Hide transliteration' : 'Show transliteration';
+}
+document.getElementById('translitToggle').onclick = ()=>{
+  globalShowTranslit = !globalShowTranslit;
+  saveProgress('showTranslit', globalShowTranslit);
+  applyTranslitVisibility();
+};
+applyTranslitVisibility();
+
 function renderNav(){
   const nav = document.getElementById('mainNav');
   nav.innerHTML='';
@@ -1124,7 +1139,7 @@ addLesson("Subject Pronouns and Possessive Suffixes", `
 <h3>Possessive suffixes</h3>
 <p>Possessive pronouns in Arabic aren't separate words the way "my" or "his" are in English. They are suffixes, attached directly onto the end of the noun they possess, and attaching one automatically makes that noun definite (see Definiteness). One irregularity to remember: when a possessive suffix is attached to a word that ends in taa marbuuTa (ة), that ة is written and pronounced as ت.</p>
 <table><tr><th>Meaning</th><th class="ar">Subject</th><th class="ar">Suffix</th><th>Example</th></tr>
-${PRONOUNS.map(p=>`<tr><td>${p.meaning}</td><td class="ar big-ar">${p.subj}</td><td class="ar big-ar">${p.suf}</td><td>${p.example} (${p.exampleTr})</td></tr>`).join('')}
+${PRONOUNS.map(p=>`<tr><td>${p.meaning}</td><td class="ar big-ar">${p.subj}</td><td class="ar big-ar">${p.suf}</td><td>${p.example} <span class="tr-toggle">(${p.exampleTr})</span></td></tr>`).join('')}
 </table>
 <h3>Suffixes on prepositions</h3>
 <p>The same set of suffixes attaches to prepositions as well, to build words like "from him" or "with them" without a separate pronoun word.</p>
@@ -1188,7 +1203,7 @@ addLesson("Question Words", `
 <h3>Forming a question</h3>
 <p>To turn a plain statement into a question, place an interrogative particle at the very start of the sentence. Nothing else about the sentence's word order needs to change.</p>
 <table><tr><th class="ar">Particle</th><th>Sounds like</th><th>Meaning</th></tr>
-${QWORDS.map(q=>`<tr><td class="ar big-ar">${q[1]}</td><td>${q[0]}</td><td>${q[2]}</td></tr>`).join('')}
+${QWORDS.map(q=>`<tr><td class="ar big-ar">${q[1]}</td><td class="tr-toggle">${q[0]}</td><td>${q[2]}</td></tr>`).join('')}
 </table>
 <h3>ما versus ماذا</h3>
 <p>Both words translate to "what," but they aren't interchangeable. Use ما when nothing follows but a noun, as in <span class="arabic">ما إسمُكَ؟</span> (what is your name?). Use ماذا when a verb follows, as in <span class="arabic">ماذا تَدرُس؟</span> (what do you study?). This split trips up a lot of learners at first, since English "what" doesn't make that distinction at all.</p>
@@ -1298,7 +1313,7 @@ addLesson("Case Endings (i\u02BFraab)", `
 
 addLesson("Numbers 0-10", `
 <table><tr><th>English</th><th class="ar">Arabic</th><th>Sounds like</th></tr>
-${VOCAB.filter(v=>v.book==='alifbaa' && v.unit===4 && ["zero","one","two","three","four","five","six","seven","eight","nine","ten"].includes(v.en)).map(v=>`<tr><td>${v.en}</td><td class="ar big-ar">${v.ar}</td><td>${v.tr}</td></tr>`).join('')}
+${VOCAB.filter(v=>v.book==='alifbaa' && v.unit===4 && ["zero","one","two","three","four","five","six","seven","eight","nine","ten"].includes(v.en)).map(v=>`<tr><td>${v.en}</td><td class="ar big-ar">${v.ar}</td><td class="tr-toggle">${v.tr}</td></tr>`).join('')}
 </table>
 <h3>Two sets of numerals</h3>
 <p>Arabic uses its own set of digit symbols, sometimes called Arabic-Indic numerals, alongside the digits 0 through 9 that English uses. Arabic-Indic numerals are written left to right even though the surrounding text runs right to left, which can look surprising the first time you see a multi-digit number sitting inside an Arabic sentence.</p>
@@ -1496,7 +1511,7 @@ function renderLessonDetail(main, lesson){
 /* ============================================================
    FLASHCARDS
    ============================================================ */
-let fcState = { book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', showTranslit:true };
+let fcState = { book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en' };
 const WORD_TYPES = ["noun","verb","adjective","pronoun","question","number","particle","phrase"];
 const WORD_TYPE_LABELS = { noun:"Nouns", verb:"Verbs", adjective:"Adjectives", pronoun:"Pronouns", question:"Question words", number:"Numbers", particle:"Particles", phrase:"Phrases" };
 let knownWords = loadProgress('knownWords', {});
@@ -1521,7 +1536,6 @@ function renderFlashcards(main){
         <option value="en2ar">English → Arabic</option>
       </select>
       <button class="btn ghost" id="fcShuffle">Shuffle</button>
-      <button class="btn ghost" id="fcTranslitToggle"></button>
       <span class="pill" id="fcKnownCount"></span>
     </div>
   `);
@@ -1555,10 +1569,6 @@ function renderFlashcards(main){
   dirSel.value = fcState.dir;
   dirSel.onchange=()=>{ fcState.dir=dirSel.value; fcState.flipped=false; renderCardArea(); };
   controls.querySelector('#fcShuffle').onclick=()=>{ fcState.deck=shuffle(fcState.deck); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
-  const translitBtn = controls.querySelector('#fcTranslitToggle');
-  function updateTranslitBtn(){ translitBtn.textContent = fcState.showTranslit ? 'Hide transliteration' : 'Show transliteration'; }
-  updateTranslitBtn();
-  translitBtn.onclick=()=>{ fcState.showTranslit=!fcState.showTranslit; updateTranslitBtn(); renderCardArea(); };
 
   const area = mkEl(`<div class="flash-wrap" id="fcArea"></div>`);
   main.appendChild(area);
@@ -1595,7 +1605,7 @@ function renderFlashcards(main){
     if(fcState.deck.length===0){ areaEl.appendChild(mkEl(`<p class="muted">No cards.</p>`)); return; }
     const v = fcState.deck[fcState.idx];
     const bookInfo = BOOKS.find(b=>b.id===v.book);
-    const translitLine = fcState.showTranslit ? `<div class="translit">${v.tr}</div>` : '';
+    const translitLine = `<div class="translit tr-toggle">${v.tr}</div>`;
     const showFront = fcState.dir==='ar2en' ? `<div class="arabic" style="font-size:34px;">${v.ar}</div>${translitLine}` : `<div>${v.en}</div>`;
     const showBack = fcState.dir==='ar2en' ? `<div>${v.en}</div>` : `<div class="arabic" style="font-size:34px;">${v.ar}</div>${translitLine}`;
     const knownTag = isKnown(v) ? ` · <span style="color:var(--good);">✓ known</span>` : '';
@@ -1845,9 +1855,9 @@ function genVocabQuestions(n){
   for(let i=0;i<n;i++){
     const v = pick(VOCAB);
     if(Math.random()<0.5){
-      qs.push(mcqFrom(v.en, allEn, `What does <span class="arabic big-ar">${v.ar}</span> <span class="muted">(${v.tr})</span> mean?`, `${v.ar} = ${v.en}`));
+      qs.push(mcqFrom(v.en, allEn, `What does <span class="arabic big-ar">${v.ar}</span> <span class="muted tr-toggle">(${v.tr})</span> mean?`, `${v.ar} = ${v.en}`));
     } else {
-      const allArWithSameEn = mcqFrom(v.ar, VOCAB.map(x=>x.ar), `Which word means "${v.en}"?`, `${v.en} = ${v.ar} (${v.tr})`);
+      const allArWithSameEn = mcqFrom(v.ar, VOCAB.map(x=>x.ar), `Which word means "${v.en}"?`, `${v.en} = ${v.ar} <span class="tr-toggle">(${v.tr})</span>`);
       allArWithSameEn.options = allArWithSameEn.options.map(o=>`<span class="arabic big-ar">${o}</span>`);
       allArWithSameEn.prompt = allArWithSameEn.prompt;
       qs.push(allArWithSameEn);
@@ -1860,7 +1870,7 @@ function genGenderQuestions(n){
   pool.forEach(g=>{
     const [ar,tr,en,gender]=g;
     const options = shuffle(['masculine','feminine']);
-    qs.push({ prompt:`Is <span class="arabic big-ar">${ar}</span> <span class="muted">(${tr})</span> masculine or feminine?`, options, correct: options.indexOf(gender==='m'?'masculine':'feminine'),
+    qs.push({ prompt:`Is <span class="arabic big-ar">${ar}</span> <span class="muted tr-toggle">(${tr})</span> masculine or feminine?`, options, correct: options.indexOf(gender==='m'?'masculine':'feminine'),
       explain: (gender==='m' ? `${ar} is masculine. It doesn't end in \u0629.` : `${ar} is feminine.`) + ` (\u201c${en}\u201d)` });
   });
   while(qs.length<n) qs.push(qs[qs.length % pool.length]);
@@ -1871,7 +1881,7 @@ function genDefiniteQuestions(n){
   pool.forEach(d=>{
     const [ar,tr,en,isDef,reason]=d;
     const options = shuffle(['Definite','Indefinite']);
-    qs.push({ prompt:`<span class="arabic big-ar">${ar}</span><br><span class="muted">${tr}</span><br>Is this definite or indefinite?`, options, correct: options.indexOf(isDef?'Definite':'Indefinite'), explain: reason + ` (\u201c${en}\u201d)` });
+    qs.push({ prompt:`<span class="arabic big-ar">${ar}</span><br><span class="muted tr-toggle">${tr}</span><br>Is this definite or indefinite?`, options, correct: options.indexOf(isDef?'Definite':'Indefinite'), explain: reason + ` (\u201c${en}\u201d)` });
   });
   while(qs.length<n) qs.push(qs[qs.length % pool.length]);
   return qs.slice(0,n);
@@ -1884,7 +1894,7 @@ function genCaseQuestions(n){
   pool.forEach(item=>{
     const options = shuffle(['nominative','accusative','genitive']);
     qs.push({
-      prompt:`<span class="arabic big-ar">${item.sentence.ar}</span><br><span class="muted">${item.sentence.tr}</span><br>What case is <span class="arabic">${item.target.word}</span> in?`,
+      prompt:`<span class="arabic big-ar">${item.sentence.ar}</span><br><span class="muted tr-toggle">${item.sentence.tr}</span><br>What case is <span class="arabic">${item.target.word}</span> in?`,
       options, correct: options.indexOf(item.target.case),
       explain: `${item.target.word} is ${item.target.case}: ${item.target.why}. (\u201c${item.sentence.en}\u201d)`
     });
@@ -1910,7 +1920,7 @@ function genPronounQuestions(n){
     if(Math.random()<0.5){
       qs.push(mcqFrom(p.meaning, PRONOUNS.map(x=>x.meaning), `What does the subject pronoun <span class="arabic big-ar">${p.subj}</span> mean?`, `${p.subj} = ${p.meaning}`));
     } else {
-      qs.push(mcqFrom(p.meaning, PRONOUNS.map(x=>x.meaning), `The possessive suffix <span class="arabic big-ar">${p.suf}</span> (${p.sufTr}) attached to a noun means "... of whom"? Pick the matching person:`, `${p.suf} (${p.sufTr}) = ${p.meaning}, e.g. ${p.example}`));
+      qs.push(mcqFrom(p.meaning, PRONOUNS.map(x=>x.meaning), `The possessive suffix <span class="arabic big-ar">${p.suf}</span> <span class="tr-toggle">(${p.sufTr})</span> attached to a noun means "... of whom"? Pick the matching person:`, `${p.suf} <span class="tr-toggle">(${p.sufTr})</span> = ${p.meaning}, e.g. ${p.example}`));
     }
   }
   return qs;
@@ -1939,7 +1949,7 @@ function genQWordQuestions(n){
   const qs=[]; const pool=[];
   for(let i=0;i<n;i++){
     const q = pick(QWORDS);
-    qs.push(mcqFrom(q[2], QWORDS.map(x=>x[2]), `What does <span class="arabic big-ar">${q[1]}</span> (${q[0]}) mean?`, `${q[1]} (${q[0]}) = ${q[2]}`));
+    qs.push(mcqFrom(q[2], QWORDS.map(x=>x[2]), `What does <span class="arabic big-ar">${q[1]}</span> <span class="tr-toggle">(${q[0]})</span> mean?`, `${q[1]} <span class="tr-toggle">(${q[0]})</span> = ${q[2]}`));
   }
   return qs;
 }
@@ -1955,7 +1965,7 @@ function genRecognitionQuestions(n){
       const distractors = sample(RECOGNITION_LABELS.filter(l=>l!==item.target.label), 3);
       const options = shuffle([item.target.label, ...distractors]);
       qs.push({
-        prompt:`<span class="arabic big-ar">${item.sentence.ar}</span><br><span class="muted">${item.sentence.tr}</span><br>What role does <span class="arabic">${item.target.word}</span> play?`,
+        prompt:`<span class="arabic big-ar">${item.sentence.ar}</span><br><span class="muted tr-toggle">${item.sentence.tr}</span><br>What role does <span class="arabic">${item.target.word}</span> play?`,
         options, correct: options.indexOf(item.target.label),
         explain: `${item.target.word} is a ${item.target.label}: ${item.target.why}. (“${item.sentence.en}”)`
       });
@@ -1964,7 +1974,7 @@ function genRecognitionQuestions(n){
       const options = shuffle(['Nominal sentence','Verbal sentence']);
       const correctText = s.sentenceType==='nominal' ? 'Nominal sentence' : 'Verbal sentence';
       qs.push({
-        prompt:`<span class="arabic big-ar">${s.ar}</span><br><span class="muted">${s.tr}</span><br>Is this a nominal sentence or a verbal sentence?`,
+        prompt:`<span class="arabic big-ar">${s.ar}</span><br><span class="muted tr-toggle">${s.tr}</span><br>Is this a nominal sentence or a verbal sentence?`,
         options, correct: options.indexOf(correctText),
         explain: `${correctText}: ${s.sentenceWhy}. (“${s.en}”)`
       });
@@ -2091,7 +2101,7 @@ function genSentypeQuestions(n){
     const [ar,tr,type,why]=s;
     const options = shuffle(['Nominal sentence (jumla ismiyya)','Verbal sentence (jumla fi\u02BFliyya)']);
     const correctText = type==='nominal' ? 'Nominal sentence (jumla ismiyya)' : 'Verbal sentence (jumla fi\u02BFliyya)';
-    qs.push({ prompt:`<span class="arabic big-ar">${ar}</span><br><span class="muted">${tr}</span><br>Is this a nominal sentence or a verbal sentence?`, options, correct: options.indexOf(correctText), explain: `This is a ${type} sentence: ${why}.` });
+    qs.push({ prompt:`<span class="arabic big-ar">${ar}</span><br><span class="muted tr-toggle">${tr}</span><br>Is this a nominal sentence or a verbal sentence?`, options, correct: options.indexOf(correctText), explain: `This is a ${type} sentence: ${why}.` });
   });
   while(qs.length<n) qs.push(qs[qs.length % pool.length]);
   return qs.slice(0,n);
@@ -2124,7 +2134,7 @@ function genPluralQuestions(n){
   pool.forEach(p=>{
     const [sing,plur,tr,en,type]=p;
     const options = shuffle(['sound masculine','sound feminine','broken']);
-    qs.push({ prompt:`<span class="arabic big-ar">${sing} \u2192 ${plur}</span><br><span class="muted">${tr} (${en})</span><br>What kind of plural is this?`, options, correct: options.indexOf(type),
+    qs.push({ prompt:`<span class="arabic big-ar">${sing} \u2192 ${plur}</span><br><span class="muted"><span class="tr-toggle">${tr}</span> (${en})</span><br>What kind of plural is this?`, options, correct: options.indexOf(type),
       explain: type==='broken' ? `${plur} is a broken plural: the root's internal vowels rearrange into a new pattern rather than taking a simple suffix.` : `${plur} is a ${type} plural: it just adds the regular ${type==='sound masculine' ? '\u0648\u0646/\u064a\u0646' : '\u0627\u062a'} suffix to the singular.` });
   });
   while(qs.length<n) qs.push(qs[qs.length % pool.length]);
