@@ -1415,7 +1415,7 @@ function renderLessonDetail(main, lesson){
 /* ============================================================
    FLASHCARDS
    ============================================================ */
-let fcState = { book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en' };
+let fcState = { book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', showTranslit:true };
 const WORD_TYPES = ["noun","verb","adjective","pronoun","question","number","particle","phrase"];
 const WORD_TYPE_LABELS = { noun:"Nouns", verb:"Verbs", adjective:"Adjectives", pronoun:"Pronouns", question:"Question words", number:"Numbers", particle:"Particles", phrase:"Phrases" };
 let knownWords = loadProgress('knownWords', {});
@@ -1440,6 +1440,7 @@ function renderFlashcards(main){
         <option value="en2ar">English → Arabic</option>
       </select>
       <button class="btn ghost" id="fcShuffle">Shuffle</button>
+      <button class="btn ghost" id="fcTranslitToggle"></button>
       <span class="pill" id="fcKnownCount"></span>
     </div>
   `);
@@ -1473,6 +1474,10 @@ function renderFlashcards(main){
   dirSel.value = fcState.dir;
   dirSel.onchange=()=>{ fcState.dir=dirSel.value; fcState.flipped=false; renderCardArea(); };
   controls.querySelector('#fcShuffle').onclick=()=>{ fcState.deck=shuffle(fcState.deck); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
+  const translitBtn = controls.querySelector('#fcTranslitToggle');
+  function updateTranslitBtn(){ translitBtn.textContent = fcState.showTranslit ? 'Hide transliteration' : 'Show transliteration'; }
+  updateTranslitBtn();
+  translitBtn.onclick=()=>{ fcState.showTranslit=!fcState.showTranslit; updateTranslitBtn(); renderCardArea(); };
 
   const area = mkEl(`<div class="flash-wrap" id="fcArea"></div>`);
   main.appendChild(area);
@@ -1509,8 +1514,9 @@ function renderFlashcards(main){
     if(fcState.deck.length===0){ areaEl.appendChild(mkEl(`<p class="muted">No cards.</p>`)); return; }
     const v = fcState.deck[fcState.idx];
     const bookInfo = BOOKS.find(b=>b.id===v.book);
-    const showFront = fcState.dir==='ar2en' ? `<div class="arabic" style="font-size:34px;">${v.ar}</div><div class="translit">${v.tr}</div>` : `<div>${v.en}</div>`;
-    const showBack = fcState.dir==='ar2en' ? `<div>${v.en}</div>` : `<div class="arabic" style="font-size:34px;">${v.ar}</div><div class="translit">${v.tr}</div>`;
+    const translitLine = fcState.showTranslit ? `<div class="translit">${v.tr}</div>` : '';
+    const showFront = fcState.dir==='ar2en' ? `<div class="arabic" style="font-size:34px;">${v.ar}</div>${translitLine}` : `<div>${v.en}</div>`;
+    const showBack = fcState.dir==='ar2en' ? `<div>${v.en}</div>` : `<div class="arabic" style="font-size:34px;">${v.ar}</div>${translitLine}`;
     const knownTag = isKnown(v) ? ` · <span style="color:var(--good);">✓ known</span>` : '';
     const card = mkEl(`
       <div class="flashcard">
