@@ -674,6 +674,16 @@ const GENDER_BANK = [
 ["صَفّ","Saff","class","m"],
 ["قِطّة","qiTTa","cat","f"],
 ["وَلَد","walad","boy","m"],
+["جامِعة","jaamiʿa","university","f"],
+["مَكْتَب","maktab","office, desk","m"],
+["مَكْتَبة","maktaba","library","f"],
+["قَلَم","qalam","pen","m"],
+["جُمْلة","jumla","sentence","f"],
+["اِمْتِحان","imtiHaan","test","m"],
+["صورة","Suura","picture","f"],
+["ضابِط","DaabiT","officer","m"],
+["عِلْم","ʿilm","science","m"],
+["عائِلة","ʿaaʾila","family","f"],
 ];
 
 const DEFINITENESS_BANK = [
@@ -691,6 +701,12 @@ const DEFINITENESS_BANK = [
 ["بَيْتٌ جَميلٌ","baytun jamiilun","a beautiful house",false,"indefinite, since both words end in tanwiin"],
 ["البَيْتُ الجَديدُ","al-baytu l-jadiidu","the new house",true,"has \u0627\u0644 (and so does its adjective, to agree)"],
 ["أُخْتي","ukhtii","my sister",true,"has a possessive pronoun suffix (\u064A my)"],
+["أُسْرَتي","usratii","my family",true,"has a possessive pronoun suffix (ي my)"],
+["مُدَرِّسٌ","mudarrisun","a teacher",false,"indefinite, tanwiin, no ال, no possessive suffix"],
+["جامِعةُ جورجتاون","jaamiʿatu Georgetown","Georgetown University",true,"idafa whose second term is a definite proper noun"],
+["قَلَمٌ جَديدٌ","qalamun jadiidun","a new pen",false,"indefinite, both words end in tanwiin"],
+["غُرْفَتُهُ","ghurfatuhu","his room",true,"has a possessive pronoun suffix (ه his)"],
+["الطّالِبةُ الجَديدةُ","aT-Taalibatu l-jadiidatu","the new student (f.)",true,"has ال (and so does its adjective, to agree)"],
 ];
 
 const CASE_BANK = [
@@ -714,6 +730,129 @@ const CASE_BANK = [
   targets:[{word:"بابُ",case:"nominative",why:"it's the subject (and first term of an idafa)"},{word:"البَيْتِ",case:"genitive",why:"it's the second term of the idafa"}]},
 {ar:"الكَلْبُ قَريبٌ مِنَ البَيْتِ", tr:"al-kalbu qariibun mina l-bayti", en:"the dog is close to the house",
   targets:[{word:"الكَلْبُ",case:"nominative",why:"it's the subject of the sentence"},{word:"البَيْتِ",case:"genitive",why:"it's the object of the preposition \u0645\u0646 (from/of)"}]},
+{ar:"الأُستاذةُ في مَكْتَبِها", tr:"al-ustaadhatu fii maktabiha", en:"the professor is in her office",
+  targets:[{word:"الأُستاذةُ",case:"nominative",why:"it's the subject of the sentence"},{word:"مَكْتَبِها",case:"genitive",why:"it's the object of the preposition في"}]},
+{ar:"أُحِبُّ هذِهِ المَدينةَ", tr:"uHibbu haadhihi l-madiinata", en:"I love this city",
+  targets:[{word:"المَدينةَ",case:"accusative",why:"it's the direct object of أُحِبُّ (I love)"}]},
+{ar:"هذا بَيْتُ صَديقي", tr:"haadhaa baytu Sadiiqii", en:"this is my friend's house",
+  targets:[{word:"بَيْتُ",case:"nominative",why:"it's the predicate of the sentence"},{word:"صَديقي",case:"genitive",why:"it's the second noun of an idafa"}]},
+];
+
+const NISBA_BANK = [
+  {country:"مِصر",countryEn:"Egypt",m:"مِصْرِيّ",f:"مِصْرِيّة",tr:"miSriyy / miSriyya"},
+  {country:"لُبنان",countryEn:"Lebanon",m:"لُبنانِيّ",f:"لُبنانِيّة",tr:"lubnaaniyy / lubnaaniyya"},
+  {country:"الأُردُنّ",countryEn:"Jordan",m:"أُردُنِّيّ",f:"أُردُنِّيّة",tr:"urdunniyy / urdunniyya"},
+  {country:"فِلَسطين",countryEn:"Palestine",m:"فِلَسطينِيّ",f:"فِلَسطينِيّة",tr:"filasTiiniyy / filasTiiniyya"},
+  {country:"تونِس",countryEn:"Tunisia",m:"تونِسِيّ",f:"تونِسِيّة",tr:"tuunisiyy / tuunisiyya"},
+  {country:"المَغرِب",countryEn:"Morocco",m:"مَغرِبِيّ",f:"مَغرِبِيّة",tr:"maghribiyy / maghribiyya"},
+  {country:"الكُوَيت",countryEn:"Kuwait",m:"كُوَيتِيّ",f:"كُوَيتِيّة",tr:"kuwaytiyy / kuwaytiyya"},
+  {country:"قَطَر",countryEn:"Qatar",m:"قَطَرِيّ",f:"قَطَرِيّة",tr:"qaTariyy / qaTariyya"},
+  {country:"العِراق",countryEn:"Iraq",m:"عِراقِيّ",f:"عِراقِيّة",tr:"ʿiraaqiyy / ʿiraaqiyya"},
+  {country:"السُّعودِيّة",countryEn:"Saudi Arabia",m:"سُعودِيّ",f:"سُعودِيّة",tr:"suʿuudiyy / suʿuudiyya"},
+  {country:"سوريا",countryEn:"Syria",m:"سورِيّ",f:"سورِيّة",tr:"suuriyy / suuriyya"},
+  {country:"أمريكا",countryEn:"America",m:"أمريكِيّ",f:"أمريكِيّة",tr:"amriikiyy / amriikiyya"},
+  {country:"فَرَنسا",countryEn:"France",m:"فَرَنسِيّ",f:"فَرَنسِيّة",tr:"faransiyy / faransiyya"},
+  {country:"اليابان",countryEn:"Japan",m:"يابانِيّ",f:"يابانِيّة",tr:"yaabaaniyy / yaabaaniyya"},
+  {country:"الصّين",countryEn:"China",m:"صينِيّ",f:"صينِيّة",tr:"Siiniyy / Siiniyya"},
+  {country:"بريطانيا",countryEn:"Britain",m:"بريطانِيّ",f:"بريطانِيّة",tr:"biriiTaaniyy / biriiTaaniyya"},
+  {country:"روسيا",countryEn:"Russia",m:"روسِيّ",f:"روسِيّة",tr:"ruusiyy / ruusiyya"},
+  {country:"إيطاليا",countryEn:"Italy",m:"إيطالِيّ",f:"إيطالِيّة",tr:"iiTaaliyy / iiTaaliyya"},
+  {country:"الهِند",countryEn:"India",m:"هِندِيّ",f:"هِندِيّة",tr:"hindiyy / hindiyya"},
+  {country:"اليونان",countryEn:"Greece",m:"يونانِيّ",f:"يونانِيّة",tr:"yuunaaniyy / yuunaaniyya"},
+];
+const POSSESSIVE_IDENTIFY_BANK = [
+  {word:"بَيْتي",meaning:"my house",answer:"أنا"},
+  {word:"كِتابُكَ",meaning:"your book (m.)",answer:"أنتَ"},
+  {word:"غُرْفَتُكِ",meaning:"your room (f.)",answer:"أنتِ"},
+  {word:"اسْمُهُ",meaning:"his name",answer:"هُوَ"},
+  {word:"جامِعَتُها",meaning:"her university",answer:"هِيَ"},
+  {word:"لُغَتُنا",meaning:"our language",answer:"نَحْنُ"},
+  {word:"سَيّارَتُكُما",meaning:"your car (dual)",answer:"أنتُما"},
+  {word:"أُسْرَتُهُما",meaning:"their family (dual, m.)",answer:"هُما (m.)"},
+  {word:"مَدينَتُهُما",meaning:"their city (dual, f.)",answer:"هُما (f.)"},
+  {word:"صَفُّكُم",meaning:"your class (m. pl.)",answer:"أنتُم"},
+  {word:"جارَتُكُنَّ",meaning:"your neighbor (f. pl.)",answer:"أنتُنَّ"},
+  {word:"أُستاذُهُم",meaning:"their professor (m. pl.)",answer:"هُم"},
+  {word:"صَديقَتُهُنَّ",meaning:"their friend (f. pl.)",answer:"هُنَّ"},
+];
+const POSSESSIVE_PRODUCE_BANK = [
+  {en:"I study his book",noun:"كِتاب",answer:"كِتابُهُ"},
+  {en:"I like your house (f. sing.)",noun:"بَيْت",answer:"بَيْتُكِ"},
+  {en:"She works in our city",noun:"مَدينة",answer:"مَدينَتُنا"},
+  {en:"They go to their class",noun:"صَفّ",answer:"صَفُّهُم"},
+  {en:"Her sister is a professor",noun:"أُخْت",answer:"أُخْتُها"},
+  {en:"Their house (dual) is new",noun:"بَيْت",answer:"بَيْتُهُما"},
+  {en:"My room is small",noun:"غُرْفة",answer:"غُرْفَتي"},
+  {en:"Our neighbor is new",noun:"جار",answer:"جارُنا"},
+  {en:"Their (m. dual) brother is kind",noun:"أخ",answer:"أخُهُما"},
+  {en:"Her sister is strange",noun:"أُخْت",answer:"أُخْتُها"},
+  {en:"Your (m. sing.) professor is good",noun:"أُستاذ",answer:"أُستاذُكَ"},
+  {en:"Their (f. pl.) table is wide",noun:"طاوِلة",answer:"طاوِلَتُهُنَّ"},
+];
+const POSSESSIVE_TRANSLATE_BANK = [
+  {en:"My friend (f.) is new at the university",answer:"صَديقَتي جَديدة في الجامِعة"},
+  {en:"Their (m. pl.) house is big",answer:"بَيْتُهُم كَبير"},
+  {en:"Your (f. sing.) family is small",answer:"أُسْرَتُكِ صَغيرة"},
+  {en:"His professor (f.) is Egyptian",answer:"أُستاذَتُهُ مِصْرِيّة"},
+  {en:"Our university is in Washington",answer:"جامِعَتُنا في واشِنطُن"},
+  {en:"Her book is on the table",answer:"كِتابُها على الطاوِلة"},
+  {en:"Your (m. pl.) room is wide",answer:"غُرْفَتُكُم واسِعة"},
+  {en:"My sister's name is Sara",answer:"اسْمُ أُخْتي سارة"},
+];
+const SUBJECT_PREDICATE_BANK = [
+  {ar:"الوَلَدُ مِصْرِيٌّ",subject:"الوَلَدُ",predicate:"مِصْرِيٌّ",meaning:"the boy is Egyptian",note:null},
+  {ar:"أنا بِنْتٌ لَطيفةٌ",subject:"أنا",predicate:"بِنْتٌ لَطيفةٌ",meaning:"I am a nice girl",note:null},
+  {ar:"هِيَ تَسْكُنُ في نيويورك",subject:"هِيَ",predicate:"تَسْكُنُ في نيويورك",meaning:"she lives in New York",note:"verbal"},
+  {ar:"هذِهِ السَّيّارةُ كَبيرةٌ",subject:"هذِهِ السَّيّارةُ",predicate:"كَبيرةٌ",meaning:"this car is big",note:null},
+  {ar:"مَن صاحِبُكَ؟",subject:"صاحِبُكَ",predicate:"مَن",meaning:"who is your friend?",note:"fronted"},
+  {ar:"عِندي كَلْبٌ وَقِطّةٌ",subject:"كَلْبٌ وَقِطّةٌ",predicate:"عِندي",meaning:"I have a dog and a cat",note:"fronted"},
+  {ar:"في غُرْفَتي طاوِلةٌ",subject:"طاوِلةٌ",predicate:"في غُرْفَتي",meaning:"there is a table in my room",note:"fronted"},
+  {ar:"هذا المَكْتَبُ صَغيرٌ",subject:"هذا المَكْتَبُ",predicate:"صَغيرٌ",meaning:"this office is small",note:null},
+  {ar:"في الجامِعةِ مَكْتَبةٌ كَبيرةٌ",subject:"مَكْتَبةٌ كَبيرةٌ",predicate:"في الجامِعةِ",meaning:"there is a big library at the university",note:"fronted"},
+  {ar:"هُوَ مِن الهِنْد",subject:"هُوَ",predicate:"مِن الهِنْد",meaning:"he is from India",note:null},
+  {ar:"خالِدٌ يَعْمَلُ في الأُمَمِ المُتَّحِدة",subject:"خالِدٌ",predicate:"يَعْمَلُ في الأُمَمِ المُتَّحِدة",meaning:"Khalid works at the United Nations",note:"verbal"},
+  {ar:"في السّينِما فيلمٌ جَديدٌ",subject:"فيلمٌ جَديدٌ",predicate:"في السّينِما",meaning:"there is a new movie at the cinema",note:"fronted"},
+];
+const QWORD_EXAMPLES = [
+  {blanked:"___ تَسْكُنُ في واشِنطُن؟",full:"هَل تَسْكُنُ في واشِنطُن؟",qkey:"hal",meaning:"do you live in Washington?"},
+  {blanked:"___ أُستاذُكَ؟",full:"مَن أُستاذُكَ؟",qkey:"man",meaning:"who is your professor?"},
+  {blanked:"___ ساعةً تَدْرُسُ كُلَّ يَوم؟",full:"كَم ساعةً تَدْرُسُ كُلَّ يَوم؟",qkey:"kam",meaning:"how many hours do you study every day?"},
+  {blanked:"___ كِتابٍ تَقْرَأُ الآن؟",full:"أيُّ كِتابٍ تَقْرَأُ الآن؟",qkey:"ayy / ayya",meaning:"which book are you reading now?"},
+];
+const READING_PASSAGES = [
+  {title:"نورة",text:"اسْمي نورة. أنا طالِبةٌ سُعودِيّةٌ في جامِعةِ جورجتاون. أدْرُسُ العُلومَ السِّياسِيّةَ وأتَخَصَّصُ في اللُّغةِ العَرَبِيّة. أسْكُنُ مَعَ صَديقَتي في بَيْتٍ صَغيرٍ قَريبٍ مِن الجامِعة. وَالِدي يَعْمَلُ في الرِّياض، ووالِدَتي مُوَظَّفةٌ في مَكْتَبةٍ كَبيرة. لي أخٌ واحِدٌ، هُوَ يَسْكُنُ في دُبَي ويَعْمَلُ مُهَنْدِسًا. في المَساءِ، أُحِبُّ أن أقْرَأَ وأشاهِدَ الأخبارَ.",comprehension:[{q:"ما اسْمُها؟",a:"نورة"},{q:"مِن أينَ هِيَ؟",a:"هِيَ سُعودِيّة (مِن السُّعودِيّة)"},{q:"ماذا تَدْرُسُ؟",a:"العُلوم السِّياسِيّة"},{q:"في ماذا تَتَخَصَّصُ؟",a:"في اللُّغةِ العَرَبِيّة"},{q:"مَعَ مَن تَسْكُنُ؟",a:"مَعَ صَديقَتِها"},{q:"أينَ يَعْمَلُ والِدُها؟",a:"في الرِّياض"},{q:"ماذا تَعْمَلُ والِدَتُها؟",a:"مُوَظَّفة في مَكْتَبة"},{q:"كَم أخًا لَها؟",a:"أخٌ واحِدٌ"},{q:"أينَ يَسْكُنُ أخوها؟",a:"في دُبَي"},{q:"ماذا تُحِبُّ أن تَفْعَلَ في المَساء؟",a:"تَقْرَأُ وتُشاهِدُ الأخبار"}],grammarHunt:[{label:"Pronoun",a:"أنا"},{label:"Noun",a:"جامِعة (or: طالِبة, العُلوم, اللُّغة, بَيْت, مَكْتَبة, أخ, among others)"},{label:"Verb",a:"أدْرُسُ (or: أتَخَصَّصُ, أسْكُنُ, يَعْمَلُ, يَسْكُنُ, أُحِبُّ, أقْرَأَ, أشاهِدَ)"},{label:"Noun-adjective",a:"سُعودِيّة (describing طالِبة), or صَغير (describing بَيْت), or كَبيرة (describing مَكْتَبة)"},{label:"Idafa",a:"جامِعةُ جورجتاون"},{label:"Preposition",a:"مِن, في, مَعَ (several options)"},{label:"Possessive pronoun suffix",a:"والِدي (my father), صَديقَتي (my friend), والِدَتي (my mother)"},{label:"Nominal sentence",a:"اسْمي نورة, or أنا طالِبةٌ سُعودِيّةٌ في جامِعةِ جورجتاون"},{label:"Verbal sentence",a:"أدْرُسُ العُلومَ السِّياسِيّةَ, or أسْكُنُ مَعَ صَديقَتي"}]},
+  {title:"سامي",text:"اسْمي سامي. أنا طالِبٌ أُردُنِّيٌّ جَديدٌ في هذِهِ الجامِعة. أسْكُنُ في غُرْفةٍ صَغيرةٍ في بَيْتِ الطَّلَبة. عِندي زَميلٌ اسْمُهُ دَيفيد، هُوَ أمريكِيٌّ ويَدْرُسُ التاريخَ. نَحْنُ نَذْهَبُ إلى الصَّفِّ مَعًا كُلَّ يَوم. أُريدُ أن أتَخَصَّصَ في عِلْمِ الاجْتِماع لأنَّني أُحِبُّ أن أفْهَمَ النّاس. لا أعْرِفُ أينَ المَكْتَبةُ الجَديدةُ بَعْد، ولكِنَّ زَميلي يَعْرِفُها جَيِّدًا.",comprehension:[{q:"ما اسْمُهُ؟",a:"سامي"},{q:"مِن أينَ هُوَ؟",a:"هُوَ أُردُنِّيّ (مِن الأُردُنّ)"},{q:"أينَ يَسْكُنُ؟",a:"في غُرْفةٍ صَغيرةٍ في بَيْتِ الطَّلَبة"},{q:"ما اسْمُ زَميلِهِ؟",a:"دَيفيد"},{q:"مِن أينَ زَميلُهُ؟",a:"هُوَ أمريكِيّ"},{q:"ماذا يَدْرُسُ زَميلُهُ؟",a:"التاريخ"},{q:"في ماذا يُريدُ سامي أن يَتَخَصَّصَ؟",a:"في عِلْمِ الاجْتِماع"},{q:"لِماذا؟",a:"لأنَّهُ يُحِبُّ أن يَفْهَمَ النّاس"},{q:"هَل يَعْرِفُ سامي أينَ المَكْتَبةُ الجَديدة؟",a:"لا، لا يَعْرِفُ"}],grammarHunt:[{label:"Pronoun",a:"أنا, هُوَ, نَحْنُ"},{label:"Noun",a:"غُرْفة, بَيْت, زَميل, عِلْم, مَكْتَبة, among others"},{label:"Verb",a:"أسْكُنُ, يَدْرُسُ, نَذْهَبُ, أُريدُ, أعْرِفُ, يَعْرِفُ"},{label:"Noun-adjective",a:"أُردُنِّيّ (describing طالِب), صَغيرة (describing غُرْفة), جَديدة (describing مَكْتَبة)"},{label:"Idafa",a:"بَيْتُ الطَّلَبة, عِلْمُ الاجْتِماع"},{label:"Preposition",a:"في, إلى, مِن"},{label:"Possessive pronoun suffix",a:"اسْمُهُ (his name), زَميلي (my colleague), زَميلُهُ (his colleague)"},{label:"Nominal sentence",a:"اسْمي سامي"},{label:"Verbal sentence",a:"نَحْنُ نَذْهَبُ إلى الصَّفِّ مَعًا كُلَّ يَوم"}]},
+];
+
+const PRACTICE_TEST_BANK = [
+  {title:"Practice Test A", sections:[
+    {label:"Section I: Connect the letters to form words", items:[{prompt:"<div class=\"arabic big-ar\">ب + ا + ب</div>",answer:"<div class=\"arabic big-ar\">باب</div>"},{prompt:"<div class=\"arabic big-ar\">د + ر + س</div>",answer:"<div class=\"arabic big-ar\">درس</div>"},{prompt:"<div class=\"arabic big-ar\">ك + ت + ا + ب</div>",answer:"<div class=\"arabic big-ar\">كتاب</div>"},{prompt:"<div class=\"arabic big-ar\">ج + ا + م + ع + ة</div>",answer:"<div class=\"arabic big-ar\">جامعة</div>"},{prompt:"<div class=\"arabic big-ar\">ط + ا + ل + ب</div>",answer:"<div class=\"arabic big-ar\">طالب</div>"},{prompt:"<div class=\"arabic big-ar\">س + ك + ن</div>",answer:"<div class=\"arabic big-ar\">سكن</div>"},{prompt:"<div class=\"arabic big-ar\">ع + م + ل</div>",answer:"<div class=\"arabic big-ar\">عمل</div>"},{prompt:"<div class=\"arabic big-ar\">م + د + ر + س + ة</div>",answer:"<div class=\"arabic big-ar\">مدرسة</div>"},{prompt:"<div class=\"arabic big-ar\">ء + خ + ت</div>",answer:"<div class=\"arabic big-ar\">أخت</div>"},{prompt:"<div class=\"arabic big-ar\">ق + ل + م</div>",answer:"<div class=\"arabic big-ar\">قلم</div>"},{prompt:"<div class=\"arabic big-ar\">ص + د + ي + ق</div>",answer:"<div class=\"arabic big-ar\">صديق</div>"},{prompt:"<div class=\"arabic big-ar\">و + ر + ق + ة</div>",answer:"<div class=\"arabic big-ar\">ورقة</div>"}]},
+    {label:"Section II: Write in Arabic with full short vowels and shadda", items:[{prompt:"<p>bayt (house)</p>",answer:"<div class=\"arabic big-ar\">بَيْت</div>"},{prompt:"<p>jadiid (new)</p>",answer:"<div class=\"arabic big-ar\">جَديد</div>"},{prompt:"<p>madrasa (school)</p>",answer:"<div class=\"arabic big-ar\">مَدْرَسة</div>"},{prompt:"<p>mudarris (teacher, m.)</p>",answer:"<div class=\"arabic big-ar\">مُدَرِّس</div>"},{prompt:"<p>Taaliba (student, f.)</p>",answer:"<div class=\"arabic big-ar\">طَالِبَة</div>"},{prompt:"<p>uHibb (I love)</p>",answer:"<div class=\"arabic big-ar\">أُحِبّ</div>"},{prompt:"<p>jaami'a (university)</p>",answer:"<div class=\"arabic big-ar\">جامِعة</div>"},{prompt:"<p>kitaab (book)</p>",answer:"<div class=\"arabic big-ar\">كِتاب</div>"},{prompt:"<p>SaHiiH (correct)</p>",answer:"<div class=\"arabic big-ar\">صَحيح</div>"},{prompt:"<p>jamiila (beautiful, f.)</p>",answer:"<div class=\"arabic big-ar\">جَميلة</div>"}]},
+    {label:"Section III: Transliterate into English letters", items:[{prompt:"<div class=\"arabic big-ar\">السلام عليكم</div>",answer:"<p>assalaamu 'alaykum</p>"},{prompt:"<div class=\"arabic big-ar\">صباح الخير</div>",answer:"<p>SabaaH al-khayr</p>"},{prompt:"<div class=\"arabic big-ar\">كيف حالك؟</div>",answer:"<p>kayfa Haaluka?</p>"},{prompt:"<div class=\"arabic big-ar\">ما اسمك؟</div>",answer:"<p>maa ismuka?</p>"},{prompt:"<div class=\"arabic big-ar\">من أين أنتِ؟</div>",answer:"<p>min ayna anti?</p>"}]},
+    {label:"Section IV: Picture vocabulary", items:[{prompt:"Find or take a photo of a room with several identifiable objects in it (a bedroom, living room, or office works well). Identify five (5) objects in the photo by their Arabic name, then describe three (3) of them in full sentences.<br><br><span class=\"muted\">Reference word bank: باب (door), طاولة (table), كتاب (book), قلم (pen), شبّاك (window), كرسي (chair), ورقة (paper), صورة (picture), كلب (dog), قطة (cat).</span>",answer:"This section is open-ended and depends on your photo; there's no single answer to check against. Make sure you used correct gender agreement (an adjective describing a feminine noun needs its own feminine ending) and that any definite noun's adjective also carries ال. If you want a second opinion on your sentences, bring them to office hours or ask a study partner to check your agreement."}]},
+    {label:"Section V: Picture description", items:[{prompt:"Find or take a photo of a person (a friend, a public figure, a stock photo) and describe them in full sentences, using at least three (3) adjectives.<br><br><span class=\"muted\">Reference adjective bank: كبير/كبيرة (big), جميل/جميلة (beautiful), جديد/جديدة (new), صغير/صغيرة (small), واسع/واسعة (wide), طويل/طويلة (tall), قصير/قصيرة (short), لطيف/لطيفة (nice).</span>",answer:"Open-ended, same guidance as Section IV: check gender agreement on every adjective, and make sure a definite noun's adjective carries ال too."}]},
+    {label:"Section VI: Dialogue completion", items:[{prompt:"Read the dialogue between Layla and Samir and fill in the blanks with appropriate vocabulary.<div class=\"arabic\" style=\"margin-top:10px;line-height:2;\">ليلى: صباح ______ يا سمير.<br>سمير: صباح ______. كيف ______؟<br>ليلى: ______ الله، وأنتَ؟<br>سمير: ______ الله. هل أنتَ ______ في الجامعة؟<br>ليلى: نعم، أنا ______ العلوم السياسية. وأنتَ، ماذا ______؟<br>سمير: أنا ______ اللغة العربية. أين ______، يا ليلى؟<br>ليلى: ______ في بيتٍ قريبٍ من الجامعة.</div>",answer:"الخير / النور / حالك / بخير / الحمد / طالباً (or طالبة if applicable) / أدرس / تدرس / تسكن / أسكن<br><br><span class=\"muted\">Full dialogue: “SabaaH al-khayr yaa Samiir.” / “SabaaH an-nuur. Kayfa Haaluka?” / “Bi-khayr al-Hamdu lillaah, wa anta?” / “Al-Hamdu lillaah. Hal anta Taalib fii l-jaami'a?” / “Na'am, ana adrus al-'uluum as-siyaasiyya. Wa anta, maadhaa tadrus?” / “Ana adrus al-lugha al-'arabiyya. Ayna taskunin, yaa Layla?” / “Askun fii baytin qariibin min al-jaami'a.”</span>"}]},
+    {label:"Section VII: Conjugate the verb to fit the sentence", items:[{prompt:"<div class=\"arabic big-ar\">الطالبة ______ (درس) اللغة العربية.</div>",answer:"<div class=\"arabic big-ar\">تَدْرُسُ</div>"},{prompt:"<div class=\"arabic big-ar\">أنا ______ (سكن) في واشنطن.</div>",answer:"<div class=\"arabic big-ar\">أَسْكُنُ</div>"},{prompt:"<div class=\"arabic big-ar\">هو ______ (عمل) في الجامعة.</div>",answer:"<div class=\"arabic big-ar\">يَعْمَلُ</div>"},{prompt:"<div class=\"arabic big-ar\">نحن ______ (عرف) الجواب.</div>",answer:"<div class=\"arabic big-ar\">نَعْرِفُ</div>"},{prompt:"<div class=\"arabic big-ar\">هي ______ (فهم) الدرس.</div>",answer:"<div class=\"arabic big-ar\">تَفْهَمُ</div>"},{prompt:"<div class=\"arabic big-ar\">الطلاب ______ (ذهب) إلى المكتبة.</div>",answer:"<div class=\"arabic big-ar\">يَذْهَبونَ</div>"},{prompt:"<div class=\"arabic big-ar\">أنتَ ______ (شرب) القهوة.</div>",answer:"<div class=\"arabic big-ar\">تَشْرَبُ</div>"},{prompt:"<div class=\"arabic big-ar\">أنتِ ______ (حفظ) الكلمات الجديدة.</div>",answer:"<div class=\"arabic big-ar\">تَحْفَظينَ</div>"}]},
+    {label:"Section VIII: Form the nisba adjective", items:[{prompt:"<div class=\"arabic big-ar\">مصر</div>",answer:"<div class=\"arabic big-ar\">مِصْرِيّ / مِصْرِيّة</div>"},{prompt:"<div class=\"arabic big-ar\">لبنان</div>",answer:"<div class=\"arabic big-ar\">لُبنانِيّ / لُبنانِيّة</div>"},{prompt:"<div class=\"arabic big-ar\">اليابان</div>",answer:"<div class=\"arabic big-ar\">يابانِيّ / يابانِيّة</div>"},{prompt:"<div class=\"arabic big-ar\">السعودية</div>",answer:"<div class=\"arabic big-ar\">سُعودِيّ / سُعودِيّة</div>"}]},
+    {label:"Section IX: Nominal sentence or verbal sentence?", items:[{prompt:"<div class=\"arabic big-ar\">البيت جديد</div>",answer:"<p>nominal (opens with the noun البيت, followed directly by its description)</p>"},{prompt:"<div class=\"arabic big-ar\">تَدْرُسُ سارة التاريخ</div>",answer:"<p>verbal (opens with the conjugated verb تَدْرُسُ, before the subject سارة)</p>"},{prompt:"<div class=\"arabic big-ar\">أنا طالب</div>",answer:"<p>nominal (opens with the pronoun أنا)</p>"},{prompt:"<div class=\"arabic big-ar\">يَعْمَلُ خالد في المكتبة</div>",answer:"<p>verbal (opens with the conjugated verb يَعْمَلُ, before the subject خالد)</p>"},{prompt:"<div class=\"arabic big-ar\">هذا كتاب</div>",answer:"<p>nominal (opens with the demonstrative هذا)</p>"},{prompt:"<div class=\"arabic big-ar\">ذهب الولد إلى الصف</div>",answer:"<p>verbal (opens with the past-tense verb ذهب, before the subject الولد)</p>"}]},
+    {label:"Section X: Negate using ليس", items:[{prompt:"<div class=\"arabic big-ar\">البيت جديد.</div>",answer:"<div class=\"arabic big-ar\">البيت ليس جديداً</div>"},{prompt:"<div class=\"arabic big-ar\">هي طالبة.</div>",answer:"<div class=\"arabic big-ar\">هي ليست طالبةً</div>"},{prompt:"<div class=\"arabic big-ar\">هم مشغولون.</div>",answer:"<div class=\"arabic big-ar\">هم ليسوا مشغولين</div>"},{prompt:"<div class=\"arabic big-ar\">أنا مصري.</div>",answer:"<div class=\"arabic big-ar\">أنا لست مصرياً</div>"}]},
+    {label:"Section XI: Active participle or passive participle?", items:[{prompt:"<div class=\"arabic big-ar\">كاتِب</div>",answer:"<p>active (كاتِب, \"writer,\" the one doing the writing)</p>"},{prompt:"<div class=\"arabic big-ar\">مَكْتوب</div>",answer:"<p>passive (مَكْتوب, \"written,\" the thing written)</p>"},{prompt:"<div class=\"arabic big-ar\">مُدَرِّس</div>",answer:"<p>active (مُدَرِّس, \"teacher,\" the one doing the teaching)</p>"},{prompt:"<div class=\"arabic big-ar\">مَعْروف</div>",answer:"<p>passive (مَعْروف, \"known,\" the thing known)</p>"}]},
+    {label:"Section XII: Fill in the correct question word", items:[{prompt:"<div class=\"arabic big-ar\">______ اسمك؟</div>",answer:"<div class=\"arabic big-ar\">ما</div>"},{prompt:"<div class=\"arabic big-ar\">______ تسكن؟</div>",answer:"<div class=\"arabic big-ar\">أين</div>"},{prompt:"<div class=\"arabic big-ar\">______ أنتَ؟</div>",answer:"<div class=\"arabic big-ar\">مَن</div>"},{prompt:"<div class=\"arabic big-ar\">______ تدرس العربية؟ (asking why)</div>",answer:"<div class=\"arabic big-ar\">لِماذا</div>"},{prompt:"<div class=\"arabic big-ar\">______ أخ عندك؟ (asking how many)</div>",answer:"<div class=\"arabic big-ar\">كَم</div>"}]},
+  ]},
+  {title:"Practice Test B", sections:[
+    {label:"Section I: Connect the letters to form words", items:[{prompt:"<div class=\"arabic big-ar\">ب + ي + ت</div>",answer:"<div class=\"arabic big-ar\">بَيْت</div>"},{prompt:"<div class=\"arabic big-ar\">د + ر + ج + ة</div>",answer:"<div class=\"arabic big-ar\">دَرَجة</div>"},{prompt:"<div class=\"arabic big-ar\">ك + ر + س + ي</div>",answer:"<div class=\"arabic big-ar\">كُرْسِي</div>"},{prompt:"<div class=\"arabic big-ar\">ش + ب + ا + ك</div>",answer:"<div class=\"arabic big-ar\">شُبّاك</div>"},{prompt:"<div class=\"arabic big-ar\">ط + ا + و + ل + ة</div>",answer:"<div class=\"arabic big-ar\">طاوِلة</div>"},{prompt:"<div class=\"arabic big-ar\">ك + ل + ب</div>",answer:"<div class=\"arabic big-ar\">كَلْب</div>"},{prompt:"<div class=\"arabic big-ar\">ق + ط + ة</div>",answer:"<div class=\"arabic big-ar\">قِطّة</div>"},{prompt:"<div class=\"arabic big-ar\">و + ل + د</div>",answer:"<div class=\"arabic big-ar\">وَلَد</div>"},{prompt:"<div class=\"arabic big-ar\">ب + ن + ت</div>",answer:"<div class=\"arabic big-ar\">بِنْت</div>"},{prompt:"<div class=\"arabic big-ar\">ص + و + ر + ة</div>",answer:"<div class=\"arabic big-ar\">صورة</div>"},{prompt:"<div class=\"arabic big-ar\">ر + س + ا + ل + ة</div>",answer:"<div class=\"arabic big-ar\">رِسالة</div>"},{prompt:"<div class=\"arabic big-ar\">ج + ي + ش</div>",answer:"<div class=\"arabic big-ar\">جَيْش</div>"}]},
+    {label:"Section II: Write in Arabic with full short vowels and shadda", items:[{prompt:"<p>kalb (dog)</p>",answer:"<div class=\"arabic big-ar\">كَلْب</div>"},{prompt:"<p>qiTTa (cat)</p>",answer:"<div class=\"arabic big-ar\">قِطّة</div>"},{prompt:"<p>walad (boy)</p>",answer:"<div class=\"arabic big-ar\">وَلَد</div>"},{prompt:"<p>bint (girl)</p>",answer:"<div class=\"arabic big-ar\">بِنْت</div>"},{prompt:"<p>shubbaak (window)</p>",answer:"<div class=\"arabic big-ar\">شُبّاك</div>"},{prompt:"<p>Taawila (table)</p>",answer:"<div class=\"arabic big-ar\">طاوِلة</div>"},{prompt:"<p>kursii (chair)</p>",answer:"<div class=\"arabic big-ar\">كُرْسِي</div>"},{prompt:"<p>risaala (letter)</p>",answer:"<div class=\"arabic big-ar\">رِسالة</div>"},{prompt:"<p>jaysh (army)</p>",answer:"<div class=\"arabic big-ar\">جَيْش</div>"},{prompt:"<p>Suura (picture)</p>",answer:"<div class=\"arabic big-ar\">صورة</div>"}]},
+    {label:"Section III: Transliterate into English letters", items:[{prompt:"<div class=\"arabic big-ar\">مساء الخير</div>",answer:"<p>masaa' al-khayr</p>"},{prompt:"<div class=\"arabic big-ar\">أهلاً وسهلاً</div>",answer:"<p>ahlan wa sahlan</p>"},{prompt:"<div class=\"arabic big-ar\">أين تسكن؟</div>",answer:"<p>ayna taskun?</p>"},{prompt:"<div class=\"arabic big-ar\">كم أخ عندك؟</div>",answer:"<p>kam akh 'indaka?</p>"},{prompt:"<div class=\"arabic big-ar\">أنا بخير، الحمد لله</div>",answer:"<p>ana bi-khayr, al-Hamdu lillaah</p>"}]},
+    {label:"Section IV: Picture vocabulary", items:[{prompt:"Find or take a photo of a classroom or a family gathering, something with several people and objects in it. Identify five (5) objects or people in the photo by their Arabic name, then describe three (3) of them in full sentences.<br><br><span class=\"muted\">Reference word bank: رجل (man), اِمْرَأة (woman), وَلَد (boy), بِنْت (girl), طالِب / طالِبة (student), أُستاذ / أُستاذة (professor), كُرْسِي (chair), طاوِلة (table), كِتاب (book).</span>",answer:"Open-ended and depends on your photo. Check gender agreement on every adjective, and make sure a definite noun's adjective carries ال too."}]},
+    {label:"Section V: Picture description", items:[{prompt:"Find or take a photo of a place (a city street, a campus, a park) and describe it in full sentences, using at least three (3) adjectives.<br><br><span class=\"muted\">Reference adjective bank: كَبير/كَبيرة (big), جَميل/جَميلة (beautiful), جَديد/جَديدة (new), صَغير/صَغيرة (small), واسِع/واسِعة (wide), قَريب/قَريبة (near), بَعيد/بَعيدة (far).</span>",answer:"Open-ended, same guidance as Section IV: check gender agreement on every adjective, and make sure a definite noun's adjective carries ال too."}]},
+    {label:"Section VI: Dialogue completion", items:[{prompt:"Read the dialogue between Sara and Omar and fill in the blanks with appropriate vocabulary.<div class=\"arabic\" style=\"margin-top:10px;line-height:2;\">سارة: مساء ______ يا عمر.<br>عمر: مساء ______. ______ حالُكَ؟<br>سارة: الحمد لله، بخير. من ______ أنتَ؟<br>عمر: أنا ______. وأنتِ، من ______ أنتِ؟<br>سارة: أنا لُبنانِّة. ماذا ______، يا عمر؟<br>عمر: ______ الهندسة. وأنتِ؟<br>سارة: أنا ______ في عِلْمِ النَّفْس.</div>",answer:"الخير / النور / كيف / أين / أردني / أين / تدرس / أدرس / متخصصة<br><br><span class=\"muted\">Full dialogue: “Masaa' al-khayr yaa 'Omar.” / “Masaa' an-nuur. Kayfa Haaluka?” / “Al-Hamdu lillaah, bi-khayr. Min ayna anta?” / “Ana urdunniyy. Wa anti, min ayna anti?” / “Ana lubnaaniyya. Maadhaa tadrus, yaa 'Omar?” / “Adrus al-handasa. Wa anti?” / “Ana mutakhaSSiSa fii 'ilm an-nafs.”</span>"}]},
+    {label:"Section VII: Conjugate the verb to fit the sentence", items:[{prompt:"<div class=\"arabic big-ar\">أنتِ ______ (كتب) الواجب.</div>",answer:"<div class=\"arabic big-ar\">تَكْتُبينَ</div>"},{prompt:"<div class=\"arabic big-ar\">الأستاذ ______ (درّس) اللغة العربية.</div>",answer:"<div class=\"arabic big-ar\">يُدَرِّسُ</div>"},{prompt:"<div class=\"arabic big-ar\">نحن ______ (أراد) أن نسافر.</div>",answer:"<div class=\"arabic big-ar\">نُريدُ</div>"},{prompt:"<div class=\"arabic big-ar\">هم ______ (قبل) الدعوة.</div>",answer:"<div class=\"arabic big-ar\">يَقْبَلونَ</div>"},{prompt:"<div class=\"arabic big-ar\">أنا ______ (تذكر) اسمه.</div>",answer:"<div class=\"arabic big-ar\">أَتَذَكَّرُ</div>"},{prompt:"<div class=\"arabic big-ar\">البنات ______ (ذهب) إلى الجامعة.</div>",answer:"<div class=\"arabic big-ar\">يَذْهَبْنَ</div>"},{prompt:"<div class=\"arabic big-ar\">أنتَ ______ (أحب) القهوة.</div>",answer:"<div class=\"arabic big-ar\">تُحِبُّ</div>"},{prompt:"<div class=\"arabic big-ar\">هي ______ (سافر) إلى مصر.</div>",answer:"<div class=\"arabic big-ar\">تُسافِرُ</div>"}]},
+    {label:"Section VIII: Form the nisba adjective", items:[{prompt:"<div class=\"arabic big-ar\">فرنسا</div>",answer:"<div class=\"arabic big-ar\">فَرَنسِيّ / فَرَنسِيّة</div>"},{prompt:"<div class=\"arabic big-ar\">الأردن</div>",answer:"<div class=\"arabic big-ar\">أُردُنِّيّ / أُردُنِّيّة</div>"},{prompt:"<div class=\"arabic big-ar\">العراق</div>",answer:"<div class=\"arabic big-ar\">عِراقِيّ / عِراقِيّة</div>"},{prompt:"<div class=\"arabic big-ar\">أمريكا</div>",answer:"<div class=\"arabic big-ar\">أمريكِيّ / أمريكِيّة</div>"}]},
+    {label:"Section IX: Nominal sentence or verbal sentence?", items:[{prompt:"<div class=\"arabic big-ar\">أحمد مصري</div>",answer:"<p>nominal (opens with the noun أحمد, followed directly by its description)</p>"},{prompt:"<div class=\"arabic big-ar\">يَكْتُبُ الطالب الواجب</div>",answer:"<p>verbal (opens with the conjugated verb يَكْتُبُ, before the subject الطالب)</p>"},{prompt:"<div class=\"arabic big-ar\">هي من سوريا</div>",answer:"<p>nominal (opens with the pronoun هي)</p>"},{prompt:"<div class=\"arabic big-ar\">تَسْكُنُ سارة في نيويورك</div>",answer:"<p>verbal (opens with the conjugated verb تَسْكُنُ, before the subject سارة)</p>"},{prompt:"<div class=\"arabic big-ar\">هذه قصة جميلة</div>",answer:"<p>nominal (opens with the demonstrative هذه)</p>"},{prompt:"<div class=\"arabic big-ar\">قرأ الولد الكتاب</div>",answer:"<p>verbal (opens with the past-tense verb قرأ, before the subject الولد)</p>"}]},
+    {label:"Section X: Negate using ليس", items:[{prompt:"<div class=\"arabic big-ar\">الجو حار.</div>",answer:"<div class=\"arabic big-ar\">الجو ليس حاراً</div>"},{prompt:"<div class=\"arabic big-ar\">أنتِ طالبة جديدة.</div>",answer:"<div class=\"arabic big-ar\">أنتِ لستِ طالبةً جديدةً</div>"},{prompt:"<div class=\"arabic big-ar\">نحن مشغولون.</div>",answer:"<div class=\"arabic big-ar\">نحن لسنا مشغولين</div>"},{prompt:"<div class=\"arabic big-ar\">هو أستاذ.</div>",answer:"<div class=\"arabic big-ar\">هو ليس أستاذاً</div>"}]},
+    {label:"Section XI: Active participle or passive participle?", items:[{prompt:"<div class=\"arabic big-ar\">مُسافِر</div>",answer:"<p>active (مُسافِر, \"traveler,\" the one doing the traveling)</p>"},{prompt:"<div class=\"arabic big-ar\">مُتَرْجَم</div>",answer:"<p>passive (مُتَرْجَم, \"translated,\" the thing translated)</p>"},{prompt:"<div class=\"arabic big-ar\">عامِل</div>",answer:"<p>active (عامِل, \"worker,\" the one doing the work)</p>"},{prompt:"<div class=\"arabic big-ar\">مَفْهوم</div>",answer:"<p>passive (مَفْهوم, \"understood,\" the thing understood)</p>"}]},
+    {label:"Section XII: Fill in the correct question word", items:[{prompt:"<div class=\"arabic big-ar\">______ تسكن؟</div>",answer:"<div class=\"arabic big-ar\">أين</div>"},{prompt:"<div class=\"arabic big-ar\">______ هذا؟ (asking who)</div>",answer:"<div class=\"arabic big-ar\">مَن</div>"},{prompt:"<div class=\"arabic big-ar\">______ تدرس؟ (asking what, verb follows)</div>",answer:"<div class=\"arabic big-ar\">ماذا</div>"},{prompt:"<div class=\"arabic big-ar\">______ كتابٍ تحب؟ (asking which)</div>",answer:"<div class=\"arabic big-ar\">أيّ</div>"},{prompt:"<div class=\"arabic big-ar\">______ تذهب إلى الجامعة؟ (asking when)</div>",answer:"<div class=\"arabic big-ar\">مَتى</div>"}]},
+  ]},
 ];
 
 // Word-recognition drill: "which grammatical role does this word/phrase play?" and
@@ -852,6 +991,7 @@ const TABS = [
   {id:'crossword',label:'Crossword'},
   {id:'conjugations',label:'Conjugations'},
   {id:'homework',label:'Homework'},
+  {id:'drills',label:'Drills'},
 ];
 let currentTab = 'home';
 
@@ -893,6 +1033,7 @@ function go(tab, param){
   else if(tab==='crossword') renderCrossword(main);
   else if(tab==='conjugations') renderConjugations(main, param);
   else if(tab==='homework') renderHomework(main);
+  else if(tab==='drills') renderDrills(main, param);
 }
 
 /* ============================================================
@@ -930,6 +1071,10 @@ function renderHome(main){
         <div class="card lesson-card" onclick="go('homework')">
           <div class="num">Schedule</div><h3>Homework</h3>
           <p class="muted" style="margin:0;">The full daily assignment schedule for both books, in class and at home, week by week.</p>
+        </div>
+        <div class="card lesson-card" onclick="go('drills')">
+          <div class="num">Practice</div><h3>Drills</h3>
+          <p class="muted" style="margin:0;">Fill-in and translate exercises with no multiple choice: reveal the answer when you're ready, matching the instructor's own worksheets.</p>
         </div>
       </div>
     </div>
@@ -1326,6 +1471,25 @@ setLessonBook('alkitaab');
 addLesson("Gender Review: mudhakkar and mu'annath", `
 <p>Al-Kitaab picks up gender exactly where Alif Baa left off, but starts using the Arabic grammatical terms directly instead of just "masculine" and "feminine": <span class="arabic">مُذَكَّر</span> (mudhakkar, masculine) and <span class="arabic">مُؤَنَّث</span> (mu'annath, feminine). The rule you already know still holds: a word ending in taa marbuuTa (ة) is almost always mu'annath, and everything that agrees with it (adjectives, demonstratives, verbs) has to agree in gender too.</p>
 <p>Two new wrinkles show up in Al-Kitaab's own vocabulary: words like <span class="arabic">زَميل / زَميلة</span> (classmate, m./f.) and <span class="arabic">صَديق / صَديقة</span> (friend, m./f.) are exactly the masculine/feminine noun pairs you'd expect. But a handful of professions and roles, like <span class="arabic">مُوَظَّف / ة</span> (employee) and <span class="arabic">مُتَرجِم / ة</span> (translator), follow the same pattern too, which is worth noticing since it confirms the ة rule works just as well for professions as it does for ordinary nouns and adjectives.</p>
+`);
+
+addLesson("Nisba Adjectives", `
+<p>The nisba adjective (<span class="arabic">النِّسْبة</span>) is how Arabic turns a place name, or any noun, into a descriptive adjective, most commonly for nationality. It's formed by adding a suffix to the noun: <span class="arabic">ـِيّ</span> for masculine, <span class="arabic">ـِيَّة</span> for feminine.</p>
+<h3>What to strip before adding the suffix</h3>
+<p>Before adding the suffix, strip three things off the noun if they're there:</p>
+<ul>
+<li>the definite article ال</li>
+<li>a feminine ة ending</li>
+<li>a final long vowel</li>
+</ul>
+<h3>Three worked examples</h3>
+<p><span class="arabic">العِراق</span> (Iraq) loses ال, leaving <span class="arabic">عِراق</span>, plus the nisba suffix gives <span class="arabic">عِراقِيّ</span> (Iraqi, m.) and <span class="arabic">عِراقِيّة</span> (Iraqi, f.).</p>
+<p><span class="arabic">السُّعودِيّة</span> (Saudi Arabia) loses both ال and the feminine ة, leaving <span class="arabic">سُعود</span>, plus the suffix gives <span class="arabic">سُعودِيّ</span> (Saudi, m.) and <span class="arabic">سُعودِيّة</span> (Saudi, f.).</p>
+<p><span class="arabic">سوريا</span> (Syria) loses its final long vowel (ا), leaving <span class="arabic">سور</span>, plus the suffix gives <span class="arabic">سورِيّ</span> (Syrian, m.) and <span class="arabic">سورِيّة</span> (Syrian, f.).</p>
+<h3>Agreement and word order</h3>
+<p>Like any adjective, a nisba adjective agrees in gender with the noun it describes and follows it in word order: <span class="arabic">أنا مِصْرِيّ</span> (I am Egyptian, said by a man), <span class="arabic">هي مِصْرِيّة</span> (she is Egyptian). You already have <span class="arabic">مِصْرِيّ / مِصْرِيّة</span> as vocabulary from Al-Kitaab Lesson 1, this is the grammar rule that word was built from.</p>
+<h3>Not just countries</h3>
+<p>Nisba adjectives aren't limited to countries. Any noun can take a nisba ending to mean "relating to X": <span class="arabic">سِياسة</span> (politics) gives <span class="arabic">سِياسِيّ</span> (political), as in <span class="arabic">العُلوم السِّياسِيّة</span> (political science, already on the site as Al-Kitaab Lesson 3 vocabulary).</p>
 `);
 
 addLesson("The Nominal Sentence, Reviewed and Negated", `
@@ -1948,8 +2112,22 @@ function genVerbQuestions(n){
 function genQWordQuestions(n){
   const qs=[]; const pool=[];
   for(let i=0;i<n;i++){
-    const q = pick(QWORDS);
-    qs.push(mcqFrom(q[2], QWORDS.map(x=>x[2]), `What does <span class="arabic big-ar">${q[1]}</span> <span class="tr-toggle">(${q[0]})</span> mean?`, `${q[1]} <span class="tr-toggle">(${q[0]})</span> = ${q[2]}`));
+    if(QWORD_EXAMPLES.length && Math.random()<0.3){
+      const ex = pick(QWORD_EXAMPLES);
+      const correctWord = QWORDS.find(x=>x[0]===ex.qkey)[1];
+      const distractorPool = QWORDS.map(x=>x[1]).filter(w=>w!==correctWord);
+      const distractors = sample(distractorPool, 3);
+      const options = shuffle([correctWord, ...distractors]);
+      qs.push({
+        prompt:`<span class="arabic big-ar">${ex.blanked}</span><br><span class="muted">${ex.meaning}</span><br>Which question word completes this sentence?`,
+        options: options.map(o=>`<span class="arabic big-ar">${o}</span>`),
+        correct: options.indexOf(correctWord),
+        explain: `<span class="arabic">${ex.full}</span> = "${ex.meaning}"`
+      });
+    } else {
+      const q = pick(QWORDS);
+      qs.push(mcqFrom(q[2], QWORDS.map(x=>x[2]), `What does <span class="arabic big-ar">${q[1]}</span> <span class="tr-toggle">(${q[0]})</span> mean?`, `${q[1]} <span class="tr-toggle">(${q[0]})</span> = ${q[2]}`));
+    }
   }
   return qs;
 }
@@ -2094,6 +2272,12 @@ const SENTENCE_TYPE_BANK = [
   ["تُسافِرُ مها إلى مِصر", "tusaafiru maha ilaa miSr", "verbal", "it opens with the conjugated verb تُسافِرُ, before the subject مها"],
   ["كانَ الطَّقسُ بارِداً", "kaana T-Taqsu baaridan", "verbal", "it opens with the past-tense verb كانَ, before its subject الطَّقسُ"],
   ["أُسرَتي كَبيرة", "usratii kabiira", "nominal", "it opens with the noun أُسرَتي (my family) followed directly by its description"],
+  ["ذَهَبَ أحمد إلى الجامِعة", "dhahaba aHmad ilaa l-jaamiʿa", "verbal", "opens with the past-tense verb ذَهَبَ, before the subject أحمد"],
+  ["أُستاذي مِصْرِيٌّ", "ustaadhii miSriyyun", "nominal", "opens with the noun أُسْتاذي followed directly by its description"],
+  ["تَدْرُسُ سارة التاريخَ", "tadrusu saara t-taariikha", "verbal", "opens with the conjugated verb تَدْرُسُ, before the subject سارة"],
+  ["هذِهِ قِصّةٌ جَميلةٌ", "haadhihi qiSSatun jamiilatun", "nominal", "opens with the demonstrative هذِهِ followed directly by its description"],
+  ["يُحِبُّ خالِدٌ القَهْوةَ", "yuHibbu khaalidun l-qahwata", "verbal", "opens with the conjugated verb يُحِبُّ, before the subject خالِدٌ"],
+  ["عِندي سُؤالٌ", "ʿindii suʾaalun", "nominal", "opens with the fronted predicate عِندي, the subject سُؤالٌ comes second"],
 ];
 function genSentypeQuestions(n){
   const qs=[]; const pool = shuffle(SENTENCE_TYPE_BANK).slice(0, Math.min(n, SENTENCE_TYPE_BANK.length));
@@ -2484,6 +2668,183 @@ function renderConjugations(main, param){
     nav.appendChild(b);
   }
   main.appendChild(nav);
+}
+
+/* ============================================================
+   DRILLS (reveal-answer exercises, no multiple choice)
+   ============================================================ */
+function buildNisbaDrillItems(){
+  return shuffle(NISBA_BANK).map(n=>({
+    prompt:`<div class="arabic big-ar">${n.country}</div><div class="muted">${n.countryEn}</div><p class="muted" style="margin-top:10px;">Give the masculine and feminine nisba adjective.</p>`,
+    reveal:`<div class="arabic big-ar">${n.m}</div><div class="arabic big-ar">${n.f}</div><div class="muted tr-toggle" style="margin-top:6px;">${n.tr}</div>`
+  }));
+}
+function buildPossIdentifyItems(){
+  return shuffle(POSSESSIVE_IDENTIFY_BANK).map(p=>({
+    prompt:`<div class="arabic big-ar">${p.word}</div><div class="muted">${p.meaning}</div><p class="muted" style="margin-top:10px;">Which subject pronoun does this correspond to?</p>`,
+    reveal:`<div class="arabic big-ar">${p.answer}</div><div class="muted">${p.word} = ${p.meaning}</div>`
+  }));
+}
+function buildPossProduceItems(){
+  return shuffle(POSSESSIVE_PRODUCE_BANK).map(p=>({
+    prompt:`<p>${p.en}</p><div class="arabic big-ar">${p.noun}</div><p class="muted" style="margin-top:10px;">Add the correct possessive suffix.</p>`,
+    reveal:`<div class="arabic big-ar">${p.answer}</div>`
+  }));
+}
+function buildPossTranslateItems(){
+  return shuffle(POSSESSIVE_TRANSLATE_BANK).map(p=>({
+    prompt:`<p>${p.en}</p><p class="muted" style="margin-top:10px;">Translate to Arabic.</p>`,
+    reveal:`<div class="arabic big-ar">${p.answer}</div>`
+  }));
+}
+function buildSubjPredItems(){
+  return shuffle(SUBJECT_PREDICATE_BANK).map(s=>{
+    const note = s.note==='verbal' ? ' <span class="muted">(a verbal sentence acting as the predicate)</span>' : s.note==='fronted' ? ' <span class="muted">(fronted predicate)</span>' : '';
+    return {
+      prompt:`<div class="arabic big-ar">${s.ar}</div><p class="muted" style="margin-top:10px;">Identify the subject (mubtada) and the predicate (khabar).</p>`,
+      reveal:`<p><b style="color:var(--accent);">Subject:</b> <span class="arabic big-ar">${s.subject}</span></p><p><b style="color:var(--bad);">Predicate:</b> <span class="arabic big-ar">${s.predicate}</span>${note}</p><p class="muted">“${s.meaning}”</p>`
+    };
+  });
+}
+function buildNominalVerbalItems(){
+  return shuffle(SENTENCE_TYPE_BANK).map(s=>{
+    const [ar,tr,type,why]=s;
+    const label = type==='nominal' ? 'Nominal sentence (jumla ismiyya)' : 'Verbal sentence (jumla fiʿliyya)';
+    return {
+      prompt:`<div class="arabic big-ar">${ar}</div><div class="muted tr-toggle">${tr}</div><p class="muted" style="margin-top:10px;">Nominal or verbal sentence?</p>`,
+      reveal:`<p><b>${label}</b></p><p class="muted">${why}.</p>`
+    };
+  });
+}
+function passageHeaderHtml(p){
+  return `<div class="card" style="margin-bottom:16px;"><h3 style="margin-top:0;">${p.title}</h3><p class="arabic" style="line-height:2.1;font-size:19px;">${p.text}</p></div>`;
+}
+function buildPassageItems(p){
+  const items=[];
+  p.comprehension.forEach(c=>items.push({
+    prompt:`<p class="muted">Comprehension question</p><div class="arabic big-ar">${c.q}</div>`,
+    reveal:`<div class="arabic big-ar">${c.a}</div>`
+  }));
+  p.grammarHunt.forEach(g=>items.push({
+    prompt:`<p class="muted">Find an example of:</p><p style="font-size:19px;"><b>${g.label}</b></p>`,
+    reveal:`<div class="arabic big-ar">${g.a}</div>`
+  }));
+  return items;
+}
+function buildPracticeTestItems(test){
+  const items=[];
+  test.sections.forEach(sec=>{
+    sec.items.forEach(it=>{
+      items.push({
+        prompt:`<div class="muted" style="font-size:13px;margin-bottom:8px;">${sec.label}</div>${it.prompt}`,
+        reveal:it.answer
+      });
+    });
+  });
+  return items;
+}
+
+const DRILL_SETS = [
+  {id:'nisba', book:'alkitaab', label:'Nisba Adjective Formation', desc:'20 countries: give the masculine and feminine nisba adjective for each.', build:buildNisbaDrillItems},
+  {id:'poss-identify', book:'alifbaa', label:'Possessive Suffixes: Identify the Pronoun', desc:'Given a word with a possessive suffix, name the subject pronoun it corresponds to.', build:buildPossIdentifyItems},
+  {id:'poss-produce', book:'alifbaa', label:'Possessive Suffixes: Add the Suffix', desc:'Given an English sentence and a bare noun, produce the correctly suffixed word.', build:buildPossProduceItems},
+  {id:'poss-translate', book:'alifbaa', label:'Possessive Suffixes: Translate to Arabic', desc:'Translate English sentences using possessive constructions.', build:buildPossTranslateItems},
+  {id:'subj-pred', book:'alkitaab', label:'Identify Subject and Predicate', desc:'Find the mubtada and khabar in a nominal sentence, including fronted-predicate sentences.', build:buildSubjPredItems},
+  {id:'nominal-verbal', book:'alkitaab', label:'Nominal or Verbal?', desc:'Read the sentence and decide: nominal or verbal, no options to pick from.', build:buildNominalVerbalItems},
+  {id:'passage-noura', book:'alkitaab', label:'Reading: نورة', desc:'A short self-introduction passage, comprehension questions, then a grammar scavenger hunt.', build:()=>buildPassageItems(READING_PASSAGES[0]), header:()=>passageHeaderHtml(READING_PASSAGES[0])},
+  {id:'passage-sami', book:'alkitaab', label:'Reading: سامي', desc:'A short self-introduction passage, comprehension questions, then a grammar scavenger hunt.', build:()=>buildPassageItems(READING_PASSAGES[1]), header:()=>passageHeaderHtml(READING_PASSAGES[1])},
+  {id:'practice-a', book:'both', label:'Practice Test A', desc:'A full mock quiz, 12 sections, letters through participles. Open-ended picture sections included as self-check guidance.', build:()=>buildPracticeTestItems(PRACTICE_TEST_BANK[0])},
+  {id:'practice-b', book:'both', label:'Practice Test B', desc:'A second full mock quiz, same format, different items throughout.', build:()=>buildPracticeTestItems(PRACTICE_TEST_BANK[1])},
+];
+
+function renderDrills(main, setId){
+  if(setId){ startDrill(main, setId); return; }
+  main.appendChild(mkEl(`<div><h1>Drills</h1></div>`));
+  BOOKS.forEach(b=>{
+    const setsForBook = DRILL_SETS.filter(s=>s.book===b.id);
+    if(setsForBook.length===0) return;
+    main.appendChild(mkEl(`<h2 style="margin-top:20px;">${b.label}</h2>`));
+    const grid = mkEl(`<div class="grid cols2"></div>`);
+    setsForBook.forEach(s=>{
+      const card = mkEl(`<div class="card lesson-card"><h3>${s.label}</h3><p class="muted" style="margin:0;">${s.desc}</p></div>`);
+      card.onclick=()=>go('drills', s.id);
+      grid.appendChild(card);
+    });
+    main.appendChild(grid);
+  });
+  const practiceSets = DRILL_SETS.filter(s=>s.book==='both');
+  if(practiceSets.length>0){
+    main.appendChild(mkEl(`<h2 style="margin-top:20px;">Practice Tests</h2>`));
+    const pgrid = mkEl(`<div class="grid cols2"></div>`);
+    practiceSets.forEach(s=>{
+      const card = mkEl(`<div class="card lesson-card"><h3>${s.label}</h3><p class="muted" style="margin:0;">${s.desc}</p></div>`);
+      card.onclick=()=>go('drills', s.id);
+      pgrid.appendChild(card);
+    });
+    main.appendChild(pgrid);
+  }
+}
+
+let drillState = {};
+function startDrill(main, setId){
+  const setInfo = DRILL_SETS.find(s=>s.id===setId);
+  const items = setInfo.build();
+  drillState = { setId, items, idx:0, revealed:false };
+  const wrap = mkEl(`<div></div>`);
+  wrap.appendChild(mkEl(`<div class="row" style="margin-bottom:10px;"><button class="btn ghost" id="dBack">&larr; Drills</button><div class="spacer"></div><span class="pill">${setInfo.label}</span></div>`));
+  main.appendChild(wrap);
+  wrap.querySelector('#dBack').onclick=()=>go('drills');
+  if(setInfo.header){
+    wrap.appendChild(mkEl(`<div>${setInfo.header()}</div>`));
+  }
+  wrap.appendChild(mkEl(`<div class="progressbar"><div id="dProgress" style="width:0%"></div></div>`));
+  wrap.appendChild(mkEl(`<div class="card" id="dCard"></div>`));
+  renderItem();
+
+  function renderItem(){
+    const item = drillState.items[drillState.idx];
+    document.getElementById('dProgress').style.width = (drillState.idx/drillState.items.length*100)+'%';
+    const card = document.getElementById('dCard');
+    card.innerHTML='';
+    card.appendChild(mkEl(`<div class="quiz-prompt">${item.prompt}</div>`));
+    const revealArea = mkEl(`<div id="dReveal"></div>`);
+    card.appendChild(revealArea);
+    const nav = mkEl(`<div class="row" style="margin-top:14px;"><span class="pill">${drillState.idx+1} of ${drillState.items.length}</span><div class="spacer"></div><button class="btn" id="dAction">Reveal Answer</button></div>`);
+    card.appendChild(nav);
+    const actionBtn = nav.querySelector('#dAction');
+    actionBtn.onclick=()=>{
+      if(!drillState.revealed){
+        drillState.revealed=true;
+        revealArea.appendChild(mkEl(`<div class="explain">${item.reveal}</div>`));
+        actionBtn.textContent = drillState.idx<drillState.items.length-1 ? 'Next' : 'Finish';
+      } else {
+        next();
+      }
+    };
+  }
+  function next(){
+    drillState.idx++;
+    drillState.revealed=false;
+    if(drillState.idx>=drillState.items.length){ renderFinal(); return; }
+    renderItem();
+  }
+  function renderFinal(){
+    document.getElementById('dProgress').style.width='100%';
+    const card = document.getElementById('dCard');
+    card.innerHTML='';
+    card.appendChild(mkEl(`
+      <div style="text-align:center;padding:20px 0;">
+        <h2 style="margin-top:0;">Drill complete</h2>
+        <p class="muted">${drillState.items.length} items reviewed.</p>
+        <div class="row" style="justify-content:center;margin-top:16px;">
+          <button class="btn" id="dAgain">Try again</button>
+          <button class="btn ghost" id="dMenu">Other drills</button>
+        </div>
+      </div>
+    `));
+    card.querySelector('#dAgain').onclick=()=>go('drills', setId);
+    card.querySelector('#dMenu').onclick=()=>go('drills');
+  }
 }
 
 /* ============================================================
