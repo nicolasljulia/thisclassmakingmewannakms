@@ -380,7 +380,35 @@ Al-Kitaab picks up gender exactly where Alif Baa left off, but starts using the 
 
 Two new wrinkles show up in Al-Kitaab's own vocabulary: words like زَميل / زَميلة (classmate, m./f.) and صَديق / صَديقة (friend, m./f.) are exactly the masculine/feminine noun pairs you'd expect. But a handful of professions and roles, like مُوَظَّف / ة (employee) and مُتَرجِم / ة (translator), follow the same pattern too, which is worth noticing since it confirms the ة rule works just as well for professions as it does for ordinary nouns and adjectives.
 
-## 20. The Nominal Sentence, Reviewed and Negated
+## 20. Nisba Adjectives
+
+The nisba adjective (النِّسْبة) is how Arabic turns a place name, or any noun, into a descriptive adjective, most commonly for nationality. It's formed by adding a suffix to the noun: ـِيّ for masculine, ـِيَّة for feminine.
+
+### What to strip before adding the suffix
+
+Before adding the suffix, strip three things off the noun if they're there:
+
+- the definite article ال
+- a feminine ة ending
+- a final long vowel
+
+### Three worked examples
+
+العِراق (Iraq) loses ال, leaving عِراق, plus the nisba suffix gives عِراقِيّ (Iraqi, m.) and عِراقِيّة (Iraqi, f.).
+
+السُّعودِيّة (Saudi Arabia) loses both ال and the feminine ة, leaving سُعود, plus the suffix gives سُعودِيّ (Saudi, m.) and سُعودِيّة (Saudi, f.).
+
+سوريا (Syria) loses its final long vowel (ا), leaving سور, plus the suffix gives سورِيّ (Syrian, m.) and سورِيّة (Syrian, f.).
+
+### Agreement and word order
+
+Like any adjective, a nisba adjective agrees in gender with the noun it describes and follows it in word order: أنا مِصْرِيّ (I am Egyptian, said by a man), هي مِصْرِيّة (she is Egyptian). You already have مِصْرِيّ / مِصْرِيّة as vocabulary from Al-Kitaab Lesson 1, this is the grammar rule that word was built from.
+
+### Not just countries
+
+Nisba adjectives aren't limited to countries. Any noun can take a nisba ending to mean "relating to X": سِياسة (politics) gives سِياسِيّ (political), as in العُلوم السِّياسِيّة (political science, already on the site as Al-Kitaab Lesson 3 vocabulary).
+
+## 21. The Nominal Sentence, Reviewed and Negated
 
 You already know the core idea from Alif Baa: a nominal sentence (الجُملة الاسمِيّة) is a subject followed directly by its description, with no verb "to be" in between. Al-Kitaab spends real time on how to negate this kind of sentence, since it isn't as simple as just adding "not" in front.
 
@@ -393,7 +421,7 @@ Notice that laysa is followed by an accusative predicate (see the Case Endings l
 ### Fronting the predicate
 Arabic word order is more flexible than English. When the predicate is a prepositional phrase (like "with me" or "in the office"), it's actually very common, and often more natural, to put the predicate FIRST, before the subject, especially when introducing new information. عِندي أُخت ("I have a sister," literally "at me [is] a sister") puts عِندي first because that's the point of the sentence: the existence of a sister, not who "I" am.
 
-## 21. The Verbal Sentence
+## 22. The Verbal Sentence
 
 So far, every sentence you've built without a real verb has been a nominal sentence. Al-Kitaab now introduces the other basic sentence type: the verbal sentence (الجُملة الفِعلِيّة), which starts with a conjugated verb rather than a noun.
 
@@ -409,7 +437,7 @@ Present-tense verbs are negated with لا right before the verb, exactly as cove
 ### Converting a nominal sentence into a verbal one
 A useful exercise Al-Kitaab uses: take a nominal sentence built around an active participle or a simple description, and rebuild it as a verbal sentence using the matching verb. هي تَعمَل في مَكتَب (nominal-feeling, "she works in an office," built around the plain present-tense verb used descriptively) versus a version built around a true action reading of the same verb form. The underlying skill is recognizing that many Arabic present-tense verbs double as ongoing, descriptive statements, not just single actions, which is part of why Arabic doesn't need a separate "is working" progressive tense the way English does.
 
-## 22. Idafa, Continued
+## 23. Idafa, Continued
 
 The Idafa lesson from Alif Baa covered the core rules: noun plus noun, only the last noun takes ال or tanwiin, the earlier nouns stay bare. Al-Kitaab puts idafa to heavy use in describing family and academic relationships, which is a good place to see the pattern stretch across longer chains and get used alongside possessive suffixes.
 
@@ -422,7 +450,7 @@ Arabic kinship terms build up through idafa rather than through separate compoun
 ### An idafa hiding inside a compound topic name
 Academic subjects are usually themselves idafa constructions: عِلمُ النَفس (psychology, literally "the science of the self"), عِلمُ الاجتِماع (sociology, "the science of society/gathering"), عِلمُ الإنسان (anthropology, "the science of the human being"). Recognizing عِلمُ as the first term of an idafa, rather than a stand-alone word, helps you guess the pattern for other fields of study you haven't memorized yet.
 
-## 23. Plurals: Sound and Broken
+## 24. Plurals: Sound and Broken
 
 Alif Baa introduced the idea that Arabic has three grammatical numbers and that most plurals are "broken" (an internal vowel change) rather than "sound" (a simple suffix). Al-Kitaab is where you actually start memorizing plurals systematically, since nearly every new noun from here on is taught together with its plural form.
 
@@ -440,7 +468,7 @@ Every new noun from here on should be memorized together with its plural, the sa
 ### Non-human plural agreement, reviewed
 As covered in the Adjectives lesson, any adjective, demonstrative, or verb agreeing with a plural noun that refers to things rather than people is put in the feminine singular, no matter how many things there are. This single rule explains a lot of sentences that otherwise look like they have a gender or number mismatch.
 
-## 24. Verb Forms (al-Awzaan)
+## 25. Verb Forms (al-Awzaan)
 
 Arabic organizes derived verbs into ten numbered patterns, called forms or أوزان (awzaan, "weights" or "measures"). Every form takes the same three (or sometimes four) root consonants and drops them into a different template, producing a related but distinct meaning. You've actually already met several of these without the label: شاهَدَ (Form III), أراد and أحَبَّ (Form IV), تَكَلَّمَ and تَذَكَّرَ (Form V).
 
@@ -451,7 +479,7 @@ Once you can recognize the SHAPE of a verb form, you can guess its root even in 
 [table, see index.html]
 Forms IX is rare (mostly colors and physical defects) and won't come up much. Forms VII, VIII, and X are extremely common; you already have one Form VIII verb from your own conjugation worksheets, اِسْتَمَعَ ("to listen") is actually Form X, since it follows the استفعل template exactly (اِستَفعَلَ pattern, root س-م-ع).
 
-## 25. Hollow and Irregular Verbs
+## 26. Hollow and Irregular Verbs
 
 Every verb you've conjugated so far has had three ordinary consonants as its root. A hollow verb (الفِعل الأجوَف) has a weak letter, و or ي, as its MIDDLE root consonant, and that weak letter behaves very differently depending on what follows it.
 
@@ -462,7 +490,7 @@ Notice the middle letter shows up as a long vowel in the present tense (aa, ii, 
 ### kaana: a verb you'll use constantly
 كانَ is the closest thing Arabic has to a past-tense "to be." It turns a nominal sentence into a statement about the past: كانَ الطَّقسُ بارِداً (the weather was cold). Just like with لَيسَ, the predicate after كان is accusative in fully vowelled Arabic (بارِداً, not بارِدٌ). كانَ conjugates through all the same persons as any other past-tense verb, and its present tense يَكونُ is used for "will be" or "would be" type meanings, since plain present tense already covers ordinary "is/are."
 
-## 26. Active and Passive Participles
+## 27. Active and Passive Participles
 
 A participle in Arabic is a noun-like word built from a verb's root, describing someone or something as the doer (active) or the receiver (passive) of the verb's action. English does something similar with "-ing" and "-ed" forms (the teaching professor, the assigned homework), though the Arabic system is more systematic and used far more often, frequently standing in for what English would phrase as a full verb.
 
@@ -478,7 +506,7 @@ The passive participle (اسم المَفعول, "the noun of the thing acted up
 [table, see index.html]
 Derived-form verbs (Forms II through X) have their own, different participle patterns rather than فاعِل/مَفعول, generally built by prefixing مُـ to a shape closely related to the verb's own present-tense stem. مُوَظَّف (employee, literally "one who has been given a position") is a passive participle of a Form II verb, and مُدَرِّس (teacher, from Form II دَرَّسَ) is that same form's active participle.
 
-## 27. The Verbal Noun (al-Masdar)
+## 28. The Verbal Noun (al-Masdar)
 
 The verbal noun, or masdar (المَصدَر, literally "the source"), is a noun that names the action or concept of a verb, roughly matching English gerunds ("studying," "traveling") or action nouns ("study," "travel"). Every Arabic verb has one, and just like plurals and participles, masdars mostly have to be learned form by form and root by root rather than derived by one universal rule, at least for Form I verbs.
 
@@ -489,7 +517,7 @@ A footnote worth remembering from your own vocabulary list: السَّفَر is 
 ### Why masdars matter beyond vocabulary
 Masdars let Arabic turn a whole action into the subject or object of a sentence, the way English uses "-ing" forms: السَّفَرُ ممتِع ("traveling is fun," literally "the-traveling [is] enjoyable") treats السَّفَر as an ordinary noun functioning as the subject of a nominal sentence.
 
-## 28. Connectors: and, or, but, so
+## 29. Connectors: and, or, but, so
 
 Al-Kitaab introduces a small set of connecting words that let you combine simple sentences into longer, more natural-sounding ones. Each attaches directly to the front of the word that follows it, the same way the definite article ال does.
 
