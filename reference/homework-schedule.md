@@ -485,6 +485,7 @@ In class:
 Homework:
 - Prepare Drill 17 before class
 - Write Drills 13 and 14 (listening)
+- Read the culture note "The Family of the Prophet Muhammad" p. 64
 
 **Thu, Nov 5: Review, short quiz**
 
