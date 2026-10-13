@@ -495,6 +495,65 @@ const KITAAB_VOCAB = [
 
 const VOCAB = ALIFBAA_VOCAB.concat(KITAAB_VOCAB);
 
+// Separate flashcard deck: Dr. Alzoubi's "List of broken plural" handout. Deliberately NOT part of VOCAB and has no book tag.
+const BROKEN_PLURALS = [
+// [singular, plural, english (of the singular), transliteration of singular, transliteration of plural]
+  ["عَرَبِيّ","عَرَبْ","Arab","\u02BFarabiyy","\u02BFarab"],
+  ["أمْرِيكِيّ","أمْرِيكان","American","amriikiyy","amriikaan"],
+  ["كِتابْ","كُتُبْ","book","kitaab","kutub"],
+  ["مَدينَة","مُدُنْ","city","madiina","mudun"],
+  ["وَلَدْ","أَوْلاد","son / boy","walad","awlaad"],
+  ["بِنْتْ","بَناتْ","daughter / girl","bint","banaat"],
+  ["أخْ","أُخْوَة","brother","akh","ukhwa"],
+  ["أُخْتْ","أَخَواتْ","sister","ukht","akhawaat"],
+  ["صَاحِبْ","أصْحابْ","friend","SaaHib","aSHaab"],
+  ["اِسِمْ","أَسْماء","name","isim","asmaa'"],
+  ["عَمَلْ","أَعْمال","work","\u02BFamal","a\u02BFmaal"],
+  ["شُغُلْ","أَشْغال","work","shughul","ashghaal"],
+  ["شَيْءْ","أَشْياء","thing","shay'","ashyaa'"],
+  ["خَبَرْ","أَخْبار","news","khabar","akhbaar"],
+  ["بَيْتْ","بُيوت","house","bayt","buyuut"],
+  ["دَرْسْ","دُروسْ","lesson","dars","duruus"],
+  ["صَفْ","صُفوفْ","class","Saff","Sufuuf"],
+  ["فَصِلْ","فُصولْ","semester / season","faSil","fuSuul"],
+  ["بَنْكْ","بُنوكْ","bank","bank","bunuuk"],
+  ["فِلْسْ","فُلوسْ","money","fils","fuluus"],
+  ["بابْ","أَبْوابْ","door","baab","abwaab"],
+  ["خالْ","أَخْوال","maternal uncle","khaal","akhwaal"],
+  ["طَالِبْ","طُلَّابْ","student","Taalib","Tullaab"],
+  ["أُسْتاذ","أَساتِذَة","professor","ustaadh","asaatidha"],
+  ["رَجُلْ","رِجالْ","man","rajul","rijaal"],
+  ["إِمْرَأَة","نِساءْ","woman","imra'a","nisaa'"],
+  ["جارْ","جيران","neighbor","jaar","jiiraan"],
+  ["قَلَمْ","أَقْلام","pen / pencil","qalam","aqlaam"],
+  ["بَلَدْ","بِلاد / بُلْدان","country","balad","bilaad / buldaan"],
+  ["مِنْطَقَة","مَناطِق","region / area","minTaqa","manaaTiq"],
+  ["شارِع","شَوارِعْ","street / road","shaari\u02BF","shawaari\u02BF"],
+  ["أُسْرَة","أُسَرْ","family","usra","usar"],
+  ["مَرْكِزْ","مَراكِز","center","markaz","maraakiz"],
+  ["رَقَمْ","أَرْقام","number","raqam","arqaam"],
+  ["شاب","شَباب","guy","shaab","shabaab"],
+  ["شَجَرَة","أَشْجار","tree","shajara","ashjaar"],
+  ["وَرَقَة","أَوْراق","leaf","waraqa","awraaq"],
+  ["غُرْفَة","غُرَفْ","room","ghurfa","ghuraf"],
+  ["قِصَّة","قِصَصْ","story","qiSSa","qiSaS"],
+  ["شُبَّاك","شَبابيك","window","shubbaak","shabaabiik"],
+  ["كُرْسي","كَراسي","chair","kursii","karaasii"],
+  ["كَلْبْ","كِلاب","dog","kalb","kilaab"],
+  ["قِطَّة","قِطَطْ","cat","qiTTa","qiTaT"],
+  ["فيلم","أَفْلام","movie","fiilm","aflaam"],
+  ["مَكْتَبْ","مَكاتِبْ","office","maktab","makaatib"],
+  ["جُمْلَة","جُمَلْ","sentence","jumla","jumal"],
+  ["تَمْرين","تَمارين","exercise","tamriin","tamaariin"],
+  ["مُشْكِلَة","مَشاكِلْ","problem","mushkila","mashaakil"],
+  ["دَفْتَرْ","دَفاتِرْ","notebook","daftar","dafaatir"],
+  ["دُكْتور","دَكاتِرَة","doctor","duktuur","dakaatira"],
+  ["سَيِّدْ","سادَة","mister","sayyid","saada"],
+  ["قِسْمْ","أَقْسام","department / part","qism","aqsaam"],
+  ["سُؤال","أَسْئِلَة","question","su'aal","as'ila"],
+  ["أُمَّة","أُمَمْ","nation","umma","umam"],
+].map(([sg,pl,en,tr,trPl])=>({sg,pl,en,tr,trPl,deck:'plurals'}));
+
 const BOOKS = [
   {id:'alifbaa', label:'Alif Baa', unitLabel:'Unit', unitCount:9},
   {id:'alkitaab', label:'Al-Kitaab', unitLabel:'Lesson', unitCount:5},
@@ -1671,11 +1730,11 @@ function renderLessonDetail(main, lesson){
 /* ============================================================
    FLASHCARDS
    ============================================================ */
-let fcState = { book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en' };
+let fcState = { deckId:'vocab', book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', pdir:'sg2pl' };
 const WORD_TYPES = ["noun","verb","adjective","pronoun","question","number","particle","phrase"];
 const WORD_TYPE_LABELS = { noun:"Nouns", verb:"Verbs", adjective:"Adjectives", pronoun:"Pronouns", question:"Question words", number:"Numbers", particle:"Particles", phrase:"Phrases" };
 let knownWords = loadProgress('knownWords', {});
-function vocabKey(v){ return v.book+'|'+v.en+'|'+v.ar; }
+function vocabKey(v){ return v.deck==='plurals' ? 'plural|'+v.sg : v.book+'|'+v.en+'|'+v.ar; }
 function isKnown(v){ return !!knownWords[vocabKey(v)]; }
 function setKnown(v, known){
   const key = vocabKey(v);
@@ -1687,19 +1746,23 @@ function renderFlashcards(main){
   main.appendChild(mkEl(`<div><h1>Flashcards</h1></div>`));
   const controls = mkEl(`
     <div class="row" style="margin-bottom:16px;">
+      <select id="fcDeck">
+        <option value="vocab">Vocabulary</option>
+        <option value="plurals">Broken plurals (instructor handout)</option>
+      </select>
       <select id="fcBook"></select>
       <select id="fcUnit"></select>
       <select id="fcType"></select>
       <select id="fcStatus"></select>
-      <select id="fcDir">
-        <option value="ar2en">Arabic → English</option>
-        <option value="en2ar">English → Arabic</option>
-      </select>
+      <select id="fcDir"></select>
       <button class="btn ghost" id="fcShuffle">Shuffle</button>
       <span class="pill" id="fcKnownCount"></span>
     </div>
   `);
   main.appendChild(controls);
+  const deckSel = controls.querySelector('#fcDeck');
+  deckSel.value = fcState.deckId;
+  deckSel.onchange=()=>{ fcState.deckId=deckSel.value; fcState.idx=0; fcState.flipped=false; applyDeckControls(); buildDeck(); renderCardArea(); };
   const bookSel = controls.querySelector('#fcBook');
   BOOKS.forEach(b=>bookSel.appendChild(mkEl(`<option value="${b.id}">${b.label}</option>`)));
   bookSel.value = fcState.book;
@@ -1726,8 +1789,18 @@ function renderFlashcards(main){
   statusSel.value = fcState.status;
   statusSel.onchange=()=>{ fcState.status=statusSel.value; buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
   const dirSel = controls.querySelector('#fcDir');
-  dirSel.value = fcState.dir;
-  dirSel.onchange=()=>{ fcState.dir=dirSel.value; fcState.flipped=false; renderCardArea(); };
+  dirSel.onchange=()=>{ if(fcState.deckId==='plurals') fcState.pdir=dirSel.value; else fcState.dir=dirSel.value; fcState.flipped=false; renderCardArea(); };
+  function applyDeckControls(){
+    const plurals = fcState.deckId==='plurals';
+    [bookSel, unitSel, typeSel].forEach(s=>{ s.style.display = plurals ? 'none' : ''; });
+    const opts = plurals
+      ? [['sg2pl','Singular → Plural'],['pl2sg','Plural → Singular'],['en2ar','English → Arabic']]
+      : [['ar2en','Arabic → English'],['en2ar','English → Arabic']];
+    dirSel.innerHTML='';
+    opts.forEach(o=>dirSel.appendChild(mkEl(`<option value="${o[0]}">${o[1]}</option>`)));
+    dirSel.value = plurals ? fcState.pdir : fcState.dir;
+  }
+  applyDeckControls();
   controls.querySelector('#fcShuffle').onclick=()=>{ fcState.deck=shuffle(fcState.deck); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
 
   const area = mkEl(`<div class="flash-wrap" id="fcArea"></div>`);
@@ -1735,6 +1808,10 @@ function renderFlashcards(main){
   renderCardArea();
 
   function buildDeck(){
+    if(fcState.deckId==='plurals'){
+      fcState.deck = BROKEN_PLURALS.filter(v=>fcState.status==='all' || (fcState.status==='known')===isKnown(v));
+      return;
+    }
     fcState.deck = VOCAB.filter(v=>
       v.book===fcState.book &&
       (fcState.unit==='all' || v.unit===Number(fcState.unit)) &&
@@ -1744,7 +1821,7 @@ function renderFlashcards(main){
   }
   function updateKnownCount(){
     const el = document.getElementById('fcKnownCount');
-    const pool = VOCAB.filter(v=>v.book===fcState.book);
+    const pool = fcState.deckId==='plurals' ? BROKEN_PLURALS : VOCAB.filter(v=>v.book===fcState.book);
     if(el) el.textContent = `${pool.filter(isKnown).length}/${pool.length} known`;
   }
   function advanceAfterMark(){
@@ -1764,14 +1841,31 @@ function renderFlashcards(main){
     areaEl.innerHTML='';
     if(fcState.deck.length===0){ areaEl.appendChild(mkEl(`<p class="muted">No cards.</p>`)); return; }
     const v = fcState.deck[fcState.idx];
-    const bookInfo = BOOKS.find(b=>b.id===v.book);
-    const translitLine = `<div class="translit tr-toggle">${v.tr}</div>`;
-    const showFront = fcState.dir==='ar2en' ? `<div class="arabic" style="font-size:34px;">${v.ar}</div>${translitLine}` : `<div>${v.en}</div>`;
-    const showBack = fcState.dir==='ar2en' ? `<div>${v.en}</div>` : `<div class="arabic" style="font-size:34px;">${v.ar}</div>${translitLine}`;
     const knownTag = isKnown(v) ? ` · <span style="color:var(--good);">✓ known</span>` : '';
+    let showFront, showBack, tagText;
+    if(fcState.deckId==='plurals'){
+      const big = (ar,tr)=>`<div class="arabic" style="font-size:34px;">${ar}</div><div class="translit tr-toggle">${tr}</div>`;
+      if(fcState.pdir==='sg2pl'){
+        showFront = big(v.sg, v.tr) + `<div class="muted">${v.en}</div>`;
+        showBack = big(v.pl, v.trPl);
+      } else if(fcState.pdir==='pl2sg'){
+        showFront = big(v.pl, v.trPl) + `<div class="muted">${v.en}</div>`;
+        showBack = big(v.sg, v.tr);
+      } else {
+        showFront = `<div>${v.en}</div>`;
+        showBack = big(v.sg, v.tr) + `<div class="muted" style="margin-top:6px;">plural</div>` + big(v.pl, v.trPl);
+      }
+      tagText = `Broken plurals, instructor handout · ${fcState.idx+1}/${fcState.deck.length}${knownTag}`;
+    } else {
+      const bookInfo = BOOKS.find(b=>b.id===v.book);
+      const translitLine = `<div class="translit tr-toggle">${v.tr}</div>`;
+      showFront = fcState.dir==='ar2en' ? `<div class="arabic" style="font-size:34px;">${v.ar}</div>${translitLine}` : `<div>${v.en}</div>`;
+      showBack = fcState.dir==='ar2en' ? `<div>${v.en}</div>` : `<div class="arabic" style="font-size:34px;">${v.ar}</div>${translitLine}`;
+      tagText = `${bookInfo.label}, ${bookInfo.unitLabel} ${v.unit} · ${WORD_TYPE_LABELS[v.type]} · ${fcState.idx+1}/${fcState.deck.length}${knownTag}`;
+    }
     const card = mkEl(`
       <div class="flashcard">
-        <span class="tag">${bookInfo.label}, ${bookInfo.unitLabel} ${v.unit} · ${WORD_TYPE_LABELS[v.type]} · ${fcState.idx+1}/${fcState.deck.length}${knownTag}</span>
+        <span class="tag">${tagText}</span>
         <div id="fcContent">${fcState.flipped?showBack:showFront}</div>
         <span class="hint">click to flip</span>
       </div>
