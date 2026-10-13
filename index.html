@@ -91,6 +91,7 @@ select,input[type=text]{
 .flashcard .hint{position:absolute;bottom:12px;font-size:12px;color:var(--muted);}
 .flashcard .translit{font-size:15px;color:var(--muted);margin-top:8px;}
 body.hide-translit .tr-toggle{display:none;}
+body.hide-english .en-toggle{display:none;}
 /* matching */
 .match-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:560px;margin:0 auto;}
 .match-col{display:flex;flex-direction:column;gap:8px;}
@@ -150,6 +151,7 @@ footer{max-width:1000px;margin:0 auto;padding:20px 16px 40px;color:var(--muted);
     <div class="brand">Arabic 1011 <span>Companion</span></div>
     <nav class="tabs" id="mainNav"></nav>
     <button id="translitToggle" class="btn ghost" style="margin-left:auto;"></button>
+    <button id="englishToggle" class="btn ghost"></button>
   </div>
 </header>
 <main id="main"></main>
@@ -1063,6 +1065,19 @@ document.getElementById('translitToggle').onclick = ()=>{
 };
 applyTranslitVisibility();
 
+let globalShowEnglish = loadProgress('showEnglish', true);
+function applyEnglishVisibility(){
+  document.body.classList.toggle('hide-english', !globalShowEnglish);
+  const btn = document.getElementById('englishToggle');
+  if(btn) btn.textContent = globalShowEnglish ? 'Hide translation' : 'Show translation';
+}
+document.getElementById('englishToggle').onclick = ()=>{
+  globalShowEnglish = !globalShowEnglish;
+  saveProgress('showEnglish', globalShowEnglish);
+  applyEnglishVisibility();
+};
+applyEnglishVisibility();
+
 function renderNav(){
   const nav = document.getElementById('mainNav');
   nav.innerHTML='';
@@ -1748,7 +1763,7 @@ function renderFlashcards(main){
     <div class="row" style="margin-bottom:16px;">
       <select id="fcDeck">
         <option value="vocab">Vocabulary</option>
-        <option value="plurals">Broken plurals (instructor handout)</option>
+        <option value="plurals">Broken plurals</option>
       </select>
       <select id="fcBook"></select>
       <select id="fcUnit"></select>
@@ -1846,10 +1861,10 @@ function renderFlashcards(main){
     if(fcState.deckId==='plurals'){
       const big = (ar,tr)=>`<div class="arabic" style="font-size:34px;">${ar}</div><div class="translit tr-toggle">${tr}</div>`;
       if(fcState.pdir==='sg2pl'){
-        showFront = big(v.sg, v.tr) + `<div class="muted">${v.en}</div>`;
+        showFront = big(v.sg, v.tr) + `<div class="muted en-toggle">${v.en}</div>`;
         showBack = big(v.pl, v.trPl);
       } else if(fcState.pdir==='pl2sg'){
-        showFront = big(v.pl, v.trPl) + `<div class="muted">${v.en}</div>`;
+        showFront = big(v.pl, v.trPl) + `<div class="muted en-toggle">${v.en}</div>`;
         showBack = big(v.sg, v.tr);
       } else {
         showFront = `<div>${v.en}</div>`;
@@ -2191,7 +2206,7 @@ function genVerbQuestions(n){
     while(distractors.length<3) distractors.push(pick(CONJUGATIONS.flatMap(x=>x.forms).filter(f=>f!==correct)));
     const options = shuffle([correct, ...distractors]);
     qs.push({
-      prompt:`How do you say <span class="arabic big-ar">${CONJ_PRONOUNS[pIdx]}</span> with <span class="arabic big-ar">${v.root}</span> <span class="muted">(${v.english})</span>?`,
+      prompt:`How do you say <span class="arabic big-ar">${CONJ_PRONOUNS[pIdx]}</span> with <span class="arabic big-ar">${v.root}</span> <span class="muted en-toggle">(${v.english})</span>?`,
       options: options.map(o=>`<span class="arabic big-ar">${o}</span>`),
       correct: options.indexOf(correct),
       explain: `${CONJ_PERSON_LABELS[pIdx]} + ${v.english} = ${correct}`
@@ -2209,7 +2224,7 @@ function genQWordQuestions(n){
       const distractors = sample(distractorPool, 3);
       const options = shuffle([correctWord, ...distractors]);
       qs.push({
-        prompt:`<span class="arabic big-ar">${ex.blanked}</span><br><span class="muted">${ex.meaning}</span><br>Which question word completes this sentence?`,
+        prompt:`<span class="arabic big-ar">${ex.blanked}</span><span class="en-toggle"><br><span class="muted">${ex.meaning}</span></span><br>Which question word completes this sentence?`,
         options: options.map(o=>`<span class="arabic big-ar">${o}</span>`),
         correct: options.indexOf(correctWord),
         explain: `<span class="arabic">${ex.full}</span> = "${ex.meaning}"`
@@ -2260,7 +2275,7 @@ function genVerbFormsQuestions(n){
     const distractors = sample(forms.filter(f=>f!==v.form), Math.min(3, forms.length-1));
     const options = shuffle([v.form, ...distractors]);
     qs.push({
-      prompt:`What form (wazn) is <span class="arabic big-ar">${v.root}</span> <span class="muted">(${v.english})</span>?`,
+      prompt:`What form (wazn) is <span class="arabic big-ar">${v.root}</span> <span class="muted en-toggle">(${v.english})</span>?`,
       options: options.map(o=>'Form '+o),
       correct: options.indexOf(v.form),
       explain: `${v.root} is Form ${v.form} (${VERB_FORM_TEMPLATES[v.form].past} / ${VERB_FORM_TEMPLATES[v.form].present}): ${VERB_FORM_HINTS[v.form]}.`
@@ -2274,7 +2289,7 @@ function genIdafaQuestions(n){
   pool.forEach(item=>{
     const options = shuffle([item.first, item.second]);
     qs.push({
-      prompt:`<span class="arabic big-ar">${item.first} ${item.second}</span><br><span class="muted">${item.meaning}</span><br>Which word is the second term of this idafa (definite, and in the genitive case)?`,
+      prompt:`<span class="arabic big-ar">${item.first} ${item.second}</span><span class="en-toggle"><br><span class="muted">${item.meaning}</span></span><br>Which word is the second term of this idafa (definite, and in the genitive case)?`,
       options: options.map(o=>`<span class="arabic big-ar">${o}</span>`),
       correct: options.indexOf(item.second),
       explain: `${item.second} is the second term: only it can carry ال or tanwiin, and it's what makes the whole phrase definite. ${item.first} (the first term) always stays bare.`
@@ -2291,7 +2306,7 @@ function genParticipleQuestions(n){
       const options = shuffle(['Active participle (ism al-faaʿil)','Passive participle (ism al-mafʿuul)']);
       const correctText = p.kind==='active' ? 'Active participle (ism al-faaʿil)' : 'Passive participle (ism al-mafʿuul)';
       qs.push({
-        prompt:`<span class="arabic big-ar">${p.participle}</span> <span class="muted">(${p.meaning})</span><br>Active or passive participle?`,
+        prompt:`<span class="arabic big-ar">${p.participle}</span> <span class="muted en-toggle">(${p.meaning})</span><br>Active or passive participle?`,
         options, correct: options.indexOf(correctText),
         explain: `${p.participle} is ${p.kind==='active'?'an active':'a passive'} participle${p.verb?` of ${p.verb} (${p.verbMeaning})`:''}, meaning “${p.meaning}”.`
       });
@@ -2312,7 +2327,7 @@ function genHollowVerbQuestions(n){
     if(Math.random()<0.5){
       const options = shuffle(['aa','ii','uu']);
       qs.push({
-        prompt:`<span class="arabic big-ar">${v.past} → ${v.present}</span><br><span class="muted">${v.meaning}</span><br>What's the present-tense stem vowel?`,
+        prompt:`<span class="arabic big-ar">${v.past} → ${v.present}</span><span class="en-toggle"><br><span class="muted">${v.meaning}</span></span><br>What's the present-tense stem vowel?`,
         options, correct: options.indexOf(v.vowel),
         explain: `${v.present} has a long ${v.vowel} in the stem (root ${v.root}).`
       });
@@ -2320,7 +2335,7 @@ function genHollowVerbQuestions(n){
       const options = shuffle(['و (waaw)','ي (yaa)']);
       const correctText = v.weak==='و' ? 'و (waaw)' : 'ي (yaa)';
       qs.push({
-        prompt:`<span class="arabic big-ar">${v.past} → ${v.present}</span><br><span class="muted">${v.meaning}</span><br>Which letter is the weak middle radical?`,
+        prompt:`<span class="arabic big-ar">${v.past} → ${v.present}</span><span class="en-toggle"><br><span class="muted">${v.meaning}</span></span><br>Which letter is the weak middle radical?`,
         options, correct: options.indexOf(correctText),
         explain: `The root is ${v.root}; the middle radical is the weak letter ${correctText}, which surfaces as a long vowel in the present tense.`
       });
@@ -2333,7 +2348,7 @@ function genMasdarQuestions(n){
   for(let i=0;i<n;i++){
     const m = pick(MASDAR_BANK);
     const q = mcqFrom(m.masdar, MASDAR_BANK.map(x=>x.masdar),
-      `What is the verbal noun (masdar) of <span class="arabic big-ar">${m.verb}</span> <span class="muted">(${m.verbMeaning})</span>?`,
+      `What is the verbal noun (masdar) of <span class="arabic big-ar">${m.verb}</span> <span class="muted en-toggle">(${m.verbMeaning})</span>?`,
       `${m.masdar} = ${m.meaning}`);
     q.options = q.options.map(o=>`<span class="arabic big-ar">${o}</span>`);
     qs.push(q);
@@ -2408,7 +2423,7 @@ function genPluralQuestions(n){
   pool.forEach(p=>{
     const [sing,plur,tr,en,type]=p;
     const options = shuffle(['sound masculine','sound feminine','broken']);
-    qs.push({ prompt:`<span class="arabic big-ar">${sing} \u2192 ${plur}</span><br><span class="muted"><span class="tr-toggle">${tr}</span> (${en})</span><br>What kind of plural is this?`, options, correct: options.indexOf(type),
+    qs.push({ prompt:`<span class="arabic big-ar">${sing} \u2192 ${plur}</span><br><span class="muted"><span class="tr-toggle">${tr}</span> <span class="en-toggle">(${en})</span></span><br>What kind of plural is this?`, options, correct: options.indexOf(type),
       explain: type==='broken' ? `${plur} is a broken plural: the root's internal vowels rearrange into a new pattern rather than taking a simple suffix.` : `${plur} is a ${type} plural: it just adds the regular ${type==='sound masculine' ? '\u0648\u0646/\u064a\u0646' : '\u0627\u062a'} suffix to the singular.` });
   });
   while(qs.length<n) qs.push(qs[qs.length % pool.length]);
@@ -2765,14 +2780,14 @@ function renderConjugations(main, param){
    ============================================================ */
 function buildNisbaDrillItems(){
   return shuffle(NISBA_BANK).map(n=>({
-    prompt:`<div class="arabic big-ar">${n.country}</div><div class="muted">${n.countryEn}</div><p class="muted" style="margin-top:10px;">Give the masculine and feminine nisba adjective.</p>`,
+    prompt:`<div class="arabic big-ar">${n.country}</div><div class="muted en-toggle">${n.countryEn}</div><p class="muted" style="margin-top:10px;">Give the masculine and feminine nisba adjective.</p>`,
     reveal:`<div class="arabic big-ar">${n.m}</div><div class="arabic big-ar">${n.f}</div><div class="muted tr-toggle" style="margin-top:6px;">${n.tr}</div>`
   }));
 }
 function buildPossIdentifyItems(){
   return shuffle(POSSESSIVE_IDENTIFY_BANK).map(p=>({
-    prompt:`<div class="arabic big-ar">${p.word}</div><div class="muted">${p.meaning}</div><p class="muted" style="margin-top:10px;">Which subject pronoun does this correspond to?</p>`,
-    reveal:`<div class="arabic big-ar">${p.answer}</div><div class="muted">${p.word} = ${p.meaning}</div>`
+    prompt:`<div class="arabic big-ar">${p.word}</div><div class="muted en-toggle">${p.meaning}</div><p class="muted" style="margin-top:10px;">Which subject pronoun does this correspond to?</p>`,
+    reveal:`<div class="arabic big-ar">${p.answer}</div><div class="muted en-toggle">${p.word} = ${p.meaning}</div>`
   }));
 }
 function buildPossProduceItems(){
@@ -2792,7 +2807,7 @@ function buildSubjPredItems(){
     const note = s.note==='verbal' ? ' <span class="muted">(a verbal sentence acting as the predicate)</span>' : s.note==='fronted' ? ' <span class="muted">(fronted predicate)</span>' : '';
     return {
       prompt:`<div class="arabic big-ar">${s.ar}</div><p class="muted" style="margin-top:10px;">Identify the subject (mubtada) and the predicate (khabar).</p>`,
-      reveal:`<p><b style="color:var(--accent);">Subject:</b> <span class="arabic big-ar">${s.subject}</span></p><p><b style="color:var(--bad);">Predicate:</b> <span class="arabic big-ar">${s.predicate}</span>${note}</p><p class="muted">“${s.meaning}”</p>`
+      reveal:`<p><b style="color:var(--accent);">Subject:</b> <span class="arabic big-ar">${s.subject}</span></p><p><b style="color:var(--bad);">Predicate:</b> <span class="arabic big-ar">${s.predicate}</span>${note}</p><p class="muted en-toggle">“${s.meaning}”</p>`
     };
   });
 }
