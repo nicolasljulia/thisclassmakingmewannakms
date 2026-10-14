@@ -1,15 +1,18 @@
 # Grammar Lessons (reference)
 
-Extracted from the live site. Source of truth is index.html; this is a portable copy for quick reading. Lessons 1-18 are Alif Baa, lessons 19-28 are Al-Kitaab.
+Extracted from the live site. Source of truth is index.html; this is a portable copy for quick reading. Lessons 1-18 are Alif Baa, lessons 19-30 are Al-Kitaab.
 
 ## 1. The Alphabet
 
-Arabic has 28 letters. All of them are consonants except for three that can also serve as long vowels (alif, waaw, and yaa). The script is written and read from right to left, and letters within a word are joined together in a connected, cursive style rather than printed as separate blocks the way English letters are. There is no such thing as capitalization in Arabic: a letter looks the same whether it starts a sentence, a name, or the middle of an ordinary word.
+Arabic has 28 letters, all consonants; three (alif, waaw, yaa) also serve as long vowels. The script runs right to left and letters join in a cursive style. There is no capitalization.
 
-Every letter changes shape depending on where it sits in a word: alone (isolated), at the start of a word (initial), in the middle (medial), or at the end (final). The core skeleton of the letter stays recognizable across all four forms, but connecting strokes get added or dropped depending on position. Learning to recognize a letter in all four forms, not just its isolated "flashcard" shape, is most of the work of learning to read Arabic.
+Each letter has up to four forms depending on its position: isolated, initial, medial, and final.
+
+[table, see index.html]
 
 ### Letters that only differ by their dots
-A lot of the alphabet is built from a small number of base shapes, distinguished only by the number and placement of small dots above or below the letter. Recognizing these families makes the alphabet much less intimidating:
+
+Many letters share a base shape and differ only in their dots:
 
 - ب ت ث share one shape, distinguished only by dots: ب has one dot below, ت has two dots above, ث has three dots above.
 - ج ح خ share one shape: ح has no dot, ج has one dot below, خ has one dot above.
@@ -21,372 +24,440 @@ A lot of the alphabet is built from a small number of base shapes, distinguished
 - ع غ share one shape: ع has no dot, غ has one dot above.
 - ف ق share a related shape: ف has one dot above, ق has two dots above.
 
-Once you notice this pattern, the alphabet stops being 28 unrelated shapes to memorize and becomes closer to a dozen base shapes plus a dotting rule.
-
 ### The six non-connecting letters
-Every letter connects to the letter before it and the letter after it, with one exception: six letters only connect backward, to the letter before them, and never forward to the letter that follows.
 
-ا&nbsp;&nbsp;و&nbsp;&nbsp;ر&nbsp;&nbsp;ز&nbsp;&nbsp;د&nbsp;&nbsp;ذ
+Six letters connect only to the letter before them, never to the one after:
+
+ا  و  ر  ز  د  ذ
 
 alif, waaw, raa, zaay, daal, dhaal
 
-This is why a word can appear to have a sudden "break" partway through: if one of these six letters shows up in the middle of a word, the next letter starts fresh in its isolated or initial form instead of connecting to what came before. You can spot these six letters instantly in the table above: they're the ones whose medial and final columns look identical to each other, since nothing can attach after them to change their shape.
+After one of these letters, the next letter takes its isolated or initial form. In the table above their medial and final forms are identical.
 
 ### Emphatic consonants
-Four letters (ص ض ط ظ) are called "emphatic" versions of other consonants (س د ت ذ respectively). They are pronounced with the back of the tongue pulled up and back toward the throat, which gives them a deeper, heavier sound and also darkens the vowels sitting next to them. Along with ق, خ, غ, ح, and ع, these letters are pronounced further back in the mouth and throat than their English-sounding counterparts, and getting comfortable with them is one of the main pronunciation challenges for a new learner.
+
+The letters (ص ض ط ظ) are called "emphatic" versions of other consonants (س د ت ذ respectively). They are pronounced with the back of the tongue raised, giving a heavier sound that also darkens neighboring vowels.
 
 ## 2. Vowels, Sukuun, and Shadda
 
 ### Short vowels (the harakaat)
-Short vowels are not separate letters. They are small marks, called harakaat, written above or below a consonant. Ordinary printed Arabic (newspapers, novels, street signs) leaves them out entirely, on the assumption that a fluent reader can supply the correct vowel from context and grammar. Textbooks, the Qur'an, children's books, and dictionaries write them in fully so that beginners and reciters get the pronunciation exactly right.
+
+Short vowels are small marks (harakaat) written above or below a consonant. Ordinary print omits them; textbooks, the Qur'an, children's books, and dictionaries write them in.
 
 [table, see index.html]
-Every consonant in a fully vowelled word carries exactly one of these three marks (or a sukuun, described below). There is no such thing as a bare, vowel-less consonant sitting on its own in the middle of normal pronunciation, unless it is marked with sukuun.
+
+In a fully vowelled word every consonant carries one of these marks or a sukuun.
 
 ### Long vowels
-Long vowels are written as full letters, not as small marks, which is why they never disappear from ordinary print the way short vowels do. Alif (ا) lengthens a preceding fatHa into "aa." Waaw (و) lengthens a preceding Damma into "uu." Yaa (ي) lengthens a preceding kasra into "ii." A word like كِتاب (kitaab) has one written short vowel (the kasra under the ك) and one written long vowel (the alif), and that's exactly what you hear: a short "i" followed by a long "aa."
+
+Long vowels are written as letters and always appear in print. Alif (ا) lengthens a preceding fatHa into "aa." Waaw (و) lengthens a preceding Damma into "uu." Yaa (ي) lengthens a preceding kasra into "ii." In كِتاب (kitaab) the kasra is short and the alif is long.
 
 ### Diphthongs
-Two very common combinations don't fit neatly into "short vowel" or "long vowel": a fatHa followed by a waaw with sukuun makes an "aw" sound, close to the vowel in the English word "how." A fatHa followed by a yaa with sukuun makes an "ay" sound, close to the vowel in the English word "my." You'll hear these constantly, for example in the way "bayt" (house) and "yawm" (day) are pronounced.
+
+fatHa + waaw with sukuun is "aw" (as in "how"). fatHa + yaa with sukuun is "ay" (as in "my"). Examples: bayt (house), yawm (day).
 
 ### Sukuun (ْ)
-The sukuun is a small circle written above a letter to show that this letter has no vowel after it at all. It marks the end of a syllable and the start of a consonant cluster. In a word like أَخْت (ukht, sister), the خ carries a sukuun: you say the "kh" sound and move straight into the "t" with no vowel in between.
+
+The sukuun is a small circle above a letter showing that it has no vowel. In أَخْت (ukht, sister), the خ carries a sukuun: "kh" runs straight into "t".
 
 ### Shadda (ّ)
-The shadda is a small w-shaped mark written above a letter to show that the consonant is doubled, held for roughly twice as long as a single consonant. Rather than writing the same letter twice, Arabic writes it once with a shadda on top. You have to actually hold the doubled sound when you pronounce it: دَرَّس (darrasa, "he taught") has a genuinely longer, doubled "r" sound compared to a word with a single ر.
+
+The shadda is a small w-shaped mark above a letter showing a doubled consonant, held about twice as long. In دَرَّس (darrasa, "he taught") the ر is doubled.
 
 ### Tanwiin: the "n" endings
-Tanwiin doubles up a short vowel mark to add an "n" sound to the very end of an indefinite noun or adjective. It only appears in fully vowelled, formal writing, and it is closely tied to the case system (see the Case Endings lesson).
+
+Tanwiin is a doubled short-vowel mark that adds "n" to the end of an indefinite noun or adjective. It marks case (see Case Endings).
 
 [table, see index.html]
-Notice that tanwiin al-fatH is normally written over an extra alif at the end of the word, even though that alif isn't part of the word's spelling otherwise. That extra alif is silent; it just carries the tanwiin mark. The one common exception is a word that already ends in taa marbuuTa or in a hamza sitting on the line: those don't need the extra alif, since there's already a letter there to carry the mark.
 
-These three endings are exactly the case endings covered in the Case Endings lesson later on. Tanwiin is simply what the case endings look like on an indefinite noun; the same three vowel qualities appear as plain short vowels, with no "n" sound, on a definite noun.
+Tanwiin al-fatH is normally written over an extra, silent alif. Words ending in taa marbuuTa or a hamza on the line don't need it.
 
 ## 3. Hamza and Alif Madda
 
 ### What hamza is
-Hamza (ء) represents a glottal stop, the small catch in your throat that separates the two syllables of "uh-oh" in English. It's a genuine consonant with its own sound, but for historical reasons it isn't counted among the 28 letters of the alphabet chart, and it doesn't have one fixed shape. Instead, it gets written on top of, or underneath, a "seat" letter, or sometimes sits by itself on the line.
+
+Hamza (ء) is a glottal stop, the catch in the middle of "uh-oh." It is not counted among the 28 letters and has no fixed shape: it sits on or under a "seat" letter, or alone on the line.
 
 [table, see index.html]
-Which seat gets used depends mostly on the strongest vowel touching the hamza: a kasra nearby tends to pull in a yaa seat, a Damma tends to pull in a waaw seat, and a fatHa (or no vowel at all, just a preceding one) tends to pull in an alif seat. At the beginning of a word, hamza is always written on an alif, either أ or إ.
 
-### Hamzat al-qaT\u02BF: the "cutting" hamza
+The seat depends mostly on the strongest neighboring vowel: kasra pulls in a yaa seat, Damma a waaw seat, fatHa an alif seat. At the start of a word hamza is always on an alif (أ or إ).
+
+### Hamzat al-qaTʿ: the "cutting" hamza
 
 - Written as a hamza sitting on an alif: أَ إِ أُ
 - Always pronounced and always heard, no matter what comes before it in the sentence.
-- This is the default, ordinary kind of hamza. Most words that start with a glottal stop start with hamzat al-qaT\u02BF.
-- Example: أُخْت (ukht, "sister"). Say it after any word, and you'll still hear the glottal stop clearly.
+- Example: أُخْت (ukht, "sister").
 
 ### Hamzat al-waSl: the "connecting" hamza
 
 - Written as a plain alif, sometimes marked with a small ص (waSla) sign on top to flag it explicitly: ٱ or simply ا with no hamza mark at all.
-- Elidable. When the word before it ends in a vowel sound, the hamzat al-waSl and its vowel both disappear in pronunciation, and the two words glide together as though they were one.
-- It shows up in a short, specific list of places: at the start of the definite article ال, at the start of a handful of common nouns (اسم "name," ابن "son," ابنة "daughter," امرأة "woman," اثنان "two"), and at the start of certain verb forms you'll meet later in the course.
+- Elided: after a word ending in a vowel, the hamza and its vowel are not pronounced.
+- Found at the start of: the definite article ال, a handful of common nouns (اسم "name," ابن "son," ابنة "daughter," امرأة "woman," اثنان "two"), and certain verb forms.
 
-A quick, reliable test: put و ("and") or ف ("so, and then") in front of the word in question and pronounce the whole thing out loud. If the hamza vanishes and you glide straight into the next consonant, it was hamzat al-waSl. If you can still clearly hear the glottal stop, it was hamzat al-qaT\u02BF all along.
+Test: put و ("and") or ف ("so") before the word. If the hamza disappears it is hamzat al-waSl; if you still hear it, it is hamzat al-qaTʿ.
 
-وَأَب (wa-ab): the hamza is still heard, so this is hamzat al-qaT\u02BF.
+وَأَب (wa-ab): the hamza is still heard, so this is hamzat al-qaTʿ.
+
 وَالبَيْت (wa-l-bayt): the alif's hamza disappears and the ل is pronounced directly after wa, so this is hamzat al-waSl.
 
 ### Alif madda (آ)
-Every now and then a word would technically start with two alifs in a row: a hamza-bearing alif immediately followed by a plain long-vowel alif. Rather than write that awkward pair, Arabic collapses the two into a single alif topped with a small wavy line, pronounced as one long "aa." You'll see this spelling convention in words borrowed into religious and formal vocabulary, and it's worth recognizing on sight rather than sounding out letter by letter.
+
+Alif madda is a hamza-alif followed by a long alif, written as one alif with a wavy line above and pronounced as a long "aa."
 
 ### Taa marbuuTa (ة)
-Taa marbuuTa isn't part of the 28-letter alphabet chart either. It only ever shows up at the very end of a noun or adjective, and in the overwhelming majority of cases it marks that word as feminine. In isolation, or at the end of a sentence, it's pronounced as a plain "-a" sound, exactly like a fatHa with nothing after it. As soon as anything gets attached after it, such as a possessive suffix, or as soon as it becomes the first noun of an idafa, it switches to being pronounced as a full "-at," with a genuine ت sound.
 
-طَالِبَة (Taaliba, "a student"), pronounced with a plain "-a" on its own, versus طَالِبَةُ الجَامِعَة (Taalibatu l-jaami\u02BFa, "the university's student"), where the taa marbuuTa is now pronounced as "-at" because it's the first noun of an idafa.
+Taa marbuuTa appears only at the end of a noun or adjective and usually marks it as feminine. It is pronounced "-a" on its own and "-at" when something follows: a possessive suffix, or when the word is the first noun of an idafa.
+
+طَالِبَة (Taaliba, "a student") ("-a") versus طَالِبَةُ الجَامِعَة (Taalibatu l-jaamiʿa, "the university's student") ("-at").
 
 ## 4. The Definite Article and Sun/Moon Letters
 
 ### The definite article
-ال (al-) is the definite article, the rough equivalent of English "the." It is always written attached directly to the front of the noun or adjective it modifies, never as a separate word. كِتَاب means "a book," and الكِتَاب means "the book."
 
-Proper nouns count as definite whether or not they actually carry ال. Country and city names are the trickiest part: most non-Arabic place names simply don't take ال (أمريكا, "America"), while Arab city and country names have to be memorized one by one, since there's no rule that predicts which ones do and which don't. بيروت and دمشق never take ال, while القاهرة always does.
+ال (al-) is the definite article, "the." It attaches to the front of the noun or adjective. كِتَاب means "a book," and الكِتَاب means "the book."
+
+Proper nouns are definite with or without ال. Most non-Arabic place names don't take ال (أمريكا, "America"), while Arab place names must be memorized. بيروت and دمشق never take ال, while القاهرة always does.
 
 ### Why the ل sometimes isn't pronounced
-Say صَباحُ النُّور (SabaaH an-nuur) out loud: you won't hear a ل at all. Instead, you hear a doubled ن. Now say صَباحُ الخَيْر (SabaaH al-khayr): here the ل is pronounced completely normally. The difference comes down to which consonant follows ال.
 
-Fourteen letters "swallow" the ل of ال: when one of them follows the definite article, the ل is not pronounced, and the following letter is doubled instead (marked with a shadda in vowelled text) to make up for the missing sound. These are called sun letters, الحُروف الشَّمسِيّة, named for the word شَمس ("sun"), because ش happens to be one of them.
+In صَباحُ النُّور (SabaaH an-nuur) the ل is not pronounced and the ن is doubled. In صَباحُ الخَيْر (SabaaH al-khayr) the ل is pronounced. The difference is the consonant after ال.
 
-The other fourteen letters leave the ل alone and let it be pronounced normally. These are called moon letters, الحُروف القَمَرِيّة, named for the word قَمَر ("moon"), because ق happens to be one of them.
+Fourteen letters, the sun letters (الحُروف الشَّمسِيّة), drop the ل of ال in pronunciation; the following letter is doubled and marked with a shadda. The name comes from شَمس ("sun"), which starts with one.
+
+The other fourteen, the moon letters (الحُروف القَمَرِيّة), keep the ل pronounced. The name comes from قَمَر ("moon").
 
 الحروف الشمسية: ت ث د ذ ر ز س ش ص ض ط ظ ل ن
 
 الحروف القمرية: أ ب ج ح خ ع غ ف ق ك م ه و ي
 
-There's a physical reason behind the split, not just a list to memorize by rote: every sun letter is pronounced with the tip of the tongue at or near the back of the top teeth, which happens to be the exact same spot the tongue goes to for ل itself. Because the tongue is already headed there for the next sound, it's easier to just extend that same consonant than to also form a separate ل first. Moon letters are pronounced in a variety of other places in the mouth and throat, far enough from where ل is made that there's no natural reason for the tongue to skip it.
-
 ### Some example words in both directions
+
 [table, see index.html]
-One more detail worth knowing: this sun/moon rule only ever affects the pronunciation of ال. It never affects the spelling. الشَّمْس is still written with a ل right there on the page, even though you don't say it; you just have to remember, as a matter of pronunciation rather than spelling, that a shadda goes on the following sun letter instead.
+
+Spelling is unchanged: the ل is still written, and the following sun letter takes a shadda.
 
 ## 5. Gender
 
 ### The basic rule
-Every Arabic noun is grammatically masculine or feminine. There's no neuter, no "it" category the way some other languages have one. Nouns describing people generally have a distinct masculine form and a distinct feminine form to match the actual gender of the person being described. Nouns for objects, ideas, and animals are still masculine or feminine, but which one they are is often just a fact about the word, in the same way "la table" happens to be feminine in French for no logical reason.
 
-Fortunately, gender in Arabic is largely predictable from spelling. Almost every feminine noun and adjective ends in taa marbuuTa (ة). If you hear a noun end in a plain "-a" sound, your best guess should be that it's feminine and spelled with ة.
+Every noun is masculine or feminine. Nouns for people usually have separate masculine and feminine forms; for objects and animals gender is a property of the word.
+
+Feminine nouns and adjectives almost always end in taa marbuuTa (ة), pronounced "-a."
 
 [table, see index.html]
+
 ### Feminine nouns without ة
-A small set of nouns are feminine even though they don't end in taa marbuuTa, simply because they refer to female people or animals. You just have to memorize these directly: أُخْت (sister) and بِنْت (girl) are both feminine with no ة anywhere in the word.
 
-Beyond the words you've met so far in this course, two other spellings also mark a noun as feminine even without a taa marbuuTa: a word ending in alif maqsuura (ى, a shortened, undotted version of long "aa") and a word ending in alif mamduuda (اء, a long "aa" followed by hamza). You'll run into more of these as your vocabulary grows; for now, the important habit is not to assume a word is masculine just because it lacks ة.
+Some feminine nouns have no ة and must be memorized: أُخْت (sister), بِنْت (girl).
 
-### Why gender matters so much
-Gender isn't just a label attached to a noun. It controls the form of every adjective describing that noun (see the Adjectives lesson), every demonstrative pointing to it (see Demonstrative Pronouns), the pronoun used to refer back to it, and the verb form used if it's the subject of a sentence. Getting a noun's gender right the first time you learn it saves you from having to constantly correct a whole chain of agreement later on.
+Two other endings also mark feminine: alif maqsuura (ى, an undotted long "aa") and alif mamduuda (اء, long "aa" plus hamza).
+
+### What gender controls
+
+Gender controls adjectives describing the noun (see Adjectives and Agreement), demonstratives (see Demonstrative Pronouns), the pronoun referring to it, and the verb when it is the subject.
 
 ## 6. Number: Singular, Dual, and Plural
 
 ### Three numbers, not two
-English really only distinguishes singular and plural. Arabic has a third category in between: the dual, used for exactly two of something, with its own dedicated ending distinct from both the singular and the ordinary plural.
+
+Arabic has singular, dual (exactly two), and plural.
 
 ### Dual
-Form the dual by adding a suffix to the singular noun: ـانِ (-aani) when the noun is functioning as the subject of a sentence, or ـيْنِ (-ayni) in most other grammatical positions. In everyday speech, people generally just use -ayni for both situations rather than switching between the two.
 
-طَالِبَتَانِ or طَالِبَتَيْنِ, both meaning "two female students," depending on the noun's role in the sentence.
+Add ـانِ (-aani) when the noun is the subject, or ـيْنِ (-ayni) in other positions.
+
+طَالِبَتَانِ or طَالِبَتَيْنِ (two female students, depending on role).
 
 ### Sound plurals
-Some nouns and adjectives, especially ones describing people, form their plural with a regular, predictable suffix rather than by changing internally. These are called "sound" plurals because the root stays intact and sounds the same throughout.
+
+Sound plurals add a regular suffix and leave the root intact; they are used mostly for people.
 
 - Sound masculine plural: ـونَ / ـينَ (-uuna or -iina, depending on grammatical role), as in مُدَرِّسُونَ (teachers, m.)
 - Sound feminine plural: ـاتٌ (-aat), as in طَالِبَاتٌ (students, f.)
 
 ### Broken plurals
-Most Arabic nouns, though, don't add a suffix at all. Instead they rearrange their own internal vowels into a completely different pattern, the way English "mouse" becomes "mice" instead of "mouses." These are called broken plurals, and there is no single rule that tells you in advance which pattern a given noun's plural will follow: you learn each noun's plural as its own separate piece of vocabulary, right alongside the singular.
 
-كِتَاب becomes كُتُب (book, books). بَيْت becomes بُيُوت (house, houses). Notice that the three root consonants (ك ت ب, ب ي ت) stay exactly the same in both forms; only the vowel pattern around them changes. The Roots and Patterns lesson explains this system in more depth, since it's the same logic behind how whole families of related words are built.
+Most nouns take a broken plural: the internal vowels change pattern, like English "mouse, mice." The pattern a noun takes must be learned with the noun (see Broken Plural Patterns).
 
-### A rule that trips people up: plural non-human agreement
-When the noun being pluralized refers to people, the words that agree with it (adjectives, verbs, pronouns) go into a genuine plural form of their own. But when the plural noun refers to things rather than people, Arabic treats it grammatically as feminine singular for agreement purposes, no matter how many things there actually are. You'll see this rule again in the Adjectives lesson; it's worth flagging early, since it looks like an exception at first but is actually completely regular once you know to expect it.
+كِتَاب becomes كُتُب (book, books). بَيْت becomes بُيُوت (house, houses). The root consonants stay the same; only the vowel pattern changes.
+
+### Plural agreement
+
+A plural noun for people takes plural agreement. A plural noun for things takes feminine singular agreement, however many there are.
 
 ## 7. Definiteness
 
 ### Definite versus indefinite
-Every Arabic noun is either definite ("the book," "my book," "David's book") or indefinite ("a book," "some book"). Definiteness affects word endings (see Case Endings), adjective agreement (see Adjectives), and sentence structure (see The Nominal Sentence), so it's worth being able to identify at a glance.
+
+A noun is definite ("the book," "my book," "David's book") or indefinite ("a book"). Definiteness affects endings (see Case Endings), adjective agreement, and the nominal sentence.
 
 ### Three ways a noun becomes definite
 
-- It takes the definite article ال: الكِتَاب (the book).
-- It has a possessive pronoun suffix attached directly to it: كِتَابِي (my book).
-- It is the first noun of an idafa whose very last noun is itself definite: كِتَابُ الطَّالِب (the student's book).
+1. It takes the definite article ال: الكِتَاب (the book).
+2. It has a possessive pronoun suffix attached directly to it: كِتَابِي (my book).
+3. It is the first noun of an idafa whose very last noun is itself definite: كِتَابُ الطَّالِب (the student's book).
 
-These three are the ones this course focuses on, since they cover the overwhelming majority of everyday sentences. Two more categories are worth knowing about as well, even before you formally study them: proper nouns (names of people, cities, and countries) count as definite on their own, with no ال needed, and a demonstrative placed directly before a noun (هذا الكتاب, "this book") also produces a definite phrase.
+Also definite: proper nouns (people, cities, countries) and a noun after a demonstrative.
 
-A noun with none of the markers above is indefinite. In fully vowelled, formal writing, an indefinite noun takes a tanwiin ending rather than a plain short vowel (see the Case Endings lesson for the full comparison).
+Anything else is indefinite and takes tanwiin when fully vowelled.
 
-### Why this matters for adjectives
-An adjective has to match the definiteness of the noun it describes, on top of matching its gender and number. If the noun carries ال, its adjective needs its own ال too, even though the adjective itself never determines whether the phrase counts as definite in the first place.
+### Adjectives
+
+An adjective matches its noun in definiteness as well as gender and number: if the noun carries ال, so does the adjective.
 
 بَيْتٌ جَدِيدٌ (a new house, both words indefinite) compared with البَيْتُ الجَدِيدُ (the new house, both words definite, note ال showing up on the adjective too).
 
-بَيْتِي الجَدِيدُ (my new house): the noun is made definite here by the possessive suffix, not by ال, but the adjective still needs ال in order to agree.
+بَيْتِي الجَدِيدُ (my new house): the possessive suffix makes the noun definite, so the adjective takes ال.
 
 ## 8. Idafa: the Possessive (Construct) Phrase
 
 ### What idafa does
-Idafa is how Arabic expresses possession, or an "of" relationship, without using a separate word that means "of." Two or more nouns are simply placed next to each other in a row, and the relationship between them is understood automatically: the second noun defines, specifies, or possesses the first.
+
+Idafa expresses possession or "of" by placing nouns next to each other: the second noun specifies or possesses the first.
 
 ### The rules
 
 - Only the very last noun in the chain is allowed to carry ال or a tanwiin ending.
-- Every noun before the last one never takes ال and never takes tanwiin. It just sits there bare, letting the final noun's definiteness carry back across the whole phrase. This is sometimes described as "definiteness by addition": the phrase as a whole becomes definite because its last piece is definite, even though the earlier nouns have no definiteness marker of their own.
-- If the first noun in the chain ends in taa marbuuTa, that ة switches to being pronounced as a full "-t" sound, since it's no longer sitting at the true end of the phrase.
-- The second noun, and any noun after it, sits in the genitive case (see Case Endings). This is one of the two main situations that trigger the genitive, alongside being the object of a preposition.
+- Every noun before the last takes neither ال nor tanwiin; the phrase takes its definiteness from the last noun.
+- A ة on the first noun is pronounced "-t".
+- The second noun, and any after it, is genitive (see Case Endings).
 
 جَامِعَةُ جُورجْتَاون (Georgetown University, literally "the university of Georgetown"). بَيْتُ الأُسْتَاذِ (the professor's house).
 
 ### Where adjectives go in an idafa
-An adjective describing any noun inside an idafa goes after the entire phrase, not right after the specific noun it modifies. That can create some ambiguity on paper, but gender and number agreement almost always makes it clear which noun the adjective is actually describing.
 
-غُرْفَةُ الطَّالِبَةِ الجَدِيدَةِ (the new [female] student's room): جَدِيدَةِ is feminine singular, matching الطَّالِبَةِ (the student), so we know the room belongs to a new student, rather than reading it as "the student's new room." If the writer meant the room itself was new, غرفة is also feminine singular, so context and emphasis (or rewording the sentence) would be needed to disambiguate; in practice, spoken cues and surrounding context usually settle it instantly.
+An adjective goes after the entire idafa; gender and number agreement show which noun it describes.
+
+غُرْفَةُ الطَّالِبَةِ الجَدِيدَةِ (the new [female] student's room): جَدِيدَةِ is feminine singular and agrees with الطَّالِبَةِ (the student); غرفة is also feminine, so context decides.
 
 ### Suffixes replace the second noun
-A possessive pronoun suffix (see Subject Pronouns and Possessive Suffixes) attaches to the last noun of an idafa in place of writing out a second noun. كِتَابُ الطَّالِب (the student's book) becomes كِتَابُهُ (his book) once you replace "the student" with the suffix meaning "his."
 
-### Idafa chains longer than two nouns
-Idafa isn't limited to two nouns. You can chain three or more together, and the same rules just keep applying down the line: every noun except the very last stays bare, with no ال and no tanwiin, and only the final noun in the chain can carry either of those markers. بَابُ بَيْتِ الأُسْتَاذِ means "the door of the professor's house," literally "door of house of the-professor," with each noun in the chain feeding definiteness back from the one after it.
+A possessive suffix can replace the second noun. كِتَابُ الطَّالِب (the student's book) becomes كِتَابُهُ (his book).
+
+### Longer chains
+
+Chains of three or more follow the same rules: only the last noun can take ال or tanwiin. The example below means "the door of the professor's house."
 
 ## 9. Subject Pronouns and Possessive Suffixes
 
 ### Independent subject pronouns
-Arabic marks gender in both the second person (you) and the third person (he/she), and it has a dedicated dual form for exactly two people, on top of the ordinary singular and plural. Because the verb ending already encodes who the subject is (see Present-Tense Verb Conjugation), independent subject pronouns like أنا or هو are often left out of a sentence entirely; they get used mainly for emphasis, contrast, or at the very start of a nominal sentence with no verb.
+
+Arabic marks gender in the second and third person and has a dual. The verb ending already shows the subject, so independent pronouns like أنا or هو are used mainly for emphasis, contrast, or to open a nominal sentence.
 
 ### Possessive suffixes
-Possessive pronouns in Arabic aren't separate words the way "my" or "his" are in English. They are suffixes, attached directly onto the end of the noun they possess, and attaching one automatically makes that noun definite (see Definiteness). One irregularity to remember: when a possessive suffix is attached to a word that ends in taa marbuuTa (ة), that ة is written and pronounced as ت.
+
+Possessives are suffixes attached to the noun, and they make it definite. A final ة becomes ت before a suffix.
 
 [table, see index.html]
+
 ### Suffixes on prepositions
-The same set of suffixes attaches to prepositions as well, to build words like "from him" or "with them" without a separate pronoun word.
+
+The same suffixes attach to prepositions.
 
 مِن + هُ = مِنْهُ (from him). مَعَ + هُم = مَعَهُم (with them). إلى + كَ = إلَيْكَ (to you).
 
-### Stacking suffixes with idafa
-Since a possessive suffix takes the place of a second noun in an idafa, you can end up with a fairly compact phrase that packs in a lot of meaning: اسْمُ أُخْتِي means "my sister's name," built from اسم (name) as the first term of the idafa and أُخْتِي (my sister, itself أُخْت plus the "my" suffix) as the second term.
+### Suffixes in an idafa
+
+A suffix can stand in for the second noun of an idafa: اسْمُ أُخْتِي means "my sister's name," built from اسم (name) and أُخْتِي (my sister, أُخْت + "my").
 
 ## 10. Object Pronoun Suffixes
 
 ### How object pronouns work
-Direct object pronouns (me, you, us, him, her, them) are suffixes too, just like possessive pronouns, except that they attach to the end of a verb instead of a noun. They are identical to the possessive suffixes covered in the previous lesson, with exactly one exception: "me" as an object is ـنِي (-nii), not ـي (-ii) the way "my" is on a noun. The extra ن there exists purely to keep the vowel sounds from running together awkwardly.
+
+Object pronouns (me, you, us, him, her, them) are suffixes on the verb. They match the possessive suffixes except for "me": ـنِي (-nii), not ـي (-ii).
 
 [table, see index.html]
-Notice how compact this makes Arabic compared to English. A whole subject-verb-object sentence like "they like us" collapses into a single word, يُحِبُّونَنَا, made up of a prefix marking the subject (they), the verb root, a suffix marking plural masculine subject, and finally the object suffix "us" tacked on the end.
+
+A whole sentence can be one word: يُحِبُّونَنَا ("they like us") is subject prefix + verb root + plural ending + object suffix.
 
 ## 11. Present-Tense Verb Conjugation
 
 ### How the present tense is built
-Arabic's present tense (al-mudaari\u02BF) is built from a verb's three-consonant root wrapped inside a template of prefixes and suffixes that mark the subject's person, gender, and number. Nearly every verb follows the exact same skeleton of prefixes and suffixes, which means that once you've internalized the pattern with one verb, you can conjugate almost any new verb correctly the moment you learn its root.
+
+The present tense (al-mudaariʿ) wraps the verb root in prefixes and suffixes that mark person, gender, and number. Nearly all verbs use the same prefixes and suffixes.
 
 ### Full paradigm: shaahada (to watch)
+
 [table, see index.html]
+
 ### The underlying pattern
 
 - Prefix by person: أ- for "I," ت- for "you" and for "she," ي- for "he" and for "they" (masculine), ن- for "we."
 - Suffix by number and gender: nothing extra for the plain singular forms, ـِين for "you, feminine singular," ـَان for both dual forms, ـُون for "you/they, masculine plural," and ـنَ for "you/they, feminine plural."
 
-Other verbs you already know slot into these exact same prefixes and suffixes; only the vowel sitting in the middle of the root shifts a little from verb to verb, depending on the verb's particular pattern. Compare the "I" and "he" forms across a few verbs you've learned:
+Other verbs use the same prefixes and suffixes; only the stem vowel varies:
 
 [table, see index.html]
-Try the Verb Conjugation quiz to drill the full paradigm across all of these verbs, including the dual and plural forms.
 
 ### Negating the present tense
-To say you don't do something, put لا directly in front of the conjugated verb. The verb itself doesn't change form.
+
+Negate with لا directly before the verb. The verb does not change.
 
 لا أَذْهَبُ إلى الجَامِعَةِ اليَوْم (I'm not going to the university today). هُوَ لا يَشْرَبُ القَهْوَة (he doesn't drink coffee).
 
 ## 12. The Nominal Sentence
 
 ### No verb "to be"
-Arabic has no present-tense equivalent of "is," "am," or "are." An ordinary descriptive sentence, such as "the house is new" or "I am a student," is built simply by placing a subject directly next to its description, with nothing at all standing in between them. This kind of sentence, one that opens with a noun rather than a verb, is called a nominal sentence, made up of a subject (مُبْتَدَأ, "that which is begun with") and a predicate (خَبَر, "news, information").
 
-البَيتُ جَديدٌ (the house [is] new). أَنَا طَالِبٌ (I [am] a student). هِيَ مِن سُوريا (she [is] from Syria, where the predicate here is a whole prepositional phrase rather than a single adjective).
+Arabic has no present-tense "is," "am," or "are." A nominal sentence opens with a noun and consists of a subject (مُبْتَدَأ) followed directly by a predicate (خَبَر).
+
+البَيتُ جَديدٌ (the house [is] new). أَنَا طَالِبٌ (I [am] a student). هِيَ مِن سُوريا (she [is] from Syria; the predicate is a prepositional phrase).
 
 ### Agreement
-The predicate has to agree with the subject in gender and number, exactly the way an adjective would. If the subject is feminine, an adjectival predicate needs to be feminine too; if the subject is plural (referring to people), the predicate needs to be plural as well.
+
+The predicate agrees with the subject in gender and number.
 
 ### Definite subject, indefinite predicate
-A nominal sentence pairs a definite subject with an indefinite predicate. That pattern is actually what signals "this is a sentence" in the first place. If both halves were definite, the phrase would stop being a sentence and collapse into a single, longer noun phrase instead: البَيْتُ الجَدِيدُ isn't a sentence meaning "the house is new," it's just a noun phrase meaning "the new house." Keeping track of which half is definite and which is indefinite is what tells you whether you're looking at a full sentence or just a longer description of one thing.
+
+The subject is definite and the predicate indefinite. If both are definite the result is a noun phrase, not a sentence: البَيْتُ الجَدِيدُ is "the new house," not "the house is new."
 
 ### Negating a nominal sentence
-To negate a nominal sentence, use لَيْسَ (laysa, "is not/are not") right before the predicate. البَيْتُ لَيْسَ جَديدًا (the house is not new). You already know لَيْسَ from the Unit 3 vocabulary list; this is the grammatical job it's doing whenever it shows up.
+
+To negate a nominal sentence, use لَيْسَ (laysa, "is not/are not") right before the predicate. البَيْتُ لَيْسَ جَديدًا (the house is not new).
 
 ## 13. Question Words
 
 ### Forming a question
-To turn a plain statement into a question, place an interrogative particle at the very start of the sentence. Nothing else about the sentence's word order needs to change.
+
+Place an interrogative particle at the start of the sentence. Word order does not change.
 
 [table, see index.html]
+
 ### ما versus ماذا
-Both words translate to "what," but they aren't interchangeable. Use ما when nothing follows but a noun, as in ما إسمُكَ؟ (what is your name?). Use ماذا when a verb follows, as in ماذا تَدرُس؟ (what do you study?). This split trips up a lot of learners at first, since English "what" doesn't make that distinction at all.
+
+Both mean "what." Use ما when a noun follows: ما إسمُكَ؟ (what is your name?). Use ماذا when a verb follows: ماذا تَدرُس؟ (what do you study?).
 
 ### Question words combined with prepositions
-Several prepositions combine directly with question words to ask more specific questions. The preposition always comes first, attached to the front.
+
+The preposition comes first, before the question word:
 
 [table, see index.html]
+
 ### hal, and questions with no particle at all
-هَل turns a statement into a plain yes or no question, with no real English equivalent word; it just signals "this is a yes/no question" the way rising intonation does in spoken English. In casual speech, Arabic speakers often skip هَل entirely and rely on intonation alone, the same way an English speaker can turn "you're coming?" into a question just by the tone of voice, without adding "do."
+
+هَل opens a yes/no question. In casual speech it is often dropped and intonation alone marks the question.
 
 ## 14. Demonstrative Pronouns
 
 ### this / this is
+
 [table, see index.html]
-Like an adjective, هذا and هذه agree in gender with whatever they point to, and they can do two different jobs depending on where they sit in the sentence.
+
+هذا and هذه agree in gender with what they point to and have two uses:
 
 ### Standing alone, as the subject of a nominal sentence
-هٰذا كِتابٌ (this is a book). Here هذا is the subject and كتابٌ, indefinite, is the predicate, following the same definite-subject-plus-indefinite-predicate pattern from the Nominal Sentence lesson.
+
+هٰذا كِتابٌ (this is a book). Here هذا is the subject and كتابٌ, indefinite, is the predicate.
 
 ### Sitting directly before a definite noun, as a modifier
-هٰذا الكِتابُ جَديدٌ (this book is new). Here هذا الكتابُ together forms the definite subject ("this book"), and جديدٌ, indefinite, is the predicate describing it. The presence of ال on الكِتابُ is what signals that هذا is modifying the noun rather than standing alone as a separate pronoun.
 
-Telling these two patterns apart comes down to definiteness: هذا كتابٌ (indefinite noun right after هذا) is a full sentence meaning "this is a book," while هذا الكتابُ (definite noun right after هذا) is just a phrase meaning "this book," which then needs its own predicate to become a complete sentence.
+هٰذا الكِتابُ جَديدٌ (this book is new). Here هذا الكتابُ together forms the definite subject ("this book"), and جديدٌ, indefinite, is the predicate describing it.
 
-You'll also meet plural and dual demonstratives (such as هؤلاء for "these") and the "that" set (ذلك and تلك) as the course continues; the pattern of agreement works the same way once you learn those forms.
+Definiteness tells them apart: هذا كتابٌ (indefinite noun) is a sentence, "this is a book"; هذا الكتابُ (definite noun) is a phrase, "this book," that still needs a predicate.
 
 ## 15. Adjectives and Agreement
 
 ### Word order
-Adjectives in Arabic follow the noun they describe, the reverse of English word order. "A big house" is بَيْتٌ كَبِيرٌ, literally "house big."
+
+Adjectives follow their noun. "A big house" is بَيْتٌ كَبِيرٌ, literally "house big."
 
 ### Three-way agreement
-An adjective has to agree with its noun in three separate ways at the same time: gender, number, and definiteness.
+
+An adjective agrees with its noun in gender, number, and definiteness.
 
 - Gender: a masculine noun takes a masculine adjective; a feminine noun (usually marked by ة) takes a feminine adjective (usually also marked by ة).
-- Definiteness: if the noun carries ال, the adjective needs its own ال as well. The article isn't shared between the two words; each one carries it separately.
-- Number: an adjective describing a plural noun that refers to people takes a genuine plural form of its own. But an adjective describing a plural noun for a non-human thing is put into the feminine singular, regardless of how many things are actually being described. This is the same rule mentioned at the end of the Number lesson, and it holds completely consistently once you know to expect it.
+- Definiteness: if the noun carries ال, the adjective takes ال too.
+- Number: a plural noun for people takes a plural adjective; a plural noun for things takes a feminine singular adjective.
 
 [table, see index.html]
+
 ### Stacking more than one adjective
-When a noun is described by more than one adjective, they simply line up one after another, each one separately agreeing with the noun, sometimes joined by و ("and") between them: بَيْتٌ كَبِيرٌ وَجَديدٌ (a big and new house).
+
+Several adjectives each agree with the noun and may be joined by و ("and"): بَيْتٌ كَبِيرٌ وَجَديدٌ (a big and new house).
 
 ### Adjectives inside an idafa
-As mentioned in the Idafa lesson, an adjective describing any part of an idafa phrase goes after the entire phrase rather than right after the specific noun it's modifying. Gender and number agreement is usually what tells you which noun in the idafa the adjective actually belongs to.
+
+An adjective describing part of an idafa goes after the whole phrase; agreement shows which noun it modifies.
 
 ## 16. Roots and Patterns
 
 ### The root and pattern system
-Most Arabic words are built from a root: a set of three consonants (occasionally four) that carries a word's core meaning. That root gets dropped into a pattern, a fixed arrangement of vowels and sometimes extra consonants, which shapes the root into a specific noun, adjective, or verb. Learning to spot the root hiding inside an unfamiliar word is one of the single most useful reading skills you can build in Arabic, because the same root keeps resurfacing across an entire family of related words.
+
+Most words are built from a root of three (occasionally four) consonants that carries the core meaning. The root is poured into a pattern of vowels and sometimes extra consonants that makes a specific noun, adjective, or verb.
 
 ### Root family: ك ت ب (the idea of "writing")
+
 [table, see index.html]
+
 ### Root family: د ر س (the idea of "study")
+
 [table, see index.html]
-Notice the same مَـ prefix pattern showing up in both families to mean "a place where the root's action happens": مَكْتَب (place of writing) and مَدْرَسَة (place of study) are built the exact same way, just from different roots.
+
+The prefix مَـ marks a place of the action: مَكْتَب (place of writing), مَدْرَسَة (place of study).
 
 ### Recognizing shared adjective patterns
-The adjectives جَمِيل، لَطِيف، طَوِيل، صَغِير، كَبِير، and قَصِير all share the same skeleton once you strip their three root consonants back out: a fatHa on the first consonant, then a long "ii" sound right before the last consonant. Once you notice that shared shape, you can make a reasonable guess that an unfamiliar word built the same way is probably an adjective too, and you can predict how to pronounce it even before you've looked it up.
 
-Plurals work through the same root-and-pattern logic, which is why broken plurals aren't actually random, even though they have to be memorized individually: كِتَاب becomes كُتُب, and بَيْت becomes بُيُوت, by pouring the same three root consonants into a different, but still recognizable, pattern.
+The adjectives جَمِيل، لَطِيف، طَوِيل، صَغِير، كَبِير، and قَصِير share one pattern: fatHa on the first consonant, then a long "ii" before the last. A word with this shape is likely an adjective.
 
-## 17. Case Endings (i\u02BFraab)
+Broken plurals use the same system: كِتَاب becomes كُتُب, and بَيْت becomes بُيُوت.
 
-### What i\u02BFraab is
-Formal, fully vowelled Arabic marks a noun or adjective's grammatical role in the sentence with a short-vowel ending. This system is called i\u02BFraab, and it's one of the clearest differences between formal Arabic (al-fuS-Haa) and the everyday spoken dialects (al-\u02BFaammiyya): spoken Arabic has largely dropped these endings and relies on word order to convey meaning instead, the same way English does.
+## 17. Case Endings (iʿraab)
+
+### What iʿraab is
+
+In formal, fully vowelled Arabic a short-vowel ending marks a noun or adjective's grammatical role (iʿraab). Spoken dialects have largely dropped these endings.
 
 ### The three cases
-[table, see index.html]
-### Definite versus indefinite endings
-A definite noun (one with ال, a possessive suffix, or standing as the first noun of an idafa) takes the plain short vowel by itself. An indefinite noun takes the doubled version of that same vowel, tanwiin, adding an "n" sound on top (see the Vowels lesson for more on tanwiin itself).
 
 [table, see index.html]
-All three of الطَّالِبُ, الطَّالِبَ, and الطَّالِبِ simply mean "the student." The case ending doesn't change what the word means; it only marks the job that word is doing inside its sentence. That's exactly why these endings are treated as largely optional in ordinary speech: the meaning is already clear from word order and context alone, so most speakers drop the endings outside of very formal writing or careful public speaking.
+
+### Definite versus indefinite endings
+
+A definite noun (one with ال, a possessive suffix, or standing as the first noun of an idafa) takes the plain short vowel. An indefinite noun takes tanwiin, the doubled vowel, which adds "n".
+
+[table, see index.html]
+
+All three of الطَّالِبُ, الطَّالِبَ, and الطَّالِبِ simply mean "the student." The ending marks only the word's role.
 
 ### Seeing all three cases in one sentence
+
 قَرَأَ الطَّالِبُ الكِتَابَ في المَكْتَبَةِ
 
-qara\u02BEa T-Taalibu l-kitaaba fi l-maktabati: the student read the book in the library
+qaraʾa T-Taalibu l-kitaaba fi l-maktabati: the student read the book in the library
 
 - الطَّالِبُ takes the nominative ending, since it's the subject: the one doing the reading.
 - الكِتَابَ takes the accusative ending, since it's the direct object: the thing being read.
 - المَكْتَبَةِ takes the genitive ending, since it's the object of the preposition في ("in").
 
-### Nouns that skip tanwiin entirely
-A category of nouns called diptotes, which includes many proper nouns and certain plural patterns, never takes tanwiin at all, and uses a plain fatHa for the genitive instead of a kasra. You don't need to identify diptotes yet; just know that if you eventually see a proper noun's ending look slightly "off" compared to the pattern above, that's very likely why.
+### Diptotes
 
-For now, the goal set by the course is recognition rather than production: being able to identify these marks as grammatical endings when you see or hear them, such as the Damma on السَّلامُ in السَّلامُ عَلَيكُم, without necessarily producing them correctly yourself in every sentence you speak.
+Diptotes, which include many proper nouns and certain plural patterns, take no tanwiin and use fatHa instead of kasra in the genitive.
 
 ## 18. Numbers 0-10
 
 [table, see index.html]
-### Two sets of numerals
-Arabic uses its own set of digit symbols, sometimes called Arabic-Indic numerals, alongside the digits 0 through 9 that English uses. Arabic-Indic numerals are written left to right even though the surrounding text runs right to left, which can look surprising the first time you see a multi-digit number sitting inside an Arabic sentence.
 
-### A preview of how numbers 3 through 10 are actually used
-Once you start building full sentences with numbers, you'll run into a genuinely surprising rule: the numbers 3 through 10 take the opposite gender of the noun they're counting. A feminine noun pairs with a number written in what looks like its masculine form, and a masculine noun pairs with a number written in what looks like its feminine form (the one ending in ة). On top of that, the noun being counted goes into the plural and into the genitive case. You aren't expected to produce this yet; it's simply useful to know it's coming, so the numbers you're memorizing now click into place naturally once the full rule is introduced.
+### Numerals
+
+Arabic-Indic numerals are used alongside 0 to 9: ٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ = 0 1 2 3 4 5 6 7 8 9. Multi-digit numbers are written left to right even in right-to-left text.
+
+### Numbers 3 to 10 with nouns
+
+Numbers 3 through 10 take the opposite gender of the noun they count: a masculine noun takes the form ending in ة, a feminine noun the form without it. The counted noun is plural and genitive.
 
 ## 19. Gender Review: mudhakkar and mu'annath
 
-Al-Kitaab picks up gender exactly where Alif Baa left off, but starts using the Arabic grammatical terms directly instead of just "masculine" and "feminine": مُذَكَّر (mudhakkar, masculine) and مُؤَنَّث (mu'annath, feminine). The rule you already know still holds: a word ending in taa marbuuTa (ة) is almost always mu'annath, and everything that agrees with it (adjectives, demonstratives, verbs) has to agree in gender too.
+The Arabic terms are مُذَكَّر (mudhakkar, masculine) and مُؤَنَّث (mu'annath, feminine). A word ending in taa marbuuTa (ة) is almost always mu'annath, and everything that agrees with it (adjectives, demonstratives, verbs) has to agree in gender too.
 
-Two new wrinkles show up in Al-Kitaab's own vocabulary: words like زَميل / زَميلة (classmate, m./f.) and صَديق / صَديقة (friend, m./f.) are exactly the masculine/feminine noun pairs you'd expect. But a handful of professions and roles, like مُوَظَّف / ة (employee) and مُتَرجِم / ة (translator), follow the same pattern too, which is worth noticing since it confirms the ة rule works just as well for professions as it does for ordinary nouns and adjectives.
+Most nouns form the feminine by adding ة: زَميل / زَميلة (classmate), صَديق / صَديقة (friend). Professions follow the same pattern: مُوَظَّف / ة (employee), مُتَرجِم / ة (translator).
 
 ## 20. Nisba Adjectives
 
-The nisba adjective (النِّسْبة) is how Arabic turns a place name, or any noun, into a descriptive adjective, most commonly for nationality. It's formed by adding a suffix to the noun: ـِيّ for masculine, ـِيَّة for feminine.
+The nisba adjective (النِّسْبة) turns a noun, most often a place name, into an adjective of origin or affiliation. Add ـِيّ (masculine) or ـِيَّة (feminine).
 
 ### What to strip before adding the suffix
 
-Before adding the suffix, strip three things off the noun if they're there:
+Strip these from the noun, if present:
 
 - the definite article ال
 - a feminine ة ending
@@ -402,190 +473,195 @@ Before adding the suffix, strip three things off the noun if they're there:
 
 ### Agreement and word order
 
-Like any adjective, a nisba adjective agrees in gender with the noun it describes and follows it in word order: أنا مِصْرِيّ (I am Egyptian, said by a man), هي مِصْرِيّة (she is Egyptian). You already have مِصْرِيّ / مِصْرِيّة as vocabulary from Al-Kitaab Lesson 1, this is the grammar rule that word was built from.
+Like any adjective, a nisba adjective agrees in gender with the noun it describes and follows it in word order: أنا مِصْرِيّ (I am Egyptian, said by a man), هي مِصْرِيّة (she is Egyptian).
 
 ### Not just countries
 
-Nisba adjectives aren't limited to countries. Any noun can take a nisba ending to mean "relating to X": سِياسة (politics) gives سِياسِيّ (political), as in العُلوم السِّياسِيّة (political science, already on the site as Al-Kitaab Lesson 3 vocabulary).
+Any noun can take a nisba ending to mean "relating to X": سِياسة (politics) gives سِياسِيّ (political), as in العُلوم السِّياسِيّة (political science).
 
 ## 21. The Nominal Sentence, Reviewed and Negated
 
-You already know the core idea from Alif Baa: a nominal sentence (الجُملة الاسمِيّة) is a subject followed directly by its description, with no verb "to be" in between. Al-Kitaab spends real time on how to negate this kind of sentence, since it isn't as simple as just adding "not" in front.
+A nominal sentence (الجُملة الاسمِيّة) is a subject followed by its predicate, with no verb "to be."
 
 ### Negating with laysa
-To say a nominal sentence is NOT true, use a special negating verb, لَيسَ (laysa), which itself conjugates for person even though it only ever appears in this one "past-tense-shaped" form set. It goes right where the missing "is/am/are" would be, before the predicate.
+
+Negate with لَيسَ (laysa), a verb that conjugates for person and goes before the predicate.
 
 [table, see index.html]
-Notice that laysa is followed by an accusative predicate (see the Case Endings lesson) when the sentence is fully vowelled: لَستُ مُتَرجِماً ends in -اً, the indefinite accusative ending, not the plain -ٌ nominative you'd see in a normal (non-negated) nominal sentence.
+
+The predicate after laysa is accusative: لَستُ مُتَرجِماً ends in -اً, not the nominative -ٌ.
 
 ### Fronting the predicate
-Arabic word order is more flexible than English. When the predicate is a prepositional phrase (like "with me" or "in the office"), it's actually very common, and often more natural, to put the predicate FIRST, before the subject, especially when introducing new information. عِندي أُخت ("I have a sister," literally "at me [is] a sister") puts عِندي first because that's the point of the sentence: the existence of a sister, not who "I" am.
+
+A prepositional-phrase predicate ("with me," "in the office") usually comes first, before the subject: عِندي أُخت ("I have a sister," literally "at me [is] a sister"). The subject that follows is indefinite.
 
 ## 22. The Verbal Sentence
 
-So far, every sentence you've built without a real verb has been a nominal sentence. Al-Kitaab now introduces the other basic sentence type: the verbal sentence (الجُملة الفِعلِيّة), which starts with a conjugated verb rather than a noun.
+A verbal sentence (الجُملة الفِعلِيّة) starts with a conjugated verb.
 
 ### Word order: verb first
-In formal written Arabic, a verbal sentence puts the verb BEFORE the subject: يَدرُسُ أحمد التاريخ (Ahmad studies history), literally "studies Ahmad the-history." This is the reverse of English, and also the reverse of how you'd say it as a nominal sentence with a fronted subject (أحمد يَدرُسُ التاريخ), which is also grammatical and common, especially in speech, but carries a slightly different emphasis (more like "as for Ahmad, he studies history").
 
-### Agreement quirk: verb-subject order flips the number agreement
-When the verb comes first, before its subject, the verb stays SINGULAR even if the subject that follows is plural. يَدرُسُ الطُلّابُ العَربِيّة (the students study Arabic) uses the singular يَدرُسُ, not the plural يَدرُسون, because the verb arrived before it "knew" the subject was plural. If the subject comes first instead (making it technically a nominal sentence with a verbal predicate), the verb does agree in number: الطُلّابُ يَدرُسونَ العَربِيّة.
+The verb comes before the subject: يَدرُسُ أحمد التاريخ (Ahmad studies history), literally "studies Ahmad the-history." With the subject first (أحمد يَدرُسُ التاريخ) the sentence is nominal, with a different emphasis: "as for Ahmad, he studies history."
+
+### Agreement
+
+When the verb comes first, before its subject, the verb stays SINGULAR even if the subject that follows is plural. يَدرُسُ الطُلّابُ العَربِيّة (the students study Arabic) uses the singular يَدرُسُ, not the plural يَدرُسون. With the subject first, the verb agrees in number: الطُلّابُ يَدرُسونَ العَربِيّة.
 
 ### Negating a verbal sentence
-Present-tense verbs are negated with لا right before the verb, exactly as covered in the Present-Tense Verb Conjugation lesson: لا يَدرُسُ أحمد التاريخ (Ahmad doesn't study history).
 
-### Converting a nominal sentence into a verbal one
-A useful exercise Al-Kitaab uses: take a nominal sentence built around an active participle or a simple description, and rebuild it as a verbal sentence using the matching verb. هي تَعمَل في مَكتَب (nominal-feeling, "she works in an office," built around the plain present-tense verb used descriptively) versus a version built around a true action reading of the same verb form. The underlying skill is recognizing that many Arabic present-tense verbs double as ongoing, descriptive statements, not just single actions, which is part of why Arabic doesn't need a separate "is working" progressive tense the way English does.
+Negate present-tense verbs with لا before the verb: لا يَدرُسُ أحمد التاريخ (Ahmad doesn't study history).
+
+### Present tense meaning
+
+Arabic has no separate progressive: the present tense covers both "works" and "is working."
 
 ## 23. Idafa, Continued
 
-The Idafa lesson from Alif Baa covered the core rules: noun plus noun, only the last noun takes ال or tanwiin, the earlier nouns stay bare. Al-Kitaab puts idafa to heavy use in describing family and academic relationships, which is a good place to see the pattern stretch across longer chains and get used alongside possessive suffixes.
-
 ### Idafa with a possessive suffix as the last term
-Since a possessive suffix already makes a noun definite (see Subject Pronouns and Possessive Suffixes), it can stand in for the whole final noun of an idafa. ابن عَمّي (my paternal cousin) is an idafa (ابن + عمّ) where the second noun, عمّ, carries the "my" suffix instead of being spelled out as a separate word.
+
+A possessive suffix can serve as the final term: ابن عَمّي (my paternal cousin) is ابن + عمّ with the "my" suffix on the second noun, عمّ.
 
 ### Long idafa chains in family vocabulary
-Arabic kinship terms build up through idafa rather than through separate compound words: ابن عَمّ (paternal male cousin, literally "son of a paternal uncle"), زَوجة عَمّي (my paternal uncle's wife). Each of these is just the same idafa rule applied once or twice in a row, which is worth remembering when a family tree in the textbook starts looking complicated: it's still just "noun of noun," repeated.
 
-### An idafa hiding inside a compound topic name
-Academic subjects are usually themselves idafa constructions: عِلمُ النَفس (psychology, literally "the science of the self"), عِلمُ الاجتِماع (sociology, "the science of society/gathering"), عِلمُ الإنسان (anthropology, "the science of the human being"). Recognizing عِلمُ as the first term of an idafa, rather than a stand-alone word, helps you guess the pattern for other fields of study you haven't memorized yet.
+Kinship terms are built with idafa: ابن عَمّ (paternal male cousin, literally "son of a paternal uncle"), زَوجة عَمّي (my paternal uncle's wife).
+
+### Academic subjects
+
+Academic subjects are usually themselves idafa constructions: عِلمُ النَفس (psychology, literally "the science of the self"), عِلمُ الاجتِماع (sociology, "the science of society/gathering"), عِلمُ الإنسان (anthropology, "the science of the human being").
 
 ## 24. Plurals: Sound and Broken
 
-Alif Baa introduced the idea that Arabic has three grammatical numbers and that most plurals are "broken" (an internal vowel change) rather than "sound" (a simple suffix). Al-Kitaab is where you actually start memorizing plurals systematically, since nearly every new noun from here on is taught together with its plural form.
+### Sound plurals
 
-### Sound plurals, reviewed
+- Sound masculine plural: ـونَ / ـينَ, used mainly for human male nouns and active participles: مُوَظَّف → مُوَظَّفونَ (employee → employees)
+- Sound feminine plural: ـاتٌ, used for most human female nouns and many non-human feminine nouns: زَميلة → زَميلات (classmate, f. → classmates, f.)
 
-- Sound masculine plural: ـونَ / ـينَ, used mainly for human male nouns and active participles: مُوَظَّف &rarr; مُوَظَّفونَ (employee &rarr; employees)
-- Sound feminine plural: ـاتٌ, used for most human female nouns and many non-human feminine nouns: زَميلة &rarr; زَميلات (classmate, f. &rarr; classmates, f.)
+### Broken plurals: common patterns
 
-### Broken plurals: patterns worth recognizing
-A broken plural rearranges a noun's root consonants into a new internal pattern. There's no single universal rule, but a handful of patterns come up constantly enough in this vocabulary that they're worth learning as patterns, not just word by word:
+A broken plural rearranges the root consonants into a new pattern. Common patterns (see Broken Plural Patterns for the full set):
 
 [table, see index.html]
-Every new noun from here on should be memorized together with its plural, the same way you'd memorize an irregular English plural like "mouse, mice." Over time, you'll start recognizing these patterns on sight instead of needing to memorize each one as a total surprise.
 
-### Non-human plural agreement, reviewed
-As covered in the Adjectives lesson, any adjective, demonstrative, or verb agreeing with a plural noun that refers to things rather than people is put in the feminine singular, no matter how many things there are. This single rule explains a lot of sentences that otherwise look like they have a gender or number mismatch.
+Memorize each noun together with its plural.
+
+### Non-human plural agreement
+
+An adjective, demonstrative, or verb agreeing with a plural noun for things is feminine singular, however many things there are.
 
 ## 25. Broken Plural Patterns
 
-Sound plurals follow a rule you can say in one line. Broken plurals look like they don't, which is why learners often decide there is no system at all. There is one, it's just a system of patterns rather than a single rule, and which pattern a noun takes is something you have to learn along with the word. This lesson shows the patterns, what each one tends to attach to, and what is actually unpredictable.
+Broken plurals follow patterns, but which pattern a noun takes is learned along with the word. This lesson lists the patterns, what each attaches to, and what is unpredictable.
 
 ### Is there a rule?
 
-Yes and no, and both halves matter.
+- Yes: every broken plural is built on one of a limited set of patterns (أَوزان, awzaan): around 30, in about 16 families.
+- No: a singular's shape narrows the options to two or three patterns, and the one actually used must be learned. Arabic grammarians call this سَماعيّ (sammaaʿii, "by hearing").
 
-- Yes: every broken plural is built on one of a limited set of patterns (أَوزان, awzaan). Commenters on learner forums put the number at roughly 27 to 32 patterns, which collapse into around 16 families that actually come up. You will recognize the same few shapes again and again.
-- No: a singular's shape does not fully decide which pattern it takes. A given shape usually has two or three plausible plural patterns, and Arabic speakers just use the one that has been used for that word. Arabic grammarians call this سَماعيّ (sammaaʿii, "by hearing"): you know it because you've heard it, not because you derived it.
+### كِلاب and not كُلوب
 
-So the realistic goal is not "derive any plural from the singular." It is "know the likely candidates for a shape, and recognize the pattern when you see one."
+A three-letter noun with no middle vowel (فَعْل) often takes فُعول, as in بَيْتْ → بُيوت and دَرْسْ → دُروسْ, but not always: كَلْب takes فِعال. Compare كَلْبْ → كِلاب with قَلْب → قُلوب (heart). Same skeleton, different pattern, and nothing in the singular tells you which.
 
-### The question everyone asks: why كِلاب and not كُلوب?
+The same contrast in a table:
 
-The tempting rule is: three-letter noun with no vowel in the middle (فَعْل) becomes فُعول. That rule is real, and it covers a lot of words, including بَيْتْ → بُيوت and دَرْسْ → دُروسْ. But it is not the only pattern available to that shape. كَلْب takes فِعال instead. A learner comparing the two on a forum gave the same contrast: كَلْبْ → كِلاب but قَلْب → قُلوب (heart; this pair is from that thread, not from your handout). Same skeleton, different pattern, and nothing in the singular tells you which.
+- بَيْتْ → بُيوت (faʿl; fuʿuul; bayt / buyuut; house)
+- دَرْسْ → دُروسْ (faʿl; fuʿuul; dars / duruus; lesson)
+- كَلْبْ → كِلاب (faʿl; fiʿaal; kalb / kilaab; dog)
+- فِلْسْ → فُلوسْ (fiʿl; fuʿuul; fils / fuluus; money)
+- اِسِمْ → أَسْماء (fiʿl; afʿaal; isim / asmaa'; name)
+- قِسْمْ → أَقْسام (fiʿl; afʿaal; qism / aqsaam; department / part)
 
-Here is the same thing using only words from your handout:
+Two singular shapes, three plural patterns. The shape narrows the options, so the rest of this lesson is organized by shape.
 
-- بَيْتْ → بُيوت (singular shape faʿl; plural pattern fuʿuul; bayt / buyuut; house)
-- دَرْسْ → دُروسْ (singular shape faʿl; plural pattern fuʿuul; dars / duruus; lesson)
-- كَلْبْ → كِلاب (singular shape faʿl; plural pattern fiʿaal; kalb / kilaab; dog)
-- فِلْسْ → فُلوسْ (singular shape fiʿl; plural pattern fuʿuul; fils / fuluus; money)
-- اِسِمْ → أَسْماء (singular shape fiʿl; plural pattern afʿaal; isim / asmaa'; name)
-- قِسْمْ → أَقْسام (singular shape fiʿl; plural pattern afʿaal; qism / aqsaam; department / part)
+### Pattern 1: أَفْعال (afʿaal)
 
-Two singular shapes, three different plural patterns. This is the normal situation, not an exception to it. What does narrow things down is the shape, which is why the rest of this lesson is organized by shape.
+The default for short three-consonant nouns, and the most common pattern in the tables below (14 of 54 words). It attaches to many singular shapes: faʿal, fiʿl, fuʿl, and nouns with a long vowel in the middle. When the last root letter is weak the ending becomes ـاء (اِسِمْ → أَسْماء).
 
-### Pattern 1: أَفْعال (afʿaal), the default for short nouns
+- وَلَدْ → أَوْلاد (faʿal; walad / awlaad; son / boy)
+- صَاحِبْ → أصْحابْ (faaʿil; SaaHib / aSHaab; friend)
+- اِسِمْ → أَسْماء (fiʿl; isim / asmaa'; name)
+- عَمَلْ → أَعْمال (faʿal; ʿamal / aʿmaal; work)
+- شُغُلْ → أَشْغال (fuʿl; shughul / ashghaal; work)
+- خَبَرْ → أَخْبار (faʿal; khabar / akhbaar; news)
+- بابْ → أَبْوابْ (faʿl (weak middle); baab / abwaab; door)
+- خالْ → أَخْوال (faʿl (weak middle); khaal / akhwaal; maternal uncle)
+- قَلَمْ → أَقْلام (faʿal; qalam / aqlaam; pen / pencil)
+- رَقَمْ → أَرْقام (faʿal; raqam / arqaam; number)
+- شَجَرَة → أَشْجار (faʿala; shajara / ashjaar; tree)
+- وَرَقَة → أَوْراق (faʿala; waraqa / awraaq; leaf)
+- فيلم → أَفْلام (fiʿl; fiilm / aflaam; movie)
+- قِسْمْ → أَقْسام (fiʿl; qism / aqsaam; department / part)
 
-If you have to guess the plural of a short three-consonant noun and you know nothing else about it, guess afʿaal. It is the most common pattern in your handout (14 of the 54 words). It attaches to many different singular shapes: faʿal, fiʿl, fuʿl, and nouns with a long vowel in the middle. When the last root letter is a weak letter the ending becomes ـاء (اِسِمْ → أَسْماء).
+### Pattern 2: فُعول (fuʿuul)
 
-- وَلَدْ → أَوْلاد (singular shape faʿal; walad / awlaad; son / boy)
-- صَاحِبْ → أصْحابْ (singular shape faaʿil; SaaHib / aSHaab; friend)
-- اِسِمْ → أَسْماء (singular shape fiʿl; isim / asmaa'; name)
-- عَمَلْ → أَعْمال (singular shape faʿal; ʿamal / aʿmaal; work)
-- شُغُلْ → أَشْغال (singular shape fuʿl; shughul / ashghaal; work)
-- خَبَرْ → أَخْبار (singular shape faʿal; khabar / akhbaar; news)
-- بابْ → أَبْوابْ (singular shape faʿl (weak middle); baab / abwaab; door)
-- خالْ → أَخْوال (singular shape faʿl (weak middle); khaal / akhwaal; maternal uncle)
-- قَلَمْ → أَقْلام (singular shape faʿal; qalam / aqlaam; pen / pencil)
-- رَقَمْ → أَرْقام (singular shape faʿal; raqam / arqaam; number)
-- شَجَرَة → أَشْجار (singular shape faʿala; shajara / ashjaar; tree)
-- وَرَقَة → أَوْراق (singular shape faʿala; waraqa / awraaq; leaf)
-- فيلم → أَفْلام (singular shape fiʿl; fiilm / aflaam; movie)
-- قِسْمْ → أَقْسام (singular shape fiʿl; qism / aqsaam; department / part)
+Mostly for three-consonant nouns with no middle vowel (faʿl, fiʿl). Loanwords fit it easily: بَنْك gets بُنوك.
 
-### Pattern 2: فُعول (fuʿuul), the forum poster's rule
-
-This is the pattern from the question above. It mostly attaches to three-consonant nouns with no vowel in the middle (faʿl, fiʿl). It is the most common plural for this shape but not the only one, as كَلْب showed. Loanwords fit it easily, which is how بَنْك got بُنوك.
-
-- بَيْتْ → بُيوت (singular shape faʿl; bayt / buyuut; house)
-- دَرْسْ → دُروسْ (singular shape faʿl; dars / duruus; lesson)
-- صَفْ → صُفوفْ (singular shape faʿl; Saff / Sufuuf; class)
-- فَصِلْ → فُصولْ (singular shape faʿl; faSil / fuSuul; semester / season)
-- بَنْكْ → بُنوكْ (singular shape faʿl; bank / bunuuk; bank)
-- فِلْسْ → فُلوسْ (singular shape fiʿl; fils / fuluus; money)
+- بَيْتْ → بُيوت (faʿl; bayt / buyuut; house)
+- دَرْسْ → دُروسْ (faʿl; dars / duruus; lesson)
+- صَفْ → صُفوفْ (faʿl; Saff / Sufuuf; class)
+- فَصِلْ → فُصولْ (faʿl; faSil / fuSuul; semester / season)
+- بَنْكْ → بُنوكْ (faʿl; bank / bunuuk; bank)
+- فِلْسْ → فُلوسْ (fiʿl; fils / fuluus; money)
 
 ### Pattern 3: فِعال (fiʿaal)
 
-The alternative to fuʿuul for the same shapes, and also common with faʿal nouns. No visible rule separates the two, so these are the words to memorize as pairs.
+The alternative to fuʿuul for the same shapes, also common with faʿal nouns. Memorize these as pairs.
 
-- رَجُلْ → رِجالْ (singular shape faʿul; plural pattern fiʿaal; rajul / rijaal; man)
-- بَلَدْ → بِلاد / بُلْدان (singular shape faʿal; plural pattern fiʿaal (also fuʿlaan); balad / bilaad / buldaan; country)
-- كَلْبْ → كِلاب (singular shape faʿl; plural pattern fiʿaal; kalb / kilaab; dog)
+- رَجُلْ → رِجالْ (faʿul; fiʿaal; rajul / rijaal; man)
+- بَلَدْ → بِلاد / بُلْدان (faʿal; fiʿaal (also fuʿlaan); balad / bilaad / buldaan; country)
+- كَلْبْ → كِلاب (faʿl; fiʿaal; kalb / kilaab; dog)
 
-Notice بَلَد has a second plural, بُلْدان (pattern fuʿlaan). When a word has two plurals, the handout lists both and so should you.
+بَلَد has a second plural, بُلْدان (pattern fuʿlaan).
 
 ### Pattern 4: فُعُل (fuʿul), from long-vowel singulars
 
-Nouns that already have a long vowel in the middle, like كِتاب (fiʿaal) or the feminine faʿiila shape, often shorten to a plain fuʿul. The pattern is easy to spot because the plural has no long vowel at all, three short vowels around three consonants.
+Nouns with a long middle vowel, like كِتاب (fiʿaal) or the feminine faʿiila shape, often take fuʿul: three consonants and three short vowels.
 
-- كِتابْ → كُتُبْ (singular shape fiʿaal; plural pattern fuʿul; kitaab / kutub; book)
-- مَدينَة → مُدُنْ (singular shape faʿiila; plural pattern fuʿul; madiina / mudun; city)
+- كِتابْ → كُتُبْ (fiʿaal; fuʿul; kitaab / kutub; book)
+- مَدينَة → مُدُنْ (faʿiila; fuʿul; madiina / mudun; city)
 
 ### Pattern 5: فُعَل and فِعَل (fuʿal, fiʿal), the ـة nouns
 
-This is the most predictable family. A feminine noun built on fuʿla takes fuʿal; one built on fiʿla takes fiʿal. The vowel of the singular's first letter is carried straight into the plural. If a three-consonant ـة noun is not taking ـات, this is the first place to look.
+The most predictable family: fuʿla takes fuʿal and fiʿla takes fiʿal, keeping the first vowel.
 
-- أُسْرَة → أُسَرْ (singular shape fuʿla; plural pattern fuʿal; usra / usar; family)
-- غُرْفَة → غُرَفْ (singular shape fuʿla; plural pattern fuʿal; ghurfa / ghuraf; room)
-- قِصَّة → قِصَصْ (singular shape fiʿla; plural pattern fiʿal; qiSSa / qiSaS; story)
-- قِطَّة → قِطَطْ (singular shape fiʿla; plural pattern fiʿal; qiTTa / qiTaT; cat)
-- جُمْلَة → جُمَلْ (singular shape fuʿla; plural pattern fuʿal; jumla / jumal; sentence)
-- أُمَّة → أُمَمْ (singular shape fuʿla; plural pattern fuʿal; umma / umam; nation)
+- أُسْرَة → أُسَرْ (fuʿla; fuʿal; usra / usar; family)
+- غُرْفَة → غُرَفْ (fuʿla; fuʿal; ghurfa / ghuraf; room)
+- قِصَّة → قِصَصْ (fiʿla; fiʿal; qiSSa / qiSaS; story)
+- قِطَّة → قِطَطْ (fiʿla; fiʿal; qiTTa / qiTaT; cat)
+- جُمْلَة → جُمَلْ (fuʿla; fuʿal; jumla / jumal; sentence)
+- أُمَّة → أُمَمْ (fuʿla; fuʿal; umma / umam; nation)
 
-Don't assume a ـة ending means a ـات plural. The sound feminine plural is common, but this handout alone has six ـة nouns that go broken, and شَجَرَة and وَرَقَة in Pattern 1 are two more.
+A ـة ending does not guarantee a ـات plural: six ـة nouns here take broken plurals, plus شَجَرَة and وَرَقَة in Pattern 1.
 
 ### Pattern 6: فَواعِل versus فُعّال, the فاعِل shape
 
-Nouns on the faaʿil shape (the same shape as an active participle) are the clearest case of one shape, many plurals. Roughly, things lean toward fawaaʿil and people lean toward fuʿʿaal (or a sound ـون plural), but your handout also shows faʿaal, fiʿlaan, and, from Pattern 1, afʿaal for the same shape.
+The faaʿil shape (the active-participle shape) takes many plurals. Things lean toward fawaaʿil and people toward fuʿʿaal (or a sound ـون plural), but faʿaal, fiʿlaan, and, from Pattern 1, afʿaal also occur.
 
-- طَالِبْ → طُلَّابْ (singular shape faaʿil; plural pattern fuʿʿaal; Taalib / Tullaab; student)
-- شارِع → شَوارِعْ (singular shape faaʿil; plural pattern fawaaʿil; shaariʿ / shawaariʿ; street / road)
-- شاب → شَباب (singular shape faaʿil; plural pattern faʿaal; shaab / shabaab; guy)
-- جارْ → جيران (singular shape faaʿil; plural pattern fiʿlaan; jaar / jiiraan; neighbor)
+- طَالِبْ → طُلَّابْ (faaʿil; fuʿʿaal; Taalib / Tullaab; student)
+- شارِع → شَوارِعْ (faaʿil; fawaaʿil; shaariʿ / shawaariʿ; street / road)
+- شاب → شَباب (faaʿil; faʿaal; shaab / shabaab; guy)
+- جارْ → جيران (faaʿil; fiʿlaan; jaar / jiiraan; neighbor)
 
 ### Pattern 7: مَفاعِل (mafaaʿil), the most reliable one
 
-Nouns that start with م as a prefix (often a place where something is done, or a noun derived from a verb root) almost always take mafaaʿil. If you remember one rule from this lesson, make it this one: m-prefixed noun, mafaaʿil plural. The same holds for مَدرَسة (school, مَدارِس), which you already met in the Plurals quiz.
+Nouns with a م prefix (often a place of an action, or derived from a verb root) almost always take mafaaʿil. The same holds for مَدرَسة (school, مَدارِس).
 
-- مَكْتَبْ → مَكاتِبْ (singular shape mafʿal; plural pattern mafaaʿil; maktab / makaatib; office)
-- مَرْكِزْ → مَراكِز (singular shape mafʿal; plural pattern mafaaʿil; markaz / maraakiz; center)
-- مِنْطَقَة → مَناطِق (singular shape mifʿala; plural pattern mafaaʿil; minTaqa / manaaTiq; region / area)
-- مُشْكِلَة → مَشاكِلْ (singular shape mufʿila; plural pattern mafaaʿil; mushkila / mashaakil; problem)
+- مَكْتَبْ → مَكاتِبْ (mafʿal; mafaaʿil; maktab / makaatib; office)
+- مَرْكِزْ → مَراكِز (mafʿal; mafaaʿil; markaz / maraakiz; center)
+- مِنْطَقَة → مَناطِق (mifʿala; mafaaʿil; minTaqa / manaaTiq; region / area)
+- مُشْكِلَة → مَشاكِلْ (mufʿila; mafaaʿil; mushkila / mashaakil; problem)
 
 ### Pattern 8: فَعالِل (faʿaalil) and its relatives, for four-consonant nouns
 
-When a noun has four consonants in its skeleton, or three consonants plus a long vowel that behaves like a consonant, the plural is built on a frame with a long ا after the first letter and a short ِ before the last: CaCaaCiC. Variations add ـة (people), a long ي (ـيل), or end in ـي when the singular does. If you see this frame in a word you haven't met, it is almost certainly a plural.
+Nouns with four consonants (or three plus a long vowel) take a plural built on a frame with a long ا after the first letter and a short ِ before the last: CaCaaCiC. Variations add ـة (people), a long ي (ـيل), or end in ـي when the singular does. This frame in an unfamiliar word almost always signals a plural.
 
-- دَفْتَرْ → دَفاتِرْ (singular shape faʿlal; plural pattern faʿaalil; daftar / dafaatir; notebook)
-- دُكْتور → دَكاتِرَة (singular shape fuʿluul; plural pattern faʿaalila; duktuur / dakaatira; doctor)
-- تَمْرين → تَمارين (singular shape tafʿiil; plural pattern tafaaʿiil; tamriin / tamaariin; exercise)
-- شُبَّاك → شَبابيك (singular shape fuʿʿaal; plural pattern faʿaaliil; shubbaak / shabaabiik; window)
-- كُرْسي → كَراسي (singular shape fuʿlii; plural pattern faʿaalii; kursii / karaasii; chair)
-- أُسْتاذ → أَساتِذَة (singular shape uʿfuul; plural pattern afaaʿila; ustaadh / asaatidha; professor)
+- دَفْتَرْ → دَفاتِرْ (faʿlal; faʿaalil; daftar / dafaatir; notebook)
+- دُكْتور → دَكاتِرَة (fuʿluul; faʿaalila; duktuur / dakaatira; doctor)
+- تَمْرين → تَمارين (tafʿiil; tafaaʿiil; tamriin / tamaariin; exercise)
+- شُبَّاك → شَبابيك (fuʿʿaal; faʿaaliil; shubbaak / shabaabiik; window)
+- كُرْسي → كَراسي (fuʿlii; faʿaalii; kursii / karaasii; chair)
+- أُسْتاذ → أَساتِذَة (uʿfuul; afaaʿila; ustaadh / asaatidha; professor)
 
-People often get a ـة on top of the frame (أَساتِذَة, دَكاتِرَة). That ending is common for broken plurals of professions and titles.
+ـة is common on broken plurals of professions and titles (أَساتِذَة, دَكاتِرَة).
 
 ### Plurals that look sound but aren't
 
@@ -598,7 +674,7 @@ In أُخْتْ → أَخَواتْ the root letter و shows up, which is hidde
 
 ### The ones that have no pattern
 
-Some plurals can't be predicted at all. They are just vocabulary. These seven are in your handout:
+Some plurals cannot be predicted:
 
 - إِمْرَأَة → نِساءْ (imra'a / nisaa'; woman)
 - عَرَبِيّ → عَرَبْ (ʿarabiyy / ʿarab; Arab)
@@ -608,15 +684,15 @@ Some plurals can't be predicted at all. They are just vocabulary. These seven ar
 - سُؤال → أَسْئِلَة (su'aal / as'ila; question)
 - أخْ → أُخْوَة (akh / ukhwa; brother)
 
-- إِمْرَأَة → نِساء is built from a completely different word (suppletion, like English "person, people"). Don't look for a pattern.
+- إِمْرَأَة → نِساء is built from a completely different word (suppletion, like English "person, people").
 - عَرَب is really a collective noun, "the Arabs." It is the usual plural of عَرَبِيّ in this sense. Don't confuse it with أَعْراب, a different word for desert nomads.
-- أَمْريكان is what the handout gives. The sound masculine plural أَمْريكِيّون is also normal for nisba adjectives like this one.
-- أَخ takes أُخْوَة in the handout. You'll also see it spelled إِخْوَة. Both are the plural "brothers."
+- أَمْريكان also has the sound masculine plural أَمْريكِيّون, normal for nisba adjectives.
+- أَخ takes أُخْوَة ("brothers"), also spelled إِخْوَة.
 - شَيْء → أَشْياء and سُؤال → أَسْئِلَة are fixed forms that don't match the main patterns above, so memorize them whole.
 
 ### A decision guide for a new noun
 
-These are tendencies, not laws, in roughly this order. Stop at the first question that fits:
+Tendencies, in order. Stop at the first question that fits:
 
 1. Does the singular start with م as a prefix? Expect mafaaʿil (مَكاتِب, مَشاكِل).
 2. Does it have four consonants, or a long vowel plus three consonants (دَفْتَر, كُرْسي)? Expect the faʿaalil frame.
@@ -625,71 +701,85 @@ These are tendencies, not laws, in roughly this order. Stop at the first questio
 5. Is it a short, three-consonant noun with no vowel in the middle? The candidates are fuʿuul, fiʿaal and afʿaal. Memorize which.
 6. Is it a short noun with a vowel in the middle (قَلَم, عَمَل)? afʿaal is the best first guess.
 
-### Two things that make this easier in practice
+### Study tips
 
-- Learn the pair, not the word. This is the same advice as before, but this lesson explains why: if the pattern isn't predictable from the singular, then the only reliable memory is singular and plural together. The Flashcards tab has a separate Broken plurals deck built from your handout for exactly this.
-- Read backwards from the plural. Many of these frames (mafaaʿil, faʿaalil, afʿaal) are easy to spot in a text. Seeing the frame tells you the word is plural before you know the word. Plurals of this kind (mafaaʿil, faʿaalil and similar) are also diptotes: they take no tanwiin, and in the genitive they take fatha instead of kasra unless ال or an idafa is involved.
+- Learn the pair. Memorize singular and plural together. The Flashcards tab has a Broken plurals deck for this.
+- Recognize the frame. The mafaaʿil, faʿaalil and afʿaal frames mark a plural even in an unfamiliar word. Plurals on the mafaaʿil and faʿaalil frames are diptotes: no tanwiin, and fatha instead of kasra in the genitive unless ال or an idafa is involved.
 
-### Agreement still works the same way
-
-A broken plural of people agrees with plural verbs and adjectives. A broken plural of things is treated as a feminine singular, exactly as covered in the Plurals lesson and the Adjectives lesson. The pattern doesn't change this: كُتُب جَديدة (new books): a broken plural of things, so the adjective is feminine singular.
-
-### Where this lesson comes from
-
-The 54 word pairs come from the instructor's List of Broken Plurals handout. Grouping them into the families above is this site's own sorting of that handout, using standard Arabic pattern names, so it is a study aid and not something the handout itself says. The "sammaaʿii" framing, the rough count of patterns, and the قَلْب versus كَلْب contrast come from discussion on a learner forum; treat the counts as approximate. Where your own textbook or instructor gives a different plural for a word, use theirs.
+### Agreement
+\n
+A broken plural of people takes plural agreement; a broken plural of things takes feminine singular: كُتُب جَديدة (new books).
 
 ## 26. Verb Forms (al-Awzaan)
 
-Arabic organizes derived verbs into ten numbered patterns, called forms or أوزان (awzaan, "weights" or "measures"). Every form takes the same three (or sometimes four) root consonants and drops them into a different template, producing a related but distinct meaning. You've actually already met several of these without the label: شاهَدَ (Form III), أراد and أحَبَّ (Form IV), تَكَلَّمَ and تَذَكَّرَ (Form V).
+Derived verbs follow ten numbered patterns, called forms or أوزان (awzaan, "weights" or "measures"). Each form puts the same root in a different template and gives a related meaning. Examples: شاهَدَ (Form III), أراد and أحَبَّ (Form IV), تَكَلَّمَ and تَذَكَّرَ (Form V).
 
-### Why this matters for reading
-Once you can recognize the SHAPE of a verb form, you can guess its root even in an unfamiliar word, and you can often guess its general meaning relationship to the plain Form I verb: Form II often makes a verb causative (دَرَسَ "he studied" &rarr; دَرَّسَ "he taught," literally "he caused to study"), Form III often implies doing something with or to another person (سافَرَ, "to travel," implies going somewhere involving others or a destination), and Form V is very often the reflexive of Form II (تَعَلَّمَ "to learn," the reflexive counterpart of عَلَّمَ "to teach").
+### Typical meanings
+
+The shape of a form shows the root and often the meaning relative to Form I: Form II often makes a verb causative (دَرَسَ "he studied" → دَرَّسَ "he taught," literally "he caused to study"), Form III often implies doing something with or to another person (سافَرَ, "to travel," implies going somewhere involving others or a destination), and Form V is very often the reflexive of Form II (تَعَلَّمَ "to learn," the reflexive counterpart of عَلَّمَ "to teach").
 
 ### The ten forms, past tense (huwa) and present tense (huwa)
+
 [table, see index.html]
-Forms IX is rare (mostly colors and physical defects) and won't come up much. Forms VII, VIII, and X are extremely common; you already have one Form VIII verb from your own conjugation worksheets, اِسْتَمَعَ ("to listen") is actually Form X, since it follows the استفعل template exactly (اِستَفعَلَ pattern, root س-م-ع).
+
+Form IX is rare (mostly colors and physical defects). Forms VII, VIII, and X are common. اِسْتَمَعَ ("to listen") is Form VIII: the اِفْتَعَلَ template with root س-م-ع.
 
 ## 27. Hollow and Irregular Verbs
 
-Every verb you've conjugated so far has had three ordinary consonants as its root. A hollow verb (الفِعل الأجوَف) has a weak letter, و or ي, as its MIDDLE root consonant, and that weak letter behaves very differently depending on what follows it.
+A hollow verb (الفِعل الأجوَف) has a weak letter, و or ي, as its middle root consonant; the weak letter changes depending on what follows it.
 
 ### Four common hollow and irregular verbs
-[table, see index.html]
-Notice the middle letter shows up as a long vowel in the present tense (aa, ii, or uu depending on the verb), matching exactly the same "hollow verb" behavior you saw with أراد &rarr; يُريد in the Conjugations section: the long vowel shortens or drops entirely in certain forms, especially before a consonant-starting suffix like the feminine plural ـنَ.
 
-### kaana: a verb you'll use constantly
-كانَ is the closest thing Arabic has to a past-tense "to be." It turns a nominal sentence into a statement about the past: كانَ الطَّقسُ بارِداً (the weather was cold). Just like with لَيسَ, the predicate after كان is accusative in fully vowelled Arabic (بارِداً, not بارِدٌ). كانَ conjugates through all the same persons as any other past-tense verb, and its present tense يَكونُ is used for "will be" or "would be" type meanings, since plain present tense already covers ordinary "is/are."
+[table, see index.html]
+
+The middle letter shows up as a long vowel in the present tense (aa, ii, or uu, depending on the verb) and shortens before a consonant-initial suffix such as the feminine plural ـنَ.
+
+### kaana
+
+كانَ is the closest thing Arabic has to a past-tense "to be." It turns a nominal sentence into a statement about the past: كانَ الطَّقسُ بارِداً (the weather was cold). Just like with لَيسَ, the predicate after كان is accusative in fully vowelled Arabic (بارِداً, not بارِدٌ).
 
 ## 28. Active and Passive Participles
 
-A participle in Arabic is a noun-like word built from a verb's root, describing someone or something as the doer (active) or the receiver (passive) of the verb's action. English does something similar with "-ing" and "-ed" forms (the teaching professor, the assigned homework), though the Arabic system is more systematic and used far more often, frequently standing in for what English would phrase as a full verb.
+A participle is a noun-like word built from a verb's root, naming the doer (active) or the receiver (passive) of the action.
 
-### Active participle: ism al-faa\u02BFil
+### Active participle: ism al-faaʿil
+
 The active participle (اسم الفاعِل, "the noun of the doer") for a plain Form I verb follows the pattern فاعِل. It describes someone actively doing, or currently in the state of doing, the verb's action.
 
 [table, see index.html]
-You've actually already met one of these as ordinary vocabulary: مُتَخَصِّص (specializing in, specialist in) is the active participle of a derived-form verb, following that form's own participle pattern rather than the plain فاعِل shape.
 
-### Passive participle: ism al-maf\u02BFuul
+مُتَخَصِّص (specializing in, specialist in) is the active participle of a derived-form verb, following that form's own participle pattern rather than the plain فاعِل shape.
+
+### Passive participle: ism al-mafʿuul
+
 The passive participle (اسم المَفعول, "the noun of the thing acted upon") for a plain Form I verb follows the pattern مَفعول. It describes something that has had the verb's action done to it.
 
 [table, see index.html]
+
 Derived-form verbs (Forms II through X) have their own, different participle patterns rather than فاعِل/مَفعول, generally built by prefixing مُـ to a shape closely related to the verb's own present-tense stem. مُوَظَّف (employee, literally "one who has been given a position") is a passive participle of a Form II verb, and مُدَرِّس (teacher, from Form II دَرَّسَ) is that same form's active participle.
 
 ## 29. The Verbal Noun (al-Masdar)
 
-The verbal noun, or masdar (المَصدَر, literally "the source"), is a noun that names the action or concept of a verb, roughly matching English gerunds ("studying," "traveling") or action nouns ("study," "travel"). Every Arabic verb has one, and just like plurals and participles, masdars mostly have to be learned form by form and root by root rather than derived by one universal rule, at least for Form I verbs.
+The verbal noun, or masdar (المَصدَر, "the source"), names a verb's action, like English gerunds ("studying") or action nouns ("study"). Form I masdars must be learned verb by verb.
 
-### Masdars you already know as vocabulary
+### Examples
+
 [table, see index.html]
-A footnote worth remembering from your own vocabulary list: السَّفَر is explicitly a noun (a masdar), not a participle or adjective. That means it can't be used to build a sentence like "I am traveling"; for that, you need the actual conjugated verb, أُسافِر.
 
-### Why masdars matter beyond vocabulary
-Masdars let Arabic turn a whole action into the subject or object of a sentence, the way English uses "-ing" forms: السَّفَرُ ممتِع ("traveling is fun," literally "the-traveling [is] enjoyable") treats السَّفَر as an ordinary noun functioning as the subject of a nominal sentence.
+السَّفَر is a noun, so it cannot express "I am traveling"; use the verb أُسافِر.
+
+### Roles in a sentence
+
+A masdar acts as a noun. It translates as an English gerund ("reading," "writing") or infinitive ("to study Arabic").
+
+[table, see index.html]
+
+### Definiteness
+
+A masdar is definite when it takes ال (الدِّراسة), is the first term of an idafa (دِراسةُ العَرَبيّةِ), or carries a possessive suffix (دِراسَتُها).
+
+After أَنْ a masdar can replace the verb: أُريدُ أَنْ أَذْهَبَ becomes أُريدُ الذَّهابَ.
 
 ## 30. Connectors: and, or, but, so
 
-Al-Kitaab introduces a small set of connecting words that let you combine simple sentences into longer, more natural-sounding ones. Each attaches directly to the front of the word that follows it, the same way the definite article ال does.
-
 [table, see index.html]
-These connectors are part of what your own course journal-writing assignments explicitly ask you to use (alongside phrases like حَيث "where," فِعلاً "really," and أيضاً "also") to make longer, more connected writing instead of a string of short, disconnected sentences.

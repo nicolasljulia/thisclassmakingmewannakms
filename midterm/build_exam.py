@@ -26,18 +26,13 @@ S.append(dict(letter='A', title='Letters and connections', pts=8, page=1, parts=
               ('<div class="ar">بنت = ___</div>', 'بِنْت')]),
 ]))
 
-S.append(dict(letter='B', title='Numbers', pts=7, page=1, parts=[
+S.append(dict(letter='B', title='Numbers', pts=10, page=1, parts=[
   dict(intro='1. Count from one to ten in Arabic. Spell out each number. (5 points)',
        lines=[('<div class="wl"></div><div class="wl"></div>', 'واحد، اثنان، ثلاثة، أربعة، خمسة، ستة، سبعة، ثمانية، تسعة، عشرة')]),
-  dict(intro='2. Write each numeral as a word. (2 points)',
-       lines=[('<div class="ar">1) ٣ &nbsp; ___</div>', 'ثلاثة'), ('<div class="ar">2) ٧ &nbsp; ___</div>', 'سبعة')]),
-]))
-
-S.append(dict(letter='C', title='Dictation', pts=6, page=1, parts=[
-  dict(intro='Write each word in Arabic with correct spelling. (In class these are read aloud; for this practice version the words are given in transliteration.) (6 points)',
-       lines=[('<div class="enl">1) bayt &nbsp;&nbsp; @@@ &nbsp;&nbsp;&nbsp; 2) jaamiʿa &nbsp;&nbsp; @@@</div>', 'بَيْت &nbsp;&nbsp;&nbsp; ، &nbsp;&nbsp;&nbsp; جامِعة'),
-              ('<div class="enl">3) madiina &nbsp;&nbsp; @@@ &nbsp;&nbsp;&nbsp; 4) Taaliba &nbsp;&nbsp; @@@</div>', 'مَدينة &nbsp;&nbsp;&nbsp; ، &nbsp;&nbsp;&nbsp; طالِبة'),
-              ('<div class="enl">5) usra &nbsp;&nbsp; @@@ &nbsp;&nbsp;&nbsp; 6) maktaba &nbsp;&nbsp; @@@</div>', 'أُسْرة &nbsp;&nbsp;&nbsp; ، &nbsp;&nbsp;&nbsp; مَكْتَبة')]),
+  dict(intro='2. Write each numeral as a word. (5 points)', cols=2,
+       lines=[('<div class="ar">%d) %s &nbsp; ___</div>' % (n, d), w) for n, (d, w) in enumerate([
+              ('\u0667','سبعة'),('\u0663','ثلاثة'),('\u0661\u0660','عشرة'),('\u0662','اثنان'),('\u0669','تسعة'),
+              ('\u0665','خمسة'),('\u0661','واحد'),('\u0668','ثمانية'),('\u0664','أربعة'),('\u0666','ستة')], 1)]),
 ]))
 
 S.append(dict(letter='D', title='Greetings', pts=5, page=1, parts=[
@@ -225,6 +220,12 @@ S.append(dict(letter='S', title='Writing', pts=10, page=8, parts=[
        lines=[('<div class="wl"></div>', '') for _ in range(9)]),
 ]))
 
+
+import string
+for _i, _s in enumerate(S):
+    _s['letter'] = string.ascii_uppercase[_i]
+def LET(title): return [x['letter'] for x in S if x['title'] == title][0]
+
 TOTAL = sum(s['pts'] for s in S)
 
 CSS = """
@@ -254,6 +255,7 @@ table.chart{border-collapse:collapse;width:100%;margin:3pt 0}
 table.chart td{border:1px solid #000;padding:3pt 8pt;height:21pt;font-size:11.5pt}
 table.chart td.a{direction:rtl}
 .goodluck{text-align:center;margin-top:12pt}
+.cols2{display:grid;grid-template-columns:1fr 1fr;column-gap:24pt}
 .goodluck .ar{text-align:center;font-size:13pt}
 .keynote{font-size:10pt;margin:2pt 0 6pt 0}
 .ans{direction:rtl;text-align:right;font-family:Arial,'Geeza Pro',sans-serif;font-size:13pt;line-height:1.55;margin:1pt 0}
@@ -276,15 +278,20 @@ def render_exam():
         if p == 1:
             out.append('<div style="margin:0 0 8pt 0;">Total: %d points.</div>' % TOTAL)
         for s in [x for x in S if x['page'] == p]:
-            out.append('<div class="sec%s"><h2>%s. %s (%d points)</h2>' % (' spaced' if s['letter'] in ('K','M') else '', s['letter'], s['title'], s['pts']))
+            out.append('<div class="sec%s"><h2>%s. %s (%d points)</h2>' % (' spaced' if s['title'] in ('Case endings','Nominal and verbal sentences') else '', s['letter'], s['title'], s['pts']))
             for part in s['parts']:
                 out.append('<div class="part">')
                 if part.get('intro'): out.append('<div class="intro">%s</div>' % part['intro'])
                 if part.get('raw'): out.append(part['raw'])
                 if part.get('chart'):
                     out.append('<table class="chart">' + ''.join('<tr><td style="width:46%%">%s</td><td class="a"></td></tr>' % e for e, a in part['chart']) + '</table>')
-                for prompt, ans in part.get('lines', []):
-                    out.append(blanks(prompt))
+                if part.get('cols'):
+                    ls = part['lines']; half = (len(ls) + 1) // 2
+                    order = [x for k in range(half) for x in (ls[k], ls[k + half] if k + half < len(ls) else None) if x]
+                    out.append('<div class="cols2">' + ''.join(blanks(p) for p, a in order) + '</div>')
+                else:
+                    for prompt, ans in part.get('lines', []):
+                        out.append(blanks(prompt))
                 out.append('</div>')
             out.append('</div>')
         if p == pages[-1]:
@@ -312,17 +319,17 @@ def render_key():
                 for i, (e, a) in enumerate(part['chart'], 1):
                     out.append('<div class="ansrow"><span class="num">%d)</span><span class="val en" style="flex:0 0 38%%">%s</span><span class="val">%s</span></div>' % (i, e, a))
                 continue
-            if s['letter'] == 'S':
+            if s['title'] == 'Writing':
                 out.append('<div class="intro">Answers vary. Model answer (yours will differ):</div><div class="ans">اسمي ليلى. أنا من أمريكا، من مدينة نيويورك. أسكنُ في واشنطن في بيتٍ صغيرٍ قريبٍ من الجامعةِ. أنا طالبةٌ في جامعةِ جورجتاون وأدرسُ اللغةَ العربيةَ. أحبُّ القهوةَ مع الحليبِ في الصباحِ وآكلُ الدجاجَ في المساءِ.</div>')
                 continue
             lines = part.get('lines', [])
-            if len(lines) == 1 and s['letter'] in ('A', 'B') and 'wl' in lines[0][0]:
+            if len(lines) == 1 and s['title'] in ('Letters and connections', 'Numbers') and 'wl' in lines[0][0]:
                 out.append('<div class="ansrow"><span class="num">%s</span><span class="val">%s</span></div>' % (pre or '1.', lines[0][1]))
                 continue
             for i, (prompt, ans) in enumerate(lines, 1):
                 out.append('<div class="ansrow"><span class="num">%s%d)</span><span class="val">%s</span></div>' % (pre, i, ans))
         out.append('</div>')
-    out.append('<div class="sec"><h2>Notes on open-ended items</h2><div class="intro">Section E and the reading questions in Section R can be answered in more than one correct way. A good reading answer is a complete sentence with correct agreement and sensible case endings. Section S is open-ended; use the point breakdown on the exam. In Section Q, some verbs have more than one verbal noun (for example <span class="ar">السكن / السكنى</span>); the one shown is the most common.</div></div>')
+    out.append('<div class="sec"><h2>Notes on open-ended items</h2><div class="intro">Section %s and the reading questions in Section %s can be answered in more than one correct way. A good reading answer is a complete sentence with correct agreement and sensible case endings. Section %s is open-ended; use the point breakdown on the exam. In Section %s, some verbs have more than one verbal noun (for example <span class="ar">السكن / السكنى</span>); the one shown is the most common.</div></div>' % (LET('Conversation'), LET('Reading comprehension'), LET('Writing'), LET('Connectors and verbal nouns')))
     out.append('</div>')
     return '<!doctype html><html><head><meta charset="utf-8"><title>Arabic 011 Midterm Practice Exam Key</title><style>%s</style></head><body>%s</body></html>' % (CSS, ''.join(out))
 
