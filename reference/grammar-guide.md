@@ -468,7 +468,177 @@ Every new noun from here on should be memorized together with its plural, the sa
 ### Non-human plural agreement, reviewed
 As covered in the Adjectives lesson, any adjective, demonstrative, or verb agreeing with a plural noun that refers to things rather than people is put in the feminine singular, no matter how many things there are. This single rule explains a lot of sentences that otherwise look like they have a gender or number mismatch.
 
-## 25. Verb Forms (al-Awzaan)
+## 25. Broken Plural Patterns
+
+Sound plurals follow a rule you can say in one line. Broken plurals look like they don't, which is why learners often decide there is no system at all. There is one, it's just a system of patterns rather than a single rule, and which pattern a noun takes is something you have to learn along with the word. This lesson shows the patterns, what each one tends to attach to, and what is actually unpredictable.
+
+### Is there a rule?
+
+Yes and no, and both halves matter.
+
+- Yes: every broken plural is built on one of a limited set of patterns (أَوزان, awzaan). Commenters on learner forums put the number at roughly 27 to 32 patterns, which collapse into around 16 families that actually come up. You will recognize the same few shapes again and again.
+- No: a singular's shape does not fully decide which pattern it takes. A given shape usually has two or three plausible plural patterns, and Arabic speakers just use the one that has been used for that word. Arabic grammarians call this سَماعيّ (sammaaʿii, "by hearing"): you know it because you've heard it, not because you derived it.
+
+So the realistic goal is not "derive any plural from the singular." It is "know the likely candidates for a shape, and recognize the pattern when you see one."
+
+### The question everyone asks: why كِلاب and not كُلوب?
+
+The tempting rule is: three-letter noun with no vowel in the middle (فَعْل) becomes فُعول. That rule is real, and it covers a lot of words, including بَيْتْ → بُيوت and دَرْسْ → دُروسْ. But it is not the only pattern available to that shape. كَلْب takes فِعال instead. A learner comparing the two on a forum gave the same contrast: كَلْبْ → كِلاب but قَلْب → قُلوب (heart; this pair is from that thread, not from your handout). Same skeleton, different pattern, and nothing in the singular tells you which.
+
+Here is the same thing using only words from your handout:
+
+- بَيْتْ → بُيوت (singular shape faʿl; plural pattern fuʿuul; bayt / buyuut; house)
+- دَرْسْ → دُروسْ (singular shape faʿl; plural pattern fuʿuul; dars / duruus; lesson)
+- كَلْبْ → كِلاب (singular shape faʿl; plural pattern fiʿaal; kalb / kilaab; dog)
+- فِلْسْ → فُلوسْ (singular shape fiʿl; plural pattern fuʿuul; fils / fuluus; money)
+- اِسِمْ → أَسْماء (singular shape fiʿl; plural pattern afʿaal; isim / asmaa'; name)
+- قِسْمْ → أَقْسام (singular shape fiʿl; plural pattern afʿaal; qism / aqsaam; department / part)
+
+Two singular shapes, three different plural patterns. This is the normal situation, not an exception to it. What does narrow things down is the shape, which is why the rest of this lesson is organized by shape.
+
+### Pattern 1: أَفْعال (afʿaal), the default for short nouns
+
+If you have to guess the plural of a short three-consonant noun and you know nothing else about it, guess afʿaal. It is the most common pattern in your handout (14 of the 54 words). It attaches to many different singular shapes: faʿal, fiʿl, fuʿl, and nouns with a long vowel in the middle. When the last root letter is a weak letter the ending becomes ـاء (اِسِمْ → أَسْماء).
+
+- وَلَدْ → أَوْلاد (singular shape faʿal; walad / awlaad; son / boy)
+- صَاحِبْ → أصْحابْ (singular shape faaʿil; SaaHib / aSHaab; friend)
+- اِسِمْ → أَسْماء (singular shape fiʿl; isim / asmaa'; name)
+- عَمَلْ → أَعْمال (singular shape faʿal; ʿamal / aʿmaal; work)
+- شُغُلْ → أَشْغال (singular shape fuʿl; shughul / ashghaal; work)
+- خَبَرْ → أَخْبار (singular shape faʿal; khabar / akhbaar; news)
+- بابْ → أَبْوابْ (singular shape faʿl (weak middle); baab / abwaab; door)
+- خالْ → أَخْوال (singular shape faʿl (weak middle); khaal / akhwaal; maternal uncle)
+- قَلَمْ → أَقْلام (singular shape faʿal; qalam / aqlaam; pen / pencil)
+- رَقَمْ → أَرْقام (singular shape faʿal; raqam / arqaam; number)
+- شَجَرَة → أَشْجار (singular shape faʿala; shajara / ashjaar; tree)
+- وَرَقَة → أَوْراق (singular shape faʿala; waraqa / awraaq; leaf)
+- فيلم → أَفْلام (singular shape fiʿl; fiilm / aflaam; movie)
+- قِسْمْ → أَقْسام (singular shape fiʿl; qism / aqsaam; department / part)
+
+### Pattern 2: فُعول (fuʿuul), the forum poster's rule
+
+This is the pattern from the question above. It mostly attaches to three-consonant nouns with no vowel in the middle (faʿl, fiʿl). It is the most common plural for this shape but not the only one, as كَلْب showed. Loanwords fit it easily, which is how بَنْك got بُنوك.
+
+- بَيْتْ → بُيوت (singular shape faʿl; bayt / buyuut; house)
+- دَرْسْ → دُروسْ (singular shape faʿl; dars / duruus; lesson)
+- صَفْ → صُفوفْ (singular shape faʿl; Saff / Sufuuf; class)
+- فَصِلْ → فُصولْ (singular shape faʿl; faSil / fuSuul; semester / season)
+- بَنْكْ → بُنوكْ (singular shape faʿl; bank / bunuuk; bank)
+- فِلْسْ → فُلوسْ (singular shape fiʿl; fils / fuluus; money)
+
+### Pattern 3: فِعال (fiʿaal)
+
+The alternative to fuʿuul for the same shapes, and also common with faʿal nouns. No visible rule separates the two, so these are the words to memorize as pairs.
+
+- رَجُلْ → رِجالْ (singular shape faʿul; plural pattern fiʿaal; rajul / rijaal; man)
+- بَلَدْ → بِلاد / بُلْدان (singular shape faʿal; plural pattern fiʿaal (also fuʿlaan); balad / bilaad / buldaan; country)
+- كَلْبْ → كِلاب (singular shape faʿl; plural pattern fiʿaal; kalb / kilaab; dog)
+
+Notice بَلَد has a second plural, بُلْدان (pattern fuʿlaan). When a word has two plurals, the handout lists both and so should you.
+
+### Pattern 4: فُعُل (fuʿul), from long-vowel singulars
+
+Nouns that already have a long vowel in the middle, like كِتاب (fiʿaal) or the feminine faʿiila shape, often shorten to a plain fuʿul. The pattern is easy to spot because the plural has no long vowel at all, three short vowels around three consonants.
+
+- كِتابْ → كُتُبْ (singular shape fiʿaal; plural pattern fuʿul; kitaab / kutub; book)
+- مَدينَة → مُدُنْ (singular shape faʿiila; plural pattern fuʿul; madiina / mudun; city)
+
+### Pattern 5: فُعَل and فِعَل (fuʿal, fiʿal), the ـة nouns
+
+This is the most predictable family. A feminine noun built on fuʿla takes fuʿal; one built on fiʿla takes fiʿal. The vowel of the singular's first letter is carried straight into the plural. If a three-consonant ـة noun is not taking ـات, this is the first place to look.
+
+- أُسْرَة → أُسَرْ (singular shape fuʿla; plural pattern fuʿal; usra / usar; family)
+- غُرْفَة → غُرَفْ (singular shape fuʿla; plural pattern fuʿal; ghurfa / ghuraf; room)
+- قِصَّة → قِصَصْ (singular shape fiʿla; plural pattern fiʿal; qiSSa / qiSaS; story)
+- قِطَّة → قِطَطْ (singular shape fiʿla; plural pattern fiʿal; qiTTa / qiTaT; cat)
+- جُمْلَة → جُمَلْ (singular shape fuʿla; plural pattern fuʿal; jumla / jumal; sentence)
+- أُمَّة → أُمَمْ (singular shape fuʿla; plural pattern fuʿal; umma / umam; nation)
+
+Don't assume a ـة ending means a ـات plural. The sound feminine plural is common, but this handout alone has six ـة nouns that go broken, and شَجَرَة and وَرَقَة in Pattern 1 are two more.
+
+### Pattern 6: فَواعِل versus فُعّال, the فاعِل shape
+
+Nouns on the faaʿil shape (the same shape as an active participle) are the clearest case of one shape, many plurals. Roughly, things lean toward fawaaʿil and people lean toward fuʿʿaal (or a sound ـون plural), but your handout also shows faʿaal, fiʿlaan, and, from Pattern 1, afʿaal for the same shape.
+
+- طَالِبْ → طُلَّابْ (singular shape faaʿil; plural pattern fuʿʿaal; Taalib / Tullaab; student)
+- شارِع → شَوارِعْ (singular shape faaʿil; plural pattern fawaaʿil; shaariʿ / shawaariʿ; street / road)
+- شاب → شَباب (singular shape faaʿil; plural pattern faʿaal; shaab / shabaab; guy)
+- جارْ → جيران (singular shape faaʿil; plural pattern fiʿlaan; jaar / jiiraan; neighbor)
+
+### Pattern 7: مَفاعِل (mafaaʿil), the most reliable one
+
+Nouns that start with م as a prefix (often a place where something is done, or a noun derived from a verb root) almost always take mafaaʿil. If you remember one rule from this lesson, make it this one: m-prefixed noun, mafaaʿil plural. The same holds for مَدرَسة (school, مَدارِس), which you already met in the Plurals quiz.
+
+- مَكْتَبْ → مَكاتِبْ (singular shape mafʿal; plural pattern mafaaʿil; maktab / makaatib; office)
+- مَرْكِزْ → مَراكِز (singular shape mafʿal; plural pattern mafaaʿil; markaz / maraakiz; center)
+- مِنْطَقَة → مَناطِق (singular shape mifʿala; plural pattern mafaaʿil; minTaqa / manaaTiq; region / area)
+- مُشْكِلَة → مَشاكِلْ (singular shape mufʿila; plural pattern mafaaʿil; mushkila / mashaakil; problem)
+
+### Pattern 8: فَعالِل (faʿaalil) and its relatives, for four-consonant nouns
+
+When a noun has four consonants in its skeleton, or three consonants plus a long vowel that behaves like a consonant, the plural is built on a frame with a long ا after the first letter and a short ِ before the last: CaCaaCiC. Variations add ـة (people), a long ي (ـيل), or end in ـي when the singular does. If you see this frame in a word you haven't met, it is almost certainly a plural.
+
+- دَفْتَرْ → دَفاتِرْ (singular shape faʿlal; plural pattern faʿaalil; daftar / dafaatir; notebook)
+- دُكْتور → دَكاتِرَة (singular shape fuʿluul; plural pattern faʿaalila; duktuur / dakaatira; doctor)
+- تَمْرين → تَمارين (singular shape tafʿiil; plural pattern tafaaʿiil; tamriin / tamaariin; exercise)
+- شُبَّاك → شَبابيك (singular shape fuʿʿaal; plural pattern faʿaaliil; shubbaak / shabaabiik; window)
+- كُرْسي → كَراسي (singular shape fuʿlii; plural pattern faʿaalii; kursii / karaasii; chair)
+- أُسْتاذ → أَساتِذَة (singular shape uʿfuul; plural pattern afaaʿila; ustaadh / asaatidha; professor)
+
+People often get a ـة on top of the frame (أَساتِذَة, دَكاتِرَة). That ending is common for broken plurals of professions and titles.
+
+### Plurals that look sound but aren't
+
+Two feminine nouns take the ـات ending, but their stem is rearranged, so they are broken in the stem and feminine-sound in the ending:
+
+- بِنْتْ → بَناتْ (bint / banaat; daughter / girl)
+- أُخْتْ → أَخَواتْ (ukht / akhawaat; sister)
+
+In أُخْتْ → أَخَواتْ the root letter و shows up, which is hidden in the singular.
+
+### The ones that have no pattern
+
+Some plurals can't be predicted at all. They are just vocabulary. These seven are in your handout:
+
+- إِمْرَأَة → نِساءْ (imra'a / nisaa'; woman)
+- عَرَبِيّ → عَرَبْ (ʿarabiyy / ʿarab; Arab)
+- أمْرِيكِيّ → أمْرِيكان (amriikiyy / amriikaan; American)
+- شَيْءْ → أَشْياء (shay' / ashyaa'; thing)
+- سَيِّدْ → سادَة (sayyid / saada; mister)
+- سُؤال → أَسْئِلَة (su'aal / as'ila; question)
+- أخْ → أُخْوَة (akh / ukhwa; brother)
+
+- إِمْرَأَة → نِساء is built from a completely different word (suppletion, like English "person, people"). Don't look for a pattern.
+- عَرَب is really a collective noun, "the Arabs." It is the usual plural of عَرَبِيّ in this sense. Don't confuse it with أَعْراب, a different word for desert nomads.
+- أَمْريكان is what the handout gives. The sound masculine plural أَمْريكِيّون is also normal for nisba adjectives like this one.
+- أَخ takes أُخْوَة in the handout. You'll also see it spelled إِخْوَة. Both are the plural "brothers."
+- شَيْء → أَشْياء and سُؤال → أَسْئِلَة are fixed forms that don't match the main patterns above, so memorize them whole.
+
+### A decision guide for a new noun
+
+These are tendencies, not laws, in roughly this order. Stop at the first question that fits:
+
+1. Does the singular start with م as a prefix? Expect mafaaʿil (مَكاتِب, مَشاكِل).
+2. Does it have four consonants, or a long vowel plus three consonants (دَفْتَر, كُرْسي)? Expect the faʿaalil frame.
+3. Is it a feminine ـة noun with three consonants (fuʿla or fiʿla)? Expect fuʿal / fiʿal, or ـات.
+4. Is it a person on the faaʿil shape? Expect fuʿʿaal or a sound ـون plural. A thing? Expect fawaaʿil.
+5. Is it a short, three-consonant noun with no vowel in the middle? The candidates are fuʿuul, fiʿaal and afʿaal. Memorize which.
+6. Is it a short noun with a vowel in the middle (قَلَم, عَمَل)? afʿaal is the best first guess.
+
+### Two things that make this easier in practice
+
+- Learn the pair, not the word. This is the same advice as before, but this lesson explains why: if the pattern isn't predictable from the singular, then the only reliable memory is singular and plural together. The Flashcards tab has a separate Broken plurals deck built from your handout for exactly this.
+- Read backwards from the plural. Many of these frames (mafaaʿil, faʿaalil, afʿaal) are easy to spot in a text. Seeing the frame tells you the word is plural before you know the word. Plurals of this kind (mafaaʿil, faʿaalil and similar) are also diptotes: they take no tanwiin, and in the genitive they take fatha instead of kasra unless ال or an idafa is involved.
+
+### Agreement still works the same way
+
+A broken plural of people agrees with plural verbs and adjectives. A broken plural of things is treated as a feminine singular, exactly as covered in the Plurals lesson and the Adjectives lesson. The pattern doesn't change this: كُتُب جَديدة (new books): a broken plural of things, so the adjective is feminine singular.
+
+### Where this lesson comes from
+
+The 54 word pairs come from the instructor's List of Broken Plurals handout. Grouping them into the families above is this site's own sorting of that handout, using standard Arabic pattern names, so it is a study aid and not something the handout itself says. The "sammaaʿii" framing, the rough count of patterns, and the قَلْب versus كَلْب contrast come from discussion on a learner forum; treat the counts as approximate. Where your own textbook or instructor gives a different plural for a word, use theirs.
+
+## 26. Verb Forms (al-Awzaan)
 
 Arabic organizes derived verbs into ten numbered patterns, called forms or أوزان (awzaan, "weights" or "measures"). Every form takes the same three (or sometimes four) root consonants and drops them into a different template, producing a related but distinct meaning. You've actually already met several of these without the label: شاهَدَ (Form III), أراد and أحَبَّ (Form IV), تَكَلَّمَ and تَذَكَّرَ (Form V).
 
@@ -479,7 +649,7 @@ Once you can recognize the SHAPE of a verb form, you can guess its root even in 
 [table, see index.html]
 Forms IX is rare (mostly colors and physical defects) and won't come up much. Forms VII, VIII, and X are extremely common; you already have one Form VIII verb from your own conjugation worksheets, اِسْتَمَعَ ("to listen") is actually Form X, since it follows the استفعل template exactly (اِستَفعَلَ pattern, root س-م-ع).
 
-## 26. Hollow and Irregular Verbs
+## 27. Hollow and Irregular Verbs
 
 Every verb you've conjugated so far has had three ordinary consonants as its root. A hollow verb (الفِعل الأجوَف) has a weak letter, و or ي, as its MIDDLE root consonant, and that weak letter behaves very differently depending on what follows it.
 
@@ -490,7 +660,7 @@ Notice the middle letter shows up as a long vowel in the present tense (aa, ii, 
 ### kaana: a verb you'll use constantly
 كانَ is the closest thing Arabic has to a past-tense "to be." It turns a nominal sentence into a statement about the past: كانَ الطَّقسُ بارِداً (the weather was cold). Just like with لَيسَ, the predicate after كان is accusative in fully vowelled Arabic (بارِداً, not بارِدٌ). كانَ conjugates through all the same persons as any other past-tense verb, and its present tense يَكونُ is used for "will be" or "would be" type meanings, since plain present tense already covers ordinary "is/are."
 
-## 27. Active and Passive Participles
+## 28. Active and Passive Participles
 
 A participle in Arabic is a noun-like word built from a verb's root, describing someone or something as the doer (active) or the receiver (passive) of the verb's action. English does something similar with "-ing" and "-ed" forms (the teaching professor, the assigned homework), though the Arabic system is more systematic and used far more often, frequently standing in for what English would phrase as a full verb.
 
@@ -506,7 +676,7 @@ The passive participle (اسم المَفعول, "the noun of the thing acted up
 [table, see index.html]
 Derived-form verbs (Forms II through X) have their own, different participle patterns rather than فاعِل/مَفعول, generally built by prefixing مُـ to a shape closely related to the verb's own present-tense stem. مُوَظَّف (employee, literally "one who has been given a position") is a passive participle of a Form II verb, and مُدَرِّس (teacher, from Form II دَرَّسَ) is that same form's active participle.
 
-## 28. The Verbal Noun (al-Masdar)
+## 29. The Verbal Noun (al-Masdar)
 
 The verbal noun, or masdar (المَصدَر, literally "the source"), is a noun that names the action or concept of a verb, roughly matching English gerunds ("studying," "traveling") or action nouns ("study," "travel"). Every Arabic verb has one, and just like plurals and participles, masdars mostly have to be learned form by form and root by root rather than derived by one universal rule, at least for Form I verbs.
 
@@ -517,7 +687,7 @@ A footnote worth remembering from your own vocabulary list: السَّفَر is 
 ### Why masdars matter beyond vocabulary
 Masdars let Arabic turn a whole action into the subject or object of a sentence, the way English uses "-ing" forms: السَّفَرُ ممتِع ("traveling is fun," literally "the-traveling [is] enjoyable") treats السَّفَر as an ordinary noun functioning as the subject of a nominal sentence.
 
-## 29. Connectors: and, or, but, so
+## 30. Connectors: and, or, but, so
 
 Al-Kitaab introduces a small set of connecting words that let you combine simple sentences into longer, more natural-sounding ones. Each attaches directly to the front of the word that follows it, the same way the definite article ال does.
 
