@@ -1251,7 +1251,7 @@ function renderHome(main){
         </div>
         <div class="card lesson-card" onclick="go('flashcards')">
           <div class="num">Drill</div><h3>Flashcards</h3>
-          <p class="muted" style="margin:0;">${VOCAB.length} words and phrases, plus a broken plurals deck.</p>
+          <p class="muted" style="margin:0;">${VOCAB.length} words and phrases, plus a plurals deck.</p>
         </div>
         <div class="card lesson-card" onclick="go('matching')">
           <div class="num">Play</div><h3>Matching game</h3>
@@ -1959,7 +1959,7 @@ addLesson("Broken Plural Patterns", `
 
 <h3>Study tips</h3>
 <ul>
-<li><b>Learn the pair.</b> Memorize singular and plural together. The Flashcards tab has a Broken plurals deck for this.</li>
+<li><b>Learn the pair.</b> Memorize singular and plural together. The Flashcards tab has a Plurals deck for this.</li>
 <li><b>Recognize the frame.</b> The mafaa\u02BFil, fa\u02BFaalil and af\u02BFaal frames mark a plural even in an unfamiliar word. Plurals on the mafaa\u02BFil and fa\u02BFaalil frames are <b>diptotes</b>: no tanwiin, and fatha instead of kasra in the genitive unless <span class="arabic">ال</span> or an idafa is involved.</li>
 </ul>
 
@@ -2108,7 +2108,10 @@ let fcState = { deckId:'vocab', book:'alifbaa', unit:'all', type:'all', status:'
 const WORD_TYPES = ["noun","verb","adjective","pronoun","question","number","particle","phrase"];
 const WORD_TYPE_LABELS = { noun:"Nouns", verb:"Verbs", adjective:"Adjectives", pronoun:"Pronouns", question:"Question words", number:"Numbers", particle:"Particles", phrase:"Phrases" };
 let knownWords = loadProgress('knownWords', {});
-function vocabKey(v){ return v.deck==='plurals' ? 'plural|'+v.sg : v.book+'|'+v.en+'|'+v.ar; }
+(function(){ let changed=false; Object.keys(knownWords).forEach(k=>{ if(k.indexOf('plural|')===0){ const nk='plural|'+stripAr(k.slice(7)); if(nk!==k){ knownWords[nk]=true; delete knownWords[k]; changed=true; } } }); if(changed) saveProgress('knownWords', knownWords); })();
+function vocabKey(v){ return v.deck==='plurals' ? 'plural|'+v.key : v.book+'|'+v.en+'|'+v.ar; }
+let pluralCardsCache = null;
+function getPluralCards(){ if(!pluralCardsCache) pluralCardsCache = buildPluralRows().map(r=>({...r, deck:'plurals'})); return pluralCardsCache; }
 function isKnown(v){ return !!knownWords[vocabKey(v)]; }
 function setKnown(v, known){
   const key = vocabKey(v);
@@ -2122,7 +2125,7 @@ function renderFlashcards(main){
     <div class="row" style="margin-bottom:16px;">
       <select id="fcDeck">
         <option value="vocab">Vocabulary</option>
-        <option value="plurals">Broken plurals</option>
+        <option value="plurals">Plurals</option>
       </select>
       <select id="fcBook"></select>
       <select id="fcUnit"></select>
@@ -2183,7 +2186,7 @@ function renderFlashcards(main){
 
   function buildDeck(){
     if(fcState.deckId==='plurals'){
-      fcState.deck = BROKEN_PLURALS.filter(v=>fcState.status==='all' || (fcState.status==='known')===isKnown(v));
+      fcState.deck = getPluralCards().filter(v=>fcState.status==='all' || (fcState.status==='known')===isKnown(v));
       return;
     }
     fcState.deck = VOCAB.filter(v=>
@@ -2195,7 +2198,7 @@ function renderFlashcards(main){
   }
   function updateKnownCount(){
     const el = document.getElementById('fcKnownCount');
-    const pool = fcState.deckId==='plurals' ? BROKEN_PLURALS : VOCAB.filter(v=>v.book===fcState.book);
+    const pool = fcState.deckId==='plurals' ? getPluralCards() : VOCAB.filter(v=>v.book===fcState.book);
     if(el) el.textContent = `${pool.filter(isKnown).length}/${pool.length} known`;
   }
   function advanceAfterMark(){
@@ -2218,7 +2221,7 @@ function renderFlashcards(main){
     const knownTag = isKnown(v) ? ` · <span style="color:var(--good);">✓ known</span>` : '';
     let showFront, showBack, tagText;
     if(fcState.deckId==='plurals'){
-      const big = (ar,tr)=>`<div class="arabic" style="font-size:34px;">${ar}</div><div class="translit tr-toggle">${tr}</div>`;
+      const big = (ar,tr)=>`<div class="arabic" style="font-size:34px;">${ar}</div>${tr?`<div class="translit tr-toggle">${tr}</div>`:''}`;
       if(fcState.pdir==='sg2pl'){
         showFront = big(v.sg, v.tr) + `<div class="muted en-toggle">${v.en}</div>`;
         showBack = big(v.pl, v.trPl);
@@ -2229,7 +2232,7 @@ function renderFlashcards(main){
         showFront = `<div>${v.en}</div>`;
         showBack = big(v.sg, v.tr) + `<div class="muted" style="margin-top:6px;">plural</div>` + big(v.pl, v.trPl);
       }
-      tagText = `Broken plurals · ${fcState.idx+1}/${fcState.deck.length}${knownTag}`;
+      tagText = `Plurals, ${PLURAL_TYPE_LABELS[v.type].toLowerCase()} · ${fcState.idx+1}/${fcState.deck.length}${knownTag}`;
     } else {
       const bookInfo = BOOKS.find(b=>b.id===v.book);
       const translitLine = `<div class="translit tr-toggle">${v.tr}</div>`;
@@ -3721,6 +3724,8 @@ function stripAr(s){
   return s.normalize('NFD').replace(/[ؐ-ًؚ-ٰٟۖ-ۭـ]/g,'')
           .replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/\s+/g,' ').trim();
 }
+// the two sources spell this plural with different vowels, so the merged form needs its own transliteration
+const PLURAL_TR_OVERRIDE = {'\u0627\u062e':'ikhwa'};
 const PLURAL_TYPE_LABELS = {sm:'Sound masculine', sf:'Sound feminine', br:'Broken'};
 const PLURAL_BROKEN_EXCEPTIONS = new Set(['بنت','اخت','سنه']);
 function pluralTypeOf(sgKey, plKeys, hint){
@@ -3734,11 +3739,16 @@ function pluralTypeOf(sgKey, plKeys, hint){
 function buildPluralRows(){
   const map = new Map();
   const clean = s => s.replace(/\u0652(?=\s|$)/g,'');
-  const add = (sg, pls, en, hint)=>{
+  const add = (sg, pls, en, hint, tr, trPl)=>{
     sg = clean(sg);
     const key = stripAr(sg);
     let r = map.get(key);
-    if(!r){ r = {sg, pls:[], en:en||'', hint:hint||null}; map.set(key, r); }
+    if(!r){ r = {sg, pls:[], en:en||'', hint:hint||null, tr:'', trMap:{}}; map.set(key, r); }
+    if(!r.tr && tr) r.tr = tr;
+    if(trPl){
+      const forms = (Array.isArray(pls)?pls.join(' / '):pls).split(' / '), trs = trPl.split(' / ');
+      if(forms.length===trs.length) forms.forEach((f,i)=>{ const k = stripAr(clean(f.trim())); if(!r.trMap[k]) r.trMap[k] = trs[i].trim(); });
+    }
     (Array.isArray(pls)?pls:[pls]).forEach(p=>{
       p.split(' / ').forEach(one=>{
         one = clean(one.trim());
@@ -3748,16 +3758,18 @@ function buildPluralRows(){
     if(!r.en && en) r.en = en;
     if(!r.hint && hint) r.hint = hint;
   };
-  PLURAL_BANK.forEach(p=>add(p[0], p[1], p[3].split(' / ')[0], p[4]));
+  PLURAL_BANK.forEach(p=>{ const t = p[2].split(' / '); add(p[0], p[1], p[3].split(' / ')[0], p[4], t[0], t.length===2 ? t[1] : ''); });
   PLURAL_LISTS.forEach(g=>g.items.forEach(([sg,pl,en])=>{
     const hint = /sound plural/.test(g.group) ? 'sound masculine' : null;
     add(sg, pl, en, hint);
   }));
   PLURALS_EXTRA.forEach(([sg,pl,en])=>add(sg, pl, en, null));
-  BROKEN_PLURALS.forEach(b=>add(b.sg, b.pl, b.en, 'broken'));
+  BROKEN_PLURALS.forEach(b=>add(b.sg, b.pl, b.en, 'broken', b.tr, b.trPl));
   return Array.from(map.entries()).map(([key,r])=>{
     const plKeys = r.pls.map(stripAr);
-    return {key, sg:r.sg, pl:r.pls.join(' / '), en:r.en, type:pluralTypeOf(key, plKeys, r.hint)};
+    if(PLURAL_TR_OVERRIDE[key]) r.trMap[plKeys[0]] = PLURAL_TR_OVERRIDE[key];
+    const trs = plKeys.map(k=>r.trMap[k]);
+    return {key, sg:r.sg, pl:r.pls.join(' / '), en:r.en, tr:r.tr, trPl:trs.every(Boolean) ? trs.join(' / ') : '', type:pluralTypeOf(key, plKeys, r.hint)};
   }).sort((a,b)=>a.key.localeCompare(b.key,'ar'));
 }
 function renderPlurals(main){

@@ -753,7 +753,7 @@ Tendencies, in order. Stop at the first question that fits:
 
 ### Study tips
 
-- Learn the pair. Memorize singular and plural together. The Flashcards tab has a Broken plurals deck for this.
+- Learn the pair. Memorize singular and plural together. The Flashcards tab has a Plurals deck for this.
 - Recognize the frame. The mafaaʿil, faʿaalil and afʿaal frames mark a plural even in an unfamiliar word. Plurals on the mafaaʿil and faʿaalil frames are diptotes: no tanwiin, and fatha instead of kasra in the genitive unless ال or an idafa is involved.
 
 ### Agreement
