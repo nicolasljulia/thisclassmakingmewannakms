@@ -76,7 +76,7 @@ td.ar, th.ar{text-align:center;}
 .btn:disabled{opacity:.4;cursor:default;}
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;}
 .spacer{flex:1;}
-select,input[type=text]{
+select,input[type=text],input[type=search]{
   font-family:inherit;font-size:14px;padding:7px 10px;border-radius:8px;border:1px solid var(--border);
   background:var(--card);color:var(--text);
 }
@@ -1128,6 +1128,7 @@ const TABS = [
   {id:'quiz',label:'Quiz'},
   {id:'crossword',label:'Crossword'},
   {id:'conjugations',label:'Conjugations'},
+  {id:'plurals',label:'Plurals'},
   {id:'homework',label:'Homework'},
   {id:'drills',label:'Drills'},
   {id:'exams',label:'Exams'},
@@ -1220,6 +1221,7 @@ function showPage(tab, param){
   else if(tab==='homework') renderHomework(main);
   else if(tab==='drills') renderDrills(main, param);
   else if(tab==='exams') renderExams(main, param);
+  else if(tab==='plurals') renderPlurals(main);
   document.title = pageTitle(tab, param);
 }
 function go(tab, param){
@@ -1266,6 +1268,10 @@ function renderHome(main){
         <div class="card lesson-card" onclick="go('conjugations')">
           <div class="num">Reference</div><h3>Conjugations</h3>
           <p class="muted" style="margin:0;">${CONJUGATIONS.length} full verb paradigms.</p>
+        </div>
+        <div class="card lesson-card" onclick="go('plurals')">
+          <div class="num">Reference</div><h3>Plurals</h3>
+          <p class="muted" style="margin:0;">Every plural so far in one searchable table.</p>
         </div>
         <div class="card lesson-card" onclick="go('homework')">
           <div class="num">Schedule</div><h3>Homework</h3>
@@ -3580,7 +3586,7 @@ const UNIT2_STUDY_GUIDE = [
     {text:'Lesson 2 vocabulary (pp. 19 and 34), plus Lesson 1 and older words.',
      links:[['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Matching game','matching']]},
     {text:'Plurals from the tables on pp. 24 and 25: forming and spelling them.',
-     links:[['Plurals lesson','lessons','Plurals: Sound and Broken'],['Broken Plural Patterns','lessons','Broken Plural Patterns'],['Plurals drill','drills','plurals-lists'],['Plural Type quiz','quiz','plural']]},
+     links:[['Plurals table','plurals'],['Plurals lesson','lessons','Plurals: Sound and Broken'],['Broken Plural Patterns','lessons','Broken Plural Patterns'],['Plurals drill','drills','plurals-lists'],['Plural Type quiz','quiz','plural']]},
     {text:'Agreement: people take plural adjectives, things take feminine singular adjectives.',
      links:[['Plurals lesson','lessons','Plurals: Sound and Broken'],['Adjectives and Agreement','lessons','Adjectives and Agreement']]},
     {text:'Subject pronouns: all eight.',
@@ -3600,7 +3606,7 @@ const UNIT2_EXTRA_SETS = ['lesson2-review','plurals-lists','passage-maha2','pass
 const LESSON3_STUDY_GUIDE = [
   {group:'Lesson 3 quiz', items:[
     {text:'Vocabulary from p. 36, with plurals.',
-     links:[['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Plurals drill','drills','plurals-lists']]},
+     links:[['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Plurals table','plurals'],['Plurals drill','drills','plurals-lists']]},
     {text:'Family terms: عَمّ / عَمّة / خال / خالة, cousins, in-laws.',
      links:[['Family Terms','lessons','Family Terms'],['Lesson 3 Review','drills','lesson3-review']]},
     {text:'The idafa: no ال on the first word, and ة read as t.',
@@ -3684,6 +3690,104 @@ function renderExams(main, examId){
     grid.appendChild(card);
   });
   main.appendChild(grid);
+}
+
+/* ============================================================
+   PLURALS TABLE
+   ============================================================ */
+const PLURALS_EXTRA = [
+  ['عَمّ','أَعْمام','paternal uncle'],
+  ['عَمّة','عَمّات','paternal aunt'],
+  ['خال','أَخْوال','maternal uncle'],
+  ['خالة','خالات','maternal aunt'],
+  ['زَوْجة عَمّ','زَوْجات عَمّ',"paternal uncle's wife"],
+  ['زَوْجة خال','زَوْجات خال',"maternal uncle's wife"],
+  ['زَوْج عَمّة','أَزْواج عَمّة',"paternal aunt's husband"],
+  ['زَوْج خالة','أَزْواج خالة',"maternal aunt's husband"],
+  ['اِبْن عَمّ','أَبْناء عَمّ','cousin, son of a paternal uncle'],
+  ['بِنْت عَمّ','بَنات عَمّ','cousin, daughter of a paternal uncle'],
+  ['اِبْن عَمّة','أَبْناء عَمّة','cousin, son of a paternal aunt'],
+  ['بِنْت عَمّة','بَنات عَمّة','cousin, daughter of a paternal aunt'],
+  ['اِبْن خال','أَبْناء خال','cousin, son of a maternal uncle'],
+  ['بِنْت خال','بَنات خال','cousin, daughter of a maternal uncle'],
+  ['اِبْن خالة','أَبْناء خالة','cousin, son of a maternal aunt'],
+  ['بِنْت خالة','بَنات خالة','cousin, daughter of a maternal aunt'],
+  ['جَدّ','أَجْداد','grandfather'],
+  ['جَدّة','جَدّات','grandmother'],
+  ['سَنة','سَنَوات','year'],
+  ['قَرِيب','أَقارِب','relative']
+];
+function stripAr(s){
+  return s.normalize('NFD').replace(/[ؐ-ًؚ-ٰٟۖ-ۭـ]/g,'')
+          .replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/\s+/g,' ').trim();
+}
+const PLURAL_TYPE_LABELS = {sm:'Sound masculine', sf:'Sound feminine', br:'Broken'};
+const PLURAL_BROKEN_EXCEPTIONS = new Set(['بنت','اخت','سنه']);
+function pluralTypeOf(sgKey, plKeys, hint){
+  if(hint==='sound masculine') return 'sm';
+  if(hint==='sound feminine') return 'sf';
+  if(hint==='broken') return 'br';
+  if(plKeys.every(p=>/(ون|ين)$/.test(p))) return 'sm';
+  if(plKeys.every(p=>/ات$/.test(p)) && /ه$/.test(sgKey) && !PLURAL_BROKEN_EXCEPTIONS.has(sgKey)) return 'sf';
+  return 'br';
+}
+function buildPluralRows(){
+  const map = new Map();
+  const clean = s => s.replace(/\u0652(?=\s|$)/g,'');
+  const add = (sg, pls, en, hint)=>{
+    sg = clean(sg);
+    const key = stripAr(sg);
+    let r = map.get(key);
+    if(!r){ r = {sg, pls:[], en:en||'', hint:hint||null}; map.set(key, r); }
+    (Array.isArray(pls)?pls:[pls]).forEach(p=>{
+      p.split(' / ').forEach(one=>{
+        one = clean(one.trim());
+        if(one && !r.pls.some(x=>stripAr(x)===stripAr(one))) r.pls.push(one);
+      });
+    });
+    if(!r.en && en) r.en = en;
+    if(!r.hint && hint) r.hint = hint;
+  };
+  PLURAL_BANK.forEach(p=>add(p[0], p[1], p[3].split(' / ')[0], p[4]));
+  PLURAL_LISTS.forEach(g=>g.items.forEach(([sg,pl,en])=>{
+    const hint = /sound plural/.test(g.group) ? 'sound masculine' : null;
+    add(sg, pl, en, hint);
+  }));
+  PLURALS_EXTRA.forEach(([sg,pl,en])=>add(sg, pl, en, null));
+  BROKEN_PLURALS.forEach(b=>add(b.sg, b.pl, b.en, 'broken'));
+  return Array.from(map.entries()).map(([key,r])=>{
+    const plKeys = r.pls.map(stripAr);
+    return {key, sg:r.sg, pl:r.pls.join(' / '), en:r.en, type:pluralTypeOf(key, plKeys, r.hint)};
+  }).sort((a,b)=>a.key.localeCompare(b.key,'ar'));
+}
+function renderPlurals(main){
+  const rows = buildPluralRows();
+  main.appendChild(mkEl(`<div><h1>Plurals</h1></div>`));
+  const controls = mkEl(`
+    <div class="row" style="margin-bottom:14px;">
+      <input type="search" id="plSearch" placeholder="Search Arabic or English" style="flex:1;min-width:180px;">
+      <select id="plType">
+        <option value="all">All types</option>
+        <option value="br">Broken</option>
+        <option value="sm">Sound masculine</option>
+        <option value="sf">Sound feminine</option>
+      </select>
+      <span class="pill" id="plCount"></span>
+    </div>`);
+  main.appendChild(controls);
+  const holder = mkEl(`<div id="plTable"></div>`);
+  main.appendChild(holder);
+  const search = controls.querySelector('#plSearch'), typeSel = controls.querySelector('#plType'), count = controls.querySelector('#plCount');
+  function draw(){
+    const q = search.value.trim(), qa = stripAr(q), ql = q.toLowerCase(), t = typeSel.value;
+    const shown = rows.filter(r=>(t==='all'||r.type===t) && (!q || stripAr(r.sg+' '+r.pl).includes(qa) || r.en.toLowerCase().includes(ql)));
+    count.textContent = shown.length+' of '+rows.length;
+    holder.innerHTML = '<table><tr><th class="ar">Singular</th><th class="ar">Plural</th><th class="en-toggle">Meaning</th><th>Type</th></tr>'
+      + shown.map(r=>`<tr><td class="ar big-ar">${r.sg}</td><td class="ar big-ar">${r.pl}</td><td class="en-toggle">${r.en}</td><td>${PLURAL_TYPE_LABELS[r.type]}</td></tr>`).join('')
+      + '</table>';
+  }
+  search.oninput = draw; typeSel.onchange = draw;
+  draw();
 }
 
 /* ============================================================
