@@ -1200,6 +1200,7 @@ function pageTitle(tab, param){
   else if(tab==='drills' && param){ const s = DRILL_SETS.find(x=>x.id===param); if(s) sub = s.label; }
   else if(tab==='exams' && param){ const e = EXAMS.find(x=>x.id===param); if(e) sub = e.title; }
   else if(tab==='quiz' && param){ const c = QUIZ_CATEGORIES.find(x=>x.id===param); if(c) sub = c.label; }
+  else if(tab==='flashcards' && param==='plurals') sub = 'Plurals flashcards';
   else if(tab==='conjugations' && param!==undefined){ const v = CONJUGATIONS[param]; if(v) sub = v.english; }
   return (sub ? sub+' | ' : (t && tab!=='home' ? t.label+' | ' : ''))+base;
 }
@@ -1213,7 +1214,7 @@ function showPage(tab, param){
   lastShownHash = location.hash;
   if(tab==='home') renderHome(main);
   else if(tab==='lessons') renderLessonsList(main, param);
-  else if(tab==='flashcards') renderFlashcards(main);
+  else if(tab==='flashcards') renderFlashcards(main, param);
   else if(tab==='matching') renderMatching(main);
   else if(tab==='quiz') renderQuizMenu(main, param);
   else if(tab==='crossword') renderCrossword(main);
@@ -2118,12 +2119,16 @@ function setKnown(v, known){
   if(known) knownWords[key]=true; else delete knownWords[key];
   saveProgress('knownWords', knownWords);
 }
-function renderFlashcards(main){
+function renderFlashcards(main, param){
+  fcState.deckId = param==='plurals' ? 'plurals' : 'vocab';
+  fcState.idx = 0; fcState.flipped = false;
   buildDeck();
   main.appendChild(mkEl(`<div><h1>Flashcards</h1></div>`));
+  const deckSwitch = mkEl(`<div class="row" style="margin-bottom:12px;"><button class="btn" id="fcTabVocab">Vocabulary (${VOCAB.length})</button><button class="btn" id="fcTabPlurals">Plurals (${getPluralCards().length})</button></div>`);
+  main.appendChild(deckSwitch);
   const controls = mkEl(`
     <div class="row" style="margin-bottom:16px;">
-      <select id="fcDeck">
+      <select id="fcDeck" style="display:none;">
         <option value="vocab">Vocabulary</option>
         <option value="plurals">Plurals</option>
       </select>
@@ -2139,7 +2144,17 @@ function renderFlashcards(main){
   main.appendChild(controls);
   const deckSel = controls.querySelector('#fcDeck');
   deckSel.value = fcState.deckId;
-  deckSel.onchange=()=>{ fcState.deckId=deckSel.value; fcState.idx=0; fcState.flipped=false; applyDeckControls(); buildDeck(); renderCardArea(); };
+  const tabV = deckSwitch.querySelector('#fcTabVocab'), tabP = deckSwitch.querySelector('#fcTabPlurals');
+  function paintDeckSwitch(){ tabV.className = fcState.deckId==='vocab' ? 'btn' : 'btn ghost'; tabP.className = fcState.deckId==='plurals' ? 'btn' : 'btn ghost'; }
+  function syncDeckUrl(){
+    const p = fcState.deckId==='plurals' ? 'plurals' : undefined, t = routeHash('flashcards', p);
+    if(location.hash!==t) history.replaceState(null,'',t);
+    lastShownHash = t; document.title = pageTitle('flashcards', p);
+  }
+  deckSel.onchange=()=>{ fcState.deckId=deckSel.value; fcState.idx=0; fcState.flipped=false; applyDeckControls(); buildDeck(); renderCardArea(); paintDeckSwitch(); syncDeckUrl(); };
+  tabV.onclick=()=>{ deckSel.value='vocab'; deckSel.onchange(); };
+  tabP.onclick=()=>{ deckSel.value='plurals'; deckSel.onchange(); };
+  paintDeckSwitch();
   const bookSel = controls.querySelector('#fcBook');
   BOOKS.forEach(b=>bookSel.appendChild(mkEl(`<option value="${b.id}">${b.label}</option>`)));
   bookSel.value = fcState.book;
@@ -3706,7 +3721,7 @@ const UNIT2_STUDY_GUIDE = [
     {text:'Lesson 2 vocabulary (pp. 19 and 34), plus Lesson 1 and older words.',
      links:[['Unit 2 quiz','quiz','unit2'],['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Matching game','matching']]},
     {text:'Plurals from the tables on pp. 24 and 25: forming and spelling them.',
-     links:[['Plurals table','plurals'],['Plurals lesson','lessons','Plurals: Sound and Broken'],['Broken Plural Patterns','lessons','Broken Plural Patterns'],['Plurals drill','drills','plurals-lists'],['Plural Type quiz','quiz','plural']]},
+     links:[['Plurals table','plurals'],['Plurals flashcards','flashcards','plurals'],['Plurals lesson','lessons','Plurals: Sound and Broken'],['Broken Plural Patterns','lessons','Broken Plural Patterns'],['Plurals drill','drills','plurals-lists'],['Plural Type quiz','quiz','plural']]},
     {text:'Agreement: people take plural adjectives, things take feminine singular adjectives.',
      links:[['Plurals lesson','lessons','Plurals: Sound and Broken'],['Adjectives and Agreement','lessons','Adjectives and Agreement']]},
     {text:'Subject pronouns: all eight.',
@@ -3726,7 +3741,7 @@ const UNIT2_EXTRA_SETS = ['lesson2-review','plurals-lists','passage-maha2','pass
 const LESSON3_STUDY_GUIDE = [
   {group:'Lesson 3 quiz', items:[
     {text:'Vocabulary from p. 36, with plurals.',
-     links:[['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Plurals table','plurals'],['Plurals drill','drills','plurals-lists']]},
+     links:[['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Plurals flashcards','flashcards','plurals'],['Plurals table','plurals'],['Plurals drill','drills','plurals-lists']]},
     {text:'Family terms: عَمّ / عَمّة / خال / خالة, cousins, in-laws.',
      links:[['Family Terms','lessons','Family Terms'],['Lesson 3 Review','drills','lesson3-review']]},
     {text:'The idafa: no ال on the first word, and ة read as t.',
@@ -3902,10 +3917,12 @@ function renderPlurals(main){
         <option value="sf">Sound feminine</option>
       </select>
       <span class="pill" id="plCount"></span>
+      <button class="btn" id="plStudy">Study as flashcards</button>
     </div>`);
   main.appendChild(controls);
   const holder = mkEl(`<div id="plTable"></div>`);
   main.appendChild(holder);
+  controls.querySelector('#plStudy').onclick=()=>go('flashcards','plurals');
   const search = controls.querySelector('#plSearch'), typeSel = controls.querySelector('#plType'), count = controls.querySelector('#plCount');
   function draw(){
     const q = search.value.trim(), qa = stripAr(q), ql = q.toLowerCase(), t = typeSel.value;
