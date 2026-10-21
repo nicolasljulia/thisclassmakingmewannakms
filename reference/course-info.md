@@ -49,7 +49,7 @@ The site's verb data (`CONJUGATIONS` in index.html, the single source of truth u
 
 ## Vocabulary source
 - Alif Baa: 225 entries, pulled from the "New Vocabulary" tables in Alif Baa units 1-9, cross-checked against the student's own class study guide and handout photos. Some masculine/feminine adjective pairs that the textbook lists on one row are split into two separate flashcard entries on the site, for finer-grained drilling, which is why the site's count is higher than a simple textbook line count would suggest.
-- Al-Kitaab: 134 entries: 100 pulled directly from the "المفردات" vocabulary tables at the start of each of the 5 lessons (see the page-order note above for lesson 4's caveat), plus 34 from the Lesson 2 and Lesson 3 study guides (see below).
+- Al-Kitaab: 155 entries: 100 pulled directly from the "المفردات" vocabulary tables at the start of each of the 5 lessons (see the page-order note above for lesson 4's caveat), plus 34 from the Lesson 2 and Lesson 3 study guides (see below) and 21 plural cards (each plural is its own flashcard rather than a note on the singular).
 
 ## Grading structure (for context, not used on the site)
 - Attendance, participation, class exercises: 20%

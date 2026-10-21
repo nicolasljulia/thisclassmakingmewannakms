@@ -261,39 +261,39 @@ only; lonely (adj.),وَحيد / ة,waHiid / a,2,adjective,alkitaab
 employee,مُوَظَّف / ة,muwaZZaf / a,2,noun,alkitaab
 his family,أسرتُهُ,usratuhu,3,noun,alkitaab
 now,الآن,al-aan,3,particle,alkitaab
-son (pl. أبناء),ابن,ibn,3,noun,alkitaab
-"cousin, male, paternal (pl. أبناء عَمّ)",ابن عَمّ,ibn ʿamm,3,noun,alkitaab
-army (pl. جُيوش),جَيش,jaysh,3,noun,alkitaab
+son,ابن,ibn,3,noun,alkitaab
+"cousin, male, paternal",ابن عَمّ,ibn ʿamm,3,noun,alkitaab
+army,جَيش,jaysh,3,noun,alkitaab
 "actually, in reality",في الحَقيقة,fi l-Haqiiqa,3,phrase,alkitaab
 he teaches,يُدَرِّس,yudarris,3,verb,alkitaab
-letter (pl. رَسائِل),رِسالة,risaala,3,noun,alkitaab
-husband (pl. أزواج),زَوج,zawj,3,noun,alkitaab
+letter,رِسالة,risaala,3,noun,alkitaab
+husband,زَوج,zawj,3,noun,alkitaab
 her husband,زَوجُها,zawjuha,3,noun,alkitaab
-wife (pl. زَوجات),زَوجة,zawja,3,noun,alkitaab
-picture (pl. صُوَر),صورة,Suura,3,noun,alkitaab
-officer (pl. ضُبّاط),ضابِط,DaabiT,3,noun,alkitaab
+wife,زَوجة,zawja,3,noun,alkitaab
+picture,صورة,Suura,3,noun,alkitaab
+officer,ضابِط,DaabiT,3,noun,alkitaab
 I know,أعرِف,aʿrif,3,verb,alkitaab
-science (pl. عُلوم),عِلم,ʿilm,3,noun,alkitaab
+science,عِلم,ʿilm,3,noun,alkitaab
 political science,العُلوم السِّياسِيّة,al-ʿuluum as-siyaasiyya,3,noun,alkitaab
-paternal uncle (pl. أعمام),عَمّ,ʿamm,3,noun,alkitaab
+paternal uncle,عَمّ,ʿamm,3,noun,alkitaab
 my (paternal) uncle,عَمّي,ʿammii,3,noun,alkitaab
-extended family (pl. عائِلات),عائِلة,ʿaa'ila,3,noun,alkitaab
-relative (pl. أقارِب),قَريب,qariib,3,noun,alkitaab
-"college, school in a university (pl. كُلِّيّات)",كُلِّيّة,kulliyya,3,noun,alkitaab
+extended family,عائِلة,ʿaa'ila,3,noun,alkitaab
+relative,قَريب,qariib,3,noun,alkitaab
+"college, school in a university",كُلِّيّة,kulliyya,3,noun,alkitaab
 first,أوَّل,awwal,4,number,alkitaab
 "primary, elementary",ابتِدائيّ,ibtidaa'iyy,4,adjective,alkitaab
 I memorize,أحفَظ,aHfaZ,4,verb,alkitaab
-school (pl. مَدارِس),مَدرَسة,madrasa,4,noun,alkitaab
+school,مَدرَسة,madrasa,4,noun,alkitaab
 I remember,أتَذَكَّر,atadhakkar,4,verb,alkitaab
 fourth,رابِع,raabiʿ,4,number,alkitaab
-"classmate, colleague, m. (pl. زُمَلاء)",زَميل,zamiil,4,noun,alkitaab
-"classmate, colleague, f. (pl. زَميلات)",زَميلة,zamiila,4,noun,alkitaab
+"classmate, colleague, m.",زَميل,zamiil,4,noun,alkitaab
+"classmate, colleague, f.",زَميلة,zamiila,4,noun,alkitaab
 traveling (noun),السَّفَر (إلى),as-safar (ilaa),4,noun,alkitaab
 she travels,تُسافِر (إلى),tusaafir (ilaa),4,verb,alkitaab
-"friend, f. (pl. صَديقات)",صَديقة,Sadiiqa,4,noun,alkitaab
-"friend, m. (pl. أصدِقاء)",صَديق,Sadiiq,4,noun,alkitaab
+"friend, f.",صَديقة,Sadiiqa,4,noun,alkitaab
+"friend, m.",صَديق,Sadiiq,4,noun,alkitaab
 childhood,الطُّفولة,aT-Tufuula,4,noun,alkitaab
-"individual, person (pl. أفراد)",فَرد,fard,4,noun,alkitaab
+"individual, person",فَرد,fard,4,noun,alkitaab
 before,قَبلَ,qabla,4,particle,alkitaab
 "all, every",كُلّ,kull,4,particle,alkitaab
 he was,كانَ,kaana,4,verb,alkitaab
@@ -318,7 +318,7 @@ winter,الشِّتاء,ash-shitaa',5,noun,alkitaab
 summer,الصَّيف,aS-Sayf,5,noun,alkitaab
 weather,الطَّقس (= الجَوّ),aT-Taqs,5,noun,alkitaab
 high (fem.),عالِية,ʿaaliya,5,adjective,alkitaab
-season (pl. فُصول),فَصل,faSl,5,noun,alkitaab
+season,فَصل,faSl,5,noun,alkitaab
 semester,فَصل دِراسيّ,faSl diraasiyy,5,noun,alkitaab
 only,فَقَط,faqaT,5,particle,alkitaab
 "a lot, much (adv.)",كَثيراً,kathiiran,5,particle,alkitaab
@@ -339,7 +339,7 @@ the nisba adjective,النِّسْبة,an-nisba,1,noun,alkitaab
 the Middle East,الشَّرْق الأَوْسَط,ash-sharq al-awsaT,2,noun,alkitaab
 age,عُمْر,ʿumr,2,noun,alkitaab
 program,بَرْنامَج,barnaamaj,2,noun,alkitaab
-year (pl. سَنَوات),سَنة,sana,2,noun,alkitaab
+year,سَنة,sana,2,noun,alkitaab
 singular,مُفْرَد,mufrad,2,noun,alkitaab
 plural,جَمْع,jamʿ,2,noun,alkitaab
 nominal sentence,جُمْلة اسْمِيّة,jumla ismiyya,2,noun,alkitaab
@@ -358,3 +358,24 @@ sociology,عِلْم الاِجْتِماع,ʿilm al-ijtimaaʿ,3,noun,alkitaab
 psychology,عِلْم النَّفْس,ʿilm an-nafs,3,noun,alkitaab
 engineering,الهَنْدَسة,al-handasa,3,noun,alkitaab
 the idafa (construct phrase),الإِضافة,al-iDaafa,3,noun,alkitaab
+sons,أَبْناء,abnaa',3,noun,alkitaab
+"cousins, male, paternal",أَبْناء عَمّ,abnaa' ʿamm,3,noun,alkitaab
+armies,جُيُوش,juyuush,3,noun,alkitaab
+letters,رَسائِل,rasaa'il,3,noun,alkitaab
+husbands,أَزْواج,azwaaj,3,noun,alkitaab
+wives,زَوْجات,zawjaat,3,noun,alkitaab
+pictures,صُوَر,Suwar,3,noun,alkitaab
+officers,ضُبّاط,Dubbaat,3,noun,alkitaab
+sciences,عُلُوم,ʿuluum,3,noun,alkitaab
+paternal uncles,أَعْمام,aʿmaam,3,noun,alkitaab
+extended families,عائِلات,ʿaa'ilaat,3,noun,alkitaab
+relatives,أَقارِب,aqaarib,3,noun,alkitaab
+"colleges, schools in a university",كُلِّيّات,kulliyyaat,3,noun,alkitaab
+schools,مَدارِس,madaaris,4,noun,alkitaab
+"classmates, colleagues, m.",زُمَلاء,zumalaa',4,noun,alkitaab
+"classmates, colleagues, f.",زَميلات,zamiilaat,4,noun,alkitaab
+"friends, f.",صَديقات,Sadiiqaat,4,noun,alkitaab
+"friends, m.",أَصْدِقاء,aSdiqaa',4,noun,alkitaab
+"individuals, people",أَفْراد,afraad,4,noun,alkitaab
+seasons,فُصُول,fuSuul,5,noun,alkitaab
+years,سَنَوات,sanawaat,2,noun,alkitaab
