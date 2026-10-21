@@ -1,4 +1,4 @@
-# Generates midterm/Arabic011_Midterm_Practice_Exam.pdf and ..._Key.pdf (run: python3 midterm/build_exam.py, then copy the two PDFs from midterm/build/)
+# Generates practice-exams/Arabic011_Midterm_Practice_Exam.pdf and ..._Key.pdf (run: python3 practice-exams/build_exam.py, then copy the two PDFs from practice-exams/build/)
 # -*- coding: utf-8 -*-
 import html as H, subprocess, sys, os, fitz  # needs PyMuPDF and Google Chrome
 
