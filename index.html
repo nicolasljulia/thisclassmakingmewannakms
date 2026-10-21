@@ -2365,6 +2365,7 @@ const QUIZ_CATEGORIES = [
   {id:'hollow', label:'Hollow Verbs', desc:'Stem vowel and weak middle radical in نام, سار, قال, كان.'},
   {id:'masdar', label:'Verbal Noun', desc:'Match a verb to its masdar.'},
   {id:'connectors', label:'Connectors', desc:'و, أو, أم, لكن, فَ: which one and why?'},
+  {id:'unit2', label:'Unit 2 Exam', desc:'Lesson 2 vocabulary, plurals, pronouns, agreement, nominal sentences, connectors, case endings.'},
 ];
 
 function renderQuizMenu(main, cat){
@@ -2453,6 +2454,121 @@ function startQuiz(main, cat){
   }
 }
 
+/* ---- Unit 2 exam quiz: mixed questions from the Lesson 2 material ---- */
+const UNIT2_PRONOUNS = ["أَنا", "أَنْتَ", "أَنْتِ", "هُوَ", "هِيَ", "نَحْنُ", "أَنْتُمْ", "هُمْ"];
+const UNIT2_AGREEMENT = [
+  ['هَذِهِ سَيّارات ___','يابانِيّة',['يابانِيّات','يابانِيُّون','يابانِيّ'],'A plural noun for things takes a feminine singular adjective.'],
+  ['نَحْنُ طُلّاب ___','أَمْرِيكِيُّون',['أَمْرِيكِيّة','أَمْرِيكِيّات','أَمْرِيكِيّ'],'People take a plural adjective; male students take the masculine plural.'],
+  ['الطّالِبات ___','مَشْغُولات',['مَشْغُولُون','مَشْغُولة','مَشْغُول'],'Women take the feminine plural, ـات.'],
+  ['مُدُن ___','عَرَبِيّة',['عَرَبِيّات','عَرَبِيُّون','عَرَبِيّ'],'Cities are things, so the adjective is feminine singular.'],
+  ['الطُّلّاب وَالطّالِبات ___','مَشْغُولُون',['مَشْغُولات','مَشْغُولة','مَشْغُول'],'A mixed group of men and women takes the masculine plural.'],
+  ['الأُسَر المِصْرِيّة ___','كَبِيرة',['كَبِيرات','كَبِيرُون','كَبِير'],'Families count as things, so the adjective is feminine singular.']
+];
+// [section index in REVIEW_SETS.lesson2 sentence list, word index, case, reason]
+const UNIT2_CASE_SPECS = [
+  [0,0,'Nominative','the subject'],[0,2,'Accusative','the direct object'],[0,4,'Genitive','the object of a preposition'],
+  [1,0,'Nominative','the first term of the idafa, which is the subject'],[1,1,'Genitive','the second term of an idafa'],[1,2,'Nominative','the predicate'],
+  [2,1,'Nominative','the subject'],[2,2,'Nominative','the predicate']
+];
+function fillBlanks(q, a){
+  const segs = q.split('___'); const fills = []; let pos = 0;
+  for(let i=0;i<segs.length-1;i++){
+    const pre = segs[i].trim(); let start = pos;
+    if(pre){ const k = a.indexOf(pre,pos); if(k>=0) start = k+pre.length; }
+    const post = segs[i+1].trim();
+    const end = post ? a.indexOf(post,start) : a.length;
+    if(end<0) return null;
+    fills.push(a.slice(start,end).trim()); pos = end;
+  }
+  return fills;
+}
+function genUnit2Questions(n){
+  const R = REVIEW_SETS.lesson2;
+  const uniq = a=>Array.from(new Set(a));
+  const vocabPool = VOCAB.filter(v=>v.book==='alkitaab' && v.unit<=2);
+  const arSpan = t=>`<span class="arabic big-ar">${t}</span>`;
+  const plGroups = PLURAL_LISTS.filter(g=>g.group!=='Lesson 3 nouns');
+  const connectorItems = R[4].items.map(([q,a])=>[q,a,a.split(/[\s(]/)[0]]);
+  const connectorSet = Array.from(new Set(connectorItems.map(x=>x[2])));
+  const sentences = R[5].items.map(x=>x[1].replace(/\.$/,''));
+  const story = READING_PASSAGES[3].comprehension;
+  const makers = {
+    vocab(){
+      const v = pick(vocabPool);
+      if(Math.random()<0.5){
+        const q = mcqFrom(v.en, uniq(vocabPool.filter(x=>x.en!==v.en).map(x=>x.en)), `What does ${arSpan(v.ar)} <span class="muted tr-toggle">(${v.tr})</span> mean?`, `${v.ar} = ${v.en}`);
+        return q;
+      }
+      const q = mcqFrom(v.ar, uniq(vocabPool.filter(x=>x.en!==v.en).map(x=>x.ar)), `Which word means "${v.en}"?`, `${v.en} = ${v.ar} <span class="tr-toggle">(${v.tr})</span>`);
+      q.options = q.options.map(arSpan);
+      return q;
+    },
+    plural(){
+      const g = pick(plGroups); const [sg,pl,en] = pick(g.items);
+      const pool = uniq(g.items.map(x=>x[1])).filter(p=>p!==pl);
+      const q = mcqFrom(pl, pool.length>=3 ? pool : uniq(plGroups.flatMap(x=>x.items.map(i=>i[1]))), `What is the plural of ${arSpan(sg)} <span class="muted en-toggle">(${en})</span>?`, `${sg} \u2192 ${pl}`);
+      q.options = q.options.map(arSpan);
+      return q;
+    },
+    pronoun(){
+      const [q0,a0] = pick(R[0].items); const fills = fillBlanks(q0,a0);
+      if(!fills || !fills.every(f=>UNIT2_PRONOUNS.includes(f))) return null;
+      const k = Math.floor(Math.random()*fills.length);
+      let seen = -1; const shown = q0.replace(/___/g, ()=>{ seen++; return seen===k ? '<b>_____</b>' : fills[seen]; });
+      const q = mcqFrom(fills[k], UNIT2_PRONOUNS, `Which subject pronoun fits? ${arSpan(shown)}`, `${fills[k]} fits here.`);
+      q.options = q.options.map(arSpan);
+      return q;
+    },
+    agreement(){
+      const [stem, ok, bad, why] = pick(UNIT2_AGREEMENT);
+      const options = shuffle([ok, ...bad]);
+      return {prompt:`Which adjective agrees? ${arSpan(stem.replace('___','<b>_____</b>'))}`, options:options.map(arSpan), correct:options.indexOf(ok), explain:`${stem.replace('___', ok)}: ${why}`};
+    },
+    connector(){
+      const [q0,a0,c] = pick(connectorItems);
+      const q = mcqFrom(c, connectorSet, `Which connector fits? ${arSpan(q0.replace('___','<b>_____</b>'))}`, a0);
+      q.options = q.options.map(arSpan);
+      return q;
+    },
+    phrase(){
+      const [q0,a0] = pick(R[3].items); const isSentence = /^sentence/.test(a0);
+      const options = ['A phrase','A sentence'];
+      return {prompt:`Phrase or sentence? ${arSpan(q0)}`, options, correct:isSentence?1:0, explain:a0.replace(/^(phrase|sentence):\s*/,'')};
+    },
+    subject(){
+      const items = R[2].items.map(([q,a])=>({q, parts:a.split(' / ').map(s=>s.slice(s.indexOf(':')+1).trim())}));
+      const it = pick(items); const askSubject = Math.random()<0.5;
+      const correct = it.parts[askSubject?0:1];
+      const pool = uniq(items.flatMap(x=>x.parts)).filter(p=>p!==correct);
+      const q = mcqFrom(correct, pool, `In ${arSpan(it.q)} what is the ${askSubject?'subject (<span class="arabic">مُبْتَدَأ</span>)':'predicate (<span class="arabic">خَبَر</span>)'}?`, `Subject: ${it.parts[0]}. Predicate: ${it.parts[1]}.`);
+      q.options = q.options.map(arSpan);
+      return q;
+    },
+    caseEnding(){
+      const [si,wi,cs,why] = pick(UNIT2_CASE_SPECS);
+      const words = sentences[si].split(' ');
+      const shown = words.map((w,i)=>i===wi?`<u>${w}</u>`:w).join(' ');
+      const options = ['Nominative','Accusative','Genitive'];
+      return {prompt:`What case is the underlined word? ${arSpan(shown)}`, options, correct:options.indexOf(cs), explain:`${words[wi]} is ${cs.toLowerCase()}: ${why}.`};
+    },
+    story(){
+      const [x] = shuffle(story).slice(0,1);
+      const q = mcqFrom(x.a, story.map(s=>s.a), `Maha\u2019s story: ${arSpan(x.q)}`, x.a);
+      q.options = q.options.map(arSpan);
+      return q;
+    }
+  };
+  const weights = [['vocab',4],['plural',3],['pronoun',1],['agreement',1],['connector',1],['phrase',1],['subject',1],['caseEnding',1],['story',1]];
+  const bag = weights.flatMap(([k,w])=>Array(w).fill(k));
+  const qs = []; const seenPrompts = new Set(); let guard = 0;
+  while(qs.length<n && guard++<400){
+    const q = makers[pick(bag)]();
+    if(!q || seenPrompts.has(q.prompt)) continue;
+    seenPrompts.add(q.prompt); qs.push(q);
+  }
+  return qs;
+}
+
 function genQuestions(cat, n){
   if(cat==='vocab') return genVocabQuestions(n);
   if(cat==='gender') return genGenderQuestions(n);
@@ -2471,6 +2587,7 @@ function genQuestions(cat, n){
   if(cat==='hollow') return genHollowVerbQuestions(n);
   if(cat==='masdar') return genMasdarQuestions(n);
   if(cat==='connectors') return genConnectorsQuestions(n);
+  if(cat==='unit2') return genUnit2Questions(n);
   return [];
 }
 
@@ -3587,7 +3704,7 @@ const MIDTERM_EXTRA_SETS = ['case-drill','sp-handout','masdar-drill','roots-dril
 const UNIT2_STUDY_GUIDE = [
   {group:'Unit 2 exam: Lesson 2, with Lesson 1 review', items:[
     {text:'Lesson 2 vocabulary (pp. 19 and 34), plus Lesson 1 and older words.',
-     links:[['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Matching game','matching']]},
+     links:[['Unit 2 quiz','quiz','unit2'],['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Matching game','matching']]},
     {text:'Plurals from the tables on pp. 24 and 25: forming and spelling them.',
      links:[['Plurals table','plurals'],['Plurals lesson','lessons','Plurals: Sound and Broken'],['Broken Plural Patterns','lessons','Broken Plural Patterns'],['Plurals drill','drills','plurals-lists'],['Plural Type quiz','quiz','plural']]},
     {text:'Agreement: people take plural adjectives, things take feminine singular adjectives.',
