@@ -493,6 +493,40 @@ const KITAAB_VOCAB = [
 ["a lot, much (adv.)","كَثيراً","kathiiran",5,"particle"],
 ["as far as ... is concerned","بِالنِّسبة لِ","bi-n-nisbati li",5,"phrase"],
 ["loneliness","الوِحدة","al-waHda",5,"noun"],
+["department","قِسْم","qism",1,"noun"],
+["the United States of America","الوِلايات المُتَّحِدة الأَمْرِيكِيّة","al-wilaayaat al-muttaHida al-amriikiyya",1,"noun"],
+["congratulations!","مَبْرُوك!","mabruuk",1,"phrase"],
+["yes/no question word","هَل؟","hal",1,"question"],
+["which?","أَيّ؟","ayy",1,"question"],
+["what? (a verb follows)","ماذا؟","maadhaa",1,"question"],
+["in which?","فِي أَيّ؟","fii ayy",1,"question"],
+["culture","الثَّقافة","ath-thaqaafa",1,"noun"],
+["grammar","القَواعِد","al-qawaaʿid",1,"noun"],
+["masculine / feminine","مُذَكَّر / مُؤَنَّث","mudhakkar / mu'annath",1,"noun"],
+["the nisba adjective","النِّسْبة","an-nisba",1,"noun"],
+["old, ancient","قَدِيم","qadiim",2,"adjective"],
+["the Middle East","الشَّرْق الأَوْسَط","ash-sharq al-awsaT",2,"noun"],
+["age","عُمْر","ʿumr",2,"noun"],
+["program","بَرْنامَج","barnaamaj",2,"noun"],
+["year (pl. سَنَوات)","سَنة","sana",2,"noun"],
+["singular","مُفْرَد","mufrad",2,"noun"],
+["plural","جَمْع","jamʿ",2,"noun"],
+["nominal sentence","جُمْلة اسْمِيّة","jumla ismiyya",2,"noun"],
+["subject (of a nominal sentence)","مُبْتَدَأ","mubtada'",2,"noun"],
+["predicate","خَبَر","khabar",2,"noun"],
+["bachelor's degree","بَكالُورْيُوس","bakaaluuriyuus",2,"noun"],
+["master's degree","ماجِسْتِير","maajistiir",2,"noun"],
+["doctorate","دُكْتُوراه","duktuuraah",2,"noun"],
+["grandfather / grandmother","جَدّ / جَدّة","jadd / jadda",3,"noun"],
+["history","التّارِيخ","at-taariikh",3,"noun"],
+["law","الحُقُوق","al-Huquuq",3,"noun"],
+["religion","الدِّين","ad-diin",3,"noun"],
+["medicine","الطِّبّ","aT-Tibb",3,"noun"],
+["anthropology","عِلْم الإِنْسان","ʿilm al-insaan",3,"noun"],
+["sociology","عِلْم الاِجْتِماع","ʿilm al-ijtimaaʿ",3,"noun"],
+["psychology","عِلْم النَّفْس","ʿilm an-nafs",3,"noun"],
+["engineering","الهَنْدَسة","al-handasa",3,"noun"],
+["the idafa (construct phrase)","الإِضافة","al-iDaafa",3,"noun"],
 ].map(v=>({en:v[0],ar:v[1],tr:v[2],unit:v[3],type:v[4],book:'alkitaab'}));
 
 const VOCAB = ALIFBAA_VOCAB.concat(KITAAB_VOCAB);
@@ -905,7 +939,9 @@ const READING_PASSAGES = [
       {label:"A nominal sentence (subject and predicate)",a:"اسمُهُ مارك (subject: اسمُهُ, predicate: مارك) / هُوَ طالِبٌ / هِيَ طالِبةٌ"},
       {label:"A nominal sentence whose predicate is a verbal sentence",a:"ساشا تَعمَلُ في الأُمَمِ المُتَّحِدةِ (subject: ساشا, predicate: تَعمَلُ في الأُمَمِ المُتَّحِدةِ)"},
       {label:"A verbal sentence (starts with a verb)",a:"ويَذهَبُ إلى صَفِّهِ / وتَأكُلُ الدَّجاجَ / ولا يَأكُلُ الدَّجاجَ / وتَشرَبُ الشّايَ الأخضَرَ"}
-    ]}
+    ]},
+  {"title": "Maha: أنا فعلاً وحيدة", "text": "والِدِي مُتَرْجِم مُتَخَصِّص فِي التَّرْجَمة مِن وَإِلَى اللُّغة العَرَبِيّة وَالإِنْجِلِيزِيّة وَالفَرَنْسِيّة، وَوالِدَتِي مُوَظَّفة فِي مَكْتَب القَبُول فِي جامِعة نِيويُورْك. والِدِي مَشْغُول دائِمًا، وَوالِدَتِي أَيْضًا مَشْغُولة بِالعَمَل فِي النَّهار وَبِشُغْل البَيْت فِي المَساء. لِي خالة اسْمُها نادِيَة تَسْكُن فِي مَدِينة لُوس أَنْجِلُوس فِي وِلاية كالِيفُورْنِيا، حَيْثُ تَعْمَل فِي بَنْك. أَنا البِنْت الوَحِيدة فِي الأُسْرة وَأَنا فِعْلًا وَحِيدة!", "translation": "My father is a translator who specializes in translation from and into Arabic, English, and French, and my mother is an employee in the admissions office at New York University. My father is always busy, and my mother is also busy with work during the day and housework in the evening. I have an aunt (my mother's sister) named Nadia who lives in Los Angeles in the state of California, where she works at a bank. I am the only girl in the family, and I am truly lonely!", "comprehension": [{"q": "ماذا يَعْمَل والِد مَها؟", "a": "والِد مَها مُتَرْجِم مُتَخَصِّص فِي التَّرْجَمة."}, {"q": "أَيْنَ تَعْمَل والِدة مَها؟", "a": "تَعْمَل فِي مَكْتَب القَبُول فِي جامِعة نِيويُورْك."}, {"q": "مَن نادِيَة؟ أَيْنَ تَسْكُن؟", "a": "نادِيَة خالة مَها، تَسْكُن فِي لُوس أَنْجِلُوس فِي وِلاية كالِيفُورْنِيا."}, {"q": "أَيْنَ تَعْمَل نادِيَة؟", "a": "تَعْمَل فِي بَنْك."}, {"q": "مَن هِيَ البِنْت الوَحِيدة فِي الأُسْرة؟", "a": "مَها هِيَ البِنْت الوَحِيدة فِي الأُسْرة، وَهِيَ فِعْلًا وَحِيدة."}], "grammarHunt": []},
+  {"title": "Maha: عائلة والدي كبيرة", "text": "عائِلة والِدِي كَبِيرة، أَعْرِف أَقارِبِي مِن الصُّوَر وَالرَّسائِل. هَذا عَمِّي مَحْمُود وَأُسْرَتُهُ، وَهَذا عَمِّي عادِل وَأُسْرَتُهُ، عَمِّي عادِل ضابِط كَبِير فِي الجَيْش. وَهَذا عَمِّي أَحْمَد وَأُسْرَتُهُ، هُوَ فِي الحَقِيقة اِبْن عَمّ والِدِي. عَمِّي أَحْمَد أُسْتاذ فِي كُلِّيّة العُلُوم السِّياسِيّة بِجامِعة القاهِرة، وَهُوَ يُدَرِّس الآن فِي جامِعة العَيْن بِالإِمارات العَرَبِيّة المُتَّحِدة. وَهَذِهِ عَمَّتِي فاطِمة وَزَوْجُها وَاِبْنُها وَبَناتُها.", "translation": "My father's family is big; I know my relatives from pictures and letters. This is my uncle Mahmoud and his family, and this is my uncle Adel and his family; my uncle Adel is a high-ranking officer in the army. And this is my uncle Ahmad and his family; he is actually my father's cousin. My uncle Ahmad is a professor in the college of political science at Cairo University, and he is now teaching at Al Ain University in the United Arab Emirates. And this is my aunt Fatima, and her husband, her son, and her daughters.", "comprehension": [{"q": "مَن هُوَ عادِل؟ ماذا يَعْمَل؟", "a": "عادِل عَمّ مَها، وَهُوَ ضابِط كَبِير فِي الجَيْش."}, {"q": "مَن هُوَ أَحْمَد؟", "a": "أَحْمَد اِبْن عَمّ والِد مَها، وَمَها تَقُول \"عَمِّي\"."}, {"q": "أَيْنَ يُدَرِّس أَحْمَد الآن؟", "a": "يُدَرِّس فِي جامِعة العَيْن بِالإِمارات."}, {"q": "مَن فِي أُسْرة فاطِمة؟", "a": "زَوْجُها وَاِبْنُها وَبَناتُها."}, {"q": "كَيْف تَعْرِف مَها أَقارِبَها؟", "a": "مِن الصُّوَر وَالرَّسائِل."}], "grammarHunt": []}
 ];
 
 const PRACTICE_TEST_BANK = [
@@ -1072,7 +1108,7 @@ const TABS = [
   {id:'conjugations',label:'Conjugations'},
   {id:'homework',label:'Homework'},
   {id:'drills',label:'Drills'},
-  {id:'midterm',label:'Midterm'},
+  {id:'exams',label:'Exams'},
 ];
 let currentTab = 'home';
 
@@ -1128,7 +1164,7 @@ function go(tab, param){
   else if(tab==='conjugations') renderConjugations(main, param);
   else if(tab==='homework') renderHomework(main);
   else if(tab==='drills') renderDrills(main, param);
-  else if(tab==='midterm') renderMidterm(main);
+  else if(tab==='exams') renderExams(main, param);
 }
 
 /* ============================================================
@@ -1171,9 +1207,9 @@ function renderHome(main){
           <div class="num">Practice</div><h3>Drills</h3>
           <p class="muted" style="margin:0;">Reveal-answer exercises, readings, and practice tests.</p>
         </div>
-        <div class="card lesson-card" onclick="go('midterm')">
-          <div class="num">Exam prep</div><h3>Midterm</h3>
-          <p class="muted" style="margin:0;">Study guide, practice exam, and answer key.</p>
+        <div class="card lesson-card" onclick="go('exams')">
+          <div class="num">Exam prep</div><h3>Exams</h3>
+          <p class="muted" style="margin:0;">Study guides and practice for the midterm, Unit 2 exam, and Lesson 3 quiz.</p>
         </div>
       </div>
     </div>
@@ -1364,6 +1400,10 @@ addLesson("Idafa: the Possessive (Construct) Phrase", `
 <li>The second noun, and any after it, is genitive (see Case Endings).</li>
 </ul>
 <p><span class="arabic">جَامِعَةُ جُورجْتَاون</span> (Georgetown University, literally "the university of Georgetown"). <span class="arabic">بَيْتُ الأُسْتَاذِ</span> (the professor's house).</p>
+<h3>Idafa or noun + adjective?</h3>
+<p><span class="arabic">بَيْت الأُسْتاذ</span> (the professor's house, two nouns) vs <span class="arabic">البَيْت الكَبِير</span> (the big house, noun + adjective, both with ال).</p>
+<h3>Possessive endings in a chain</h3>
+<p>Every noun but the last stays bare. A possessive goes on the end only: <span class="arabic">رَقْم تِلِفُونِي</span> (my phone number).</p>
 <h3>Where adjectives go in an idafa</h3>
 <p>An adjective goes after the entire idafa; gender and number agreement show which noun it describes.</p>
 <p><span class="arabic">غُرْفَةُ الطَّالِبَةِ الجَدِيدَةِ</span> (the new [female] student's room): جَدِيدَةِ is feminine singular and agrees with الطَّالِبَةِ (the student); غرفة is also feminine, so context decides.</p>
@@ -1376,6 +1416,7 @@ addLesson("Idafa: the Possessive (Construct) Phrase", `
 addLesson("Subject Pronouns and Possessive Suffixes", `
 <h3>Independent subject pronouns</h3>
 <p>Arabic marks gender in the second and third person and has a dual. The verb ending already shows the subject, so independent pronouns like أنا or هو are used mainly for emphasis, contrast, or to open a nominal sentence.</p>
+<p>There's no "it": use <span class="arabic">هُوَ</span> for masculine things and <span class="arabic">هِيَ</span> for feminine things.</p>
 <h3>Possessive suffixes</h3>
 <p>Possessives are suffixes attached to the noun, and they make it definite. A final ة becomes ت before a suffix.</p>
 <table><tr><th>Meaning</th><th class="ar">Subject</th><th class="ar">Suffix</th><th>Example</th></tr>
@@ -1536,6 +1577,8 @@ addLesson("Case Endings (i\u02BFraab)", `
 <tr><td>Genitive</td><td>-i</td><td>-in</td><td class="ar big-ar">الطَّالِبِ / طَالِبٍ</td></tr>
 </table>
 <p>All three of الطَّالِبُ, الطَّالِبَ, and الطَّالِبِ simply mean "the student." The ending marks only the word's role.</p>
+<p>The ending always goes on the <b>last letter</b> of the word.</p>
+<p>A present-tense verb ends in damma: <span class="arabic">يَقْرَأُ، تَعْمَلُ</span>.</p>
 <h3>Seeing all three cases in one sentence</h3>
 <p class="arabic big-ar" style="text-align:center;">قَرَأَ الطَّالِبُ الكِتَابَ في المَكْتَبَةِ</p>
 <p class="muted" style="text-align:center;">qara\u02BEa T-Taalibu l-kitaaba fi l-maktabati: the student read the book in the library</p>
@@ -1594,6 +1637,11 @@ addLesson("The Nominal Sentence, Reviewed and Negated", `
 <tr><td>They are not employees</td><td class="ar big-ar">لَيسوا مُوَظَّفين</td></tr>
 </table>
 <p>The predicate after laysa is accusative: <span class="arabic">لَستُ مُتَرجِماً</span> ends in <span class="arabic">-اً</span>, not the nominative <span class="arabic">-ٌ</span>.</p>
+<h3>Kinds of predicate</h3>
+<ul>
+<li>The خَبَر can be an adjective, a noun, a verb phrase, or a place phrase: <span class="arabic">مَها تَسْكُن فِي نِيويُورْك، مَكْتَب القَبُول فِي هَذِهِ البِناية</span>.</li>
+<li>Both parts agree in gender and number: <span class="arabic">أَنْتُمْ مَشْغُولُون، هِيَ حَرّانة، الدُّرُوس صَعْبة</span>.</li>
+</ul>
 <h3>Fronting the predicate</h3>
 <p>A prepositional-phrase predicate ("with me," "in the office") usually comes first, before the subject: <span class="arabic">عِندي أُخت</span> ("I have a sister," literally "at me [is] a sister"). The subject that follows is indefinite.</p>
 `);
@@ -1619,6 +1667,29 @@ addLesson("Idafa, Continued", `
 <p>Academic subjects are usually themselves idafa constructions: <span class="arabic">عِلمُ النَفس</span> (psychology, literally "the science of the self"), <span class="arabic">عِلمُ الاجتِماع</span> (sociology, "the science of society/gathering"), <span class="arabic">عِلمُ الإنسان</span> (anthropology, "the science of the human being").</p>
 `);
 
+addLesson("Family Terms", `
+<p>Father's side uses <span class="arabic">عَمّ / عَمّة</span>; mother's side uses <span class="arabic">خال / خالة</span>. A cousin is <span class="arabic">اِبْن</span> or <span class="arabic">بِنْت</span> plus the uncle or aunt word.</p>
+<table><tr><th class="ar">Arabic</th><th class="en-toggle">Meaning</th></tr>
+<tr><td class="ar big-ar">عَمّ</td><td class="en-toggle">uncle, father's brother</td></tr><tr><td class="ar big-ar">عَمّة</td><td class="en-toggle">aunt, father's sister</td></tr><tr><td class="ar big-ar">خال</td><td class="en-toggle">uncle, mother's brother</td></tr><tr><td class="ar big-ar">خالة</td><td class="en-toggle">aunt, mother's sister</td></tr><tr><td class="ar big-ar">زَوْجة عَمّ / زَوْجة خال</td><td class="en-toggle">uncle's wife</td></tr><tr><td class="ar big-ar">زَوْج عَمّة / زَوْج خالة</td><td class="en-toggle">aunt's husband</td></tr><tr><td class="ar big-ar">اِبْن عَمّ / بِنْت عَمّ</td><td class="en-toggle">cousin (child of father's brother)</td></tr><tr><td class="ar big-ar">اِبْن عَمّة / بِنْت عَمّة</td><td class="en-toggle">cousin (child of father's sister)</td></tr><tr><td class="ar big-ar">اِبْن خال / بِنْت خال</td><td class="en-toggle">cousin (child of mother's brother)</td></tr><tr><td class="ar big-ar">اِبْن خالة / بِنْت خالة</td><td class="en-toggle">cousin (child of mother's sister)</td></tr><tr><td class="ar big-ar">جَدّ / جَدّة</td><td class="en-toggle">grandfather / grandmother</td></tr><tr><td class="ar big-ar">قَرِيب ج. أَقارِب</td><td class="en-toggle">relative</td></tr>
+</table>
+<h3>Wider use</h3>
+<ul>
+<li><span class="arabic">عَمِّي، عَمَّتِي، خالِي، خالَتِي</span> are also used for distant relatives, in-laws, and respected older people.</li>
+<li>Father-in-law: <span class="arabic">عَمِّي</span>. Mother-in-law: <span class="arabic">زَوْجة عَمِّي</span> or <span class="arabic">خالَتِي</span>. Stepmother: <span class="arabic">خالَتِي</span>.</li>
+</ul>
+<h3>Chains</h3>
+<p>Longer terms are idafa chains: <span class="arabic">اِبْن عَمّ والِد مَها</span> (Maha's father's cousin). A possessive goes on the end only: <span class="arabic">رَقْم تِلِفُونِي</span> (my phone number).</p>
+`);
+
+addLesson("Culture Notes", `
+<ul>
+<li><b>Housework (<span class="arabic">شُغْل البَيْت</span>).</b> Both spouses increasingly work outside the home, and extended family often helps with childcare. Traditionally the wife handles the home and the husband handles errands outside it.</li>
+<li><b>Being alone.</b> Spending time alone (except to work or study) is generally seen as undesirable. Frequent visits with family, neighbors, and friends mean people are rarely alone. That's why Maha calling herself <span class="arabic">وَحِيدة</span> says a lot.</li>
+<li>Extended family matters more than in the US: frequent visits, and cousins are often close friends.</li>
+<li>Arab universities are split into separate colleges (<span class="arabic">كُلِّيّة الآداب، كُلِّيّة التِّجارة</span>), medicine and law are undergraduate degrees, and students choose humanities or sciences in high school.</li>
+</ul>
+`);
+
 addLesson("Plurals: Sound and Broken", `
 <h3>Sound plurals</h3>
 <ul>
@@ -1634,8 +1705,22 @@ addLesson("Plurals: Sound and Broken", `
 <tr><td>faa\u02BFil</td><td class="ar big-ar">ضابِط &rarr; ضُبّاط</td><td>fu\u02BFaal</td><td class="ar big-ar">officer &rarr; officers</td></tr>
 </table>
 <p>Memorize each noun together with its plural.</p>
-<h3>Non-human plural agreement</h3>
-<p>An adjective, demonstrative, or verb agreeing with a plural noun for things is feminine singular, however many things there are.</p>
+<h3>Plural agreement</h3>
+<ul>
+<li><b>People</b> take plural adjectives: <span class="arabic">طُلّاب أَمْرِيكِيُّون، طالِبات أَمْرِيكِيّات</span>.</li>
+<li>A <b>mixed group</b> of men and women takes the masculine plural: <span class="arabic">الطُّلّاب وَالطّالِبات مَشْغُولُون</span>.</li>
+<li><b>Things</b> (and animals) in the plural act like a <b>feminine singular</b>: <span class="arabic">مُدُن كَبِيرة، سَيّارات يابانِيّة، الأُمَم المُتَّحِدة</span>. Families count as things: <span class="arabic">الأُسَر المِصْرِيّة كَبِيرة</span>.</li>
+<li>Most nisba adjectives take ـُون / ـات, but <span class="arabic">عَرَبِيّ ← عَرَب</span> is irregular.</li>
+</ul>
+<h3>Sound plurals of nationalities and professions</h3>
+<p>Men take <span class="arabic">ـُون</span> (the formal subject form) or <span class="arabic">ـِين</span> (other positions, and what is heard in speech); women take <span class="arabic">ـات</span>.</p>
+<table><tr><th class="ar">Singular (m.)</th><th class="ar">Plural (m.)</th><th class="ar">Plural (f.)</th><th class="en-toggle">Meaning</th></tr>
+<tr><td class="ar big-ar">مِصْرِيّ</td><td class="ar big-ar">مِصْرِيُّون / مِصْرِيِّين</td><td class="ar big-ar">مِصْرِيّات</td><td class="en-toggle">Egyptian</td></tr>
+<tr><td class="ar big-ar">مُتَرْجِم</td><td class="ar big-ar">مُتَرْجِمُون / مُتَرْجِمِين</td><td class="ar big-ar">مُتَرْجِمات</td><td class="en-toggle">translator</td></tr>
+<tr><td class="ar big-ar">مُتَخَصِّص</td><td class="ar big-ar">مُتَخَصِّصُون / مُتَخَصِّصِين</td><td class="ar big-ar">مُتَخَصِّصات</td><td class="en-toggle">specialist</td></tr>
+<tr><td class="ar big-ar">مَشْغُول</td><td class="ar big-ar">مَشْغُولُون / مَشْغُولِين</td><td class="ar big-ar">مَشْغُولات</td><td class="en-toggle">busy</td></tr>
+<tr><td class="ar big-ar">مُوَظَّف</td><td class="ar big-ar">مُوَظَّفُون / مُوَظَّفِين</td><td class="ar big-ar">مُوَظَّفات</td><td class="en-toggle">employee</td></tr>
+</table>
 `);
 
 addLesson("Broken Plural Patterns", `
@@ -1875,13 +1960,14 @@ addLesson("The Verbal Noun (al-Masdar)", `
 `);
 
 addLesson("Connectors: and, or, but, so", `
-<table><tr><th>Meaning</th><th class="ar">Arabic</th><th>Use</th><th class="ar">Example</th></tr>
-<tr><td>and</td><td class="ar big-ar">وَ</td><td>adds one thing to another; attaches to the next word</td><td class="ar big-ar">أَشْرَبُ الشّايَ والقَهْوةَ</td></tr>
-<tr><td>or</td><td class="ar big-ar">أَو</td><td>presents an alternative or choice</td><td class="ar big-ar">هَل تُريدُ شايَ أَو قَهْوةً؟</td></tr>
-<tr><td>or</td><td class="ar big-ar">أَم</td><td>seeks a specific answer</td><td class="ar big-ar">هَل هذا كِتابٌ أَم قَلَمٌ؟</td></tr>
-<tr><td>but</td><td class="ar big-ar">لَكِن</td><td>shows contrast</td><td class="ar big-ar">هُوَ يُحِبُّ العَصيرَ لَكِن لا يَشرَبُهُ</td></tr>
-<tr><td>so, and then</td><td class="ar big-ar">فَ</td><td>effect, result, or consequence; attaches to the next word</td><td class="ar big-ar">دَرَسْتُ فَنَجَحْتُ</td></tr>
+<table><tr><th>Meaning</th><th class="ar">Arabic</th><th class="ar">Example</th></tr>
+<tr><td>and</td><td class="ar big-ar">وَ</td><td class="ar big-ar">أَدْرُس فِي النَّهار وَأَعْمَل فِي المَساء.</td></tr>
+<tr><td>or (in statements)</td><td class="ar big-ar">أَو</td><td class="ar big-ar">أَدْرُس الإِسْبانِيّة أَو الفَرَنْسِيّة.</td></tr>
+<tr><td>or (in questions)</td><td class="ar big-ar">أَم</td><td class="ar big-ar">هَل أَنْتِ مِصْرِيّة أَم لُبْنانِيّة؟</td></tr>
+<tr><td>but</td><td class="ar big-ar">لَكِن / وَلَكِن</td><td class="ar big-ar">العَرَبِيّة جَمِيلة، وَلَكِن الدُّرُوس صَعْبة.</td></tr>
+<tr><td>so, and then</td><td class="ar big-ar">فَـ</td><td class="ar big-ar">أَنا مَشْغُول دائِمًا، فَأَنا تَعْبان.</td></tr>
 </table>
+<p><span class="arabic">وَ</span> and <span class="arabic">فَـ</span> are written attached to the next word; <span class="arabic">أَو</span>, <span class="arabic">أَم</span>, and <span class="arabic">لَكِن</span> are separate words.</p>
 `);
 
 function renderLessonsList(main, openId){
@@ -3009,7 +3095,7 @@ function buildNominalVerbalItems(){
   });
 }
 function passageHeaderHtml(p){
-  return `<div class="card" style="margin-bottom:16px;"><h3 style="margin-top:0;">${p.title}</h3><p class="arabic" style="line-height:2.1;font-size:19px;">${p.text}</p></div>`;
+  return `<div class="card" style="margin-bottom:16px;"><h3 style="margin-top:0;">${p.title}</h3><p class="arabic" style="line-height:2.1;font-size:19px;">${p.text}</p>${p.translation?`<p class="muted en-toggle" style="margin:10px 0 0;">${p.translation}</p>`:''}</div>`;
 }
 function buildPassageItems(p){
   const items=[];
@@ -3221,6 +3307,44 @@ function buildPastQuizK1Items(){
   return items;
 }
 
+
+/* ---- Reviews and plural lists from the Lesson 2 and Lesson 3 study material ---- */
+const REVIEW_SETS = {
+  lesson2: [{"title": "A. Fill in the pronoun", "instr": "", "qlang": "ar", "items": [["مَن أَنْتِ؟ ___ طالِبة جَدِيدة.", "أَنا طالِبة جَدِيدة."], ["هَل ___ مِصْرِيّ يا أَحْمَد؟", "هَل أَنْتَ مِصْرِيّ يا أَحْمَد؟"], ["هَل ___ مَشْغُولة يا نادِيَة؟", "هَل أَنْتِ مَشْغُولة يا نادِيَة؟"], ["مَن مَها؟ ___ طالِبة فِي جامِعة نِيويُورْك.", "هِيَ طالِبة فِي جامِعة نِيويُورْك."], ["مِن أَيْن ___ يا شَباب؟ ___ مِن لُبْنان.", "مِن أَيْن أَنْتُمْ يا شَباب؟ نَحْنُ مِن لُبْنان."], ["مُحَمَّد وَعَلِيّ؟ ___ مُتَرْجِمُون.", "هُمْ مُتَرْجِمُون."]]}, {"title": "B. Make it plural and make it agree", "instr": "Use the plural of the words in parentheses.", "qlang": "ar", "items": [["نَحْنُ (طالِب، أَمْرِيكِيّ)", "نَحْنُ طُلّاب أَمْرِيكِيُّون."], ["هَذِهِ (سَيّارة، يابانِيّ)", "هَذِهِ سَيّارات يابانِيّة."], ["الآنِسة مُنَى وَالسَّيِّدة عَبِير (مُوَظَّفة، جَدِيد)", "الآنِسة مُنَى وَالسَّيِّدة عَبِير مُوَظَّفات جَدِيدات."], ["القاهِرة وَبَيْرُوت وَبَغْداد (مَدِينة، عَرَبِيّ)", "مُدُن عَرَبِيّة."], ["هُمْ (أُسْتاذ، عَرَبِيّ)", "هُمْ أَساتِذة عَرَب."], ["الإِسْبانِيّة وَالفَرَنْسِيّة (لُغة، صَعْب)", "لُغات صَعْبة."]]}, {"title": "C. Find the مُبْتَدَأ and the خَبَر", "instr": "", "qlang": "ar", "items": [["الكُتُب كَبِيرة.", "مُبْتَدَأ: الكُتُب / خَبَر: كَبِيرة"], ["والِدَتِي مُوَظَّفة فِي مَكْتَب القَبُول.", "مُبْتَدَأ: والِدَتِي / خَبَر: مُوَظَّفة فِي مَكْتَب القَبُول"], ["أَنْتُمْ مَشْغُولُون.", "مُبْتَدَأ: أَنْتُمْ / خَبَر: مَشْغُولُون"], ["مَها تَسْكُن فِي نِيويُورْك.", "مُبْتَدَأ: مَها / خَبَر: تَسْكُن فِي نِيويُورْك"], ["مَكْتَب الأُسْتاذ فِي هَذِهِ البِناية.", "مُبْتَدَأ: مَكْتَب الأُسْتاذ / خَبَر: فِي هَذِهِ البِناية"]]}, {"title": "D. Phrase or sentence?", "instr": "", "qlang": "ar", "items": [["البَيْت الكَبِير", "phrase: the big house (both have ال)"], ["البَيْت كَبِير", "sentence: The house is big."], ["طالِبة مِصْرِيّة", "phrase: an Egyptian student"], ["الطّالِبة مِصْرِيّة", "sentence: The student is Egyptian."], ["هَذا الطّالِب عِراقِيّ", "sentence: This student is Iraqi."]]}, {"title": "E. Which connector?", "instr": "", "qlang": "ar", "items": [["هَل أَنْتِ مِصْرِيّة ___ لُبْنانِيّة؟", "أَم (a question)"], ["أَدْرُس فِي النَّهار ___ أَعْمَل فِي المَساء.", "وَ"], ["العَرَبِيّة جَمِيلة، ___ الدُّرُوس صَعْبة.", "وَلَكِن"], ["أَدْرُس الإِسْبانِيّة ___ الفَرَنْسِيّة.", "أَو (a statement, not a question)"], ["أَنا مَشْغُول دائِمًا، ___ أَنا تَعْبان.", "فَـ ← فَأَنا"]]}, {"title": "F. Add the case endings", "instr": "", "qlang": "ar", "items": [["الطالب يقرأ الكتاب في المكتبة.", "الطّالِبُ يَقْرَأُ الكِتابَ فِي المَكْتَبَةِ."], ["كتاب الأستاذ جديد.", "كِتابُ الأُسْتاذِ جَدِيدٌ."], ["هذا الطالب عراقي.", "هَذا الطّالِبُ عِراقِيٌّ."]]}, {"title": "H. Say it in Arabic", "instr": "", "qlang": "en", "items": [["I have an aunt named Nadia.", "لِي خالة اسْمُها نادِيَة."], ["My mother is busy with work in the daytime.", "والِدَتِي مَشْغُولة بِالعَمَل فِي النَّهار."], ["I am really busy, but I am happy.", "أَنا فِعْلًا مَشْغُول، وَلَكِن أَنا سَعِيد."], ["I live in Washington, where I study Arabic.", "أَسْكُن فِي واشِنْطُن، حَيْثُ أَدْرُس العَرَبِيّة."], ["He is a translator specializing in French.", "هُوَ مُتَرْجِم مُتَخَصِّص فِي الفَرَنْسِيّة."], ["I am the only boy in the family.", "أَنا الوَلَد الوَحِيد فِي الأُسْرة."]]}],
+  lesson3: [{"title": "A. Say it in Arabic", "instr": "Write the family word.", "qlang": "en", "items": [["my father's brother", "عَمِّي"], ["my mother's sister", "خالَتِي"], ["my mother's brother's son", "اِبْن خالِي"], ["my father's sister's daughter", "بِنْت عَمَّتِي"], ["my (paternal) uncle's wife", "زَوْجة عَمِّي"], ["my grandmother", "جَدَّتِي"], ["my relatives", "أَقارِبِي"]]}, {"title": "B. Make an idafa", "instr": "Put the nouns together correctly.", "qlang": "ar", "items": [["(مَكْتَب / الأُسْتاذ)", "مَكْتَب الأُسْتاذ  (the professor's office)"], ["(عائِلة / والِدِي)", "عائِلة والِدِي  (my father's family)"], ["(جامِعة / القاهِرة)", "جامِعة القاهِرة  (Cairo University)"], ["(صُورة / العائِلة)", "صُورة العائِلة  (the family picture)"], ["(كُلِّيّة / العُلُوم السِّياسِيّة)", "كُلِّيّة العُلُوم السِّياسِيّة  (the college of political science)"], ["(اِبْن / عَمّ / والِد / مَها)", "اِبْن عَمّ والِد مَها  (Maha's father's cousin)"]]}, {"title": "C. Fix the mistake", "instr": "Each idafa breaks a rule.", "qlang": "ar", "items": [["الجامِعة القاهِرة", "جامِعة القاهِرة  (no ال on the first word)"], ["مَكْتَب الأُسْتاذِي", "مَكْتَب أُسْتاذِي  (no ال when the last word has a possessive ending)"], ["صُورَتِي العائِلة", "صُورة عائِلَتِي  (the possessive goes on the last word only)"], ["الكُلِّيّة الطِّبّ", "كُلِّيّة الطِّبّ  (no ال on the first word)"]]}, {"title": "D. Whose?", "instr": "Turn each pair into one word.", "qlang": "ar", "items": [["(رِسالة / هِيَ)", "رِسالَتُها"], ["(أَقارِب / نَحْنُ)", "أَقارِبُنا"], ["(كُلِّيّة / أَنْتُمْ)", "كُلِّيَّتُكُمْ"], ["(زَوْجة / هُوَ)", "زَوْجَتُهُ"], ["(صُوَر / أَنا)", "صُوَرِي"], ["(عَمّ / أَنْتِ)", "عَمُّكِ"], ["(جَيْش / هُمْ)", "جَيْشُهُمْ"], ["(اِبْن / أَنْتَ)", "اِبْنُكَ"]]}, {"title": "E. Give the plural", "instr": "", "qlang": "ar", "items": [["اِبْن", "أَبْناء"], ["رِسالة", "رَسائِل"], ["ضابِط", "ضُبّاط"], ["قَرِيب", "أَقارِب"], ["صُورة", "صُوَر"], ["عَمّ", "أَعْمام"], ["كُلِّيّة", "كُلِّيّات"], ["زَوْج", "أَزْواج"], ["عِلْم", "عُلُوم"], ["جَيْش", "جُيُوش"]]}, {"title": "G. How do you pronounce the ة?", "instr": "", "qlang": "ar", "items": [["مَدِينة نِيويُورْك", "madīnat Nyūyūrk (ة → t, not the last word)"], ["صُورة العائِلة", "ṣūrat al-ʿāʾila (the ة in صُورة is t; the final ة is silent)"], ["جامِعة القاهِرة", "jāmiʿat al-Qāhira"]]}]
+};
+const PLURAL_LISTS = [{"group": "People: broken plurals", "items": [["رَجُل", "رِجال", "man"], ["طالِب", "طُلّاب", "student"], ["وَلَد", "أَوْلاد", "boy, child"], ["خال", "أَخْوال", "uncle (mother's brother)"], ["صاحِب", "أَصْحاب", "friend"], ["أُسْتاذ", "أَساتِذة", "professor"], ["دُكْتُور", "دَكاتِرة", "doctor"], ["سَيِّد", "سادة", "Mr., gentleman"], ["أَخ", "إِخْوة", "brother"], ["جار", "جِيران", "neighbor"], ["عَرَبِيّ", "عَرَب", "Arab"]]}, {"group": "People: men's sound plural (ـُون / ـِين)", "items": [["مِصْرِيّ", "مِصْرِيُّون / مِصْرِيِّين", "Egyptian"], ["لُبْنانِيّ", "لُبْنانِيُّون / لُبْنانِيِّين", "Lebanese"], ["مُتَرْجِم", "مُتَرْجِمُون / مُتَرْجِمِين", "translator"], ["مُتَخَصِّص", "مُتَخَصِّصُون / مُتَخَصِّصِين", "specialist"], ["مَشْغُول", "مَشْغُولُون / مَشْغُولِين", "busy"], ["مُوَظَّف", "مُوَظَّفُون / مُوَظَّفِين", "employee"]]}, {"group": "People: women's plural (ـات)", "items": [["بِنْت", "بَنات", "girl, daughter"], ["أُخْت", "أَخَوات", "sister"], ["اِمْرَأة", "نِساء", "woman"], ["طالِبة", "طالِبات", "student (f)"], ["أُسْتاذة", "أُسْتاذات", "professor (f)"], ["سَيِّدة", "سَيِّدات", "lady, Mrs."], ["خالة", "خالات", "aunt (mother's sister)"], ["جارة", "جارات", "neighbor (f)"], ["مِصْرِيّة", "مِصْرِيّات", "Egyptian (f)"], ["فِلَسْطِينِيّة", "فِلَسْطِينِيّات", "Palestinian (f)"], ["مُتَرْجِمة", "مُتَرْجِمات", "translator (f)"], ["مُتَخَصِّصة", "مُتَخَصِّصات", "specialist (f)"], ["مَشْغُولة", "مَشْغُولات", "busy (f)"], ["مُوَظَّفة", "مُوَظَّفات", "employee (f)"]]}, {"group": "Things: broken plurals", "items": [["اِسْم", "أَسْماء", "name"], ["عَمَل", "أَعْمال", "work, job"], ["خَبَر", "أَخْبار", "news item"], ["باب", "أَبْواب", "door"], ["كِتاب", "كُتُب", "book"], ["مَدِينة", "مُدُن", "city"], ["أُسْرة", "أُسَر", "family"], ["غُرْفة", "غُرَف", "room"], ["قِصّة", "قِصَص", "story"], ["بَيْت", "بُيُوت", "house"], ["دَرْس", "دُرُوس", "lesson"], ["صَفّ", "صُفُوف", "class"], ["فَصْل", "فُصُول", "class, semester"], ["بَنْك", "بُنُوك", "bank"], ["فِلْس", "فُلُوس", "money"], ["شارِع", "شَوارِع", "street"], ["دَفْتَر", "دَفاتِر", "notebook"], ["شُبّاك", "شَبابِيك", "window"], ["مِنْطَقة", "مَناطِق", "area"], ["مَكْتَب", "مَكاتِب", "office, desk"]]}, {"group": "Things: ـات plurals", "items": [["جامِعة", "جامِعات", "university"], ["طائِرة", "طائِرات", "airplane"], ["سَيّارة", "سَيّارات", "car"], ["وِلاية", "وِلايات", "state"], ["ساعة", "ساعات", "clock, hour"], ["لُغة", "لُغات", "language"], ["كَلِمة", "كَلِمات", "word"], ["صَفْحة", "صَفَحات", "page"], ["طاوِلة", "طاوِلات", "table"], ["وَرَقة", "وَرَقات", "sheet of paper"], ["بِناية", "بِنايات", "building"], ["تَرْجَمة", "تَرْجَمات", "translation"], ["مَكْتَبة", "مَكْتَبات", "library"]]}, {"group": "Lesson 3 nouns", "items": [["اِبْن", "أَبْناء", "son"], ["عَمّ", "أَعْمام", "paternal uncle"], ["عَمّة", "عَمّات", "paternal aunt"], ["جَيْش", "جُيُوش", "army"], ["رِسالة", "رَسائِل", "letter"], ["زَوْج", "أَزْواج", "husband"], ["زَوْجة", "زَوْجات", "wife"], ["صُورة", "صُوَر", "picture"], ["ضابِط", "ضُبّاط", "officer"], ["عِلْم", "عُلُوم", "science"], ["عائِلة", "عائِلات", "family"], ["قَرِيب", "أَقارِب", "relative"], ["كُلِّيّة", "كُلِّيّات", "college"]]}];
+function reviewAnswerHtml(a){
+  const isAr = s => /^[\u0600-\u06FF]/.test(s.trim());
+  const m = a.match(/^(.*?)\s+\((.*)\)\s*$/);
+  if(isAr(a)){
+    if(m && isAr(m[1])) return `<div class="arabic big-ar">${m[1]}</div><p class="muted en-toggle" style="margin-top:6px;">${m[2]}</p>`;
+    return `<div class="arabic big-ar">${a}</div>`;
+  }
+  return `<p>${a}</p>`;
+}
+function buildReviewItems(key){
+  const items = [];
+  REVIEW_SETS[key].forEach(sec=>{
+    const head = `<div class="muted" style="font-size:13px;margin-bottom:8px;">${sec.title}</div>`;
+    sec.items.forEach(([q,a])=>items.push({
+      group: sec.title,
+      prompt: head + (sec.instr?`<p class="muted">${sec.instr}</p>`:'') + (sec.qlang==='ar'?`<div class="arabic big-ar">${q}</div>`:`<p>${q}</p>`),
+      reveal: reviewAnswerHtml(a)
+    }));
+  });
+  return items;
+}
+function buildPluralListItems(){
+  const items = [];
+  PLURAL_LISTS.forEach(g=>g.items.forEach(([sg,pl,en])=>items.push({
+    group: g.group,
+    prompt: `<p class="muted">Give the plural.</p><div class="arabic big-ar">${sg}</div><div class="muted en-toggle">${en}</div>`,
+    reveal: `<div class="arabic big-ar">${pl}</div>`
+  })));
+  return items;
+}
+
 const DRILL_SETS = [
   {id:'nisba', book:'alkitaab', label:'Nisba Adjective Formation', desc:'20 countries: masculine and feminine nisba adjectives.', build:buildNisbaDrillItems},
   {id:'poss-identify', book:'alifbaa', label:'Possessive Suffixes: Identify the Pronoun', desc:'Name the subject pronoun for each possessive suffix.', build:buildPossIdentifyItems},
@@ -3237,6 +3361,11 @@ const DRILL_SETS = [
   {id:'passage-sasha', book:'alkitaab', label:'Reading: \u0633\u0627\u0634\u0627', desc:'Reading passage, questions to answer in full sentences, and a grammar hunt.', build:()=>buildPassageItems(READING_PASSAGES[2]), header:()=>passageHeaderHtml(READING_PASSAGES[2])},
   {id:'past-quiz-l1', book:'alkitaab', label:'Quiz Review: Lesson 1', desc:'Fill-ins, interrogatives, nisba adjectives, and expressions.', build:buildPastQuizL1Items},
   {id:'past-quiz-k1', book:'alkitaab', label:'Quiz Review: Al-Kitaab Lesson I', desc:'Counting, a conversation, the verb chart, interrogatives, nominal sentences, and translation.', build:buildPastQuizK1Items},
+  {id:'lesson2-review', book:'alkitaab', label:'Lesson 2 Review', desc:'Pronouns, plural agreement, subject and predicate, connectors, case endings.', build:()=>buildReviewItems('lesson2')},
+  {id:'lesson3-review', book:'alkitaab', label:'Lesson 3 Review', desc:'Family words, idafa, possessives, plurals, the \u0629.', build:()=>buildReviewItems('lesson3')},
+  {id:'plurals-lists', book:'alkitaab', label:'Plurals: Lessons 2 and 3', desc:'Singular to plural: people and things, broken and sound.', build:buildPluralListItems},
+  {id:'passage-maha2', book:'alkitaab', label:'Reading: Maha, Lesson 2', desc:'Passage with translation and comprehension questions.', build:()=>buildPassageItems(READING_PASSAGES[3]), header:()=>passageHeaderHtml(READING_PASSAGES[3])},
+  {id:'passage-maha3', book:'alkitaab', label:'Reading: Maha, Lesson 3', desc:'Passage with translation and comprehension questions.', build:()=>buildPassageItems(READING_PASSAGES[4]), header:()=>passageHeaderHtml(READING_PASSAGES[4])},
   {id:'practice-a', book:'both', label:'Practice Test A', desc:'Full mock quiz, 10 sections.', build:()=>buildPracticeTestItems(PRACTICE_TEST_BANK[0])},
   {id:'practice-b', book:'both', label:'Practice Test B', desc:'Second full mock quiz, 10 sections.', build:()=>buildPracticeTestItems(PRACTICE_TEST_BANK[1])},
 ];
@@ -3366,27 +3495,89 @@ const MIDTERM_STUDY_GUIDE = [
 ];
 const MIDTERM_EXTRA_SETS = ['case-drill','sp-handout','masdar-drill','roots-drill','passage-sasha','past-quiz-l1','past-quiz-k1','practice-a','practice-b'];
 
-function renderMidterm(main){
-  let checks = loadProgress('midtermChecks', {});
-  main.appendChild(mkEl(`<div><h1>Midterm</h1></div>`));
-  main.appendChild(mkEl(`
-    <div class="card">
-      <h3 style="margin-top:0;">Practice exam</h3>
-      <p>8 pages, 157 points, with a separate answer key.</p>
-      <div class="row">
-        <a class="btn" href="midterm/Arabic011_Midterm_Practice_Exam.pdf" target="_blank" rel="noopener">Practice exam (PDF)</a>
-        <a class="btn ghost" href="midterm/Arabic011_Midterm_Practice_Exam_Key.pdf" target="_blank" rel="noopener">Answer key (PDF)</a>
+const UNIT2_STUDY_GUIDE = [
+  {group:'Unit 2 exam: Lesson 2, with Lesson 1 review', items:[
+    {text:'Lesson 2 vocabulary (pp. 19 and 34), plus Lesson 1 and older words.',
+     links:[['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Matching game','matching']]},
+    {text:'Plurals from the tables on pp. 24 and 25: forming and spelling them.',
+     links:[['Plurals lesson','lessons','Plurals: Sound and Broken'],['Broken Plural Patterns','lessons','Broken Plural Patterns'],['Plurals drill','drills','plurals-lists'],['Plural Type quiz','quiz','plural']]},
+    {text:'Agreement: people take plural adjectives, things take feminine singular adjectives.',
+     links:[['Plurals lesson','lessons','Plurals: Sound and Broken'],['Adjectives and Agreement','lessons','Adjectives and Agreement']]},
+    {text:'Subject pronouns: all eight.',
+     links:[['Subject Pronouns','lessons','Subject Pronouns and Possessive Suffixes'],['Pronouns quiz','quiz','pronoun']]},
+    {text:'The nominal sentence: مُبْتَدَأ and خَبَر, phrase versus sentence.',
+     links:[['The Nominal Sentence','lessons','The Nominal Sentence, Reviewed and Negated'],['Lesson 2 Review','drills','lesson2-review'],['Subject and predicate','drills','sp-handout'],['Nominal or Verbal?','drills','nominal-verbal']]},
+    {text:'Connectors: وَ، أَو، أَم، لَكِن، فَـ',
+     links:[['Connectors','lessons','Connectors: and, or, but, so'],['Connectors quiz','quiz','connectors']]},
+    {text:'Case endings: damma, fatha, kasra.',
+     links:[['Case Endings','lessons','Case Endings (iʿraab)'],['Case Ending Drill','drills','case-drill'],['Case Endings quiz','quiz','case']]},
+    {text:"Maha's Lesson 2 story and a short reading passage.",
+     links:[['Reading: Maha, Lesson 2','drills','passage-maha2'],['Reading: Sasha','drills','passage-sasha']]},
+    {text:'A short paragraph about yourself.', links:[]}
+  ]}
+];
+const UNIT2_EXTRA_SETS = ['lesson2-review','plurals-lists','passage-maha2','passage-sasha','case-drill','sp-handout','nominal-verbal'];
+const LESSON3_STUDY_GUIDE = [
+  {group:'Lesson 3 quiz', items:[
+    {text:'Vocabulary from p. 36, with plurals.',
+     links:[['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Plurals drill','drills','plurals-lists']]},
+    {text:'Family terms: عَمّ / عَمّة / خال / خالة, cousins, in-laws.',
+     links:[['Family Terms','lessons','Family Terms'],['Lesson 3 Review','drills','lesson3-review']]},
+    {text:'The idafa: no ال on the first word, and ة read as t.',
+     links:[['Idafa','lessons','Idafa: the Possessive (Construct) Phrase'],['Idafa quiz','quiz','idafa']]},
+    {text:'Possessive endings: all eight, and ة becomes ت before an ending.',
+     links:[['Possessive Suffixes','lessons','Subject Pronouns and Possessive Suffixes'],['Possessive drill','drills','poss-produce'],['Possessive translation','drills','poss-translate']]},
+    {text:"Maha's story about her father's family.",
+     links:[['Reading: Maha, Lesson 3','drills','passage-maha3']]},
+    {text:'Also possible: fields of study and grandparents (pp. 46 to 50).',
+     links:[['Flashcards','flashcards'],['Family Terms','lessons','Family Terms']]}
+  ]}
+];
+const LESSON3_EXTRA_SETS = ['lesson3-review','plurals-lists','passage-maha3','poss-produce','poss-translate'];
+const EXAMS = [
+  {id:'lesson3', title:'Lesson 3 Quiz', desc:'Wednesday, Oct 21. Lesson 3.', guide:LESSON3_STUDY_GUIDE, sets:LESSON3_EXTRA_SETS, store:'examChecks_lesson3'},
+  {id:'unit2', title:'Unit 2 Exam', desc:'Thursday, Oct 22. Lesson 2, with Lesson 1 review.', guide:UNIT2_STUDY_GUIDE, sets:UNIT2_EXTRA_SETS, store:'examChecks_unit2'},
+  {id:'midterm', title:'Midterm', desc:'Study guide, practice exam, and answer key.', guide:MIDTERM_STUDY_GUIDE, sets:MIDTERM_EXTRA_SETS, store:'midtermChecks', pdfs:true}
+];
+
+function renderExams(main, examId){
+  const exam = EXAMS.find(e=>e.id===examId);
+  if(!exam){
+    main.appendChild(mkEl(`<div><h1>Exams</h1></div>`));
+    const grid = mkEl(`<div class="grid cols2"></div>`);
+    EXAMS.forEach(e=>{
+      const card = mkEl(`<div class="card lesson-card"><h3>${e.title}</h3><p class="muted" style="margin:0;">${e.desc}</p></div>`);
+      card.onclick=()=>go('exams', e.id);
+      grid.appendChild(card);
+    });
+    main.appendChild(grid);
+    return;
+  }
+  const checks = loadProgress(exam.store, {});
+  main.appendChild(mkEl(`<div class="row" style="margin-bottom:6px;"><button class="btn ghost" id="exBack">&larr; Exams</button></div>`));
+  main.querySelector('#exBack').onclick=()=>go('exams');
+  main.appendChild(mkEl(`<div><h1>${exam.title}</h1></div>`));
+  if(exam.pdfs){
+    main.appendChild(mkEl(`
+      <div class="card">
+        <h3 style="margin-top:0;">Practice exam</h3>
+        <p>8 pages, 157 points, with a separate answer key.</p>
+        <div class="row">
+          <a class="btn" href="midterm/Arabic011_Midterm_Practice_Exam.pdf" target="_blank" rel="noopener">Practice exam (PDF)</a>
+          <a class="btn ghost" href="midterm/Arabic011_Midterm_Practice_Exam_Key.pdf" target="_blank" rel="noopener">Answer key (PDF)</a>
+        </div>
       </div>
-    </div>
-  `));
+    `));
+  }
   main.appendChild(mkEl(`<h2 style="margin-top:22px;">Study guide</h2>`));
-    MIDTERM_STUDY_GUIDE.forEach((g,gi)=>{
+  exam.guide.forEach((g,gi)=>{
     main.appendChild(mkEl(`<h3 style="margin-top:18px;">${g.group}</h3>`));
     g.items.forEach((it,ii)=>{
       const key = gi+'-'+ii;
       const card = mkEl(`<div class="card" style="margin-bottom:10px;"><label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;"><input type="checkbox" ${checks[key]?'checked':''} style="margin-top:5px;"><span>${it.text}</span></label><div class="row" style="margin-top:10px;"></div></div>`);
-      card.querySelector('input').onchange=(e)=>{ if(e.target.checked) checks[key]=true; else delete checks[key]; saveProgress('midtermChecks', checks); };
+      card.querySelector('input').onchange=(e)=>{ if(e.target.checked) checks[key]=true; else delete checks[key]; saveProgress(exam.store, checks); };
       const row = card.querySelector('.row');
+      if(it.links.length===0) row.remove();
       it.links.forEach(l=>{
         const b = mkEl(`<button class="btn ghost">${l[0]}</button>`);
         b.onclick=()=>{
@@ -3402,7 +3593,7 @@ function renderMidterm(main){
   });
   main.appendChild(mkEl(`<h2 style="margin-top:26px;">Practice sets</h2>`));
   const grid = mkEl(`<div class="grid cols2"></div>`);
-  MIDTERM_EXTRA_SETS.forEach(id=>{
+  exam.sets.forEach(id=>{
     const s = DRILL_SETS.find(x=>x.id===id);
     if(!s) return;
     const card = mkEl(`<div class="card lesson-card"><h3>${s.label}</h3><p class="muted" style="margin:0;">${s.desc}</p></div>`);

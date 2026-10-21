@@ -1,6 +1,6 @@
 # Grammar Lessons (reference)
 
-Extracted from the live site. Source of truth is index.html; this is a portable copy for quick reading. Lessons 1-18 are Alif Baa, lessons 19-30 are Al-Kitaab.
+Extracted from the live site. Source of truth is index.html; this is a portable copy for quick reading. Lessons 1-18 are Alif Baa, lessons 19-32 are Al-Kitaab.
 
 ## 1. The Alphabet
 
@@ -224,6 +224,14 @@ Idafa expresses possession or "of" by placing nouns next to each other: the seco
 
 جَامِعَةُ جُورجْتَاون (Georgetown University, literally "the university of Georgetown"). بَيْتُ الأُسْتَاذِ (the professor's house).
 
+### Idafa or noun + adjective?
+
+بَيْت الأُسْتاذ (the professor's house, two nouns) vs البَيْت الكَبِير (the big house, noun + adjective, both with ال).
+
+### Possessive endings in a chain
+
+Every noun but the last stays bare. A possessive goes on the end only: رَقْم تِلِفُونِي (my phone number).
+
 ### Where adjectives go in an idafa
 
 An adjective goes after the entire idafa; gender and number agreement show which noun it describes.
@@ -243,6 +251,8 @@ Chains of three or more follow the same rules: only the last noun can take ال 
 ### Independent subject pronouns
 
 Arabic marks gender in the second and third person and has a dual. The verb ending already shows the subject, so independent pronouns like أنا or هو are used mainly for emphasis, contrast, or to open a nominal sentence.
+
+There's no "it": use هُوَ for masculine things and هِيَ for feminine things.
 
 ### Possessive suffixes
 
@@ -419,6 +429,10 @@ A definite noun (one with ال, a possessive suffix, or standing as the first no
 
 All three of الطَّالِبُ, الطَّالِبَ, and الطَّالِبِ simply mean "the student." The ending marks only the word's role.
 
+The ending always goes on the last letter of the word.
+
+A present-tense verb ends in damma: يَقْرَأُ، تَعْمَلُ.
+
 ### Seeing all three cases in one sentence
 
 قَرَأَ الطَّالِبُ الكِتَابَ في المَكْتَبَةِ
@@ -491,6 +505,11 @@ Negate with لَيسَ (laysa), a verb that conjugates for person and goes befor
 
 The predicate after laysa is accusative: لَستُ مُتَرجِماً ends in -اً, not the nominative -ٌ.
 
+### Kinds of predicate
+
+- The خَبَر can be an adjective, a noun, a verb phrase, or a place phrase: مَها تَسْكُن فِي نِيويُورْك، مَكْتَب القَبُول فِي هَذِهِ البِناية.
+- Both parts agree in gender and number: أَنْتُمْ مَشْغُولُون، هِيَ حَرّانة، الدُّرُوس صَعْبة.
+
 ### Fronting the predicate
 
 A prepositional-phrase predicate ("with me," "in the office") usually comes first, before the subject: عِندي أُخت ("I have a sister," literally "at me [is] a sister"). The subject that follows is indefinite.
@@ -529,7 +548,29 @@ Kinship terms are built with idafa: ابن عَمّ (paternal male cousin, liter
 
 Academic subjects are usually themselves idafa constructions: عِلمُ النَفس (psychology, literally "the science of the self"), عِلمُ الاجتِماع (sociology, "the science of society/gathering"), عِلمُ الإنسان (anthropology, "the science of the human being").
 
-## 24. Plurals: Sound and Broken
+## 24. Family Terms
+
+Father's side uses عَمّ / عَمّة; mother's side uses خال / خالة. A cousin is اِبْن or بِنْت plus the uncle or aunt word.
+
+[table, see index.html]
+
+### Wider use
+
+- عَمِّي، عَمَّتِي، خالِي، خالَتِي are also used for distant relatives, in-laws, and respected older people.
+- Father-in-law: عَمِّي. Mother-in-law: زَوْجة عَمِّي or خالَتِي. Stepmother: خالَتِي.
+
+### Chains
+
+Longer terms are idafa chains: اِبْن عَمّ والِد مَها (Maha's father's cousin). A possessive goes on the end only: رَقْم تِلِفُونِي (my phone number).
+
+## 25. Culture Notes
+
+- Housework (شُغْل البَيْت). Both spouses increasingly work outside the home, and extended family often helps with childcare. Traditionally the wife handles the home and the husband handles errands outside it.
+- Being alone. Spending time alone (except to work or study) is generally seen as undesirable. Frequent visits with family, neighbors, and friends mean people are rarely alone. That's why Maha calling herself وَحِيدة says a lot.
+- Extended family matters more than in the US: frequent visits, and cousins are often close friends.
+- Arab universities are split into separate colleges (كُلِّيّة الآداب، كُلِّيّة التِّجارة), medicine and law are undergraduate degrees, and students choose humanities or sciences in high school.
+
+## 26. Plurals: Sound and Broken
 
 ### Sound plurals
 
@@ -544,11 +585,20 @@ A broken plural rearranges the root consonants into a new pattern. Common patter
 
 Memorize each noun together with its plural.
 
-### Non-human plural agreement
+### Plural agreement
 
-An adjective, demonstrative, or verb agreeing with a plural noun for things is feminine singular, however many things there are.
+- People take plural adjectives: طُلّاب أَمْرِيكِيُّون، طالِبات أَمْرِيكِيّات.
+- A mixed group of men and women takes the masculine plural: الطُّلّاب وَالطّالِبات مَشْغُولُون.
+- Things (and animals) in the plural act like a feminine singular: مُدُن كَبِيرة، سَيّارات يابانِيّة، الأُمَم المُتَّحِدة. Families count as things: الأُسَر المِصْرِيّة كَبِيرة.
+- Most nisba adjectives take ـُون / ـات, but عَرَبِيّ ← عَرَب is irregular.
 
-## 25. Broken Plural Patterns
+### Sound plurals of nationalities and professions
+
+Men take ـُون (the formal subject form) or ـِين (other positions, and what is heard in speech); women take ـات.
+
+[table, see index.html]
+
+## 27. Broken Plural Patterns
 
 Broken plurals follow patterns, but which pattern a noun takes is learned along with the word. This lesson lists the patterns, what each attaches to, and what is unpredictable.
 
@@ -710,7 +760,7 @@ Tendencies, in order. Stop at the first question that fits:
 \n
 A broken plural of people takes plural agreement; a broken plural of things takes feminine singular: كُتُب جَديدة (new books).
 
-## 26. Verb Forms (al-Awzaan)
+## 28. Verb Forms (al-Awzaan)
 
 Derived verbs follow ten numbered patterns, called forms or أوزان (awzaan, "weights" or "measures"). Each form puts the same root in a different template and gives a related meaning. Examples: شاهَدَ (Form III), أراد and أحَبَّ (Form IV), تَكَلَّمَ and تَذَكَّرَ (Form V).
 
@@ -724,7 +774,7 @@ The shape of a form shows the root and often the meaning relative to Form I: For
 
 Form IX is rare (mostly colors and physical defects). Forms VII, VIII, and X are common. اِسْتَمَعَ ("to listen") is Form VIII: the اِفْتَعَلَ template with root س-م-ع.
 
-## 27. Hollow and Irregular Verbs
+## 29. Hollow and Irregular Verbs
 
 A hollow verb (الفِعل الأجوَف) has a weak letter, و or ي, as its middle root consonant; the weak letter changes depending on what follows it.
 
@@ -738,7 +788,7 @@ The middle letter shows up as a long vowel in the present tense (aa, ii, or uu, 
 
 كانَ is the closest thing Arabic has to a past-tense "to be." It turns a nominal sentence into a statement about the past: كانَ الطَّقسُ بارِداً (the weather was cold). Just like with لَيسَ, the predicate after كان is accusative in fully vowelled Arabic (بارِداً, not بارِدٌ).
 
-## 28. Active and Passive Participles
+## 30. Active and Passive Participles
 
 A participle is a noun-like word built from a verb's root, naming the doer (active) or the receiver (passive) of the action.
 
@@ -758,7 +808,7 @@ The passive participle (اسم المَفعول, "the noun of the thing acted up
 
 Derived-form verbs (Forms II through X) have their own, different participle patterns rather than فاعِل/مَفعول, generally built by prefixing مُـ to a shape closely related to the verb's own present-tense stem. مُوَظَّف (employee, literally "one who has been given a position") is a passive participle of a Form II verb, and مُدَرِّس (teacher, from Form II دَرَّسَ) is that same form's active participle.
 
-## 29. The Verbal Noun (al-Masdar)
+## 31. The Verbal Noun (al-Masdar)
 
 The verbal noun, or masdar (المَصدَر, "the source"), names a verb's action, like English gerunds ("studying") or action nouns ("study"). Form I masdars must be learned verb by verb.
 
@@ -780,6 +830,8 @@ A masdar is definite when it takes ال (الدِّراسة), is the first term 
 
 After أَنْ a masdar can replace the verb: أُريدُ أَنْ أَذْهَبَ becomes أُريدُ الذَّهابَ.
 
-## 30. Connectors: and, or, but, so
+## 32. Connectors: and, or, but, so
 
 [table, see index.html]
+
+وَ and فَـ are written attached to the next word; أَو, أَم, and لَكِن are separate words.
