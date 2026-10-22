@@ -2105,7 +2105,7 @@ function renderLessonDetail(main, lesson){
 /* ============================================================
    FLASHCARDS
    ============================================================ */
-let fcState = { deckId:'vocab', book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', pdir:'sg2pl' };
+let fcState = { deckId:'vocab', book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', pdir:'sg2pl', pbook:'all', punit:'all' };
 const WORD_TYPES = ["noun","verb","adjective","pronoun","question","number","particle","phrase"];
 const WORD_TYPE_LABELS = { noun:"Nouns", verb:"Verbs", adjective:"Adjectives", pronoun:"Pronouns", question:"Question words", number:"Numbers", particle:"Particles", phrase:"Phrases" };
 let knownWords = loadProgress('knownWords', {});
@@ -2156,19 +2156,34 @@ function renderFlashcards(main, param){
   tabP.onclick=()=>{ deckSel.value='plurals'; deckSel.onchange(); };
   paintDeckSwitch();
   const bookSel = controls.querySelector('#fcBook');
-  BOOKS.forEach(b=>bookSel.appendChild(mkEl(`<option value="${b.id}">${b.label}</option>`)));
-  bookSel.value = fcState.book;
-  bookSel.onchange=()=>{ fcState.book=bookSel.value; fcState.unit='all'; populateUnitOptions(); buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
   const unitSel = controls.querySelector('#fcUnit');
+  function populateBookOptions(){
+    const plurals = fcState.deckId==='plurals';
+    bookSel.innerHTML='';
+    const opts = plurals ? [['all','All books'], ...BOOKS.map(b=>[b.id,b.label]), ['other','Not in a lesson']] : BOOKS.map(b=>[b.id,b.label]);
+    opts.forEach(([v,l])=>bookSel.appendChild(mkEl(`<option value="${v}">${l}</option>`)));
+    bookSel.value = plurals ? fcState.pbook : fcState.book;
+  }
+  bookSel.onchange=()=>{
+    if(fcState.deckId==='plurals'){ fcState.pbook=bookSel.value; fcState.punit='all'; }
+    else { fcState.book=bookSel.value; fcState.unit='all'; }
+    populateUnitOptions(); buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea();
+  };
   function populateUnitOptions(){
-    const b = BOOKS.find(x=>x.id===fcState.book);
+    const plurals = fcState.deckId==='plurals';
+    const bid = plurals ? fcState.pbook : fcState.book;
     unitSel.innerHTML='';
+    if(plurals && (bid==='all' || bid==='other')){ unitSel.style.display='none'; return; }
+    unitSel.style.display='';
+    const b = BOOKS.find(x=>x.id===bid);
     unitSel.appendChild(mkEl(`<option value="all">All ${b.unitLabel.toLowerCase()}s</option>`));
     for(let u=1; u<=b.unitCount; u++) unitSel.appendChild(mkEl(`<option value="${u}">${b.unitLabel} ${u}</option>`));
-    unitSel.value = fcState.unit;
+    unitSel.value = plurals ? fcState.punit : fcState.unit;
   }
-  populateUnitOptions();
-  unitSel.onchange=()=>{ fcState.unit=unitSel.value; buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
+  unitSel.onchange=()=>{
+    if(fcState.deckId==='plurals') fcState.punit=unitSel.value; else fcState.unit=unitSel.value;
+    buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea();
+  };
   const typeSel = controls.querySelector('#fcType');
   typeSel.appendChild(mkEl(`<option value="all">All word types</option>`));
   WORD_TYPES.forEach(t=>typeSel.appendChild(mkEl(`<option value="${t}">${WORD_TYPE_LABELS[t]}</option>`)));
@@ -2184,7 +2199,8 @@ function renderFlashcards(main, param){
   dirSel.onchange=()=>{ if(fcState.deckId==='plurals') fcState.pdir=dirSel.value; else fcState.dir=dirSel.value; fcState.flipped=false; renderCardArea(); };
   function applyDeckControls(){
     const plurals = fcState.deckId==='plurals';
-    [bookSel, unitSel, typeSel].forEach(s=>{ s.style.display = plurals ? 'none' : ''; });
+    typeSel.style.display = plurals ? 'none' : '';
+    populateBookOptions(); populateUnitOptions();
     const opts = plurals
       ? [['sg2pl','Singular → Plural'],['pl2sg','Plural → Singular'],['en2ar','English → Arabic']]
       : [['ar2en','Arabic → English'],['en2ar','English → Arabic']];
@@ -2201,7 +2217,10 @@ function renderFlashcards(main, param){
 
   function buildDeck(){
     if(fcState.deckId==='plurals'){
-      fcState.deck = getPluralCards().filter(v=>fcState.status==='all' || (fcState.status==='known')===isKnown(v));
+      fcState.deck = getPluralCards().filter(v=>
+        (fcState.pbook==='all' || v.book===fcState.pbook) &&
+        (fcState.punit==='all' || v.unit===Number(fcState.punit)) &&
+        (fcState.status==='all' || (fcState.status==='known')===isKnown(v)));
       return;
     }
     fcState.deck = VOCAB.filter(v=>
@@ -2213,7 +2232,7 @@ function renderFlashcards(main, param){
   }
   function updateKnownCount(){
     const el = document.getElementById('fcKnownCount');
-    const pool = fcState.deckId==='plurals' ? getPluralCards() : VOCAB.filter(v=>v.book===fcState.book);
+    const pool = fcState.deckId==='plurals' ? getPluralCards().filter(v=>fcState.pbook==='all' || v.book===fcState.pbook) : VOCAB.filter(v=>v.book===fcState.book);
     if(el) el.textContent = `${pool.filter(isKnown).length}/${pool.length} known`;
   }
   function advanceAfterMark(){
@@ -2247,7 +2266,7 @@ function renderFlashcards(main, param){
         showFront = `<div>${v.en}</div>`;
         showBack = big(v.sg, v.tr) + `<div class="muted" style="margin-top:6px;">plural</div>` + big(v.pl, v.trPl);
       }
-      tagText = `Plurals, ${PLURAL_TYPE_LABELS[v.type].toLowerCase()} · ${fcState.idx+1}/${fcState.deck.length}${knownTag}`;
+      tagText = `Plurals, ${pluralUnitLabel(v)} · ${PLURAL_TYPE_LABELS[v.type].toLowerCase()} · ${fcState.idx+1}/${fcState.deck.length}${knownTag}`;
     } else {
       const bookInfo = BOOKS.find(b=>b.id===v.book);
       const translitLine = `<div class="translit tr-toggle">${v.tr}</div>`;
@@ -3831,26 +3850,26 @@ function renderExams(main, examId){
    PLURALS TABLE
    ============================================================ */
 const PLURALS_EXTRA = [
-  ['عَمّ','أَعْمام','paternal uncle'],
-  ['عَمّة','عَمّات','paternal aunt'],
-  ['خال','أَخْوال','maternal uncle'],
-  ['خالة','خالات','maternal aunt'],
-  ['زَوْجة عَمّ','زَوْجات عَمّ',"paternal uncle's wife"],
-  ['زَوْجة خال','زَوْجات خال',"maternal uncle's wife"],
-  ['زَوْج عَمّة','أَزْواج عَمّة',"paternal aunt's husband"],
-  ['زَوْج خالة','أَزْواج خالة',"maternal aunt's husband"],
-  ['اِبْن عَمّ','أَبْناء عَمّ','cousin, son of a paternal uncle'],
-  ['بِنْت عَمّ','بَنات عَمّ','cousin, daughter of a paternal uncle'],
-  ['اِبْن عَمّة','أَبْناء عَمّة','cousin, son of a paternal aunt'],
-  ['بِنْت عَمّة','بَنات عَمّة','cousin, daughter of a paternal aunt'],
-  ['اِبْن خال','أَبْناء خال','cousin, son of a maternal uncle'],
-  ['بِنْت خال','بَنات خال','cousin, daughter of a maternal uncle'],
-  ['اِبْن خالة','أَبْناء خالة','cousin, son of a maternal aunt'],
-  ['بِنْت خالة','بَنات خالة','cousin, daughter of a maternal aunt'],
-  ['جَدّ','أَجْداد','grandfather'],
-  ['جَدّة','جَدّات','grandmother'],
-  ['سَنة','سَنَوات','year'],
-  ['قَرِيب','أَقارِب','relative']
+  ['عَمّ','أَعْمام','paternal uncle',3],
+  ['عَمّة','عَمّات','paternal aunt',3],
+  ['خال','أَخْوال','maternal uncle',3],
+  ['خالة','خالات','maternal aunt',3],
+  ['زَوْجة عَمّ','زَوْجات عَمّ',"paternal uncle's wife",3],
+  ['زَوْجة خال','زَوْجات خال',"maternal uncle's wife",3],
+  ['زَوْج عَمّة','أَزْواج عَمّة',"paternal aunt's husband",3],
+  ['زَوْج خالة','أَزْواج خالة',"maternal aunt's husband",3],
+  ['اِبْن عَمّ','أَبْناء عَمّ','cousin, son of a paternal uncle',3],
+  ['بِنْت عَمّ','بَنات عَمّ','cousin, daughter of a paternal uncle',3],
+  ['اِبْن عَمّة','أَبْناء عَمّة','cousin, son of a paternal aunt',3],
+  ['بِنْت عَمّة','بَنات عَمّة','cousin, daughter of a paternal aunt',3],
+  ['اِبْن خال','أَبْناء خال','cousin, son of a maternal uncle',3],
+  ['بِنْت خال','بَنات خال','cousin, daughter of a maternal uncle',3],
+  ['اِبْن خالة','أَبْناء خالة','cousin, son of a maternal aunt',3],
+  ['بِنْت خالة','بَنات خالة','cousin, daughter of a maternal aunt',3],
+  ['جَدّ','أَجْداد','grandfather',3],
+  ['جَدّة','جَدّات','grandmother',3],
+  ['سَنة','سَنَوات','year',2],
+  ['قَرِيب','أَقارِب','relative',3]
 ];
 function stripAr(s){
   return s.normalize('NFD').replace(/[ؐ-ًؚ-ٰٟۖ-ۭـ]/g,'')
@@ -3868,14 +3887,33 @@ function pluralTypeOf(sgKey, plKeys, hint){
   if(plKeys.every(p=>/ات$/.test(p)) && /ه$/.test(sgKey) && !PLURAL_BROKEN_EXCEPTIONS.has(sgKey)) return 'sf';
   return 'br';
 }
+let pluralVocabIndex = null;
+function vocabHome(key){
+  if(!pluralVocabIndex){
+    pluralVocabIndex = new Map();
+    VOCAB.forEach(v=>{
+      const parts = v.ar.split(' / ').map(stripAr);
+      const put = k=>{ k = k.replace(/^\u0627\u0644(?=\S)/,''); if(k && !pluralVocabIndex.has(k)) pluralVocabIndex.set(k, {book:v.book, unit:v.unit}); };
+      parts.forEach(put); put(stripAr(v.ar));
+      if(parts.length===2 && parts[1]==='\u0647') put(parts[0]+'\u0647');
+    });
+  }
+  return pluralVocabIndex.get(key.replace(/^\u0627\u0644(?=\S)/,'')) || null;
+}
+function pluralUnitLabel(r){
+  if(r.book==='other') return 'Not in a lesson';
+  const b = BOOKS.find(x=>x.id===r.book);
+  return b.label+', '+b.unitLabel+' '+r.unit;
+}
 function buildPluralRows(){
   const map = new Map();
   const clean = s => s.replace(/\u0652(?=\s|$)/g,'');
-  const add = (sg, pls, en, hint, tr, trPl)=>{
+  const add = (sg, pls, en, hint, tr, trPl, where)=>{
     sg = clean(sg);
     const key = stripAr(sg);
     let r = map.get(key);
-    if(!r){ r = {sg, pls:[], en:en||'', hint:hint||null, tr:'', trMap:{}}; map.set(key, r); }
+    if(!r){ r = {sg, pls:[], en:en||'', hint:hint||null, tr:'', trMap:{}, where:null}; map.set(key, r); }
+    if(where && !r.where) r.where = where;
     if(!r.tr && tr) r.tr = tr;
     if(trPl){
       const forms = (Array.isArray(pls)?pls.join(' / '):pls).split(' / '), trs = trPl.split(' / ');
@@ -3893,15 +3931,16 @@ function buildPluralRows(){
   PLURAL_BANK.forEach(p=>{ const t = p[2].split(' / '); add(p[0], p[1], p[3].split(' / ')[0], p[4], t[0], t.length===2 ? t[1] : ''); });
   PLURAL_LISTS.forEach(g=>g.items.forEach(([sg,pl,en])=>{
     const hint = /sound plural/.test(g.group) ? 'sound masculine' : null;
-    add(sg, pl, en, hint);
+    add(sg, pl, en, hint, '', '', {book:'alkitaab', unit: g.group==='Lesson 3 nouns' ? 3 : 2});
   }));
-  PLURALS_EXTRA.forEach(([sg,pl,en])=>add(sg, pl, en, null));
+  PLURALS_EXTRA.forEach(([sg,pl,en,u])=>add(sg, pl, en, null, '', '', {book:'alkitaab', unit:u}));
   BROKEN_PLURALS.forEach(b=>add(b.sg, b.pl, b.en, 'broken', b.tr, b.trPl));
   return Array.from(map.entries()).map(([key,r])=>{
     const plKeys = r.pls.map(stripAr);
     if(PLURAL_TR_OVERRIDE[key]) r.trMap[plKeys[0]] = PLURAL_TR_OVERRIDE[key];
     const trs = plKeys.map(k=>r.trMap[k]);
-    return {key, sg:r.sg, pl:r.pls.join(' / '), en:r.en, tr:r.tr, trPl:trs.every(Boolean) ? trs.join(' / ') : '', type:pluralTypeOf(key, plKeys, r.hint)};
+    const w = r.where || vocabHome(key) || {book:'other', unit:0};
+    return {key, book:w.book, unit:w.unit, sg:r.sg, pl:r.pls.join(' / '), en:r.en, tr:r.tr, trPl:trs.every(Boolean) ? trs.join(' / ') : '', type:pluralTypeOf(key, plKeys, r.hint)};
   }).sort((a,b)=>a.key.localeCompare(b.key,'ar'));
 }
 function renderPlurals(main){
@@ -3928,8 +3967,8 @@ function renderPlurals(main){
     const q = search.value.trim(), qa = stripAr(q), ql = q.toLowerCase(), t = typeSel.value;
     const shown = rows.filter(r=>(t==='all'||r.type===t) && (!q || stripAr(r.sg+' '+r.pl).includes(qa) || r.en.toLowerCase().includes(ql)));
     count.textContent = shown.length+' of '+rows.length;
-    holder.innerHTML = '<table><tr><th class="ar">Singular</th><th class="ar">Plural</th><th class="en-toggle">Meaning</th><th>Type</th></tr>'
-      + shown.map(r=>`<tr><td class="ar big-ar">${r.sg}</td><td class="ar big-ar">${r.pl}</td><td class="en-toggle">${r.en}</td><td>${PLURAL_TYPE_LABELS[r.type]}</td></tr>`).join('')
+    holder.innerHTML = '<table><tr><th class="ar">Singular</th><th class="ar">Plural</th><th class="en-toggle">Meaning</th><th>Type</th><th>Unit</th></tr>'
+      + shown.map(r=>`<tr><td class="ar big-ar">${r.sg}</td><td class="ar big-ar">${r.pl}</td><td class="en-toggle">${r.en}</td><td>${PLURAL_TYPE_LABELS[r.type]}</td><td>${r.book==='other' ? '' : pluralUnitLabel(r)}</td></tr>`).join('')
       + '</table>';
   }
   search.oninput = draw; typeSel.onchange = draw;
