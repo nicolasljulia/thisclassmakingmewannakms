@@ -1201,6 +1201,7 @@ function pageTitle(tab, param){
   else if(tab==='exams' && param){ const e = EXAMS.find(x=>x.id===param); if(e) sub = e.title; }
   else if(tab==='quiz' && param){ const c = QUIZ_CATEGORIES.find(x=>x.id===param); if(c) sub = c.label; }
   else if(tab==='flashcards' && param==='plurals') sub = 'Plurals flashcards';
+  else if(tab==='flashcards' && param==='unit2') sub = 'Unit 2 exam flashcards';
   else if(tab==='conjugations' && param!==undefined){ const v = CONJUGATIONS[param]; if(v) sub = v.english; }
   return (sub ? sub+' | ' : (t && tab!=='home' ? t.label+' | ' : ''))+base;
 }
@@ -2105,12 +2106,14 @@ function renderLessonDetail(main, lesson){
 /* ============================================================
    FLASHCARDS
    ============================================================ */
-let fcState = { deckId:'vocab', book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', pdir:'sg2pl', pbook:'all', punit:'all' };
+let fcState = { deckId:'vocab', book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', pdir:'sg2pl', pbook:'all', punit:'all', uunit:'all' };
 const WORD_TYPES = ["noun","verb","adjective","pronoun","question","number","particle","phrase"];
 const WORD_TYPE_LABELS = { noun:"Nouns", verb:"Verbs", adjective:"Adjectives", pronoun:"Pronouns", question:"Question words", number:"Numbers", particle:"Particles", phrase:"Phrases" };
 let knownWords = loadProgress('knownWords', {});
 (function(){ let changed=false; Object.keys(knownWords).forEach(k=>{ if(k.indexOf('plural|')===0){ const nk='plural|'+stripAr(k.slice(7)); if(nk!==k){ knownWords[nk]=true; delete knownWords[k]; changed=true; } } }); if(changed) saveProgress('knownWords', knownWords); })();
 function vocabKey(v){ return v.deck==='plurals' ? 'plural|'+v.key : v.book+'|'+v.en+'|'+v.ar; }
+// Unit 2 exam deck: Al-Kitaab Lesson 1 review and Lesson 2 vocabulary
+function unit2Vocab(){ return VOCAB.filter(v=>v.book==='alkitaab' && v.unit<=2 && v.en!=='years'); }
 let pluralCardsCache = null;
 function getPluralCards(){ if(!pluralCardsCache) pluralCardsCache = buildPluralRows().map(r=>({...r, deck:'plurals'})); return pluralCardsCache; }
 function isKnown(v){ return !!knownWords[vocabKey(v)]; }
@@ -2120,17 +2123,18 @@ function setKnown(v, known){
   saveProgress('knownWords', knownWords);
 }
 function renderFlashcards(main, param){
-  fcState.deckId = param==='plurals' ? 'plurals' : 'vocab';
+  fcState.deckId = (param==='plurals' || param==='unit2') ? param : 'vocab';
   fcState.idx = 0; fcState.flipped = false;
   buildDeck();
   main.appendChild(mkEl(`<div><h1>Flashcards</h1></div>`));
-  const deckSwitch = mkEl(`<div class="row" style="margin-bottom:12px;"><button class="btn" id="fcTabVocab">Vocabulary (${VOCAB.length})</button><button class="btn" id="fcTabPlurals">Plurals (${getPluralCards().length})</button></div>`);
+  const deckSwitch = mkEl(`<div class="row" style="margin-bottom:12px;"><button class="btn" id="fcTabVocab">Vocabulary (${VOCAB.length})</button><button class="btn" id="fcTabPlurals">Plurals (${getPluralCards().length})</button><button class="btn" id="fcTabUnit2">Unit 2 Exam (${unit2Vocab().length})</button></div>`);
   main.appendChild(deckSwitch);
   const controls = mkEl(`
     <div class="row" style="margin-bottom:16px;">
       <select id="fcDeck" style="display:none;">
         <option value="vocab">Vocabulary</option>
         <option value="plurals">Plurals</option>
+        <option value="unit2">Unit 2 Exam</option>
       </select>
       <select id="fcBook"></select>
       <select id="fcUnit"></select>
@@ -2144,16 +2148,17 @@ function renderFlashcards(main, param){
   main.appendChild(controls);
   const deckSel = controls.querySelector('#fcDeck');
   deckSel.value = fcState.deckId;
-  const tabV = deckSwitch.querySelector('#fcTabVocab'), tabP = deckSwitch.querySelector('#fcTabPlurals');
-  function paintDeckSwitch(){ tabV.className = fcState.deckId==='vocab' ? 'btn' : 'btn ghost'; tabP.className = fcState.deckId==='plurals' ? 'btn' : 'btn ghost'; }
+  const tabV = deckSwitch.querySelector('#fcTabVocab'), tabP = deckSwitch.querySelector('#fcTabPlurals'), tabU = deckSwitch.querySelector('#fcTabUnit2');
+  function paintDeckSwitch(){ tabV.className = fcState.deckId==='vocab' ? 'btn' : 'btn ghost'; tabP.className = fcState.deckId==='plurals' ? 'btn' : 'btn ghost'; tabU.className = fcState.deckId==='unit2' ? 'btn' : 'btn ghost'; }
   function syncDeckUrl(){
-    const p = fcState.deckId==='plurals' ? 'plurals' : undefined, t = routeHash('flashcards', p);
+    const p = fcState.deckId==='vocab' ? undefined : fcState.deckId, t = routeHash('flashcards', p);
     if(location.hash!==t) history.replaceState(null,'',t);
     lastShownHash = t; document.title = pageTitle('flashcards', p);
   }
   deckSel.onchange=()=>{ fcState.deckId=deckSel.value; fcState.idx=0; fcState.flipped=false; applyDeckControls(); buildDeck(); renderCardArea(); paintDeckSwitch(); syncDeckUrl(); };
   tabV.onclick=()=>{ deckSel.value='vocab'; deckSel.onchange(); };
   tabP.onclick=()=>{ deckSel.value='plurals'; deckSel.onchange(); };
+  tabU.onclick=()=>{ deckSel.value='unit2'; deckSel.onchange(); };
   paintDeckSwitch();
   const bookSel = controls.querySelector('#fcBook');
   const unitSel = controls.querySelector('#fcUnit');
@@ -2170,6 +2175,11 @@ function renderFlashcards(main, param){
     populateUnitOptions(); buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea();
   };
   function populateUnitOptions(){
+    if(fcState.deckId==='unit2'){
+      unitSel.innerHTML='';
+      [['all','All lessons'],['1','Lesson 1 review'],['2','Lesson 2']].forEach(([v,l])=>unitSel.appendChild(mkEl(`<option value="${v}">${l}</option>`)));
+      unitSel.style.display=''; unitSel.value = fcState.uunit; return;
+    }
     const plurals = fcState.deckId==='plurals';
     const bid = plurals ? fcState.pbook : fcState.book;
     unitSel.innerHTML='';
@@ -2181,7 +2191,7 @@ function renderFlashcards(main, param){
     unitSel.value = plurals ? fcState.punit : fcState.unit;
   }
   unitSel.onchange=()=>{
-    if(fcState.deckId==='plurals') fcState.punit=unitSel.value; else fcState.unit=unitSel.value;
+    if(fcState.deckId==='plurals') fcState.punit=unitSel.value; else if(fcState.deckId==='unit2') fcState.uunit=unitSel.value; else fcState.unit=unitSel.value;
     buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea();
   };
   const typeSel = controls.querySelector('#fcType');
@@ -2200,6 +2210,7 @@ function renderFlashcards(main, param){
   function applyDeckControls(){
     const plurals = fcState.deckId==='plurals';
     typeSel.style.display = plurals ? 'none' : '';
+    bookSel.style.display = fcState.deckId==='unit2' ? 'none' : '';
     populateBookOptions(); populateUnitOptions();
     const opts = plurals
       ? [['sg2pl','Singular → Plural'],['pl2sg','Plural → Singular'],['en2ar','English → Arabic']]
@@ -2223,6 +2234,13 @@ function renderFlashcards(main, param){
         (fcState.status==='all' || (fcState.status==='known')===isKnown(v)));
       return;
     }
+    if(fcState.deckId==='unit2'){
+      fcState.deck = unit2Vocab().filter(v=>
+        (fcState.uunit==='all' || v.unit===Number(fcState.uunit)) &&
+        (fcState.type==='all' || v.type===fcState.type) &&
+        (fcState.status==='all' || (fcState.status==='known')===isKnown(v)));
+      return;
+    }
     fcState.deck = VOCAB.filter(v=>
       v.book===fcState.book &&
       (fcState.unit==='all' || v.unit===Number(fcState.unit)) &&
@@ -2232,7 +2250,7 @@ function renderFlashcards(main, param){
   }
   function updateKnownCount(){
     const el = document.getElementById('fcKnownCount');
-    const pool = fcState.deckId==='plurals' ? getPluralCards().filter(v=>fcState.pbook==='all' || v.book===fcState.pbook) : VOCAB.filter(v=>v.book===fcState.book);
+    const pool = fcState.deckId==='unit2' ? unit2Vocab() : fcState.deckId==='plurals' ? getPluralCards().filter(v=>fcState.pbook==='all' || v.book===fcState.pbook) : VOCAB.filter(v=>v.book===fcState.book);
     if(el) el.textContent = `${pool.filter(isKnown).length}/${pool.length} known`;
   }
   function advanceAfterMark(){
@@ -3738,7 +3756,7 @@ const MIDTERM_EXTRA_SETS = ['case-drill','sp-handout','masdar-drill','roots-dril
 const UNIT2_STUDY_GUIDE = [
   {group:'Unit 2 exam: Lesson 2, with Lesson 1 review', items:[
     {text:'Lesson 2 vocabulary (pp. 19 and 34), plus Lesson 1 and older words.',
-     links:[['Unit 2 quiz','quiz','unit2'],['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Matching game','matching']]},
+     links:[['Unit 2 flashcards','flashcards','unit2'],['Unit 2 quiz','quiz','unit2'],['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Matching game','matching']]},
     {text:'Plurals from the tables on pp. 24 and 25: forming and spelling them.',
      links:[['Plurals table','plurals'],['Plurals flashcards','flashcards','plurals'],['Plurals lesson','lessons','Plurals: Sound and Broken'],['Broken Plural Patterns','lessons','Broken Plural Patterns'],['Plurals drill','drills','plurals-lists'],['Plural Type quiz','quiz','plural']]},
     {text:'Agreement: people take plural adjectives, things take feminine singular adjectives.',
