@@ -1,6 +1,6 @@
 # Grammar Lessons (reference)
 
-Extracted from the live site. Source of truth is index.html; this is a portable copy for quick reading. Lessons 1-18 are Alif Baa, lessons 19-32 are Al-Kitaab.
+Extracted from the live site. Source of truth is index.html; this is a portable copy for quick reading. Lessons 1-18 are Alif Baa, lessons 19-35 are Al-Kitaab.
 
 ## 1. The Alphabet
 
@@ -570,7 +570,27 @@ Longer terms are idafa chains: اِبْن عَمّ والِد مَها (Maha's f
 - Extended family matters more than in the US: frequent visits, and cousins are often close friends.
 - Arab universities are split into separate colleges (كُلِّيّة الآداب، كُلِّيّة التِّجارة), medicine and law are undergraduate degrees, and students choose humanities or sciences in high school.
 
-## 26. Plurals: Sound and Broken
+## 26. Numbers 11 to 100
+
+### 11 to 19
+
+Two words: the digit, then عَشَرَ. These are the masculine forms.
+
+[table, see index.html]
+
+### The tens
+
+[table, see index.html]
+
+The tens end in ـُونَ in the nominative and ـِينَ in the accusative and genitive (عِشْرِينَ).
+
+### Counting nouns
+
+- After 11 to 99 the counted noun is singular and accusative: خَمْسةَ عَشَرَ طالِباً (fifteen students), عِشْرُونَ طالِباً (twenty students).
+- Numbers like 23 put the unit first, joined with وَ: ثَلاثةٌ وَعِشْرُونَ.
+- After 100 the noun is singular and genitive: مِئةُ طالِبٍ.
+
+## 27. Plurals: Sound and Broken
 
 ### Sound plurals
 
@@ -598,7 +618,7 @@ Men take ـُون (the formal subject form) or ـِين (other positions, and wh
 
 [table, see index.html]
 
-## 27. Broken Plural Patterns
+## 28. Broken Plural Patterns
 
 Broken plurals follow patterns, but which pattern a noun takes is learned along with the word. This lesson lists the patterns, what each attaches to, and what is unpredictable.
 
@@ -760,7 +780,7 @@ Tendencies, in order. Stop at the first question that fits:
 \n
 A broken plural of people takes plural agreement; a broken plural of things takes feminine singular: كُتُب جَديدة (new books).
 
-## 28. Verb Forms (al-Awzaan)
+## 29. Verb Forms (al-Awzaan)
 
 Derived verbs follow ten numbered patterns, called forms or أوزان (awzaan, "weights" or "measures"). Each form puts the same root in a different template and gives a related meaning. Examples: شاهَدَ (Form III), أراد and أحَبَّ (Form IV), تَكَلَّمَ and تَذَكَّرَ (Form V).
 
@@ -774,7 +794,7 @@ The shape of a form shows the root and often the meaning relative to Form I: For
 
 Form IX is rare (mostly colors and physical defects). Forms VII, VIII, and X are common. اِسْتَمَعَ ("to listen") is Form VIII: the اِفْتَعَلَ template with root س-م-ع.
 
-## 29. Hollow and Irregular Verbs
+## 30. Hollow and Irregular Verbs
 
 A hollow verb (الفِعل الأجوَف) has a weak letter, و or ي, as its middle root consonant; the weak letter changes depending on what follows it.
 
@@ -788,7 +808,37 @@ The middle letter shows up as a long vowel in the present tense (aa, ii, or uu, 
 
 كانَ is the closest thing Arabic has to a past-tense "to be." It turns a nominal sentence into a statement about the past: كانَ الطَّقسُ بارِداً (the weather was cold). Just like with لَيسَ, the predicate after كان is accusative in fully vowelled Arabic (بارِداً, not بارِدٌ).
 
-## 30. Active and Passive Participles
+## 31. Kaana and Laysa: Full Paradigms
+
+### كانَ (was): past tense
+
+[table, see index.html]
+
+- The endings are the past-tense endings: ـْتُ، ـْتَ، ـْتِ، ـْتُما، ـْتُمْ، ـْتُنَّ، ـْنا، ـْنَ.
+- The long vowel shortens before an ending that starts with a consonant: كانَ but كُنْتُ, كُنّا, كُنَّ.
+- Subject nominative, predicate accusative: كانَ الطَّقْسُ جَمِيلاً. A prepositional predicate stays as it is: كانَتْ فِي المَكْتَبِ.
+- With a subject that follows, the verb agrees in gender only and stays singular: كانَ الطُّلّابُ فِي الصَّفِّ. A plural of things takes the feminine singular: كانَتِ البُيُوتُ قَدِيمةً.
+
+### لَيْسَ (is not): present-tense negation
+
+[table, see index.html]
+
+- The forms for هُوَ، هِيَ، هُما، هُمْ keep لَيْسـ (لَيْسَ، لَيْسَتْ، لَيْسا، لَيْسَتا، لَيْسُوا); every other form, including هُنَّ (لَسْنَ), uses لَسْـ.
+- The predicate is accusative: لَسْتُ مُتَرْجِماً, لَسْنا مُوَظَّفِينَ. A prepositional predicate stays as it is: لَيْسَتْ فِي البَيْتِ.
+
+## 32. Verbs with a Fixed Preposition
+
+Some verbs are always followed by a particular preposition. The preposition attaches to its object, and a pronoun object becomes a suffix: يَشْعُرُ بِها (he feels it).
+
+[table, see index.html]
+
+### Present tense of يَشْعُرُ بِـ
+
+[table, see index.html]
+
+The noun after بِـ is genitive: أَشْعُرُ بِالسَّعادةِ (I feel happiness).
+
+## 33. Active and Passive Participles
 
 A participle is a noun-like word built from a verb's root, naming the doer (active) or the receiver (passive) of the action.
 
@@ -808,7 +858,7 @@ The passive participle (اسم المَفعول, "the noun of the thing acted up
 
 Derived-form verbs (Forms II through X) have their own, different participle patterns rather than فاعِل/مَفعول, generally built by prefixing مُـ to a shape closely related to the verb's own present-tense stem. مُوَظَّف (employee, literally "one who has been given a position") is a passive participle of a Form II verb, and مُدَرِّس (teacher, from Form II دَرَّسَ) is that same form's active participle.
 
-## 31. The Verbal Noun (al-Masdar)
+## 34. The Verbal Noun (al-Masdar)
 
 The verbal noun, or masdar (المَصدَر, "the source"), names a verb's action, like English gerunds ("studying") or action nouns ("study"). Form I masdars must be learned verb by verb.
 
@@ -830,7 +880,7 @@ A masdar is definite when it takes ال (الدِّراسة), is the first term 
 
 After أَنْ a masdar can replace the verb: أُريدُ أَنْ أَذْهَبَ becomes أُريدُ الذَّهابَ.
 
-## 32. Connectors: and, or, but, so
+## 35. Connectors: and, or, but, so
 
 [table, see index.html]
 
