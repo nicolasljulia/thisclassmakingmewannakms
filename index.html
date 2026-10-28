@@ -2244,6 +2244,8 @@ function vocabKey(v){ return v.deck==='plurals' ? 'plural|'+v.key : v.deck==='le
 const LESSON3_KIND_LABELS = {endings:'possessive endings', questions:'question words', kaana:'kaana and laysa'};
 const LESSON3_ENDING_ROWS = [[0,'my'],[1,'your (m)'],[2,'your (f)'],[3,'his, its'],[4,'her, its'],[5,'our'],[10,'your (pl)'],[12,'their (m)']];
 const LESSON3_PERSONS = ['I','you (m)','you (f)','he','she','you two','they two (m)','they two (f)','we','you all (m)','you all (f)','they (m)','they (f)'];
+const LESSON3_TR = {kaana:['kuntu','kunta','kunti','kaana','kaanat','kuntumaa','kaanaa','kaanataa','kunnaa','kuntum','kuntunna','kaanuu','kunna'],
+  laysa:['lastu','lasta','lasti','laysa','laysat','lastumaa','laysaa','laysataa','lasnaa','lastum','lastunna','laysuu','lasna']};
 const LESSON3_WAS = ['was','were','were','was','was','were','were','were','were','were','were','were','were'];
 const LESSON3_IS_NOT = ['am not','are not','are not','is not','is not','are not','are not','are not','are not','are not','are not','are not','are not'];
 let lesson3ExtraCache = null;
@@ -2257,7 +2259,7 @@ function lesson3Extra(){
     sec.items.forEach((it,i)=>{
       const who = LESSON3_PERSONS[i];
       const en = who+' '+verbs[i];
-      cards.push({deck:'lesson3', kind:'kaana', type:'verb', key:'lesson3|kaana|'+name+'|'+i, ar:it[1], en:en});
+      cards.push({deck:'lesson3', kind:'kaana', type:'verb', key:'lesson3|kaana|'+name+'|'+i, ar:it[1], tr:LESSON3_TR[name][i], en:en});
     });
   });
   lesson3ExtraCache = cards;
@@ -4118,6 +4120,14 @@ function stripAr(s){
           .replace(/[أإآ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/\s+/g,' ').trim();
 }
 // the two sources spell this plural with different vowels, so the merged form needs its own transliteration
+const PLURAL_TR_EXTRA = {};
+[['ابن خال','ibn khaal',"abnaa' khaal"],['ابن خالة','ibn khaala',"abnaa' khaala"],['ابن عم','ibn ʿamm',"abnaa' ʿamm"],['ابن عمة','ibn ʿamma',"abnaa' ʿamma"],
+ ['بنت خال','bint khaal','banaat khaal'],['بنت خالة','bint khaala','banaat khaala'],['بنت عم','bint ʿamm','banaat ʿamm'],['بنت عمة','bint ʿamma','banaat ʿamma'],
+ ['جد','jadd','ajdaad'],['جدة','jadda','jaddaat'],['جيش','jaysh','juyuush'],['زوج خالة','zawj khaala','azwaaj khaala'],['زوج عمة','zawj ʿamma','azwaaj ʿamma'],
+ ['زوجة خال','zawjat khaal','zawjaat khaal'],['زوجة عم','zawjat ʿamm','zawjaat ʿamm'],['عمة','ʿamma','ʿammaat']
+,
+ ['أستاذة','ustaadha',"ustaadhaat"],['بناية','binaaya',"binaayaat"],['ترجمة','tarjama',"tarjamaat"],['جارة','jaara',"jaaraat"],['جامعة','jaamiʿa',"jaamiʿaat"],['خالة','khaala',"khaalaat"],['ساعة','saaʿa',"saaʿaat"],['سنة','sana',"sanawaat"],['سيارة','sayyaara',"sayyaaraat"],['سيدة','sayyida',"sayyidaat"],['صفحة','Safha',"Safahaat"],['طالبة','Taaliba',"Taalibaat"],['طاولة','Taawila',"Taawilaat"],['طائرة',"Taa'ira","Taa'iraat"],['فلسطينية','filasTiiniyya',"filasTiiniyyaat"],['كلمة','kalima',"kalimaat"],['لبناني','libnaaniyy',"libnaaniyyuun / libnaaniyyiin"],['لغة','lugha',"lughaat"],['متخصص','mutakhaSSiS',"mutakhaSSiSuun / mutakhaSSiSiin"],['متخصصة','mutakhaSSiSa',"mutakhaSSiSaat"],['مترجم','mutarjim',"mutarjimuun / mutarjimiin"],['مترجمة','mutarjima',"mutarjimaat"],['مشغول','mashghuul',"mashghuuluun / mashghuuliin"],['مشغولة','mashghuula',"mashghuulaat"],['مصري','miSriyy',"miSriyyuun / miSriyyiin"],['مصرية','miSriyya',"miSriyyaat"],['مكتبة','maktaba',"maktabaat"],['موظف','muwaZZaf',"muwaZZafuun / muwaZZafiin"],['موظفة','muwaZZafa',"muwaZZafaat"],['ورقة','waraqa',"waraqaat / awraaq"],['ولاية','wilaaya',"wilaayaat"]
+].forEach(([sg,t,tp])=>{ PLURAL_TR_EXTRA[stripAr(sg)] = [t,tp]; });
 const PLURAL_TR_OVERRIDE = {'\u0627\u062e':'ikhwa'};
 const PLURAL_TYPE_LABELS = {sm:'Sound masculine', sf:'Sound feminine', br:'Broken'};
 const PLURAL_BROKEN_EXCEPTIONS = new Set(['بنت','اخت','سنه']);
@@ -4180,6 +4190,8 @@ function buildPluralRows(){
   return Array.from(map.entries()).map(([key,r])=>{
     const plKeys = r.pls.map(stripAr);
     if(PLURAL_TR_OVERRIDE[key]) r.trMap[plKeys[0]] = PLURAL_TR_OVERRIDE[key];
+    const trx = PLURAL_TR_EXTRA[key];
+    if(trx){ if(!r.tr) r.tr = trx[0]; trx[1].split(' / ').forEach((t,i)=>{ if(plKeys[i] && !r.trMap[plKeys[i]]) r.trMap[plKeys[i]] = t; }); }
     const trs = plKeys.map(k=>r.trMap[k]);
     const w = r.where || vocabHome(key) || {book:'other', unit:0};
     return {key, book:w.book, unit:w.unit, sg:r.sg, pl:r.pls.join(' / '), en:r.en, tr:r.tr, trPl:trs.every(Boolean) ? trs.join(' / ') : '', type:pluralTypeOf(key, plKeys, r.hint)};
