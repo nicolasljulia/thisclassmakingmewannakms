@@ -3989,7 +3989,7 @@ const LESSON3_EXAM_GUIDE = [
 const LESSON3_EXAM_SETS = ['review-drill','case-drill-2','verb-paradigms','numbers-drill','arab-world','past-exam-l2','past-quiz-l3','passage-nancy','passage-maha3','lesson3-review','plurals-lists'];
 const EXAMS = [
   {id:'lesson3exam', title:'Lesson 3 Exam', desc:'Thursday, Oct 29. Lesson 3 and kaana, with Lessons 1 and 2 review and a practice exam.', guide:LESSON3_EXAM_GUIDE, sets:LESSON3_EXAM_SETS, store:'examChecks_lesson3exam',
-   pdf:{heading:'Practice exam', text:'6 pages, 136 points, with a separate answer key.', exam:'practice-exams/Arabic011_Lesson3_Exam_Practice.pdf', key:'practice-exams/Arabic011_Lesson3_Exam_Practice_Key.pdf', label:'Practice exam (PDF)'}},
+   pdf:{heading:'Practice exam', text:'6 pages, 136 points, with a separate answer key.', exam:'practice-exams/Arabic011_Lesson3_Exam_Practice.pdf', key:'practice-exams/Arabic011_Lesson3_Exam_Practice_Key.pdf', label:'Practice exam (PDF)', study:'practice-exams/Arabic011_Lesson3_Study_Guide.pdf'}},
   {id:'lesson3', title:'Lesson 3 Quiz', desc:'Wednesday, Oct 21. Lesson 3, with a practice quiz.', guide:LESSON3_STUDY_GUIDE, sets:LESSON3_EXTRA_SETS, store:'examChecks_lesson3',
    pdf:{heading:'Practice quiz', text:'3 pages, 62 points, with a separate answer key.', exam:'practice-exams/Arabic011_Lesson3_Practice_Quiz.pdf', key:'practice-exams/Arabic011_Lesson3_Practice_Quiz_Key.pdf', label:'Practice quiz (PDF)'}},
   {id:'unit2', title:'Unit 2 Exam', desc:'Thursday, Oct 22. Lesson 2, with Lesson 1 review and a practice exam.', guide:UNIT2_STUDY_GUIDE, sets:UNIT2_EXTRA_SETS, store:'examChecks_unit2',
@@ -4023,6 +4023,7 @@ function renderExams(main, examId){
         <div class="row">
           <a class="btn" href="${exam.pdf.exam}" target="_blank" rel="noopener">${exam.pdf.label}</a>
           <a class="btn ghost" href="${exam.pdf.key}" target="_blank" rel="noopener">Answer key (PDF)</a>
+          ${exam.pdf.study?`<a class="btn ghost" href="${exam.pdf.study}" target="_blank" rel="noopener">Study guide (PDF)</a>`:''}
         </div>
       </div>
     `));
