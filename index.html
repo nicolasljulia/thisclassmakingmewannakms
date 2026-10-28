@@ -1221,7 +1221,7 @@ function pageTitle(tab, param){
   else if(tab==='exams' && param){ const e = EXAMS.find(x=>x.id===param); if(e) sub = e.title; }
   else if(tab==='quiz' && param){ const c = QUIZ_CATEGORIES.find(x=>x.id===param); if(c) sub = c.label; }
   else if(tab==='flashcards' && param==='plurals') sub = 'Plurals flashcards';
-  else if(tab==='flashcards' && param==='unit2') sub = 'Unit 2 exam flashcards';
+  else if(tab==='flashcards' && (param==='lesson3' || param==='unit2')) sub = 'Lesson 3 exam flashcards';
   else if(tab==='conjugations' && param!==undefined){ const v = CONJUGATIONS[param]; if(v) sub = v.english; }
   return (sub ? sub+' | ' : (t && tab!=='home' ? t.label+' | ' : ''))+base;
 }
@@ -2234,23 +2234,42 @@ function renderLessonDetail(main, lesson){
 /* ============================================================
    FLASHCARDS
    ============================================================ */
-let fcState = { deckId:'vocab', book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', pdir:'sg2pl', pbook:'all', punit:'all', uunit:'all', ukind:'all' };
+let fcState = { deckId:'vocab', book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', pdir:'sg2pl', pbook:'all', punit:'all', lkind:'all' };
 const WORD_TYPES = ["noun","verb","adjective","pronoun","question","number","particle","phrase"];
 const WORD_TYPE_LABELS = { noun:"Nouns", verb:"Verbs", adjective:"Adjectives", pronoun:"Pronouns", question:"Question words", number:"Numbers", particle:"Particles", phrase:"Phrases" };
 let knownWords = loadProgress('knownWords', {});
 (function(){ let changed=false; Object.keys(knownWords).forEach(k=>{ if(k.indexOf('plural|')===0){ const nk='plural|'+stripAr(k.slice(7)); if(nk!==k){ knownWords[nk]=true; delete knownWords[k]; changed=true; } } }); if(changed) saveProgress('knownWords', knownWords); })();
-function vocabKey(v){ return v.deck==='plurals' ? 'plural|'+v.key : v.deck==='unit2' ? v.key : v.book+'|'+v.en+'|'+v.ar; }
-// Unit 2 exam deck: Al-Kitaab Lesson 1 review and Lesson 2 vocabulary
-function unit2Vocab(){ return VOCAB.filter(v=>v.book==='alkitaab' && v.unit<=2 && v.en!=='years'); }
-const UNIT2_KIND_LABELS = {verbs:'verbs (I form)', pronouns:'subject pronouns', connectors:'connectors', cases:'case endings'};
-const UNIT2_GRAMMAR_CARDS = [{"kind": "pronouns", "ar": "أَنا", "en": "I", "tr": "ana", "type": "pronoun"}, {"kind": "pronouns", "ar": "أَنْتَ", "en": "you (m)", "tr": "anta", "type": "pronoun"}, {"kind": "pronouns", "ar": "أَنْتِ", "en": "you (f)", "tr": "anti", "type": "pronoun"}, {"kind": "pronouns", "ar": "هُوَ", "en": "he / it", "tr": "huwa", "type": "pronoun"}, {"kind": "pronouns", "ar": "هِيَ", "en": "she / it", "tr": "hiya", "type": "pronoun"}, {"kind": "pronouns", "ar": "نَحْنُ", "en": "we", "tr": "naHnu", "type": "pronoun"}, {"kind": "pronouns", "ar": "أَنْتُمْ", "en": "you (plural)", "tr": "antum", "type": "pronoun"}, {"kind": "pronouns", "ar": "هُمْ", "en": "they", "tr": "hum", "type": "pronoun"}, {"kind": "connectors", "ar": "وَ", "en": "and", "ex": "أَدْرُس فِي النَّهار وَأَعْمَل فِي المَساء.", "type": "particle"}, {"kind": "connectors", "ar": "أَو", "en": "or (in statements)", "ex": "أَدْرُس الإِسْبانِيّة أَو الفَرَنْسِيّة.", "type": "particle"}, {"kind": "connectors", "ar": "أَم", "en": "or (in questions)", "ex": "هَل أَنْتِ مِصْرِيّة أَم لُبْنانِيّة؟", "type": "particle"}, {"kind": "connectors", "ar": "لَكِن / وَلَكِن", "en": "but", "ex": "العَرَبِيّة جَمِيلة، وَلَكِن الدُّرُوس صَعْبة.", "type": "particle"}, {"kind": "connectors", "ar": "فَـ", "en": "so, and then", "ex": "أَنا مَشْغُول دائِمًا، فَأَنا تَعْبان.", "type": "particle"}, {"kind": "cases", "ar": "ـُ / ـٌ", "en": "Nominative", "use": "the subject, the مُبْتَدَأ and the خَبَر (damma, dammatan)"}, {"kind": "cases", "ar": "ـَ / ـً", "en": "Accusative", "use": "the direct object (fatha, fathatan)"}, {"kind": "cases", "ar": "ـِ / ـٍ", "en": "Genitive", "use": "after a preposition, and the second word of an idafa (kasra, kasratan)"}, {"kind": "cases", "ar": "ـٌ  ـً  ـٍ", "en": "Tanween", "use": "the doubled vowel on an indefinite word; it adds -n. With ال, or as the first word of an idafa, the word takes a single vowel instead"}, {"kind": "cases", "ar": "يَقْرَأُ، تَعْمَلُ", "en": "Present-tense verb ending", "use": "a present-tense verb ends in damma"}].map(c=>({...c, deck:'unit2', key:'unit2|'+c.kind+'|'+c.en}));
-let unit2ExtraCache = null;
-function unit2Extra(){
-  if(!unit2ExtraCache) unit2ExtraCache = CONJUGATIONS.map(v=>({deck:'unit2', kind:'verbs', type:'verb', key:'unit2|verb|'+v.book+'|'+v.english, ar:v.forms[0], en:v.english, label:'I form'})).concat(UNIT2_GRAMMAR_CARDS);
-  return unit2ExtraCache;
+function vocabKey(v){ return v.deck==='plurals' ? 'plural|'+v.key : v.deck==='lesson3' ? v.key : v.book+'|'+v.en+'|'+v.ar; }
+// Lesson 3 exam deck: Al-Kitaab Lesson 3 vocabulary and plurals, possessive endings, question words, kaana and laysa
+const LESSON3_KIND_LABELS = {endings:'possessive endings', questions:'question words', kaana:'kaana and laysa'};
+const LESSON3_ENDING_ROWS = [[0,'my'],[1,'your (m)'],[2,'your (f)'],[3,'his, its'],[4,'her, its'],[5,'our'],[10,'your (pl)'],[12,'their (m)']];
+const LESSON3_PERSONS = ['I','you (m)','you (f)','he','she','you two','they two (m)','they two (f)','we','you all (m)','you all (f)','they (m)','they (f)'];
+const LESSON3_WAS = ['was','were','were','was','was','were','were','were','were','were','were','were','were'];
+const LESSON3_IS_NOT = ['am not','are not','are not','is not','is not','are not','are not','are not','are not','are not','are not','are not','are not'];
+let lesson3ExtraCache = null;
+function lesson3Extra(){
+  if(lesson3ExtraCache) return lesson3ExtraCache;
+  const cards = [];
+  LESSON3_ENDING_ROWS.forEach(([i,en])=>{ const p = PRONOUNS[i]; cards.push({deck:'lesson3', kind:'endings', type:'pronoun', key:'lesson3|endings|'+en, ar:'\u0640'+p.suf, tr:p.sufTr, en:en, label:'possessive ending', ex:p.example}); });
+  QWORDS.forEach(q=>cards.push({deck:'lesson3', kind:'questions', type:'question', key:'lesson3|questions|'+q[0], ar:q[1], tr:q[0], en:q[2]}));
+  const P = REVIEW_SETS.paradigms;
+  [[P[1], LESSON3_WAS, 'kaana'], [P[0], LESSON3_IS_NOT, 'laysa']].forEach(([sec, verbs, name])=>{
+    sec.items.forEach((it,i)=>{
+      const who = LESSON3_PERSONS[i];
+      const en = who+' '+verbs[i];
+      cards.push({deck:'lesson3', kind:'kaana', type:'verb', key:'lesson3|kaana|'+name+'|'+i, ar:it[1], en:en});
+    });
+  });
+  lesson3ExtraCache = cards;
+  return cards;
 }
-function unit2Kind(v){ return v.deck==='plurals' ? 'plurals' : (v.kind || 'vocab'); }
-function unit2Cards(){ return unit2Vocab().concat(getPluralCards().filter(c=>c.book==='alkitaab' && c.unit<=2), unit2Extra()); }
+function lesson3Kind(v){ return v.deck==='plurals' ? 'plurals' : (v.kind || 'vocab'); }
+function lesson3Plurals(){ return getPluralCards().filter(c=>c.book==='alkitaab' && c.unit===3); }
+function lesson3Vocab(){
+  const pls = new Set(); lesson3Plurals().forEach(c=>c.pl.split(' / ').forEach(p=>pls.add(stripAr(p))));
+  return VOCAB.filter(v=>v.book==='alkitaab' && v.unit===3 && !pls.has(stripAr(v.ar)));
+}
+function lesson3Cards(){ return lesson3Vocab().concat(lesson3Plurals(), lesson3Extra()); }
 let pluralCardsCache = null;
 function getPluralCards(){ if(!pluralCardsCache) pluralCardsCache = buildPluralRows().map(r=>({...r, deck:'plurals'})); return pluralCardsCache; }
 function isKnown(v){ return !!knownWords[vocabKey(v)]; }
@@ -2260,18 +2279,19 @@ function setKnown(v, known){
   saveProgress('knownWords', knownWords);
 }
 function renderFlashcards(main, param){
-  fcState.deckId = (param==='plurals' || param==='unit2') ? param : 'vocab';
+  if(param==='unit2'){ param = 'lesson3'; history.replaceState(null,'',routeHash('flashcards','lesson3')); }
+  fcState.deckId = (param==='plurals' || param==='lesson3') ? param : 'vocab';
   fcState.idx = 0; fcState.flipped = false;
   buildDeck();
   main.appendChild(mkEl(`<div><h1>Flashcards</h1></div>`));
-  const deckSwitch = mkEl(`<div class="row" style="margin-bottom:12px;"><button class="btn" id="fcTabVocab">Vocabulary (${VOCAB.length})</button><button class="btn" id="fcTabPlurals">Plurals (${getPluralCards().length})</button><button class="btn" id="fcTabUnit2">Unit 2 Exam (${unit2Cards().length})</button></div>`);
+  const deckSwitch = mkEl(`<div class="row" style="margin-bottom:12px;"><button class="btn" id="fcTabVocab">Vocabulary (${VOCAB.length})</button><button class="btn" id="fcTabPlurals">Plurals (${getPluralCards().length})</button><button class="btn" id="fcTabLesson3">Lesson 3 Exam (${lesson3Cards().length})</button></div>`);
   main.appendChild(deckSwitch);
   const controls = mkEl(`
     <div class="row" style="margin-bottom:16px;">
       <select id="fcDeck" style="display:none;">
         <option value="vocab">Vocabulary</option>
         <option value="plurals">Plurals</option>
-        <option value="unit2">Unit 2 Exam</option>
+        <option value="lesson3">Lesson 3 Exam</option>
       </select>
       <select id="fcBook"></select>
       <select id="fcUnit"></select>
@@ -2285,8 +2305,8 @@ function renderFlashcards(main, param){
   main.appendChild(controls);
   const deckSel = controls.querySelector('#fcDeck');
   deckSel.value = fcState.deckId;
-  const tabV = deckSwitch.querySelector('#fcTabVocab'), tabP = deckSwitch.querySelector('#fcTabPlurals'), tabU = deckSwitch.querySelector('#fcTabUnit2');
-  function paintDeckSwitch(){ tabV.className = fcState.deckId==='vocab' ? 'btn' : 'btn ghost'; tabP.className = fcState.deckId==='plurals' ? 'btn' : 'btn ghost'; tabU.className = fcState.deckId==='unit2' ? 'btn' : 'btn ghost'; }
+  const tabV = deckSwitch.querySelector('#fcTabVocab'), tabP = deckSwitch.querySelector('#fcTabPlurals'), tabL = deckSwitch.querySelector('#fcTabLesson3');
+  function paintDeckSwitch(){ tabV.className = fcState.deckId==='vocab' ? 'btn' : 'btn ghost'; tabP.className = fcState.deckId==='plurals' ? 'btn' : 'btn ghost'; tabL.className = fcState.deckId==='lesson3' ? 'btn' : 'btn ghost'; }
   function syncDeckUrl(){
     const p = fcState.deckId==='vocab' ? undefined : fcState.deckId, t = routeHash('flashcards', p);
     if(location.hash!==t) history.replaceState(null,'',t);
@@ -2295,30 +2315,26 @@ function renderFlashcards(main, param){
   deckSel.onchange=()=>{ fcState.deckId=deckSel.value; fcState.idx=0; fcState.flipped=false; applyDeckControls(); buildDeck(); renderCardArea(); paintDeckSwitch(); syncDeckUrl(); };
   tabV.onclick=()=>{ deckSel.value='vocab'; deckSel.onchange(); };
   tabP.onclick=()=>{ deckSel.value='plurals'; deckSel.onchange(); };
-  tabU.onclick=()=>{ deckSel.value='unit2'; deckSel.onchange(); };
+  tabL.onclick=()=>{ deckSel.value='lesson3'; deckSel.onchange(); };
   paintDeckSwitch();
   const bookSel = controls.querySelector('#fcBook');
   const unitSel = controls.querySelector('#fcUnit');
   function populateBookOptions(){
     const plurals = fcState.deckId==='plurals';
     bookSel.innerHTML='';
-    const u2 = fcState.deckId==='unit2';
-    const opts = u2 ? [['all','All Unit 2 cards'],['vocab','Vocabulary'],['plurals','Plurals'],['verbs','Verbs (I form)'],['pronouns','Subject pronouns'],['connectors','Connectors'],['cases','Case endings']] : plurals ? [['all','All books'], ...BOOKS.map(b=>[b.id,b.label]), ['other','Not in a lesson']] : BOOKS.map(b=>[b.id,b.label]);
+    const l3 = fcState.deckId==='lesson3';
+    const opts = l3 ? [['all','All Lesson 3 cards'],['vocab','Vocabulary'],['plurals','Plurals'],['endings','Possessive endings'],['questions','Question words'],['kaana','Kaana and laysa']] : plurals ? [['all','All books'], ...BOOKS.map(b=>[b.id,b.label]), ['other','Not in a lesson']] : BOOKS.map(b=>[b.id,b.label]);
     opts.forEach(([v,l])=>bookSel.appendChild(mkEl(`<option value="${v}">${l}</option>`)));
-    bookSel.value = u2 ? fcState.ukind : plurals ? fcState.pbook : fcState.book;
+    bookSel.value = l3 ? fcState.lkind : plurals ? fcState.pbook : fcState.book;
   }
   bookSel.onchange=()=>{
-    if(fcState.deckId==='unit2'){ fcState.ukind=bookSel.value; }
+    if(fcState.deckId==='lesson3'){ fcState.lkind=bookSel.value; }
     else if(fcState.deckId==='plurals'){ fcState.pbook=bookSel.value; fcState.punit='all'; }
     else { fcState.book=bookSel.value; fcState.unit='all'; }
     populateUnitOptions(); buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea();
   };
   function populateUnitOptions(){
-    if(fcState.deckId==='unit2'){
-      unitSel.innerHTML='';
-      [['all','All lessons'],['1','Lesson 1 review'],['2','Lesson 2']].forEach(([v,l])=>unitSel.appendChild(mkEl(`<option value="${v}">${l}</option>`)));
-      unitSel.style.display=''; unitSel.value = fcState.uunit; return;
-    }
+    if(fcState.deckId==='lesson3'){ unitSel.style.display='none'; return; }
     const plurals = fcState.deckId==='plurals';
     const bid = plurals ? fcState.pbook : fcState.book;
     unitSel.innerHTML='';
@@ -2330,7 +2346,7 @@ function renderFlashcards(main, param){
     unitSel.value = plurals ? fcState.punit : fcState.unit;
   }
   unitSel.onchange=()=>{
-    if(fcState.deckId==='plurals') fcState.punit=unitSel.value; else if(fcState.deckId==='unit2') fcState.uunit=unitSel.value; else fcState.unit=unitSel.value;
+    if(fcState.deckId==='plurals') fcState.punit=unitSel.value; else fcState.unit=unitSel.value;
     buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea();
   };
   const typeSel = controls.querySelector('#fcType');
@@ -2372,10 +2388,9 @@ function renderFlashcards(main, param){
         (fcState.status==='all' || (fcState.status==='known')===isKnown(v)));
       return;
     }
-    if(fcState.deckId==='unit2'){
-      fcState.deck = unit2Cards().filter(v=>
-        (fcState.ukind==='all' || unit2Kind(v)===fcState.ukind) &&
-        (fcState.uunit==='all' || v.unit===Number(fcState.uunit)) &&
+    if(fcState.deckId==='lesson3'){
+      fcState.deck = lesson3Cards().filter(v=>
+        (fcState.lkind==='all' || lesson3Kind(v)===fcState.lkind) &&
         (fcState.type==='all' || v.type===fcState.type) &&
         (fcState.status==='all' || (fcState.status==='known')===isKnown(v)));
       return;
@@ -2389,7 +2404,7 @@ function renderFlashcards(main, param){
   }
   function updateKnownCount(){
     const el = document.getElementById('fcKnownCount');
-    const pool = fcState.deckId==='unit2' ? unit2Cards() : fcState.deckId==='plurals' ? getPluralCards().filter(v=>fcState.pbook==='all' || v.book===fcState.pbook) : VOCAB.filter(v=>v.book===fcState.book);
+    const pool = fcState.deckId==='lesson3' ? lesson3Cards() : fcState.deckId==='plurals' ? getPluralCards().filter(v=>fcState.pbook==='all' || v.book===fcState.pbook) : VOCAB.filter(v=>v.book===fcState.book);
     if(el) el.textContent = `${pool.filter(isKnown).length}/${pool.length} known`;
   }
   function advanceAfterMark(){
@@ -2413,7 +2428,7 @@ function renderFlashcards(main, param){
     let showFront, showBack, tagText;
     if(v.deck==='plurals'){
       const pd = fcState.deckId==='plurals' ? fcState.pdir : (fcState.dir==='ar2en' ? 'sg2pl' : 'en2ar');
-      const lab = fcState.deckId==='unit2' ? '<div class="muted" style="margin-top:6px;">plural</div>' : '';
+      const lab = fcState.deckId==='lesson3' ? '<div class="muted" style="margin-top:6px;">plural</div>' : '';
       const big = (ar,tr)=>`<div class="arabic" style="font-size:34px;">${ar}</div>${tr?`<div class="translit tr-toggle">${tr}</div>`:''}`;
       if(pd==='sg2pl'){
         showFront = big(v.sg, v.tr) + lab + `<div class="muted en-toggle">${v.en}</div>`;
@@ -2426,14 +2441,14 @@ function renderFlashcards(main, param){
         showBack = big(v.sg, v.tr) + `<div class="muted" style="margin-top:6px;">plural</div>` + big(v.pl, v.trPl);
       }
       tagText = `Plurals, ${pluralUnitLabel(v)} · ${PLURAL_TYPE_LABELS[v.type].toLowerCase()} · ${fcState.idx+1}/${fcState.deck.length}${knownTag}`;
-    } else if(v.deck==='unit2'){
+    } else if(v.deck==='lesson3'){
       const arBlock = `<div class="arabic" style="font-size:34px;">${v.ar}</div>${v.tr?`<div class="translit tr-toggle">${v.tr}</div>`:''}`;
       const lab = v.label ? `<div class="muted" style="margin-top:6px;">${v.label}</div>` : '';
       const use = v.use ? `<div class="muted" style="margin-top:8px;">${v.use}</div>` : '';
       const ex = v.ex ? `<div class="arabic" style="font-size:20px;margin-top:10px;">${v.ex}</div>` : '';
       if(fcState.dir==='ar2en'){ showFront = arBlock + lab; showBack = `<div>${v.en}</div>${use}${ex}`; }
       else { showFront = `<div>${v.en}</div>` + lab; showBack = arBlock + use + ex; }
-      tagText = `Unit 2 exam, ${UNIT2_KIND_LABELS[v.kind]} · ${fcState.idx+1}/${fcState.deck.length}${knownTag}`;
+      tagText = `Lesson 3 exam, ${LESSON3_KIND_LABELS[v.kind]} · ${fcState.idx+1}/${fcState.deck.length}${knownTag}`;
     } else {
       const bookInfo = BOOKS.find(b=>b.id===v.book);
       const translitLine = `<div class="translit tr-toggle">${v.tr}</div>`;
@@ -3922,13 +3937,13 @@ const MIDTERM_EXTRA_SETS = ['case-drill','sp-handout','masdar-drill','roots-dril
 const UNIT2_STUDY_GUIDE = [
   {group:'Unit 2 exam: Lesson 2, with Lesson 1 review', items:[
     {text:'Lesson 2 vocabulary (pp. 19 and 34), plus Lesson 1 and older words.',
-     links:[['Unit 2 flashcards','flashcards','unit2'],['Unit 2 quiz','quiz','unit2'],['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Matching game','matching']]},
+     links:[['Unit 2 quiz','quiz','unit2'],['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Matching game','matching']]},
     {text:'Plurals from the tables on pp. 24 and 25: forming and spelling them.',
      links:[['Plurals table','plurals'],['Plurals flashcards','flashcards','plurals'],['Plurals lesson','lessons','Plurals: Sound and Broken'],['Broken Plural Patterns','lessons','Broken Plural Patterns'],['Plurals drill','drills','plurals-lists'],['Plural Type quiz','quiz','plural']]},
     {text:'Agreement: people take plural adjectives, things take feminine singular adjectives.',
      links:[['Plurals lesson','lessons','Plurals: Sound and Broken'],['Adjectives and Agreement','lessons','Adjectives and Agreement']]},
     {text:'All 24 verbs, in the I form (\u0623\u064e\u0646\u064e\u0627).',
-     links:[['Unit 2 flashcards','flashcards','unit2'],['Conjugations tab','conjugations'],['Verb Conjugation quiz','quiz','verb']]},
+     links:[['Conjugations tab','conjugations'],['Verb Conjugation quiz','quiz','verb']]},
     {text:'Subject pronouns: all eight.',
      links:[['Subject Pronouns','lessons','Subject Pronouns and Possessive Suffixes'],['Pronouns quiz','quiz','pronoun']]},
     {text:'The nominal sentence: مُبْتَدَأ and خَبَر, phrase versus sentence.',
@@ -3963,7 +3978,7 @@ const LESSON3_EXTRA_SETS = ['lesson3-review','plurals-lists','passage-maha3','po
 const LESSON3_EXAM_GUIDE = [
   {group:'Lesson 3 exam: Lesson 3, with review of Lessons 1 and 2', items:[
     {text:'Vocabulary from Lessons 1 to 3, with plurals.',
-     links:[['Flashcards','flashcards'],['Unit 2 flashcards','flashcards','unit2'],['Vocabulary quiz','quiz','vocab'],['Plurals flashcards','flashcards','plurals'],['Matching game','matching']]},
+     links:[['Lesson 3 flashcards','flashcards','lesson3'],['Flashcards','flashcards'],['Vocabulary quiz','quiz','vocab'],['Plurals flashcards','flashcards','plurals'],['Matching game','matching']]},
     {text:'Family terms, the idafa, and possessive endings.',
      links:[['Family Terms','lessons','Family Terms'],['Idafa','lessons','Idafa: the Possessive (Construct) Phrase'],['Possessive Suffixes','lessons','Subject Pronouns and Possessive Suffixes'],['Lesson 3 Review','drills','lesson3-review'],['Idafa quiz','quiz','idafa']]},
     {text:'Plurals and agreement: people take plural adjectives, things take feminine singular.',
