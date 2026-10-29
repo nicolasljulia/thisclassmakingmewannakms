@@ -443,6 +443,10 @@ qaraʾa T-Taalibu l-kitaaba fi l-maktabati: the student read the book in the lib
 - الكِتَابَ takes the accusative ending, since it's the direct object: the thing being read.
 - المَكْتَبَةِ takes the genitive ending, since it's the object of the preposition في ("in").
 
+### The sound feminine plural (ـات)
+
+A sound feminine plural never takes fatHa. It has damma in the nominative and kasra in both the accusative and the genitive (with tanwiin: ـاتٌ, then ـاتٍ for both). Example: شاهَدْتُ الطّالِباتِ في المَكْتَبةِ (the direct object still takes kasra).
+
 ### Diptotes
 
 Diptotes, which include many proper nouns and certain plural patterns, take no tanwiin and use fatHa instead of kasra in the genitive.
