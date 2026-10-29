@@ -447,6 +447,10 @@ qaraʾa T-Taalibu l-kitaaba fi l-maktabati: the student read the book in the lib
 
 A sound feminine plural never takes fatHa. It has damma in the nominative and kasra in both the accusative and the genitive (with tanwiin: ـاتٌ, then ـاتٍ for both). Example: شاهَدْتُ الطّالِباتِ في المَكْتَبةِ (the direct object still takes kasra).
 
+### After a number
+
+The noun after 11 to 99 is singular and accusative (عِشْرُونَ طالِباً). After 100 it is singular and genitive, as the second term of an idafa (مِئةُ طالِبٍ). The noun stays accusative even when the number itself changes: أَسْكُنُ مَعَ عِشْرِينَ طالِباً (the tens take ـِينَ after a preposition or as an object; 11 to 19 keep fatha).
+
 ### Diptotes
 
 Diptotes, which include many proper nouns and certain plural patterns, take no tanwiin and use fatHa instead of kasra in the genitive.
