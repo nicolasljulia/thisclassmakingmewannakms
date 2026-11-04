@@ -103,6 +103,60 @@ body.hide-english .en-toggle{display:none;}
 .tile.correct{border-color:var(--good);background:var(--good);color:#fff;cursor:default;}
 .tile.wrong{border-color:var(--bad);background:var(--bad);color:#fff;}
 .tile.locked{opacity:.35;cursor:default;}
+/* games */
+.g-setup{padding:12px 16px;}
+.g-setup>summary{cursor:pointer;font-weight:600;list-style-position:inside;}
+.g-setup-body{margin-top:10px;}
+.g-sec{margin:4px 0 6px;}
+.g-presets{margin-bottom:8px;}
+.g-presets .btn{padding:6px 12px;font-size:13px;}
+.g-chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:4px 0;}
+.g-chips>span{min-width:130px;font-size:13px;}
+.gchip{border:1px solid var(--border);background:var(--chip);color:var(--text);border-radius:999px;padding:4px 12px;font-family:inherit;font-size:13px;cursor:pointer;}
+.gchip.on{background:var(--accent);border-color:var(--accent);color:#fff;}
+.g-opt{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--muted);}
+.g-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:640px;margin:0 auto 12px;}
+.g-grid2{grid-template-columns:repeat(2,1fr);}
+.gtile{border:1px solid var(--border);background:var(--chip);color:var(--text);border-radius:10px;min-height:70px;padding:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-family:inherit;font-size:14px;cursor:pointer;text-align:center;}
+.gtile .arabic{font-size:22px;line-height:1.35;}
+.gtile .g-en{font-size:13px;}
+.gtile.sel{background:var(--accent);border-color:var(--accent);color:#fff;}
+.gtile.right{background:var(--good);border-color:var(--good);color:#fff;}
+.gtile.wrong{background:var(--bad);border-color:var(--bad);color:#fff;}
+.gtile:disabled{cursor:default;}
+.shake{animation:gshake .4s;}
+@keyframes gshake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-6px);}40%,80%{transform:translateX(6px);}}
+.g-band{border-radius:10px;padding:10px 12px;margin:0 auto 8px;max-width:640px;text-align:center;color:#1a1714;}
+.g-band-items{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:center;font-size:13px;margin-top:4px;}
+.g-band-items .arabic{font-size:19px;}
+.g-c0{background:#f6df7a;}.g-c1{background:#a8d5a2;}.g-c2{background:#9ec5ec;}.g-c3{background:#c9a8e6;}
+.g-status{text-align:center;color:var(--muted);font-size:14px;margin:6px 0;}
+.g-msg{font-weight:600;color:var(--accent);margin-bottom:2px;}
+.g-review{max-width:640px;margin:14px auto 0;}
+.g-cluebox{text-align:center;margin:10px 0;}
+.g-clue{font-size:20px;font-weight:600;}
+.g-clue-tr{font-size:18px;color:var(--accent);margin-top:2px;}
+.g-slots{display:flex;gap:6px;direction:rtl;justify-content:center;flex-wrap:wrap;min-height:56px;margin:8px 0;}
+.g-letter{width:46px;height:52px;border:2px solid var(--border);background:var(--chip);color:var(--text);border-radius:8px;font-family:'Noto Naskh Arabic','Arial',sans-serif;font-size:28px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.g-letter.filled{background:var(--accent-soft);border-color:var(--accent);}
+.g-letter.right{background:var(--good);border-color:var(--good);color:#fff;}
+.g-letter:disabled{cursor:default;opacity:1;}
+.g-tiles .g-letter:hover{border-color:var(--accent);}
+.wg-grid{margin:10px 0;}
+.wg-row{display:flex;gap:6px;direction:rtl;justify-content:center;margin-bottom:6px;}
+.wg-cell{width:46px;height:48px;border:2px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Noto Naskh Arabic','Arial',sans-serif;font-size:26px;font-weight:600;}
+.wg-cell.typed{border-color:var(--muted);}
+.wg-cell.hit{background:var(--good);border-color:var(--good);color:#fff;}
+.wg-cell.near{background:#c89a2b;border-color:#c89a2b;color:#fff;}
+.wg-cell.miss{background:var(--muted);border-color:var(--muted);color:#fff;}
+.wg-kb{margin-top:10px;}
+.wg-kbrow{display:flex;gap:4px;direction:rtl;justify-content:center;margin-bottom:5px;}
+.wg-key{min-width:30px;height:42px;padding:0 6px;border:1px solid var(--border);background:var(--chip);color:var(--text);border-radius:6px;font-family:'Noto Naskh Arabic','Arial',sans-serif;font-size:20px;cursor:pointer;flex:1;max-width:44px;}
+.wg-key.wide{max-width:none;flex:0 0 auto;padding:0 14px;font-family:inherit;font-size:13px;direction:ltr;}
+.wg-key.hit{background:var(--good);color:#fff;border-color:var(--good);}
+.wg-key.near{background:#c89a2b;color:#fff;border-color:#c89a2b;}
+.wg-key.miss{background:var(--muted);color:#fff;border-color:var(--muted);opacity:.6;}
+@media (max-width:520px){.g-grid{gap:6px;}.gtile{min-height:62px;padding:6px;}.gtile .arabic{font-size:19px;}.g-letter{width:38px;height:46px;font-size:24px;}.wg-cell{width:40px;height:44px;}.wg-key{min-width:24px;height:40px;font-size:18px;padding:0 2px;}}
 /* quiz */
 .quiz-prompt{font-size:19px;margin-bottom:18px;line-height:1.5;}
 .quiz-options{display:grid;gap:10px;}
@@ -1145,6 +1199,7 @@ const TABS = [
   {id:'lessons',label:'Lessons'},
   {id:'flashcards',label:'Flashcards'},
   {id:'matching',label:'Matching'},
+  {id:'games',label:'Games'},
   {id:'quiz',label:'Quiz'},
   {id:'crossword',label:'Crossword'},
   {id:'conjugations',label:'Conjugations'},
@@ -1220,6 +1275,7 @@ function pageTitle(tab, param){
   else if(tab==='drills' && param){ const s = DRILL_SETS.find(x=>x.id===param); if(s) sub = s.label; }
   else if(tab==='exams' && param){ const e = EXAMS.find(x=>x.id===param); if(e) sub = e.title; }
   else if(tab==='quiz' && param){ const c = QUIZ_CATEGORIES.find(x=>x.id===param); if(c) sub = c.label; }
+  else if(tab==='games' && param){ const g = GAME_LIST.find(x=>x.id===param); if(g) sub = g.label; }
   else if(tab==='flashcards' && param==='plurals') sub = 'Plurals flashcards';
   else if(tab==='flashcards' && (param==='lesson3' || param==='unit2')) sub = 'Lesson 3 exam flashcards';
   else if(tab==='conjugations' && param!==undefined){ const v = CONJUGATIONS[param]; if(v) sub = v.english; }
@@ -1237,6 +1293,7 @@ function showPage(tab, param){
   else if(tab==='lessons') renderLessonsList(main, param);
   else if(tab==='flashcards') renderFlashcards(main, param);
   else if(tab==='matching') renderMatching(main);
+  else if(tab==='games') renderGames(main, param);
   else if(tab==='quiz') renderQuizMenu(main, param);
   else if(tab==='crossword') renderCrossword(main);
   else if(tab==='conjugations') renderConjugations(main, param);
@@ -1286,6 +1343,10 @@ function renderHome(main){
         <div class="card lesson-card" onclick="go('crossword')">
           <div class="num">Puzzle</div><h3>Crossword</h3>
           <p class="muted" style="margin:0;">Vocabulary crossword.</p>
+        </div>
+        <div class="card lesson-card" onclick="go('games')">
+          <div class="num">Practice</div><h3>Games</h3>
+          <p class="muted" style="margin:0;">Connections, Odd One Out, Letter Scramble and Word Guess, with any vocabulary.</p>
         </div>
         <div class="card lesson-card" onclick="go('conjugations')">
           <div class="num">Reference</div><h3>Conjugations</h3>
@@ -4244,6 +4305,500 @@ function renderPlurals(main){
   search.oninput = draw; typeSel.onchange = draw;
   draw();
 }
+
+/* ============================================================
+   GAMES: Connections, Odd One Out, Letter Scramble, Word Guess
+   Every game draws on the same vocabulary picker (units, plurals,
+   Lesson 3 extras) and has its own options.
+   ============================================================ */
+const GAME_LIST = [
+  {id:'connections', label:'Connections', desc:'Sort the words into hidden groups. Four mistakes and the puzzle is over.'},
+  {id:'oddone', label:'Odd One Out', desc:'Three words belong together. Which one does not?'},
+  {id:'scramble', label:'Letter Scramble', desc:'Rebuild the Arabic word from its shuffled letters.'},
+  {id:'wordguess', label:'Word Guess', desc:'Guess the Arabic word letter by letter, Wordle style.'},
+];
+const GAME_TYPE_LABELS = Object.assign({plural:'Plural forms'}, WORD_TYPE_LABELS);
+// Topic groups, keyed by the English gloss with any (m.) / (f.) tag removed. Each word is in at most one topic.
+const GAME_TOPICS = [
+  ['Family', ['brother','sister','father','my father','mother','my mother','family','his family','maternal aunt','son','cousin, male, paternal','husband','her husband','wife','paternal uncle','my (paternal) uncle','extended family','relative','grandfather / grandmother','sons','cousins, male, paternal','husbands','wives','paternal uncles','extended families','relatives']],
+  ['People', ['man','woman','girl','boy','student','professor, teacher','neighbor','classmate, colleague','classmates, colleagues','friend','friends','my friend, boyfriend','my friend, girlfriend','employee','translator','officer','officers','individual, person','individuals, people','young people, guys']],
+  ['Food and drink', ['tea','coffee','milk','sugar','medium sugar','juice','water','bread','chicken']],
+  ['Feelings and states', ['tired','cold','hot','thirsty','hungry','upset, angry/sad','exhausted','happy','sick','sorry!']],
+  ['School and study', ['lesson','class, classroom','test, examination','drill, exercise','pen or pencil','book','page','piece of paper','homework, duty','library, bookstore','college, school in a university','colleges, schools in a university','school','schools','the university of...','department','program','semester',"bachelor's degree","master's degree",'doctorate','admission(s)']],
+  ['Fields of study', ['literature','history','law','religion','medicine','anthropology','sociology','psychology','engineering','science','sciences','political science','culture']],
+  ['House and rooms', ['door','house','window','chair','table','room','bathroom, toilet','building','office, desk']],
+  ['Weather and seasons', ['autumn','spring (season)','winter','summer','season','seasons','weather','temperature','humidity','degree','cold (adj.)','hot (adj.)']],
+  ['Numbers 0 to 10', ['zero','one','two','three','four','five','six','seven','eight','nine','ten']],
+  ['Numbers 11 to 19', ['eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen']],
+  ['Tens and 100', ['twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety','one hundred']],
+  ['Grammar terms', ['grammar','masculine / feminine','the nisba adjective','singular','plural','nominal sentence','subject (of a nominal sentence)','predicate','the idafa (construct phrase)']],
+  ['Names', ['name','my name','his name','her name']],
+  ['Words and messages', ['word','sentence','letter','letters','news','story','question','language','translation (from... to)','picture','pictures','telephone number']],
+  ['Time words', ['evening','daytime','now','always','sometimes','before','age','year','years']],
+  ['Greetings and manners', ['Greetings! (Islamic greeting)','Hello, hi','Hello, welcome','Hello (Levantine)','Good morning!','(reply) Good morning!','Good evening!','(reply) Good evening!','How are you?','good-bye','(reply) good-bye','thank you',"you're welcome",'please','Nice to meet you!']],
+  ['Size and shape', ['small, young','large, old-people','tall, long','short','wide, spacious','high']],
+  ['Describing things', ['new','old, ancient','easy','difficult, hard','beautiful','nice, pleasant','great, fine','strange','good, kind-hearted']],
+];
+const GAME_TOPIC_OF = new Map();
+GAME_TOPICS.forEach(([label, list])=>list.forEach(e=>GAME_TOPIC_OF.set(e, label)));
+
+const GAME_SOURCES = [];
+for(let u=1; u<=9; u++) GAME_SOURCES.push({id:'ab'+u, label:String(u), group:'Alif Baa units'});
+for(let u=1; u<=5; u++) GAME_SOURCES.push({id:'ak'+u, label:String(u), group:'Al-Kitaab lessons'});
+GAME_SOURCES.push({id:'pl-k2', label:'Lesson 2 plurals', group:'Plurals and grammar'}, {id:'pl-k3', label:'Lesson 3 plurals', group:'Plurals and grammar'},
+  {id:'pl-other', label:'Other plurals', group:'Plurals and grammar'}, {id:'l3extra', label:'Lesson 3 endings, question words, kaana', group:'Plurals and grammar'});
+const GAME_ALL_AB = GAME_SOURCES.filter(s=>/^ab/.test(s.id)).map(s=>s.id), GAME_ALL_AK = GAME_SOURCES.filter(s=>/^ak/.test(s.id)).map(s=>s.id);
+const GAME_PRESETS = [
+  ['Everything', GAME_ALL_AB.concat(GAME_ALL_AK)],
+  ['Alif Baa', GAME_ALL_AB],
+  ['Al-Kitaab', GAME_ALL_AK],
+  ['Lesson 3 exam', ['ak3','pl-k3','l3extra']],
+  ['Lessons 1 and 2', ['ak1','ak2','pl-k2']],
+  ['Plurals', ['pl-k2','pl-k3','pl-other']],
+];
+const GAME_CRIT_OPTS = [['topic','Meaning (topics)'],['type','Word type'],['letter','First letter'],['verb','Verb form (I, you, he, she)'],['gender','Masculine and feminine'],['plural','Plural pattern'],['mixed','Mixed: any of these']];
+const GAME_DISPLAY_OPTS = [['ar','Arabic'],['en','English'],['both','Arabic and English']];
+const GAME_ROUND_OPTS = [['5','5'],['10','10'],['20','20']];
+const GAME_CLUE_OPTS = [['en','English'],['tr','Transliteration only'],['both','English and transliteration']];
+const GAME_OPTION_SPECS = {
+  connections:[['crit','Groups are based on','crit'],['groups','Groups',[['4','4 groups, 16 words'],['3','3 groups, 12 words']]],['display','Tiles show',GAME_DISPLAY_OPTS]],
+  oddone:[['crit','Groups are based on','crit'],['rounds','Rounds',GAME_ROUND_OPTS],['display','Tiles show',GAME_DISPLAY_OPTS]],
+  scramble:[['len','Word length',[['any','Any (3 to 9 letters)'],['short','3 to 4 letters'],['mid','5 to 6 letters'],['long','7 or more letters']]],['rounds','Rounds',GAME_ROUND_OPTS],['clue','Clue',GAME_CLUE_OPTS]],
+  wordguess:[['len','Word length',[['3','3 letters'],['4','4 letters'],['5','5 letters'],['6','6 letters'],['any','Any (3 to 6 letters)']]],['tries','Guesses',[['6','6'],['8','8'],['10','10']]],['clue','Clue',GAME_CLUE_OPTS],['first','First-letter hint',[['no','Off'],['yes','On']]]],
+};
+const GAME_DEFAULTS = {
+  sources: GAME_ALL_AB.concat(GAME_ALL_AK), status:'all',
+  connections:{crit:'topic', groups:'4', display:'ar'},
+  oddone:{crit:'topic', rounds:'10', display:'ar'},
+  scramble:{len:'any', rounds:'10', clue:'en'},
+  wordguess:{len:'4', tries:'6', clue:'en', first:'no'},
+};
+function gameCfg(){
+  const saved = loadProgress('gameCfg', {}), cfg = JSON.parse(JSON.stringify(GAME_DEFAULTS));
+  if(Array.isArray(saved.sources)) cfg.sources = saved.sources.filter(id=>GAME_SOURCES.some(s=>s.id===id));
+  if(saved.status) cfg.status = saved.status;
+  GAME_LIST.forEach(g=>{ if(saved[g.id]) Object.keys(cfg[g.id]).forEach(k=>{ if(saved[g.id][k]!==undefined) cfg[g.id][k] = saved[g.id][k]; }); });
+  return cfg;
+}
+
+/* ---- vocabulary items for the games ---- */
+const GAME_DIAC = /[ً-ٰٟـۖ-ۭ]/g;
+function gameWord(ar){
+  if(/[\s\/(),.؟?!\-]/.test(ar)) return null;
+  let w = ar.replace(GAME_DIAC, '');
+  if(!/^[ء-ي]+$/.test(w)) return null;
+  return w.replace(/^ال(?=.{3,}$)/, '');
+}
+function gameFold(w){ return w.replace(/[أإآ]/g,'ا').replace(/ؤ/g,'و').replace(/ئ/g,'ي').replace(/ى/g,'ي'); }
+let gameItemsCache = null;
+function gameItems(){
+  if(gameItemsCache) return gameItemsCache;
+  const out = [], base = en=>en.replace(/\s*\((?:m|f|masc|fem)\.\)$/,'').replace(/,\s*[mf]\.$/,'').trim();
+  VOCAB.forEach(v=>{
+    const it = {src:(v.book==='alifbaa' ? 'ab' : 'ak')+v.unit, ar:v.ar, en:v.en, tr:v.tr, type:v.type, raw:v, topic:GAME_TOPIC_OF.get(base(v.en))};
+    if(/\((?:m|masc)\.\)$|,\s*m\.$/.test(v.en)) it.gender = 'm'; else if(/\((?:f|fem)\.\)$|,\s*f\.$/.test(v.en)) it.gender = 'f';
+    if(v.type==='verb'){ const m = v.en.match(/^(I|you \(m\.\)|you \(f\.\)|he|she) /); if(m) it.person = m[1]; }
+    out.push(it);
+  });
+  getPluralCards().forEach(c=>{
+    out.push({src: c.book==='alkitaab' && c.unit===2 ? 'pl-k2' : c.book==='alkitaab' && c.unit===3 ? 'pl-k3' : 'pl-other',
+      ar:c.pl.split(' / ')[0], en:c.en+' (plural)', tr:(c.trPl||'').split(' / ')[0], type:'plural', ptype:c.type, raw:c});
+  });
+  lesson3Extra().forEach(c=>{
+    out.push({src:'l3extra', ar:c.ar, en:c.en, tr:c.tr||'', type:c.type, raw:c,
+      topic: c.kind==='endings' ? 'Possessive endings' : c.kind==='questions' ? 'Question words' : /^lesson3\|kaana\|kaana\|/.test(c.key) ? 'Forms of كانَ (was)' : 'Forms of لَيْسَ (is not)'});
+  });
+  gameItemsCache = out;
+  return out;
+}
+function gameUniq(items){
+  const en = new Set(), ar = new Set(), out = [];
+  items.forEach(i=>{ const e = i.en.toLowerCase(), a = stripAr(i.ar); if(en.has(e) || ar.has(a)) return; en.add(e); ar.add(a); out.push(i); });
+  return out;
+}
+function gamePool(cfg){
+  const set = new Set(cfg.sources);
+  let items = gameItems().filter(i=>set.has(i.src));
+  if(cfg.status==='unknown') items = items.filter(i=>!isKnown(i.raw));
+  else if(cfg.status==='known') items = items.filter(i=>isKnown(i.raw));
+  return gameUniq(items);
+}
+function gameFirstLetter(i){
+  const w = stripAr(i.ar).replace(/^ال(?=\S)/,''), c = w.charAt(0);
+  return /[ء-ي]/.test(c) ? c : null;
+}
+// Groups of words that share something, for one criterion (or all of them when crit is 'mixed').
+function gameGroups(crit, pool, display, min){
+  const out = [], want = k=>crit==='mixed' || crit===k;
+  const add = (kind, id, label, pred)=>{ const members = gameUniq(pool.filter(pred)); if(members.length>=min) out.push({kind, id, label, pred, members}); };
+  if(want('topic')) Array.from(new Set(pool.map(i=>i.topic).filter(Boolean))).forEach(t=>add('topic','t:'+t,t,i=>i.topic===t));
+  if(want('type')) Array.from(new Set(pool.map(i=>i.type))).forEach(t=>add('type','y:'+t,GAME_TYPE_LABELS[t]||t,i=>i.type===t));
+  if(want('letter') && display!=='en') Array.from(new Set(pool.map(gameFirstLetter).filter(Boolean))).forEach(c=>
+    add('letter','l:'+c,'Starts with '+c+(c==='ا' ? ' (alif or hamza)' : ''),i=>gameFirstLetter(i)===c));
+  if(want('verb')) ['I','you (m.)','you (f.)','he','she'].forEach(p=>add('verb','v:'+p,'Verbs in the "'+p+'" form',i=>i.person===p));
+  if(want('gender')) [['m','adjective','Masculine adjectives'],['f','adjective','Feminine adjectives'],['m','noun','Masculine nouns'],['f','noun','Feminine nouns']]
+    .forEach(([g,t,l])=>add('gender','g:'+g+t,l,i=>i.gender===g && i.type===t));
+  if(want('plural') && display!=='en') Object.keys(PLURAL_TYPE_LABELS).forEach(p=>add('plural','p:'+p,PLURAL_TYPE_LABELS[p]+' plurals',i=>i.ptype===p));
+  return out;
+}
+function gameTile(it, display, cls){
+  const ar = `<span class="arabic">${it.ar}</span>`, en = `<span class="g-en">${it.en}</span>`;
+  return display==='ar' ? ar : display==='en' ? en : ar+en;
+}
+function gameNotice(text){ return mkEl(`<div class="card muted" style="max-width:640px;margin:0 auto 12px;">${text}</div>`); }
+function gameReview(items){
+  return mkEl(`<details class="g-review"><summary>Review the words</summary><table><tr><th class="ar">Arabic</th><th class="tr-toggle">Sounds like</th><th class="en-toggle">Meaning</th></tr>${
+    items.map(i=>`<tr><td class="ar big-ar">${i.ar}</td><td class="tr-toggle">${i.tr||''}</td><td class="en-toggle">${i.en}</td></tr>`).join('')}</table></details>`);
+}
+
+/* ---- the games page: hub, shared setup, and the four games ---- */
+let gameKeyHandler = null;
+function renderGames(main, param){
+  if(gameKeyHandler){ document.removeEventListener('keydown', gameKeyHandler); gameKeyHandler = null; }
+  const g = GAME_LIST.find(x=>x.id===param);
+  if(!g){
+    main.appendChild(mkEl(`<div><h1>Games</h1><p class="muted">Practice the vocabulary as puzzles. Pick the words you want on each game's page.</p></div>`));
+    const grid = mkEl(`<div class="grid cols2"></div>`);
+    GAME_LIST.forEach(x=>{
+      const c = mkEl(`<div class="card lesson-card"><h3>${x.label}</h3><p class="muted" style="margin:0;">${x.desc}</p></div>`);
+      c.onclick = ()=>go('games', x.id);
+      grid.appendChild(c);
+    });
+    main.appendChild(grid);
+    return;
+  }
+  const cfg = gameCfg(), save = ()=>saveProgress('gameCfg', cfg);
+  main.appendChild(mkEl(`<div class="row" style="margin-bottom:6px;"><button class="btn ghost" id="gBack">&larr; Games</button></div>`)).querySelector('#gBack').onclick = ()=>go('games');
+  main.appendChild(mkEl(`<h1>${g.label}</h1>`));
+  const setupBox = mkEl(`<details class="card g-setup"><summary></summary><div class="g-setup-body"></div></details>`), board = mkEl(`<div id="gBoard"></div>`);
+  const setup = setupBox.querySelector('.g-setup-body');
+  main.appendChild(setupBox); main.appendChild(board);
+  const specs = GAME_OPTION_SPECS[g.id], o = cfg[g.id];
+  function paintSetup(){
+    const pool = gamePool(cfg);
+    setupBox.querySelector('summary').innerHTML = `Vocabulary and options <span class="pill">${pool.length} words</span>`;
+    const presetHtml = GAME_PRESETS.map(([l,ids],i)=>`<button class="btn ${ids.length===cfg.sources.length && ids.every(x=>cfg.sources.includes(x)) ? '' : 'ghost'}" data-preset="${i}">${l}</button>`).join('');
+    const groups = Array.from(new Set(GAME_SOURCES.map(s=>s.group)));
+    const chips = groups.map(gr=>`<div class="g-chips"><span class="muted">${gr}</span>${GAME_SOURCES.filter(s=>s.group===gr).map(s=>`<button class="gchip ${cfg.sources.includes(s.id)?'on':''}" data-src="${s.id}">${s.label}</button>`).join('')}</div>`).join('');
+    const display = o.display || 'ar';
+    const optHtml = specs.map(([k,label,opts])=>{
+      const list = opts==='crit' ? GAME_CRIT_OPTS.map(([v,l])=>{ const n = gameGroups(v, pool, display, 4).length; return [v, l+' ('+n+')']; }) : opts;
+      return `<label class="g-opt">${label}<select data-opt="${k}">${list.map(([v,l])=>`<option value="${v}" ${String(o[k])===v?'selected':''}>${l}</option>`).join('')}</select></label>`;
+    }).join('');
+    setup.innerHTML = `<div class="g-sec"><b>Vocabulary</b> <span class="pill">${pool.length} words</span></div>
+      <div class="row g-presets">${presetHtml}</div>${chips}
+      <div class="row" style="margin:10px 0 4px;"><label class="g-opt">Words<select data-status="1">${[['all','All words'],['unknown','Only words still learning'],['known','Only words I know']].map(([v,l])=>`<option value="${v}" ${cfg.status===v?'selected':''}>${l}</option>`).join('')}</select></label></div>
+      <div class="g-sec" style="margin-top:12px;"><b>Options</b></div><div class="row">${optHtml}</div>
+      <div class="row" style="margin-top:12px;"><button class="btn" id="gNew">New puzzle</button></div>`;
+    setup.querySelectorAll('[data-preset]').forEach(b=>b.onclick=()=>{ cfg.sources = GAME_PRESETS[b.dataset.preset][1].slice(); save(); paintSetup(); start(); });
+    setup.querySelectorAll('[data-src]').forEach(b=>b.onclick=()=>{
+      const id = b.dataset.src, i = cfg.sources.indexOf(id);
+      if(i>=0) cfg.sources.splice(i,1); else cfg.sources.push(id);
+      save(); paintSetup(); start();
+    });
+    setup.querySelector('[data-status]').onchange = e=>{ cfg.status = e.target.value; save(); paintSetup(); start(); };
+    setup.querySelectorAll('[data-opt]').forEach(s=>s.onchange=()=>{ o[s.dataset.opt] = s.value; save(); paintSetup(); start(); });
+    setup.querySelector('#gNew').onclick = start;
+  }
+  function start(){
+    board.innerHTML = '';
+    const pool = gamePool(cfg);
+    if(pool.length<4){ board.appendChild(gameNotice('Not enough words selected. Add units above or change the word filter.')); return; }
+    GAME_RUN[g.id](board, pool, o, start);
+  }
+  paintSetup(); start();
+}
+
+/* ---- Connections ---- */
+function gameBuildConnections(pool, crit, nGroups, display){
+  const groups = gameGroups(crit, pool, display, 4);
+  if(groups.length<nGroups) return {error:'groups', have:groups.length};
+  for(let t=0; t<80; t++){
+    const chosen = sample(groups, nGroups), used = new Set(), result = [];
+    let ok = true;
+    for(const g of chosen){
+      const cands = shuffle(g.members.filter(m=>chosen.every(c=>c===g || !c.pred(m)))), take = [];
+      for(const m of cands){
+        const e = 'e'+m.en.toLowerCase(), a = 'a'+stripAr(m.ar);
+        if(used.has(e) || used.has(a)) continue;
+        take.push(m); if(take.length===4) break;
+      }
+      if(take.length<4){ ok = false; break; }
+      take.forEach(m=>{ used.add('e'+m.en.toLowerCase()); used.add('a'+stripAr(m.ar)); });
+      result.push({label:g.label, items:take});
+    }
+    if(ok) return {groups:result};
+  }
+  return {error:'tiles'};
+}
+function runConnections(board, pool, o, restart){
+  const need = Number(o.groups), res = gameBuildConnections(pool, o.crit, need, o.display);
+  if(res.error){
+    board.appendChild(gameNotice(res.error==='groups'
+      ? `This vocabulary has only ${res.have} group${res.have===1?'':'s'} of that kind and a puzzle needs ${need}. Add more units, pick another grouping, or try Mixed.`
+      : 'Could not build a puzzle without overlapping groups from these words. Try New puzzle, or add more units.'));
+    return;
+  }
+  const groups = res.groups, st = {tiles:[], sel:[], solved:[], mistakes:0, over:false, msg:'', shake:false};
+  groups.forEach((g,gi)=>g.items.forEach(it=>st.tiles.push({it, gi})));
+  st.tiles.forEach((t,i)=>t.id = i);
+  st.tiles = shuffle(st.tiles);
+  const wrap = mkEl(`<div></div>`);
+  board.appendChild(wrap);
+  const band = gi=>`<div class="g-band g-c${gi}"><b>${groups[gi].label}</b><div class="g-band-items">${groups[gi].items.map(i=>`<span><span class="arabic">${i.ar}</span> <span class="en-toggle">${i.en}</span></span>`).join('')}</div></div>`;
+  function draw(){
+    wrap.innerHTML = '';
+    const remaining = st.tiles.filter(t=>!st.solved.includes(t.gi));
+    wrap.appendChild(mkEl(`<div>${st.solved.map(band).join('')}</div>`));
+    if(!st.over){
+      const grid = mkEl(`<div class="g-grid"></div>`);
+      remaining.forEach(t=>{
+        const b = mkEl(`<button class="gtile ${st.sel.includes(t.id)?'sel':''} ${st.shake && st.sel.includes(t.id)?'shake':''}">${gameTile(t.it, o.display)}</button>`);
+        b.onclick = ()=>{ const i = st.sel.indexOf(t.id); if(i>=0) st.sel.splice(i,1); else if(st.sel.length<4) st.sel.push(t.id); st.msg = ''; st.shake = false; draw(); };
+        grid.appendChild(b);
+      });
+      wrap.appendChild(grid);
+      wrap.appendChild(mkEl(`<div class="g-status">${st.msg ? `<div class="g-msg">${st.msg}</div>` : ''}<div>Mistakes left: ${'●'.repeat(4-st.mistakes)}${'○'.repeat(st.mistakes)}</div></div>`));
+      const bar = mkEl(`<div class="row" style="justify-content:center;margin-top:8px;"><button class="btn ghost" id="cShuffle">Shuffle</button><button class="btn ghost" id="cClear" ${st.sel.length?'':'disabled'}>Deselect all</button><button class="btn" id="cSubmit" ${st.sel.length===4?'':'disabled'}>Submit</button></div>`);
+      bar.querySelector('#cShuffle').onclick = ()=>{ st.tiles = shuffle(st.tiles); draw(); };
+      bar.querySelector('#cClear').onclick = ()=>{ st.sel = []; st.msg = ''; draw(); };
+      bar.querySelector('#cSubmit').onclick = submit;
+      wrap.appendChild(bar);
+    } else {
+      wrap.appendChild(mkEl(`<div class="g-status"><div class="g-msg">${st.solved.length===groups.length && st.mistakes<4 ? 'Solved.' : 'Out of mistakes. The remaining groups are shown above.'}</div></div>`));
+      wrap.appendChild(mkEl(`<div class="row" style="justify-content:center;"><button class="btn" id="cAgain">New puzzle</button></div>`)).querySelector('#cAgain').onclick = restart;
+      wrap.appendChild(gameReview([].concat(...groups.map(g=>g.items))));
+    }
+  }
+  function submit(){
+    const picks = st.sel.map(id=>st.tiles.find(t=>t.id===id).gi), counts = {};
+    picks.forEach(g=>counts[g] = (counts[g]||0)+1);
+    const best = Math.max(...Object.values(counts));
+    if(best===4){
+      st.solved.push(picks[0]); st.sel = []; st.msg = '';
+      if(st.solved.length===groups.length) st.over = true;
+    } else {
+      st.mistakes++; st.shake = true; st.msg = best===3 ? 'One away.' : 'Not a group.';
+      if(st.mistakes>=4){ groups.forEach((g,gi)=>{ if(!st.solved.includes(gi)) st.solved.push(gi); }); st.over = true; }
+    }
+    draw();
+  }
+  draw();
+}
+
+/* ---- Odd One Out ---- */
+function gameBuildOdd(pool, crit, n, display){
+  const groups = gameGroups(crit, pool, display, 3);
+  if(!groups.length) return null;
+  const small = crit==='mixed' ? null : gameGroups(crit, pool, display, 1), rounds = [];
+  for(let t=0; t<n*40 && rounds.length<n; t++){
+    const g = pick(groups), three = sample(g.members, 3);
+    let outsiders;
+    if(small) outsiders = [].concat(...small.filter(h=>h.id!==g.id).map(h=>h.members.map(m=>({m, label:h.label})))).filter(x=>!g.pred(x.m));
+    else outsiders = pool.filter(i=>!g.pred(i)).map(m=>({m, label:null}));
+    outsiders = outsiders.filter(x=>!three.some(w=>w.en.toLowerCase()===x.m.en.toLowerCase() || stripAr(w.ar)===stripAr(x.m.ar)));
+    if(!outsiders.length) continue;
+    const out = pick(outsiders);
+    if(rounds.some(r=>r.group===g.label && r.odd===out.m)) continue;
+    rounds.push({group:g.label, odd:out.m, oddLabel:out.label, tiles:shuffle(three.concat([out.m]))});
+  }
+  return rounds.length ? rounds : null;
+}
+function runOddOne(board, pool, o, restart){
+  const rounds = gameBuildOdd(pool, o.crit, Number(o.rounds), o.display);
+  if(!rounds){ board.appendChild(gameNotice('No puzzles can be built from these words with that grouping. Add more units or pick another grouping.')); return; }
+  const st = {i:0, score:0, answered:null, missed:[]}, wrap = mkEl(`<div class="card" style="max-width:640px;margin:0 auto;"></div>`);
+  board.appendChild(wrap);
+  function draw(){
+    wrap.innerHTML = '';
+    if(st.i>=rounds.length){
+      wrap.appendChild(mkEl(`<div class="quiz-prompt">Score: <span class="score-badge">${st.score}/${rounds.length}</span></div>`));
+      if(st.missed.length) wrap.appendChild(mkEl(`<div class="explain"><b>Missed</b><ul>${st.missed.map(r=>`<li><span class="arabic">${r.odd.ar}</span> (${r.odd.en}) does not fit: the others are ${r.group.toLowerCase()}.</li>`).join('')}</ul></div>`));
+      wrap.appendChild(mkEl(`<div class="row" style="margin-top:12px;"><button class="btn" id="oAgain">Play again</button></div>`)).querySelector('#oAgain').onclick = restart;
+      wrap.appendChild(gameReview([].concat(...rounds.map(r=>r.tiles))));
+      return;
+    }
+    const r = rounds[st.i];
+    wrap.appendChild(mkEl(`<div class="progressbar"><div style="width:${st.i/rounds.length*100}%"></div></div>`));
+    wrap.appendChild(mkEl(`<div class="quiz-prompt">Which one does not belong? <span class="muted">${st.i+1} of ${rounds.length}</span></div>`));
+    const grid = mkEl(`<div class="g-grid g-grid2"></div>`);
+    r.tiles.forEach(it=>{
+      const cls = st.answered ? (it===r.odd ? 'right' : it===st.answered ? 'wrong' : '') : '';
+      const b = mkEl(`<button class="gtile ${cls}" ${st.answered?'disabled':''}>${gameTile(it, o.display)}</button>`);
+      b.onclick = ()=>{ st.answered = it; if(it===r.odd) st.score++; else st.missed.push(r); draw(); };
+      grid.appendChild(b);
+    });
+    wrap.appendChild(grid);
+    if(st.answered){
+      wrap.appendChild(mkEl(`<div class="explain">${st.answered===r.odd ? 'Correct. ' : 'Not quite. '}The other three are ${r.group.toLowerCase()}. <span class="arabic">${r.odd.ar}</span> <span class="en-toggle">(${r.odd.en})</span> ${r.oddLabel ? 'belongs with: '+r.oddLabel.toLowerCase() : 'does not fit'}.</div>`));
+      const nb = mkEl(`<div class="row" style="margin-top:12px;"><button class="btn" id="oNext">${st.i+1<rounds.length?'Next':'See score'}</button></div>`);
+      nb.querySelector('#oNext').onclick = ()=>{ st.i++; st.answered = null; draw(); };
+      wrap.appendChild(nb);
+    }
+  }
+  draw();
+}
+
+/* ---- single-word games: Letter Scramble and Word Guess ---- */
+function gameWordPool(pool, minL, maxL, clue){
+  return gameUniq(pool).map(i=>{ const w = gameWord(i.ar); return w && w.length>=minL && w.length<=maxL && (clue!=='tr' || i.tr) ? Object.assign({w}, i) : null; }).filter(Boolean);
+}
+function gameClueHtml(it, clue){
+  const en = `<div class="g-clue">${it.en}</div>`, tr = `<div class="g-clue-tr">${it.tr||''}</div>`;
+  return clue==='en' ? en : clue==='tr' ? tr : en+tr;
+}
+const GAME_SCRAMBLE_LEN = {any:[3,9], short:[3,4], mid:[5,6], long:[7,12]};
+function runScramble(board, pool, o, restart){
+  const [minL, maxL] = GAME_SCRAMBLE_LEN[o.len], words = gameWordPool(pool, minL, maxL, o.clue);
+  if(!words.length){ board.appendChild(gameNotice('No single words of that length in this vocabulary. Add more units or change the word length.')); return; }
+  const rounds = sample(words, Math.min(Number(o.rounds), words.length));
+  const st = {i:0, score:0, results:[], tiles:[], ans:[], done:null, hints:0, flash:false};
+  const wrap = mkEl(`<div class="card" style="max-width:640px;margin:0 auto;"></div>`);
+  board.appendChild(wrap);
+  function deal(){
+    const w = rounds[st.i].w, letters = [...w].map((c,k)=>({c, id:k}));
+    let t = shuffle(letters), tries = 0;
+    while(t.map(x=>x.c).join('')===w && tries++<10) t = shuffle(letters);
+    st.tiles = t; st.ans = []; st.done = null; st.hints = 0; st.flash = false;
+  }
+  function finish(result){
+    st.done = result;
+    st.results.push({it:rounds[st.i], result, hints:st.hints});
+    if(result==='right' && st.hints===0) st.score++;
+    draw();
+  }
+  function draw(){
+    wrap.innerHTML = '';
+    if(st.i>=rounds.length){
+      wrap.appendChild(mkEl(`<div class="quiz-prompt">Solved without hints: <span class="score-badge">${st.score}/${rounds.length}</span></div>`));
+      wrap.appendChild(mkEl(`<div class="explain"><ul>${st.results.map(r=>`<li><span class="arabic">${r.it.ar}</span> <span class="en-toggle">${r.it.en}</span> ${r.result==='skip'?'(skipped)':r.hints?'(used '+r.hints+' hint'+(r.hints>1?'s':'')+')':''}</li>`).join('')}</ul></div>`));
+      wrap.appendChild(mkEl(`<div class="row" style="margin-top:12px;"><button class="btn" id="sAgain">Play again</button></div>`)).querySelector('#sAgain').onclick = restart;
+      return;
+    }
+    const r = rounds[st.i], w = r.w;
+    wrap.appendChild(mkEl(`<div class="progressbar"><div style="width:${st.i/rounds.length*100}%"></div></div>`));
+    wrap.appendChild(mkEl(`<div class="muted">Word ${st.i+1} of ${rounds.length} · ${w.length} letters</div>`));
+    wrap.appendChild(mkEl(`<div class="g-cluebox">${gameClueHtml(r, o.clue)}</div>`));
+    const slots = mkEl(`<div class="g-slots ${st.flash?'shake':''}"></div>`);
+    for(let k=0; k<w.length; k++){
+      const a = st.ans[k];
+      const s = mkEl(`<button class="g-letter ${a?'filled':''} ${st.done==='right'?'right':''}" ${a&&!st.done?'':'disabled'}>${a?a.c:''}</button>`);
+      if(a && !st.done) s.onclick = ()=>{ st.tiles.push(st.ans.splice(k,1)[0]); st.flash = false; draw(); };
+      slots.appendChild(s);
+    }
+    wrap.appendChild(slots);
+    if(st.done){
+      wrap.appendChild(mkEl(`<div class="explain">${st.done==='right'?'Correct. ':'The word was '}<span class="arabic big-ar">${r.ar}</span> <span class="tr-toggle">${r.tr||''}</span> <span class="en-toggle">${r.en}</span></div>`));
+      wrap.appendChild(mkEl(`<div class="row" style="margin-top:12px;"><button class="btn" id="sNext">${st.i+1<rounds.length?'Next word':'See score'}</button></div>`)).querySelector('#sNext').onclick = ()=>{ st.i++; if(st.i<rounds.length) deal(); draw(); };
+      return;
+    }
+    const pool2 = mkEl(`<div class="g-slots g-tiles"></div>`);
+    st.tiles.forEach(t=>{
+      const b = mkEl(`<button class="g-letter">${t.c}</button>`);
+      b.onclick = ()=>{
+        st.ans.push(t); st.tiles.splice(st.tiles.indexOf(t),1); st.flash = false;
+        if(st.ans.length===w.length){
+          if(st.ans.map(x=>x.c).join('')===w){ finish('right'); return; }
+          st.flash = true; draw();
+          setTimeout(()=>{ if(st.done===null && st.flash){ st.tiles = st.tiles.concat(st.ans); st.ans = []; st.flash = false; draw(); } }, 650);
+          return;
+        }
+        draw();
+      };
+      pool2.appendChild(b);
+    });
+    wrap.appendChild(pool2);
+    const bar = mkEl(`<div class="row" style="justify-content:center;margin-top:12px;"><button class="btn ghost" id="sUndo">Undo</button><button class="btn ghost" id="sClear">Clear</button><button class="btn ghost" id="sHint">Hint</button><button class="btn ghost" id="sSkip">Skip</button></div>`);
+    bar.querySelector('#sUndo').onclick = ()=>{ if(st.ans.length){ st.tiles.push(st.ans.pop()); st.flash = false; draw(); } };
+    bar.querySelector('#sClear').onclick = ()=>{ st.tiles = st.tiles.concat(st.ans); st.ans = []; st.flash = false; draw(); };
+    bar.querySelector('#sHint').onclick = ()=>{
+      let k = 0; while(k<st.ans.length && st.ans[k].c===w[k]) k++;
+      st.tiles = st.tiles.concat(st.ans.splice(k));
+      const t = st.tiles.find(x=>x.c===w[k]);
+      if(t){ st.tiles.splice(st.tiles.indexOf(t),1); st.ans.push(t); st.hints++; st.flash = false; }
+      if(st.ans.length===w.length) finish(st.ans.map(x=>x.c).join('')===w ? 'right' : 'wrong'); else draw();
+    };
+    bar.querySelector('#sSkip').onclick = ()=>finish('skip');
+    wrap.appendChild(bar);
+  }
+  deal(); draw();
+}
+
+const GAME_KEYS = ['ضصثقفغعهخح', 'جشسيبلاتنم', 'كطظزورذدةء'];
+function gameScoreGuess(guess, target){
+  const g = [...guess], t = [...target], res = g.map(()=>'miss'), left = {};
+  t.forEach((c,i)=>{ if(g[i]===c) res[i] = 'hit'; else left[c] = (left[c]||0)+1; });
+  g.forEach((c,i)=>{ if(res[i]!=='hit' && left[c]>0){ res[i] = 'near'; left[c]--; } });
+  return res;
+}
+function runWordGuess(board, pool, o, restart){
+  const [minL, maxL] = o.len==='any' ? [3,6] : [Number(o.len), Number(o.len)], tries = Number(o.tries);
+  const words = gameWordPool(pool, minL, maxL, o.clue).map(i=>Object.assign(i, {t:gameFold(i.w)}));
+  if(!words.length){ board.appendChild(gameNotice('No single words of that length in this vocabulary. Add more units or change the word length.')); return; }
+  const st = {target:null, guesses:[], cur:'', over:null, msg:'', solved:0, played:0, seen:[]};
+  const wrap = mkEl(`<div class="card" style="max-width:520px;margin:0 auto;"></div>`);
+  board.appendChild(wrap);
+  function next(){
+    let left = words.filter(w=>!st.seen.includes(w));
+    if(!left.length){ st.seen = []; left = words; }
+    st.target = pick(left); st.seen.push(st.target); st.guesses = []; st.cur = ''; st.over = null; st.msg = '';
+  }
+  function keyStates(){
+    const best = {}, rank = {miss:1, near:2, hit:3};
+    st.guesses.forEach(g=>gameScoreGuess(g, st.target.t).forEach((r,i)=>{ const c = [...g][i]; if(!best[c] || rank[r]>rank[best[c]]) best[c] = r; }));
+    return best;
+  }
+  function press(c){ if(!st.over && [...st.cur].length<st.target.t.length){ st.cur += c; st.msg = ''; draw(); } }
+  function back(){ if(!st.over && st.cur){ st.cur = [...st.cur].slice(0,-1).join(''); st.msg = ''; draw(); } }
+  function enter(){
+    if(st.over) return;
+    if([...st.cur].length<st.target.t.length){ st.msg = 'Not enough letters.'; draw(); return; }
+    st.guesses.push(st.cur);
+    if(st.cur===st.target.t){ st.over = 'win'; st.solved++; st.played++; }
+    else if(st.guesses.length>=tries){ st.over = 'lose'; st.played++; }
+    st.cur = ''; st.msg = ''; draw();
+  }
+  function draw(){
+    wrap.innerHTML = '';
+    const t = st.target, len = t.t.length, states = keyStates();
+    wrap.appendChild(mkEl(`<div class="row" style="justify-content:space-between;"><span class="muted">${len} letters · ${tries} guesses</span><span class="pill">Solved ${st.solved}/${st.played}</span></div>`));
+    wrap.appendChild(mkEl(`<div class="g-cluebox">${gameClueHtml(t, o.clue)}${o.first==='yes' ? `<div class="muted">Starts with <span class="arabic">${t.t.charAt(0)}</span></div>` : ''}</div>`));
+    const grid = mkEl(`<div class="wg-grid"></div>`);
+    for(let r=0; r<tries; r++){
+      const row = mkEl(`<div class="wg-row"></div>`), g = st.guesses[r], isCur = r===st.guesses.length && !st.over;
+      const res = g ? gameScoreGuess(g, t.t) : null, letters = g ? [...g] : isCur ? [...st.cur] : [];
+      for(let k=0; k<len; k++) row.appendChild(mkEl(`<div class="wg-cell ${res?res[k]:''} ${isCur && letters[k]?'typed':''}">${letters[k]||''}</div>`));
+      grid.appendChild(row);
+    }
+    wrap.appendChild(grid);
+    if(st.msg) wrap.appendChild(mkEl(`<div class="g-msg">${st.msg}</div>`));
+    if(st.over){
+      wrap.appendChild(mkEl(`<div class="explain">${st.over==='win'?'Solved in '+st.guesses.length+'. ':'Out of guesses. The word was '}<span class="arabic big-ar">${t.ar}</span> <span class="tr-toggle">${t.tr||''}</span> <span class="en-toggle">${t.en}</span></div>`));
+      wrap.appendChild(mkEl(`<div class="row" style="margin-top:12px;"><button class="btn" id="wNext">Next word</button></div>`)).querySelector('#wNext').onclick = ()=>{ next(); draw(); };
+      return;
+    }
+    const kb = mkEl(`<div class="wg-kb"></div>`);
+    GAME_KEYS.forEach(rowKeys=>{
+      const row = mkEl(`<div class="wg-kbrow"></div>`);
+      [...rowKeys].forEach(c=>{ const b = mkEl(`<button class="wg-key ${states[c]||''}">${c}</button>`); b.onclick = ()=>press(c); row.appendChild(b); });
+      kb.appendChild(row);
+    });
+    const ctl = mkEl(`<div class="wg-kbrow"><button class="wg-key wide" id="wEnter">Enter</button><button class="wg-key wide" id="wBack">Delete</button><button class="wg-key wide" id="wSkip">Give up</button></div>`);
+    ctl.querySelector('#wEnter').onclick = enter; ctl.querySelector('#wBack').onclick = back;
+    ctl.querySelector('#wSkip').onclick = ()=>{ st.over = 'lose'; st.played++; draw(); };
+    kb.appendChild(ctl);
+    wrap.appendChild(kb);
+  }
+  gameKeyHandler = e=>{
+    if(currentTab!=='games' || e.ctrlKey || e.metaKey || e.altKey) return;
+    if(e.key==='Enter'){ e.preventDefault(); enter(); }
+    else if(e.key==='Backspace'){ e.preventDefault(); back(); }
+    else if(e.key.length===1 && /[ء-ي]/.test(e.key)){ const c = gameFold(e.key); if(GAME_KEYS.some(r=>r.includes(c))) press(c); }
+  };
+  document.addEventListener('keydown', gameKeyHandler);
+  next(); draw();
+}
+const GAME_RUN = {connections:runConnections, oddone:runOddOne, scramble:runScramble, wordguess:runWordGuess};
 
 /* ============================================================
    INIT
