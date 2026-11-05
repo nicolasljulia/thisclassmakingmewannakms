@@ -60,3 +60,7 @@ The site's verb data (`CONJUGATIONS` in index.html, the single source of truth u
 - Written daily homework: 10%
 - Exams/quizzes: 45% (4 term exams, highest 3 count; several quizzes, highest 7 count)
 - Final exam: 25% (oral 5%, writing 5%, computerized 15%) for the Alif Baa portion; Al-Kitaab's own term exams, a midterm, and a final oral/writing/computerized exam follow the pattern described in the homework schedule.
+
+## Lesson 4 quiz material (Exams tab)
+
+The Lesson 4 Quiz page (Thursday, Nov 5, "Review, short quiz" in the homework schedule) has a study guide PDF, a 4-page 87-point practice quiz with key, a Lesson 4 Review drill, and a checklist. No instructor study guide was available, so the scope is inferred from the Nov 2 to Nov 5 schedule entries: the present tense and its negation, the verbal sentence, verb forms (awzaan), hamzat al-qaTʿ and hamzat al-waSl, the hollow verbs (nam, sar, qal, kan), and the Lesson 4 vocabulary (p. 52). The textbook pages (grammar pp. 61 and 62, Drills 11 and 12) and the culture note "The Family of the Prophet Muhammad" (p. 64) are not on the site, so they are not covered; check the scope against what is announced in class. The practice quiz, the key and the hollow-verb conjugation tables added to the Hollow and Irregular Verbs lesson are original to this site (standard forms), and the reading paragraph was written by this site.
