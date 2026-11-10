@@ -2683,6 +2683,9 @@ const QUIZ_CATEGORIES = [
   {id:'hollow', label:'Hollow Verbs', desc:'Stem vowel and weak middle radical in نام, سار, قال, كان.'},
   {id:'masdar', label:'Verbal Noun', desc:'Match a verb to its masdar.'},
   {id:'connectors', label:'Connectors', desc:'و, أو, أم, لكن, فَ: which one and why?'},
+  {id:'lesson4', label:'Lesson 4 Exam', desc:'20 mixed questions: Lesson 4 vocabulary, present tense, the verbal sentence, verb forms, hamza, hollow verbs, kaana, and review of Lessons 1 to 3.'},
+  {id:'verbsent', label:'Verbal Sentence', desc:'Verb agreement, negation with \u0644\u0627, kaana, nominal or verbal.'},
+  {id:'hamza', label:'Hamza: Qat\u02BF or WaSl', desc:'Is the hamza at the start of the word hamzat al-qaT\u02BF or hamzat al-waSl?'},
   {id:'unit2', label:'Unit 2 Exam', desc:'Lesson 2 vocabulary, plurals, pronouns, agreement, nominal sentences, connectors, case endings.'},
 ];
 
@@ -2701,7 +2704,7 @@ function renderQuizMenu(main, cat){
 let quizState = {};
 function startQuiz(main, cat){
   const catInfo = QUIZ_CATEGORIES.find(c=>c.id===cat);
-  const questions = genQuestions(cat, 12);
+  const questions = genQuestions(cat, cat==='lesson4' ? 20 : 12);
   quizState = { cat, questions, idx:0, score:0, answered:false };
   const wrap = mkEl(`<div></div>`);
   wrap.appendChild(mkEl(`<div class="row" style="margin-bottom:10px;"><button class="btn ghost" id="qBack">&larr; Categories</button><div class="spacer"></div><span class="pill">${catInfo.label}</span></div>`));
@@ -2887,6 +2890,133 @@ function genUnit2Questions(n){
   return qs;
 }
 
+
+/* ---- Lesson 4 exam quizzes: mixed exam, verbal sentence, hamza ---- */
+const L4_PLURALS = [
+  ['مَدْرَسة','مَدارِس','school'],['زَميل','زُمَلاء','classmate (m.)'],['زَميلة','زَميلات','classmate (f.)'],
+  ['صَديق','أَصْدِقاء','friend (m.)'],['صَديقة','صَديقات','friend (f.)'],['فَرْد','أَفْراد','individual']
+];
+const L4_NEGATION = [
+  ['أَنا أَشْرَبُ القَهْوةَ','أَنا لا أَشْرَبُ القَهْوةَ',['أَنا لَيْسَ أَشْرَبُ القَهْوةَ','أَنا أَشْرَبُ لا القَهْوةَ']],
+  ['تَسْكُنُ زَمِيلَتِي فِي القاهِرةِ','لا تَسْكُنُ زَمِيلَتِي فِي القاهِرةِ',['تَسْكُنُ زَمِيلَتِي لا فِي القاهِرةِ','لَيْسَتْ تَسْكُنُ زَمِيلَتِي فِي القاهِرةِ']],
+  ['نَحْنُ نَدْرُسُ العَرَبِيّةَ','نَحْنُ لا نَدْرُسُ العَرَبِيّةَ',['نَحْنُ لَسْنا نَدْرُسُ العَرَبِيّةَ','نَحْنُ نَدْرُسُ العَرَبِيّةَ لا']],
+  ['يَحْفَظُ الطُّلّابُ الأَسْماءَ','لا يَحْفَظُ الطُّلّابُ الأَسْماءَ',['يَحْفَظُ لا الطُّلّابُ الأَسْماءَ','لا يَحْفَظُونَ الطُّلّابُ الأَسْماءَ']],
+  ['هِيَ تُسافِرُ إِلَى القاهِرةِ','هِيَ لا تُسافِرُ إِلَى القاهِرةِ',['هِيَ لَيْسَتْ تُسافِرُ إِلَى القاهِرةِ','هِيَ تُسافِرُ لا إِلَى القاهِرةِ']],
+  ['أَتَذَكَّرُ الطُّفُولةَ','لا أَتَذَكَّرُ الطُّفُولةَ',['لَسْتُ أَتَذَكَّرُ الطُّفُولةَ','أَتَذَكَّرُ لا الطُّفُولةَ']]
+];
+const L4_AGREEMENT = [
+  ['___ الطُّلّابُ فِي المَكْتَبةِ','يَدْرُسُ',['يَدْرُسُونَ','تَدْرُسُ'],'the verb comes first, so it stays singular'],
+  ['الطُّلّابُ ___ فِي المَكْتَبةِ','يَدْرُسُونَ',['يَدْرُسُ','يَدْرُسْنَ'],'the subject comes first, so the verb agrees with it in number and gender'],
+  ['___ الزَّمِيلاتُ إِلَى المَدْرَسةِ','تَذْهَبُ',['يَذْهَبْنَ','يَذْهَبُ'],'the verb comes first, so it is singular and feminine to match الزَّمِيلات'],
+  ['الزَّمِيلاتُ ___ إِلَى المَدْرَسةِ','يَذْهَبْنَ',['تَذْهَبُ','يَذْهَبُونَ'],'the subject comes first, so the verb is feminine plural'],
+  ['___ الأَصْدِقاءُ الرَّسائِلَ','يَكْتُبُ',['يَكْتُبُونَ','تَكْتُبُ'],'the verb comes first, so it is singular and masculine'],
+  ['___ الطّالِباتُ العَرَبِيّةَ','تَدْرُسُ',['يَدْرُسْنَ','يَدْرُسُ'],'the verb comes first, so it is singular and feminine'],
+  ['الأُسْتاذُ ___ فِي الجامِعةِ','يَعْمَلُ',['يَعْمَلُونَ','تَعْمَلُ'],'a singular masculine subject takes a singular masculine verb'],
+  ['___ الأَوْلادُ فِي الصَّفِّ','كانَ',['كانُوا','كانَتْ'],'كانَ before its subject stays singular too'],
+  ['الأَوْلادُ ___ فِي الصَّفِّ','كانُوا',['كانَ','كُنَّ'],'with the subject first, كانَ agrees: masculine plural كانُوا']
+];
+const L4_HAMZA = [
+  ['أُخْت','q','it is always pronounced'],['اِسْم','w','اسم is one of the nouns that begin with hamzat al-waSl'],
+  ['الكِتاب','w','the definite article ال starts with hamzat al-waSl'],['أَنا','q','a pronoun with a pronounced hamza'],
+  ['اِبْن','w','ابن is one of the nouns that begin with hamzat al-waSl'],['إِلَى','q','a preposition with a pronounced hamza'],
+  ['اِسْتَمَعَ','w','Form VIII past tense begins with hamzat al-waSl'],['أَرادَ','q','Form IV past tense begins with hamzat al-qaTʿ'],
+  ['اِمْرَأة','w','امرأة is one of the nouns that begin with hamzat al-waSl'],['اِثْنان','w','اثنان is one of the nouns that begin with hamzat al-waSl'],
+  ['أَخ','q','the hamza is part of the word and is always heard'],['أُحِبُّ','q','the أ is the "I" prefix, always pronounced'],
+  ['أَصْدِقاء','q','a broken plural that begins with a pronounced hamza'],['اِنْتَقَلَ','w','Form VIII past tense begins with hamzat al-waSl']
+];
+const L4_KAANA = [
+  ['المَدِينةُ كَبِيرةٌ','كانَتِ المَدِينةُ كَبِيرةً',['كانَتِ المَدِينةُ كَبِيرةٌ','كانَ المَدِينةُ كَبِيرةً'],'the verb agrees in gender and the predicate becomes accusative'],
+  ['أَنا مَشْغُولٌ','كُنْتُ مَشْغُولاً',['كانَ أَنا مَشْغُولاً','كُنْتُ مَشْغُولٌ'],'كُنْتُ for "I was", and the predicate is accusative'],
+  ['الطُّلّابُ فِي الصَّفِّ','كانَ الطُّلّابُ فِي الصَّفِّ',['كانُوا الطُّلّابُ فِي الصَّفِّ','كُنّا الطُّلّابُ فِي الصَّفِّ'],'with the verb first it stays singular'],
+  ['أَنْتِ وَحِيدةٌ','كُنْتِ وَحِيدةً',['كُنْتَ وَحِيدةً','كانَتْ وَحِيدةً'],'كُنْتِ is "you (f.) were"'],
+  ['الكِتابُ جَدِيدٌ','كانَ الكِتابُ جَدِيداً',['كانَ الكِتابُ جَدِيدٌ','كانَتِ الكِتابُ جَدِيداً'],'masculine subject, masculine verb, accusative predicate'],
+  ['نَحْنُ طُلّابٌ','كُنّا طُلّاباً',['كُنَّ طُلّاباً','كانُوا طُلّاباً'],'كُنّا is "we were"']
+];
+const HOLLOW_PERSONS = [['أَنا','I'],['أَنْتَ','you (m.)'],['هُوَ','he'],['هِيَ','she'],['نَحْنُ','we'],['هُمْ','they (m.)'],['هُنَّ','they (f.)']];
+const HOLLOW_FORMS = {
+  'نامَ':{past:['نِمْتُ','نِمْتَ','نامَ','نامَتْ','نِمْنا','نامُوا','نِمْنَ'], present:['أَنامُ','تَنامُ','يَنامُ','تَنامُ','نَنامُ','يَنامُونَ','يَنَمْنَ'], en:'to sleep'},
+  'سارَ':{past:['سِرْتُ','سِرْتَ','سارَ','سارَتْ','سِرْنا','سارُوا','سِرْنَ'], present:['أَسيرُ','تَسيرُ','يَسيرُ','تَسيرُ','نَسيرُ','يَسيرُونَ','يَسِرْنَ'], en:'to walk, go'},
+  'قالَ':{past:['قُلْتُ','قُلْتَ','قالَ','قالَتْ','قُلْنا','قالُوا','قُلْنَ'], present:['أَقولُ','تَقولُ','يَقولُ','تَقولُ','نَقولُ','يَقولُونَ','يَقُلْنَ'], en:'to say'},
+  'كانَ':{past:['كُنْتُ','كُنْتَ','كانَ','كانَتْ','كُنّا','كانُوا','كُنَّ'], present:['أَكونُ','تَكونُ','يَكونُ','تَكونُ','نَكونُ','يَكونُونَ','يَكُنَّ'], en:'to be'}
+};
+function lesson4Makers(){
+  const uniq = a=>Array.from(new Set(a));
+  const arSpan = t=>`<span class="arabic big-ar">${t}</span>`;
+  const l4 = VOCAB.filter(v=>v.book==='alkitaab' && v.unit===4);
+  const l13 = VOCAB.filter(v=>v.book==='alkitaab' && v.unit<=3);
+  const vocabQ = pool=>()=>{
+    const v = pick(pool);
+    if(Math.random()<0.5){
+      return mcqFrom(v.en, uniq(pool.filter(x=>x.en!==v.en).map(x=>x.en)), `What does ${arSpan(v.ar)} <span class="muted tr-toggle">(${v.tr})</span> mean?`, `${v.ar} = ${v.en}`);
+    }
+    const q = mcqFrom(v.ar, uniq(pool.filter(x=>x.en!==v.en).map(x=>x.ar)), `Which word means "${v.en}"?`, `${v.en} = ${v.ar} <span class="tr-toggle">(${v.tr})</span>`);
+    q.options = q.options.map(arSpan); return q;
+  };
+  const M = {
+    vocab4: vocabQ(l4),
+    vocab13: vocabQ(l13),
+    plural4(){
+      const [sg,pl,en] = pick(L4_PLURALS);
+      const pool = uniq(L4_PLURALS.map(x=>x[1]).concat(PLURAL_LISTS.flatMap(g=>g.items.map(i=>i[1]))));
+      const q = mcqFrom(pl, pool, `What is the plural of ${arSpan(sg)} <span class="muted en-toggle">(${en})</span>?`, `${sg} → ${pl}`);
+      q.options = q.options.map(arSpan); return q;
+    },
+    present(){
+      const v = pick(CONJUGATIONS); const p = pick([0,1,3,4,5,9,11]);
+      const q = mcqFrom(v.forms[p], uniq(v.forms), `Present tense: ${arSpan(v.root+' / '+CONJ_PRONOUNS[p])} <span class="muted en-toggle">(${v.english}, ${CONJ_PERSON_LABELS[p]})</span>`, `${v.root} with ${CONJ_PRONOUNS[p]}: ${v.forms[p]}`);
+      q.options = q.options.map(arSpan); return q;
+    },
+    negation(){
+      const [a,ok,bad] = pick(L4_NEGATION); const options = shuffle([ok,...bad]);
+      return {prompt:`Which sentence is the correct negation of ${arSpan(a)}?`, options:options.map(arSpan), correct:options.indexOf(ok), explain:`${ok}: لا goes directly before a present-tense verb. لَيْسَ negates nominal sentences.`};
+    },
+    agreement(){
+      const [stem,ok,bad,why] = pick(L4_AGREEMENT); const options = shuffle([ok,...bad]);
+      return {prompt:`Which verb fits? ${arSpan(stem.replace('___','<b>_____</b>'))}`, options:options.map(arSpan), correct:options.indexOf(ok), explain:`${stem.replace('___',ok)}: ${why}.`};
+    },
+    verbform(){ return genVerbFormsQuestions(1)[0]; },
+    hamza(){
+      const [w,t,why] = pick(L4_HAMZA); const options = ['Hamzat al-qaTʿ (always pronounced)','Hamzat al-waSl (elided)'];
+      return {prompt:`Which hamza does ${arSpan(w)} start with?`, options, correct:t==='q'?0:1, explain:`${w}: ${why}.`};
+    },
+    hollow(){
+      const name = pick(Object.keys(HOLLOW_FORMS)); const h = HOLLOW_FORMS[name];
+      const tense = pick(['past','present']); const i = Math.floor(Math.random()*7);
+      const pool = uniq(h[tense].concat(Object.values(HOLLOW_FORMS).map(x=>x[tense][i])));
+      const q = mcqFrom(h[tense][i], pool, `${arSpan(name+' / '+HOLLOW_PERSONS[i][0])} <span class="muted en-toggle">(${h.en}, ${tense}, ${HOLLOW_PERSONS[i][1]})</span> → ?`, `${name} (${tense}) with ${HOLLOW_PERSONS[i][0]}: ${h[tense][i]}`);
+      q.options = q.options.map(arSpan); return q;
+    },
+    kaana(){
+      const [a,ok,bad,why] = pick(L4_KAANA); const options = shuffle([ok,...bad]);
+      return {prompt:`Say it in the past: ${arSpan(a)}`, options:options.map(arSpan), correct:options.indexOf(ok), explain:`${ok}: ${why}.`};
+    },
+    sentype(){ return genSentypeQuestions(1)[0]; },
+    case(){ return genCaseQuestions(1)[0]; },
+    qword(){ return genQWordQuestions(1)[0]; },
+    idafa(){ return genIdafaQuestions(1)[0]; },
+    plural(){ return genPluralQuestions(1)[0]; },
+    pronoun(){ return genPronounQuestions(1)[0]; }
+  };
+  return M;
+}
+function genMakerQuiz(n, weights){
+  const M = lesson4Makers();
+  const bag = weights.flatMap(([k,w])=>Array(w).fill(k));
+  const qs = []; const seen = new Set(); let guard = 0;
+  while(qs.length<n && guard++<600){
+    const q = M[pick(bag)]();
+    if(!q || seen.has(q.prompt)) continue;
+    seen.add(q.prompt); qs.push(q);
+  }
+  return qs;
+}
+function genLesson4Questions(n){
+  return genMakerQuiz(n, [['vocab4',3],['vocab13',2],['plural4',2],['present',3],['negation',1],['agreement',2],['verbform',2],['hamza',2],['hollow',3],['kaana',1],
+    ['sentype',1],['case',1],['qword',1],['idafa',1],['plural',1],['pronoun',1]]);
+}
+function genVerbalSentenceQuestions(n){ return genMakerQuiz(n, [['agreement',4],['negation',3],['sentype',2],['kaana',2]]); }
+function genHamzaQuestions(n){ return genMakerQuiz(n, [['hamza',1]]); }
+
 function genQuestions(cat, n){
   if(cat==='vocab') return genVocabQuestions(n);
   if(cat==='gender') return genGenderQuestions(n);
@@ -2906,6 +3036,9 @@ function genQuestions(cat, n){
   if(cat==='masdar') return genMasdarQuestions(n);
   if(cat==='connectors') return genConnectorsQuestions(n);
   if(cat==='unit2') return genUnit2Questions(n);
+  if(cat==='lesson4') return genLesson4Questions(n);
+  if(cat==='verbsent') return genVerbalSentenceQuestions(n);
+  if(cat==='hamza') return genHamzaQuestions(n);
   return [];
 }
 
@@ -3835,6 +3968,7 @@ function buildPastQuizK1Items(){
 /* ---- Reviews and plural lists from the Lesson 2 and Lesson 3 study material ---- */
 const REVIEW_SETS = {
   lesson2: [{"title": "A. Fill in the pronoun", "instr": "", "qlang": "ar", "items": [["مَن أَنْتِ؟ ___ طالِبة جَدِيدة.", "أَنا طالِبة جَدِيدة."], ["هَل ___ مِصْرِيّ يا أَحْمَد؟", "هَل أَنْتَ مِصْرِيّ يا أَحْمَد؟"], ["هَل ___ مَشْغُولة يا نادِيَة؟", "هَل أَنْتِ مَشْغُولة يا نادِيَة؟"], ["مَن مَها؟ ___ طالِبة فِي جامِعة نِيويُورْك.", "هِيَ طالِبة فِي جامِعة نِيويُورْك."], ["مِن أَيْن ___ يا شَباب؟ ___ مِن لُبْنان.", "مِن أَيْن أَنْتُمْ يا شَباب؟ نَحْنُ مِن لُبْنان."], ["مُحَمَّد وَعَلِيّ؟ ___ مُتَرْجِمُون.", "هُمْ مُتَرْجِمُون."]]}, {"title": "B. Make it plural and make it agree", "instr": "Use the plural of the words in parentheses.", "qlang": "ar", "items": [["نَحْنُ (طالِب، أَمْرِيكِيّ)", "نَحْنُ طُلّاب أَمْرِيكِيُّون."], ["هَذِهِ (سَيّارة، يابانِيّ)", "هَذِهِ سَيّارات يابانِيّة."], ["الآنِسة مُنَى وَالسَّيِّدة عَبِير (مُوَظَّفة، جَدِيد)", "الآنِسة مُنَى وَالسَّيِّدة عَبِير مُوَظَّفات جَدِيدات."], ["القاهِرة وَبَيْرُوت وَبَغْداد (مَدِينة، عَرَبِيّ)", "مُدُن عَرَبِيّة."], ["هُمْ (أُسْتاذ، عَرَبِيّ)", "هُمْ أَساتِذة عَرَب."], ["الإِسْبانِيّة وَالفَرَنْسِيّة (لُغة، صَعْب)", "لُغات صَعْبة."]]}, {"title": "C. Find the مُبْتَدَأ and the خَبَر", "instr": "", "qlang": "ar", "items": [["الكُتُب كَبِيرة.", "مُبْتَدَأ: الكُتُب / خَبَر: كَبِيرة"], ["والِدَتِي مُوَظَّفة فِي مَكْتَب القَبُول.", "مُبْتَدَأ: والِدَتِي / خَبَر: مُوَظَّفة فِي مَكْتَب القَبُول"], ["أَنْتُمْ مَشْغُولُون.", "مُبْتَدَأ: أَنْتُمْ / خَبَر: مَشْغُولُون"], ["مَها تَسْكُن فِي نِيويُورْك.", "مُبْتَدَأ: مَها / خَبَر: تَسْكُن فِي نِيويُورْك"], ["مَكْتَب الأُسْتاذ فِي هَذِهِ البِناية.", "مُبْتَدَأ: مَكْتَب الأُسْتاذ / خَبَر: فِي هَذِهِ البِناية"]]}, {"title": "D. Phrase or sentence?", "instr": "", "qlang": "ar", "items": [["البَيْت الكَبِير", "phrase: the big house (both have ال)"], ["البَيْت كَبِير", "sentence: The house is big."], ["طالِبة مِصْرِيّة", "phrase: an Egyptian student"], ["الطّالِبة مِصْرِيّة", "sentence: The student is Egyptian."], ["هَذا الطّالِب عِراقِيّ", "sentence: This student is Iraqi."]]}, {"title": "E. Which connector?", "instr": "", "qlang": "ar", "items": [["هَل أَنْتِ مِصْرِيّة ___ لُبْنانِيّة؟", "أَم (a question)"], ["أَدْرُس فِي النَّهار ___ أَعْمَل فِي المَساء.", "وَ"], ["العَرَبِيّة جَمِيلة، ___ الدُّرُوس صَعْبة.", "وَلَكِن"], ["أَدْرُس الإِسْبانِيّة ___ الفَرَنْسِيّة.", "أَو (a statement, not a question)"], ["أَنا مَشْغُول دائِمًا، ___ أَنا تَعْبان.", "فَـ ← فَأَنا"]]}, {"title": "F. Add the case endings", "instr": "", "qlang": "ar", "items": [["الطالب يقرأ الكتاب في المكتبة.", "الطّالِبُ يَقْرَأُ الكِتابَ فِي المَكْتَبَةِ."], ["كتاب الأستاذ جديد.", "كِتابُ الأُسْتاذِ جَدِيدٌ."], ["هذا الطالب عراقي.", "هَذا الطّالِبُ عِراقِيٌّ."]]}, {"title": "H. Say it in Arabic", "instr": "", "qlang": "en", "items": [["I have an aunt named Nadia.", "لِي خالة اسْمُها نادِيَة."], ["My mother is busy with work in the daytime.", "والِدَتِي مَشْغُولة بِالعَمَل فِي النَّهار."], ["I am really busy, but I am happy.", "أَنا فِعْلًا مَشْغُول، وَلَكِن أَنا سَعِيد."], ["I live in Washington, where I study Arabic.", "أَسْكُن فِي واشِنْطُن، حَيْثُ أَدْرُس العَرَبِيّة."], ["He is a translator specializing in French.", "هُوَ مُتَرْجِم مُتَخَصِّص فِي الفَرَنْسِيّة."], ["I am the only boy in the family.", "أَنا الوَلَد الوَحِيد فِي الأُسْرة."]]}],
+  lesson4exam: [{"title": "A. Say it in English", "instr": "Lesson 4 vocabulary.", "qlang": "ar", "items": [["اِبْتِدائِيّ", "primary, elementary"], ["الطُّفُولة", "childhood"], ["قَبْلَ", "before"], ["كُلّ", "all, every"], ["فَرْد", "individual, person"], ["أَوَّل", "first"], ["رابِع", "fourth"], ["زُمَلاء", "classmates, colleagues (m.)"], ["أَفْراد", "individuals, people"], ["السَّفَر (إِلَى)", "traveling"]]}, {"title": "B. Give the plural", "instr": "Lessons 3 and 4.", "qlang": "ar", "items": [["قَرِيب", "أَقارِب"], ["ضابِط", "ضُبّاط"], ["رِسالة", "رَسائِل"], ["مَدْرَسة", "مَدارِس"], ["زَمِيل", "زُمَلاء"], ["صَدِيق", "أَصْدِقاء"], ["عائِلة", "عائِلات"], ["صُورة", "صُوَر"]]}, {"title": "C. Conjugate", "instr": "Write the present tense of كَتَبَ for each pronoun.", "qlang": "ar", "items": [["(كَتَبَ / أَنا)", "أَكْتُبُ"], ["(كَتَبَ / أَنْتَ)", "تَكْتُبُ"], ["(كَتَبَ / أَنْتِ)", "تَكْتُبِينَ"], ["(كَتَبَ / هُوَ)", "يَكْتُبُ"], ["(كَتَبَ / هِيَ)", "تَكْتُبُ"], ["(كَتَبَ / نَحْنُ)", "نَكْتُبُ"], ["(كَتَبَ / أَنْتُمْ)", "تَكْتُبُونَ"], ["(كَتَبَ / هُمْ)", "يَكْتُبُونَ"], ["(كَتَبَ / هُنَّ)", "يَكْتُبْنَ"]]}, {"title": "D. Present tense, other verbs", "instr": "Write the present-tense form for the pronoun.", "qlang": "ar", "items": [["(فَهِمَ / هِيَ)", "تَفْهَمُ"], ["(أَكَلَ / نَحْنُ)", "نَأْكُلُ"], ["(اسْتَمَعَ / أَنا)", "أَسْتَمِعُ"], ["(أَرْسَلَ / أَنْتُمْ)", "تُرْسِلُونَ"], ["(تَخَصَّصَ / هُوَ)", "يَتَخَصَّصُ"], ["(سَكَنَ / أَنْتِ)", "تَسْكُنِينَ"], ["(عَمِلَ / هُمْ)", "يَعْمَلُونَ"], ["(قَبِلَ / أَنا)", "أَقْبَلُ"]]}, {"title": "E. Say no", "instr": "Negate each sentence with لا.", "qlang": "ar", "items": [["أَنا أَكْتُبُ الرِّسالةَ.", "أَنا لا أَكْتُبُ الرِّسالةَ."], ["تَدْرُسُ صَدِيقَتِي العَرَبِيّةَ.", "لا تَدْرُسُ صَدِيقَتِي العَرَبِيّةَ."], ["نَحْنُ نَذْهَبُ إِلَى المَدْرَسةِ.", "نَحْنُ لا نَذْهَبُ إِلَى المَدْرَسةِ."], ["يَعْمَلُ زُمَلائِي فِي بَنْكٍ.", "لا يَعْمَلُ زُمَلائِي فِي بَنْكٍ."], ["هِيَ تَتَذَكَّرُ الأَسْماءَ.", "هِيَ لا تَتَذَكَّرُ الأَسْماءَ."], ["أَنْتَ تَقْرَأُ القِصّةَ.", "أَنْتَ لا تَقْرَأُ القِصّةَ."]]}, {"title": "F. Make it a verbal sentence", "instr": "Put the verb first and make it singular.", "qlang": "ar", "items": [["الطُّلّابُ يَذْهَبُونَ إِلَى الجامِعةِ.", "يَذْهَبُ الطُّلّابُ إِلَى الجامِعةِ."], ["الصَّدِيقاتُ يَكْتُبْنَ الرَّسائِلَ.", "تَكْتُبُ الصَّدِيقاتُ الرَّسائِلَ."], ["الزُّمَلاءُ يَحْفَظُونَ الأَسْماءَ.", "يَحْفَظُ الزُّمَلاءُ الأَسْماءَ."], ["المُوَظَّفةُ تَعْمَلُ فِي البَنْكِ.", "تَعْمَلُ المُوَظَّفةُ فِي البَنْكِ."], ["الأَوْلادُ يَشْرَبُونَ القَهْوةَ.", "يَشْرَبُ الأَوْلادُ القَهْوةَ."], ["أَخِي يُسافِرُ إِلَى عَمّانَ.", "يُسافِرُ أَخِي إِلَى عَمّانَ."]]}, {"title": "G. Which form is it?", "instr": "Give the form number (wazn).", "qlang": "ar", "items": [["عَمِلَ", "I (فَعَلَ)"], ["تَزَوَّجَ", "V (تَفَعَّلَ)"], ["تَخَصَّصَ", "V (تَفَعَّلَ)"], ["سافَرَ", "III (فاعَلَ)"], ["شاهَدَ", "III (فاعَلَ)"], ["أَرْسَلَ", "IV (أَفْعَلَ)"], ["دَرَّسَ", "II (فَعَّلَ)"], ["اِسْتَمَعَ", "VIII (اِفْتَعَلَ)"]]}, {"title": "H. The templates", "instr": "Write the past and present templates of each form.", "qlang": "en", "items": [["Form II", "فَعَّلَ / يُفَعِّلُ"], ["Form III", "فاعَلَ / يُفاعِلُ"], ["Form IV", "أَفْعَلَ / يُفْعِلُ"], ["Form V", "تَفَعَّلَ / يَتَفَعَّلُ"], ["Form VIII", "اِفْتَعَلَ / يَفْتَعِلُ"]]}, {"title": "I. Qatʿ or waSl?", "instr": "Is the hamza at the start of the word hamzat al-qaTʿ or hamzat al-waSl?", "qlang": "ar", "items": [["اِبْنَة", "waSl"], ["أَخ", "qaTʿ"], ["اِمْرَأة", "waSl"], ["أُحِبُّ", "qaTʿ (the \"I\" prefix)"], ["اِثْنان", "waSl"], ["أَصْدِقاء", "qaTʿ"], ["اِنْتَقَلَ", "waSl (Form VIII)"], ["أَرْسَلَ", "qaTʿ (Form IV)"], ["الطُّفُولة", "waSl (the definite article)"], ["إِلَى", "qaTʿ"]]}, {"title": "J. Hollow verbs", "instr": "Write the form asked for.", "qlang": "ar", "items": [["(نامَ / هُمْ، past)", "نامُوا"], ["(سارَ / نَحْنُ، past)", "سِرْنا"], ["(قالَ / هِيَ، present)", "تَقُولُ"], ["(كانَ / أَنا، present)", "أَكُونُ"], ["(نامَ / هُنَّ، past)", "نِمْنَ"], ["(سارَ / أَنْتَ، present)", "تَسِيرُ"], ["(قالَ / أَنْتَ، past)", "قُلْتَ"], ["(كانَ / هِيَ، past)", "كانَتْ"], ["(نامَ / هُوَ، present)", "يَنامُ"], ["(قالَ / هُمْ، present)", "يَقُولُونَ"]]}, {"title": "K. Use kaana", "instr": "Say the sentence in the past with كان.", "qlang": "ar", "items": [["الجامِعةُ كَبِيرةٌ.", "كانَتِ الجامِعةُ كَبِيرةً."], ["أَنا زَمِيلٌ جَدِيدٌ.", "كُنْتُ زَمِيلاً جَدِيداً."], ["هُمْ فِي المَكْتَبةِ.", "كانُوا فِي المَكْتَبةِ."], ["أَنْتُمْ مَشْغُولُونَ.", "كُنْتُمْ مَشْغُولِينَ."], ["الصَّدِيقاتُ فِي المَدْرَسةِ.", "كانَتِ الصَّدِيقاتُ فِي المَدْرَسةِ."]]}, {"title": "L. Use laysa", "instr": "Negate each nominal sentence with لَيْسَ.", "qlang": "ar", "items": [["أَنا مَشْغُولٌ.", "أَنا لَسْتُ مَشْغُولاً."], ["هِيَ طالِبةٌ.", "هِيَ لَيْسَتْ طالِبةً."], ["نَحْنُ فِي البَيْتِ.", "نَحْنُ لَسْنا فِي البَيْتِ."], ["هُمْ مُوَظَّفُونَ.", "هُمْ لَيْسُوا مُوَظَّفِينَ."], ["أَنْتَ مِصْرِيٌّ.", "أَنْتَ لَسْتَ مِصْرِيّاً."]]}, {"title": "M. Whose?", "instr": "Turn each pair into one word with a possessive ending.", "qlang": "ar", "items": [["(صَدِيقة / أَنا)", "صَدِيقَتِي"], ["(مَدْرَسة / هُمْ)", "مَدْرَسَتُهُمْ"], ["(زَمِيل / أَنْتَ)", "زَمِيلُكَ"], ["(أَصْدِقاء / نَحْنُ)", "أَصْدِقاؤُنا"], ["(طُفُولة / هُوَ)", "طُفُولَتُهُ"], ["(فَرْد / هِيَ)", "فَرْدُها"]]}, {"title": "N. Make an idafa", "instr": "Put the nouns together correctly.", "qlang": "ar", "items": [["(مَدْرَسة / البِنْت)", "مَدْرَسةُ البِنْتِ  (the girl's school)"], ["(صَدِيقة / الأُسْتاذ)", "صَدِيقةُ الأُسْتاذِ  (the professor's friend)"], ["(زُمَلاء / اِبْنِي)", "زُمَلاءُ اِبْنِي  (my son's classmates)"], ["(طُفُولة / والِدِي)", "طُفُولةُ والِدِي  (my father's childhood)"]]}, {"title": "O. Case endings", "instr": "Add the suitable case endings.", "qlang": "ar", "items": [["الطالبة تحفظ الأسماء.", "الطّالِبةُ تَحْفَظُ الأَسْماءَ."], ["زميلي يدرس في المدرسة الابتدائية.", "زَمِيلِي يَدْرُسُ فِي المَدْرَسةِ الاِبْتِدائِيّةِ."], ["كان الطقس باردا.", "كانَ الطَّقْسُ بارِداً."], ["أحب صديقة أختي.", "أُحِبُّ صَدِيقةَ أُخْتِي."]]}, {"title": "P. Translate", "instr": "Say it in Arabic.", "qlang": "en", "items": [["My friend (f.) memorizes the names.", "تَحْفَظُ صَدِيقَتِي الأَسْماءَ"], ["We were classmates in primary school.", "كُنّا زُمَلاءَ فِي المَدْرَسةِ الاِبْتِدائِيّةِ"], ["She does not remember her childhood.", "هِيَ لا تَتَذَكَّرُ طُفُولَتَها"], ["Every student travels to Cairo.", "كُلُّ طالِبٍ يُسافِرُ إِلَى القاهِرةِ"], ["I was in the school before the university.", "كُنْتُ فِي المَدْرَسةِ قَبْلَ الجامِعةِ"], ["My brother does not sleep in the library.", "لا يَنامُ أَخِي فِي المَكْتَبةِ"]]}],
   lesson4: [{"title": "A. Say it in Arabic", "instr": "Lesson 4 vocabulary.", "qlang": "en", "items": [["school", "مَدْرَسة"], ["primary, elementary", "اِبْتِدائِيّ"], ["classmate (m.)", "زَمِيل"], ["classmate (f.)", "زَمِيلة"], ["friend (m.)", "صَدِيق"], ["friend (f.)", "صَدِيقة"], ["childhood", "الطُّفُولة"], ["individual, person", "فَرْد"], ["before", "قَبْلَ"], ["all, every", "كُلّ"], ["first", "أَوَّل"], ["fourth", "رابِع"], ["traveling", "السَّفَر (إِلَى)"], ["I memorize", "أَحْفَظ"], ["I remember", "أَتَذَكَّر"], ["she travels", "تُسافِر (إِلَى)"], ["he was", "كانَ"], ["I was", "كُنْتُ"]]}, {"title": "B. Give the plural", "instr": "", "qlang": "ar", "items": [["مَدْرَسة", "مَدارِس"], ["زَمِيل", "زُمَلاء"], ["زَمِيلة", "زَمِيلات"], ["صَدِيق", "أَصْدِقاء"], ["صَدِيقة", "صَدِيقات"], ["فَرْد", "أَفْراد"]]}, {"title": "C. Present tense", "instr": "Write the present-tense form for the pronoun.", "qlang": "ar", "items": [["(ذَهَبَ / أَنا)", "أَذْهَبُ"], ["(كَتَبَ / أَنْتَ)", "تَكْتُبُ"], ["(شَرِبَ / هُوَ)", "يَشْرَبُ"], ["(سافَرَ / هِيَ)", "تُسافِرُ"], ["(عَمِلَ / نَحْنُ)", "نَعْمَلُ"], ["(حَفِظَ / أَنْتُمْ)", "تَحْفَظُونَ"], ["(تَذَكَّرَ / هُمْ)", "يَتَذَكَّرُونَ"], ["(أَكَلَ / أَنا)", "آكُلُ"], ["(دَرَّسَ / أَنا)", "أُدَرِّسُ"], ["(فَهِمَ / أَنْتِ)", "تَفْهَمِينَ"]]}, {"title": "D. Say no", "instr": "Negate each sentence with لا.", "qlang": "ar", "items": [["أَنا أَذْهَبُ إِلَى المَدْرَسةِ.", "أَنا لا أَذْهَبُ إِلَى المَدْرَسةِ."], ["هِيَ تُسافِرُ إِلَى القاهِرةِ.", "هِيَ لا تُسافِرُ إِلَى القاهِرةِ."], ["يَحْفَظُ الطُّلّابُ الأَسْماءَ.", "لا يَحْفَظُ الطُّلّابُ الأَسْماءَ."], ["نَحْنُ نَتَذَكَّرُ الطُّفُولةَ.", "نَحْنُ لا نَتَذَكَّرُ الطُّفُولةَ."], ["تَدْرُسُ زَمِيلَتِي فِي المَدْرَسةِ.", "لا تَدْرُسُ زَمِيلَتِي فِي المَدْرَسةِ."]]}, {"title": "E. Make it a verbal sentence", "instr": "Put the verb first. The verb is singular when it comes before its subject.", "qlang": "ar", "items": [["الطُّلّابُ يَدْرُسُونَ العَرَبِيّةَ.", "يَدْرُسُ الطُّلّابُ العَرَبِيّةَ."], ["الطّالِباتُ يَكْتُبْنَ الرِّسالةَ.", "تَكْتُبُ الطّالِباتُ الرِّسالةَ."], ["الأَصْدِقاءُ يَذْهَبُونَ إِلَى المَدْرَسةِ.", "يَذْهَبُ الأَصْدِقاءُ إِلَى المَدْرَسةِ."], ["الزَّمِيلةُ تَقْرَأُ القِصّةَ.", "تَقْرَأُ الزَّمِيلةُ القِصّةَ."], ["المُوَظَّفُونَ يَعْمَلُونَ فِي البَنْكِ.", "يَعْمَلُ المُوَظَّفُونَ فِي البَنْكِ."]]}, {"title": "F. Which form is it?", "instr": "Give the form number (wazn) of each past-tense verb.", "qlang": "ar", "items": [["شاهَدَ", "III (فاعَلَ)"], ["أَرادَ", "IV (أَفْعَلَ)"], ["دَرَّسَ", "II (فَعَّلَ)"], ["تَذَكَّرَ", "V (تَفَعَّلَ)"], ["سافَرَ", "III (فاعَلَ)"], ["أَرْسَلَ", "IV (أَفْعَلَ)"], ["اِسْتَمَعَ", "VIII (اِفْتَعَلَ)"], ["كَتَبَ", "I (فَعَلَ)"]]}, {"title": "G. Qatʿ or waSl?", "instr": "Is the hamza at the start of the word hamzat al-qaTʿ or hamzat al-waSl?", "qlang": "ar", "items": [["أُخْت", "qaTʿ (always pronounced)"], ["اِسْم", "waSl"], ["الكِتاب", "waSl (the definite article)"], ["أَنا", "qaTʿ"], ["اِبْن", "waSl"], ["إِلَى", "qaTʿ"], ["اِسْتَمَعَ", "waSl (Form VIII)"], ["أَرادَ", "qaTʿ (Form IV)"]]}, {"title": "H. Hollow verbs", "instr": "Write the form asked for.", "qlang": "ar", "items": [["(نامَ / أَنا، past)", "نِمْتُ"], ["(سارَ / هِيَ، past)", "سارَتْ"], ["(قالَ / أَنا، past)", "قُلْتُ"], ["(كانَ / نَحْنُ، past)", "كُنّا"], ["(كانَ / هُنَّ، past)", "كُنَّ"], ["(قالَ / هُمْ، past)", "قالُوا"], ["(نامَ / أَنا، present)", "أَنامُ"], ["(سارَ / هُوَ، present)", "يَسيرُ"], ["(قالَ / نَحْنُ، present)", "نَقولُ"], ["(كانَ / أَنْتَ، present)", "تَكونُ"], ["(قالَ / هُنَّ، present)", "يَقُلْنَ"]]}, {"title": "I. Use kaana", "instr": "Say the sentence in the past with كان.", "qlang": "ar", "items": [["الطَّقْسُ بارِدٌ.", "كانَ الطَّقْسُ بارِداً."], ["المَدْرَسةُ كَبِيرةٌ.", "كانَتِ المَدْرَسةُ كَبِيرةً."], ["أَنا طالِبٌ.", "كُنْتُ طالِباً."], ["نَحْنُ طُلّابٌ.", "كُنّا طُلّاباً."], ["أَصْدِقائِي فِي المَدْرَسةِ.", "كانَ أَصْدِقائِي فِي المَدْرَسةِ."]]}],
   lesson3: [{"title": "A. Say it in Arabic", "instr": "Write the family word.", "qlang": "en", "items": [["my father's brother", "عَمِّي"], ["my mother's sister", "خالَتِي"], ["my mother's brother's son", "اِبْن خالِي"], ["my father's sister's daughter", "بِنْت عَمَّتِي"], ["my (paternal) uncle's wife", "زَوْجة عَمِّي"], ["my grandmother", "جَدَّتِي"], ["my relatives", "أَقارِبِي"]]}, {"title": "B. Make an idafa", "instr": "Put the nouns together correctly.", "qlang": "ar", "items": [["(مَكْتَب / الأُسْتاذ)", "مَكْتَب الأُسْتاذ  (the professor's office)"], ["(عائِلة / والِدِي)", "عائِلة والِدِي  (my father's family)"], ["(جامِعة / القاهِرة)", "جامِعة القاهِرة  (Cairo University)"], ["(صُورة / العائِلة)", "صُورة العائِلة  (the family picture)"], ["(كُلِّيّة / العُلُوم السِّياسِيّة)", "كُلِّيّة العُلُوم السِّياسِيّة  (the college of political science)"], ["(اِبْن / عَمّ / والِد / مَها)", "اِبْن عَمّ والِد مَها  (Maha's father's cousin)"]]}, {"title": "C. Fix the mistake", "instr": "Each idafa breaks a rule.", "qlang": "ar", "items": [["الجامِعة القاهِرة", "جامِعة القاهِرة  (no ال on the first word)"], ["مَكْتَب الأُسْتاذِي", "مَكْتَب أُسْتاذِي  (no ال when the last word has a possessive ending)"], ["صُورَتِي العائِلة", "صُورة عائِلَتِي  (the possessive goes on the last word only)"], ["الكُلِّيّة الطِّبّ", "كُلِّيّة الطِّبّ  (no ال on the first word)"]]}, {"title": "D. Whose?", "instr": "Turn each pair into one word.", "qlang": "ar", "items": [["(رِسالة / هِيَ)", "رِسالَتُها"], ["(أَقارِب / نَحْنُ)", "أَقارِبُنا"], ["(كُلِّيّة / أَنْتُمْ)", "كُلِّيَّتُكُمْ"], ["(زَوْجة / هُوَ)", "زَوْجَتُهُ"], ["(صُوَر / أَنا)", "صُوَرِي"], ["(عَمّ / أَنْتِ)", "عَمُّكِ"], ["(جَيْش / هُمْ)", "جَيْشُهُمْ"], ["(اِبْن / أَنْتَ)", "اِبْنُكَ"]]}, {"title": "E. Give the plural", "instr": "", "qlang": "ar", "items": [["اِبْن", "أَبْناء"], ["رِسالة", "رَسائِل"], ["ضابِط", "ضُبّاط"], ["قَرِيب", "أَقارِب"], ["صُورة", "صُوَر"], ["عَمّ", "أَعْمام"], ["كُلِّيّة", "كُلِّيّات"], ["زَوْج", "أَزْواج"], ["عِلْم", "عُلُوم"], ["جَيْش", "جُيُوش"]]}, {"title": "G. How do you pronounce the ة?", "instr": "", "qlang": "ar", "items": [["مَدِينة نِيويُورْك", "madīnat Nyūyūrk (ة → t, not the last word)"], ["صُورة العائِلة", "ṣūrat al-ʿāʾila (the ة in صُورة is t; the final ة is silent)"], ["جامِعة القاهِرة", "jāmiʿat al-Qāhira"]]}],
   reviewdrill: [{"title": "Fill in the blanks", "instr": "Fill in each blank with the suitable noun, verb, pronoun or adjective, using the word in parentheses.", "qlang": "ar", "items": [["يدرس ___ (الطالب) الجامعيون في المكتبة كل يوم، ثم ___ (يذهب) إلى ___ (بيت+هو) في المساء.", "يَدْرُسُ الطُّلّابُ الجامِعِيُّونَ فِي المَكْتَبةِ كُلَّ يَوْمٍ، ثُمَّ يَذْهَبُونَ إلى بُيُوتِهِمْ فِي المَساءِ (A verb that comes before its subject stays singular.)"], ["___ (الكتاب) الدراسية جيدة و___ (أنا) نحب ___ (هي) كثيراً.", "الكُتُبُ الدِّراسِيّةُ جَيِّدةٌ وَنَحْنُ نُحِبُّها كَثِيراً"], ["يعمل ___ (والد+أنا) في المكتب ___ (جديد) في شارع ___ (واسع) وقريب من ___ (بيت+نحن).", "يَعْمَلُ والِدِي فِي المَكْتَبِ الجَدِيدِ فِي شارِعٍ واسِعٍ وَقَرِيبٍ مِن بَيْتِنا"], ["البنات ___ (يذهب) إلى ___ (مدينة) كبيرة مع ___ (عائلة+هن).", "البَناتُ يَذْهَبْنَ إلى مُدُنٍ كَبِيرةٍ مَعَ عائِلَتِهِنَّ (The plural of a thing takes a feminine singular adjective.)"], ["يا سارة وعفاف هل ___ (يدرس) الأدب العربي؟ نعم، نحن ___ (يدرس+هو).", "يا سارة وَعَفاف هَلْ تَدْرُسانِ الأَدَبَ العَرَبِيَّ؟ نَعَمْ، نَحْنُ نَدْرُسُهُ"], ["يا مريم وعادل ومايكل هل ___ (يشاهد) التلفزيون؟ لا، نحن لا ___ (يشاهد+هو).", "يا مَرْيَم وَعادِل وَمايْكِل هَلْ تُشاهِدُونَ التِّلْفِزْيُونَ؟ لا، نَحْنُ لا نُشاهِدُهُ (A mixed group takes the masculine plural.)"], ["غرفة ___ (رجل) كبيرة وواسعة و___ (ليس) جميلة. ولكن غرفة ___ (بنت+هو) ___ (واسع) وجميلة أيضاً.", "غُرْفةُ رِجالٍ كَبِيرةٌ وَواسِعةٌ وَلَيْسَتْ جَمِيلةً. وَلَكِنْ غُرْفةُ بِنْتِهِ واسِعةٌ وَجَمِيلةٌ أَيْضاً (بَناتِهِ is also possible in blank 3. The predicate after لَيْسَ is accusative.)"], ["هم لا ___ (يعرف) الجار ___ (جديد). هم ___ (يسكن) في نفس ___ (بناية).", "هُمْ لا يَعْرِفُونَ الجارَ الجَدِيدَ. هُمْ يَسْكُنُونَ فِي نَفْسِ البِنايةِ"], ["والد ___ (صاحب+أنا) ___ (يدرّس) العلوم ___ (السياسي) في الكلية ___ (صغيرة).", "والِدُ صاحِبِي يُدَرِّسُ العُلُومَ السِّياسِيّةَ فِي الكُلِّيّةِ الصَّغِيرةِ"], ["عندي ___ (صورة) كثيرة لأقاربي ولكن لا أعرف ___ (اسم+هم) كلهم.", "عِنْدِي صُوَرٌ كَثِيرةٌ لِأَقارِبِي وَلَكِنْ لا أَعْرِفُ أَسْماءَهُمْ كُلَّهُمْ"], ["والدي ___ (سوريا) ووالدتي ___ (السعودية) وجدتي ___ (اليونان) وأنا ___ (أمريكا).", "والِدِي سُورِيٌّ وَوالِدَتِي سُعُودِيّةٌ وَجَدَّتِي يُونانِيّةٌ وَأَنا أَمْرِيكِيٌّ"], ["أستاذ صف ___ (لغة) الإنجليزية ممتاز وهو ___ (يفهم) ___ (لغة) كثيرة.", "أُسْتاذُ صَفِّ لُغةِ الإِنْجِلِيزِيّةِ مُمْتازٌ وَهُوَ يَفْهَمُ لُغاتٍ كَثِيرةً"]]}],
@@ -3895,6 +4029,7 @@ const DRILL_SETS = [
   {id:'past-quiz-l1', book:'alkitaab', label:'Quiz Review: Lesson 1', desc:'Fill-ins, interrogatives, nisba adjectives, and expressions.', build:buildPastQuizL1Items},
   {id:'past-quiz-k1', book:'alkitaab', label:'Quiz Review: Al-Kitaab Lesson I', desc:'Counting, a conversation, the verb chart, interrogatives, nominal sentences, and translation.', build:buildPastQuizK1Items},
   {id:'lesson2-review', book:'alkitaab', label:'Lesson 2 Review', desc:'Pronouns, plural agreement, subject and predicate, connectors, case endings.', build:()=>buildReviewItems('lesson2')},
+  {id:'lesson4-exam', book:'alkitaab', label:'Lesson 4 Exam Practice', desc:'A full online practice set: vocabulary, present tense, negation, verbal sentences, verb forms, hamza, hollow verbs, kaana, laysa, possessives, case endings, translation.', build:()=>buildReviewItems('lesson4exam')},
   {id:'lesson4-review', book:'alkitaab', label:'Lesson 4 Review', desc:'Vocabulary, plurals, present tense, negation, the verbal sentence, verb forms, hamza, hollow verbs, kaana.', build:()=>buildReviewItems('lesson4')},
   {id:'lesson3-review', book:'alkitaab', label:'Lesson 3 Review', desc:'Family words, idafa, possessives, plurals, the \u0629.', build:()=>buildReviewItems('lesson3')},
   {id:'plurals-lists', book:'alkitaab', label:'Plurals: Lessons 2 and 3', desc:'Singular to plural: people and things, broken and sound.', build:buildPluralListItems},
@@ -4130,7 +4265,35 @@ const LESSON4_QUIZ_GUIDE = [
   ]}
 ];
 const LESSON4_QUIZ_SETS = ['lesson4-review','nominal-verbal','review-drill','review-drill-2','verb-paradigms','lesson3-review'];
+
+const LESSON4_EXAM_GUIDE = [
+  {group:'Lesson 4 exam: Lesson 4, with review of Lessons 1 to 3', items:[
+    {text:'Lesson 4 vocabulary (p. 52), with plurals; Lesson 3 vocabulary.',
+     links:[['Flashcards','flashcards'],['Games','games'],['Vocabulary quiz','quiz','vocab'],['Matching game','matching'],['Plurals flashcards','flashcards','plurals']]},
+    {text:'The present tense: all 13 persons, and negation with لا.',
+     links:[['Present-Tense Verb Conjugation','lessons','Present-Tense Verb Conjugation'],['Conjugations tab','conjugations'],['Verb Conjugation quiz','quiz','verb'],['Review Drill','drills','review-drill']]},
+    {text:'The verbal sentence: verb first and singular, nominal to verbal, negation.',
+     links:[['The Verbal Sentence','lessons','The Verbal Sentence'],['Verbal Sentence quiz','quiz','verbsent'],['Sentence Type quiz','quiz','sentype'],['Nominal or Verbal?','drills','nominal-verbal']]},
+    {text:'Verb forms (awzaan): the ten templates and the form of each verb.',
+     links:[['Verb Forms (al-Awzaan)','lessons','Verb Forms (al-Awzaan)'],['Verb Forms quiz','quiz','verbforms']]},
+    {text:'Hamzat al-qaTʿ and hamzat al-waSl.',
+     links:[['Hamza and Alif Madda','lessons','Hamza and Alif Madda'],['Hamza quiz','quiz','hamza']]},
+    {text:'Hollow verbs نام، سار، قال، كان in the past and present, all persons.',
+     links:[['Hollow and Irregular Verbs','lessons','Hollow and Irregular Verbs'],['Hollow Verbs quiz','quiz','hollow']]},
+    {text:'كانَ and لَيْسَ in all 13 persons.',
+     links:[['Kaana and Laysa','lessons','Kaana and Laysa: Full Paradigms'],['Paradigm drill','drills','verb-paradigms']]},
+    {text:'Review: plurals, the idafa, possessive endings, nisba adjectives, numbers 11 to 100, question words, case endings.',
+     links:[['Plurals lesson','lessons','Plurals: Sound and Broken'],['Idafa','lessons','Idafa: the Possessive (Construct) Phrase'],['Possessive Suffixes','lessons','Subject Pronouns and Possessive Suffixes'],['Case Endings','lessons','Case Endings (i\u02BFraab)'],['Numbers drill','drills','numbers-drill'],['Case Ending Drill 2','drills','case-drill-2'],['Lesson 3 Review','drills','lesson3-review']]},
+    {text:'Reading: Maha’s Lesson 3 story and a short paragraph; a short story of your own (150 words or more).',
+     links:[['Reading: Maha, Lesson 3','drills','passage-maha3'],['Reading: Nancy','drills','passage-nancy']]},
+    {text:'Online practice: a mixed 20-question exam quiz and a full reveal-answer practice set.',
+     links:[['Lesson 4 Exam quiz','quiz','lesson4'],['Lesson 4 Exam Practice','drills','lesson4-exam'],['Lesson 4 Review','drills','lesson4-review']]}
+  ]}
+];
+const LESSON4_EXAM_SETS = ['lesson4-exam','lesson4-review','review-drill','review-drill-2','case-drill-2','verb-paradigms','nominal-verbal','numbers-drill','lesson3-review','passage-maha3','passage-nancy','plurals-lists'];
 const EXAMS = [
+  {id:'lesson4exam', title:'Lesson 4 Exam', desc:'Wednesday, Nov 11. Lesson 4 with review of Lessons 1 to 3: study guide, practice exam, and online tests.', guide:LESSON4_EXAM_GUIDE, sets:LESSON4_EXAM_SETS, store:'examChecks_lesson4exam',
+   pdf:{heading:'Practice exam', text:'7 pages, 170 points, with a separate answer key and a 35-page study guide.', exam:'practice-exams/Arabic011_Lesson4_Exam_Practice.pdf', key:'practice-exams/Arabic011_Lesson4_Exam_Practice_Key.pdf', label:'Practice exam (PDF)', study:'practice-exams/Arabic011_Lesson4_Exam_Study_Guide.pdf'}},
   {id:'lesson4quiz', title:'Lesson 4 Quiz', desc:'Thursday, Nov 5. Present tense, the verbal sentence, verb forms, hamza, hollow verbs, with a study guide and practice quiz.', guide:LESSON4_QUIZ_GUIDE, sets:LESSON4_QUIZ_SETS, store:'examChecks_lesson4quiz',
    pdf:{heading:'Practice quiz', text:'4 pages, with a separate answer key.', exam:'practice-exams/Arabic011_Lesson4_Practice_Quiz.pdf', key:'practice-exams/Arabic011_Lesson4_Practice_Quiz_Key.pdf', label:'Practice quiz (PDF)', study:'practice-exams/Arabic011_Lesson4_Study_Guide.pdf'}},
   {id:'lesson3exam', title:'Lesson 3 Exam', desc:'Thursday, Oct 29. Lesson 3 and kaana, with Lessons 1 and 2 review and a practice exam.', guide:LESSON3_EXAM_GUIDE, sets:LESSON3_EXAM_SETS, store:'examChecks_lesson3exam',
@@ -4401,6 +4564,8 @@ const GAME_PRESETS = [
   ['Everything', GAME_ALL_AB.concat(GAME_ALL_AK)],
   ['Alif Baa', GAME_ALL_AB],
   ['Al-Kitaab', GAME_ALL_AK],
+  ['Lesson 4 exam', ['ak4','ak3','pl-k3','l3extra']],
+  ['Lesson 4 only', ['ak4']],
   ['Lesson 3 exam', ['ak3','pl-k3','l3extra']],
   ['Lessons 1 and 2', ['ak1','ak2','pl-k2']],
   ['Plurals', ['pl-k2','pl-k3','pl-other']],
