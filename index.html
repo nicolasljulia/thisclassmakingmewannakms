@@ -2336,7 +2336,7 @@ function renderLessonDetail(main, lesson){
 /* ============================================================
    FLASHCARDS
    ============================================================ */
-let fcState = { deckId:'vocab', book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', pdir:'sg2pl', pbook:'all', punit:'all', lkind:'all', vbook:'all', vform:'all', vdir:'ar2en', msrc:'all', mform:'all', mdir:'v2m' };
+let fcState = { deckId:'vocab', book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', pdir:'sg2pl', pbook:'all', punit:'all', lkind:'all', vbook:'all', vform:'all', vdir:'ar2en', msrc:'all', mform:'all', mdir:'m2en' };
 const WORD_TYPES = ["noun","verb","adjective","pronoun","question","number","particle","phrase"];
 const WORD_TYPE_LABELS = { noun:"Nouns", verb:"Verbs", adjective:"Adjectives", pronoun:"Pronouns", question:"Question words", number:"Numbers", particle:"Particles", phrase:"Phrases" };
 let knownWords = loadProgress('knownWords', {});
@@ -2587,7 +2587,7 @@ function renderFlashcards(main, param){
     const opts = plurals
       ? [['sg2pl','Singular → Plural'],['pl2sg','Plural → Singular'],['en2ar','English → Arabic']]
       : verbs ? [['ar2en','Arabic → English'],['en2ar','English → Arabic'],['past2pres','Past → Present']]
-      : masdar ? [['v2m','Verb → Verbal noun'],['m2v','Verbal noun → Verb'],['m2en','Verbal noun → English']]
+      : masdar ? [['m2en','Verbal noun → English (to ...)'],['en2m','English (to ...) → Verbal noun'],['v2m','Verb → Verbal noun'],['m2v','Verbal noun → Verb']]
       : [['ar2en','Arabic → English'],['en2ar','English → Arabic']];
     dirSel.innerHTML='';
     opts.forEach(o=>dirSel.appendChild(mkEl(`<option value="${o[0]}">${o[1]}</option>`)));
@@ -2689,9 +2689,11 @@ function renderFlashcards(main, param){
     } else if(v.deck==='masdar'){
       const big = (ar,tr)=>`<div class="arabic" style="font-size:34px;">${ar}</div>${tr?`<div class="translit tr-toggle">${tr}</div>`:''}`;
       const extra = (v.pat ? `<div class="muted" style="margin-top:10px;">pattern ${v.pat}</div>` : '') + (v.ex ? `<div class="arabic" style="font-size:20px;margin-top:10px;">${v.ex}</div>` : '') + (v.src==='s' ? `<div class="muted" style="margin-top:10px;font-size:14px;">standard form, not in the lesson</div>` : '');
+      const gloss = `<div class="muted" style="margin-top:6px;">noun: ${v.en}</div>`;
       if(fcState.mdir==='m2v'){ showFront = big(v.masdar, v.tr); showBack = big(v.verb, v.verbTr) + `<div>${v.verbEn}</div>` + extra; }
-      else if(fcState.mdir==='m2en'){ showFront = big(v.masdar, v.tr); showBack = `<div>${v.en}</div><div class="muted" style="margin-top:6px;">from ${v.verb}, ${v.verbEn}</div>` + extra; }
-      else { showFront = big(v.verb, v.verbTr) + `<div class="muted en-toggle" style="margin-top:6px;">${v.verbEn}</div><div class="muted" style="margin-top:6px;">${VERB_FORM_NAMES[v.form]}</div>`; showBack = big(v.masdar, v.tr) + `<div>${v.en}</div>` + extra; }
+      else if(fcState.mdir==='m2en'){ showFront = big(v.masdar, v.tr); showBack = `<div>${v.verbEn}</div>` + gloss + `<div class="muted" style="margin-top:6px;">from ${v.verb}</div>` + extra; }
+      else if(fcState.mdir==='en2m'){ showFront = `<div>${v.verbEn}</div>`; showBack = big(v.masdar, v.tr) + gloss + extra; }
+      else { showFront = big(v.verb, v.verbTr) + `<div class="muted en-toggle" style="margin-top:6px;">${v.verbEn}</div><div class="muted" style="margin-top:6px;">${VERB_FORM_NAMES[v.form]}</div>`; showBack = big(v.masdar, v.tr) + `<div>${v.verbEn}</div>` + gloss + extra; }
       tagText = `Verbal nouns, ${VERB_FORM_NAMES[v.form]} · ${fcState.idx+1}/${fcState.deck.length}${knownTag}`;
     } else if(v.deck==='lesson3'){
       const arBlock = `<div class="arabic" style="font-size:34px;">${v.ar}</div>${v.tr?`<div class="translit tr-toggle">${v.tr}</div>`:''}`;
