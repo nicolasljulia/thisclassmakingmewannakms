@@ -157,6 +157,8 @@ body.hide-english .en-toggle{display:none;}
 .wg-key.near{background:#c89a2b;color:#fff;border-color:#c89a2b;}
 .wg-key.miss{background:var(--muted);color:#fff;border-color:var(--muted);opacity:.6;}
 @media (max-width:520px){.g-grid{gap:6px;}.gtile{min-height:62px;padding:6px;}.gtile .arabic{font-size:19px;}.g-letter{width:38px;height:46px;font-size:24px;}.wg-cell{width:40px;height:44px;}.wg-key{min-width:24px;height:40px;font-size:18px;padding:0 2px;}}
+/* oral exam */
+.ph{background:var(--chip);border-bottom:1px dashed var(--accent);padding:0 3px;border-radius:3px;}
 /* quiz */
 .quiz-prompt{font-size:19px;margin-bottom:18px;line-height:1.5;}
 .quiz-options{display:grid;gap:10px;}
@@ -1208,6 +1210,7 @@ const TABS = [
   {id:'homework',label:'Homework'},
   {id:'drills',label:'Drills'},
   {id:'exams',label:'Exams'},
+  {id:'oral',label:'Oral Exam'},
 ];
 let currentTab = 'home';
 
@@ -1277,6 +1280,7 @@ function pageTitle(tab, param){
   else if(tab==='exams' && param){ const e = EXAMS.find(x=>x.id===param); if(e) sub = e.title; }
   else if(tab==='quiz' && param){ const c = QUIZ_CATEGORIES.find(x=>x.id===param); if(c) sub = c.label; }
   else if(tab==='games' && param){ const g = GAME_LIST.find(x=>x.id===param); if(g) sub = g.label; }
+  else if(tab==='oral' && param){ const t = ORAL_TOPICS.find(x=>x.id===param); sub = t ? t.title+' (oral exam)' : ({practice:'Oral exam practice', phrases:'Oral exam phrases and tips', passages:'Oral exam reading passages'})[param] || ''; }
   else if(tab==='flashcards' && param==='plurals') sub = 'Plurals flashcards';
   else if(tab==='flashcards' && param==='verbs') sub = 'Verb flashcards';
   else if(tab==='flashcards' && param==='masdar') sub = 'Verbal noun flashcards';
@@ -1303,6 +1307,7 @@ function showPage(tab, param){
   else if(tab==='homework') renderHomework(main);
   else if(tab==='drills') renderDrills(main, param);
   else if(tab==='exams') renderExams(main, param);
+  else if(tab==='oral') renderOral(main, param);
   else if(tab==='plurals') renderPlurals(main);
   document.title = pageTitle(tab, param);
 }
@@ -1346,6 +1351,10 @@ function renderHome(main){
         <div class="card lesson-card" onclick="go('crossword')">
           <div class="num">Puzzle</div><h3>Crossword</h3>
           <p class="muted" style="margin:0;">Vocabulary crossword.</p>
+        </div>
+        <div class="card lesson-card" onclick="go('oral')">
+          <div class="num">Oral exam</div><h3>Oral Exam Preparation</h3>
+          <p class="muted" style="margin:0;">${ORAL_TOPICS.reduce((n,t)=>n+t.qs.length,0)} practice questions with model answers, a mock interview, and a preparation plan.</p>
         </div>
         <div class="card lesson-card" onclick="go('games')">
           <div class="num">Practice</div><h3>Games</h3>
@@ -5346,6 +5355,283 @@ function runWordGuess(board, pool, o, restart){
   next(); draw();
 }
 const GAME_RUN = {connections:runConnections, oddone:runOddOne, scramble:runScramble, wordguess:runWordGuess};
+
+/* ============================================================
+   ORAL EXAM PREPARATION
+   ============================================================ */
+const ORAL_TOPICS = [{"id": "greet", "title": "Greetings and polite phrases", "desc": "Alif Baa units 1 to 5. Answer a greeting with its standard reply.", "qs": [{"q": "السَّلامُ عَلَيْكُمْ.", "qe": "Peace be upon you.", "a": "وَعَلَيْكُمُ السَّلامُ.", "ae": "And upon you peace."}, {"q": "أَهْلاً وَسَهْلاً.", "qe": "Welcome.", "a": "أَهْلاً بِكَ. (to a man) / أَهْلاً بِكِ. (to a woman)", "ae": "Welcome to you."}, {"q": "صَباحُ الخَيْرِ.", "qe": "Good morning.", "a": "صَباحُ النُّورِ.", "ae": "Good morning (reply)."}, {"q": "مَساءُ الخَيْرِ.", "qe": "Good evening.", "a": "مَساءُ النُّورِ.", "ae": "Good evening (reply)."}, {"q": "كَيْفَ الحالُ؟", "qe": "How are you?", "a": "بِخَيْرٍ، الحَمْدُ لِلّٰهِ.", "ae": "Fine, praise be to God."}, {"q": "تَشَرَّفْنا.", "qe": "Nice to meet you.", "a": "تَشَرَّفْنا أَيْضاً.", "ae": "Nice to meet you too."}, {"q": "{تَفَضَّلْ|تَفَضَّلِي}.", "qe": "Please, go ahead.", "a": "شُكْراً.", "ae": "Thank you."}, {"q": "شُكْراً.", "qe": "Thank you.", "a": "عَفْواً.", "ae": "You are welcome."}, {"q": "مَبْرُوك!", "qe": "Congratulations!", "a": "شُكْراً.", "ae": "Thank you."}, {"q": "مَعَ السَّلامةِ.", "qe": "Goodbye.", "a": "مَعَ السَّلامةِ.", "ae": "Goodbye."}]}, {"id": "intro", "title": "Introducing yourself", "desc": "Alif Baa and Al-Kitaab lessons 1 and 2. Name, origin, residence, studies.", "qs": [{"q": "ما اسْمُ{كَ|كِ}؟", "qe": "What is your name?", "a": "اِسْمِي [سامِي].", "ae": "My name is [Sami]."}, {"q": "مِنْ أَيْنَ {أَنْتَ|أَنْتِ}؟", "qe": "Where are you from?", "a": "أَنا مِنَ [الوِلاياتِ المُتَّحِدةِ الأَمْرِيكِيّةِ].", "ae": "I am from [the United States of America]."}, {"q": "أَيْنَ {تَسْكُنُ|تَسْكُنِينَ}؟", "qe": "Where do you live?", "a": "أَسْكُنُ فِي [مَدِينةِ واشِنْطُن].", "ae": "I live in [the city of Washington]."}, {"q": "هَلْ {أَنْتَ|أَنْتِ} {طالِبٌ جَدِيدٌ|طالِبةٌ جَدِيدةٌ}؟", "qe": "Are you a new student?", "a": "نَعَمْ، أَنا {طالِبٌ جَدِيدٌ|طالِبةٌ جَدِيدةٌ}.", "ae": "Yes, I am a new student."}, {"q": "ماذا {تَدْرُسُ|تَدْرُسِينَ}؟", "qe": "What do you study?", "a": "أَدْرُسُ العَرَبِيّةَ وَ[العُلُومَ السِّياسِيّةَ].", "ae": "I study Arabic and [political science]."}, {"q": "فِي أَيِّ جامِعةٍ {تَدْرُسُ|تَدْرُسِينَ}؟", "qe": "In which university do you study?", "a": "أَدْرُسُ فِي جامِعةِ [جورجتاون].", "ae": "I study at the university of [Georgetown]."}, {"q": "فِي ماذا {أَنْتَ|أَنْتِ} {مُتَخَصِّصٌ|مُتَخَصِّصةٌ}؟", "qe": "What are you specializing in?", "a": "أَنا {مُتَخَصِّصٌ|مُتَخَصِّصةٌ} فِي [العُلُومِ السِّياسِيّةِ].", "ae": "I am specializing in [political science]."}, {"q": "لِماذا {تَدْرُسُ|تَدْرُسِينَ} العَرَبِيّةَ؟", "qe": "Why do you study Arabic?", "a": "أَدْرُسُ العَرَبِيّةَ [لِأَنِّي أُحِبُّ الثَّقافةَ العَرَبِيّةَ].", "ae": "I study Arabic [because I like Arab culture]."}, {"q": "هَلِ العَرَبِيّةُ صَعْبةٌ أَمْ سَهْلةٌ؟", "qe": "Is Arabic difficult or easy?", "a": "العَرَبِيّةُ صَعْبةٌ قَلِيلاً، وَلَكِنْ هِيَ جَمِيلةٌ.", "ae": "Arabic is a little difficult, but it is beautiful."}, {"q": "هَلْ {تَتَكَلَّمُ|تَتَكَلَّمِينَ} لُغةً أُخْرَى؟", "qe": "Do you speak another language?", "a": "نَعَمْ، أَتَكَلَّمُ [الفَرَنْسِيّةَ].", "ae": "Yes, I speak [French]."}]}, {"id": "family", "title": "Family", "desc": "Al-Kitaab lessons 2 and 3. Parents, siblings, relatives, work.", "qs": [{"q": "هَلْ أُسْرَتُ{كَ|كِ} كَبِيرةٌ؟", "qe": "Is your family big?", "a": "نَعَمْ، أُسْرَتِي كَبِيرةٌ.", "ae": "Yes, my family is big."}, {"q": "مَنْ فِي أُسْرَتِ{كَ|كِ}؟", "qe": "Who is in your family?", "a": "فِي أُسْرَتِي والِدِي وَوالِدَتِي وَأَخِي وَأُخْتِي.", "ae": "In my family are my father, my mother, my brother and my sister."}, {"q": "ماذا يَعْمَلُ والِدُ{كَ|كِ}؟", "qe": "What does your father do?", "a": "والِدِي [مُتَرْجِمٌ].", "ae": "My father is [a translator]."}, {"q": "أَيْنَ تَعْمَلُ والِدَةُ{كَ|كِ}؟", "qe": "Where does your mother work?", "a": "والِدَتِي تَعْمَلُ فِي [بَنْكٍ].", "ae": "My mother works in [a bank]."}, {"q": "هَلْ لَ{كَ|كِ} أَخٌ أَوْ أُخْتٌ؟", "qe": "Do you have a brother or a sister?", "a": "نَعَمْ، لِي أَخٌ وَأُخْتٌ.", "ae": "Yes, I have a brother and a sister."}, {"q": "هَلْ لَ{كَ|كِ} عَمٌّ أَوْ خالٌ؟", "qe": "Do you have a paternal or a maternal uncle?", "a": "نَعَمْ، لِي عَمٌّ وَخالةٌ.", "ae": "Yes, I have a paternal uncle and a maternal aunt."}, {"q": "كَمْ فَرْداً فِي أُسْرَتِ{كَ|كِ}؟", "qe": "How many people are in your family?", "a": "فِي أُسْرَتِي [خَمْسةُ] أَفْرادٍ.", "ae": "There are [five] people in my family."}, {"q": "أَيْنَ يَسْكُنُ أَقارِبُ{كَ|كِ}؟", "qe": "Where do your relatives live?", "a": "أَقارِبِي يَسْكُنُونَ فِي [لُبْنانَ].", "ae": "My relatives live in [Lebanon]."}, {"q": "هَلْ والِدُ{كَ|كِ} مَشْغُولٌ دائِماً؟", "qe": "Is your father always busy?", "a": "نَعَمْ، والِدِي مَشْغُولٌ دائِماً بِالعَمَلِ.", "ae": "Yes, my father is always busy with work."}, {"q": "هَلْ {تَعْرِفُ|تَعْرِفِينَ} أَقارِبَ{كَ|كِ} مِنَ الصُّوَرِ؟", "qe": "Do you know your relatives from the pictures?", "a": "نَعَمْ، أَعْرِفُ أَقارِبِي مِنَ الصُّوَرِ وَالرَّسائِلِ.", "ae": "Yes, I know my relatives from the pictures and the letters."}]}, {"id": "study", "title": "Study, university and free time", "desc": "Al-Kitaab lessons 1 to 4 and Alif Baa units 5 to 8.", "qs": [{"q": "ماذا {تَدْرُسُ|تَدْرُسِينَ} فِي الجامِعةِ؟", "qe": "What do you study at the university?", "a": "أَدْرُسُ [العَرَبِيّةَ وَالتّارِيخَ] فِي الجامِعةِ.", "ae": "I study [Arabic and history] at the university."}, {"q": "هَلْ {أَنْتَ|أَنْتِ} {مَشْغُولٌ|مَشْغُولةٌ} الآنَ؟", "qe": "Are you busy now?", "a": "نَعَمْ، أَنا {مَشْغُولٌ|مَشْغُولةٌ} جِدّاً.", "ae": "Yes, I am very busy."}, {"q": "ماذا {تَقْرَأُ|تَقْرَئِينَ} فِي المَساءِ؟", "qe": "What do you read in the evening?", "a": "أَقْرَأُ [قِصّةً جَدِيدةً] فِي المَساءِ.", "ae": "I read [a new story] in the evening."}, {"q": "هَلْ {تَحْفَظُ|تَحْفَظِينَ} الكَلِماتِ الجَدِيدةَ؟ كَيْفَ؟", "qe": "Do you memorize the new words? How?", "a": "نَعَمْ، أَحْفَظُها بِالكِتابةِ وَالقِراءةِ.", "ae": "Yes, I memorize them by writing and reading."}, {"q": "هَلِ الدَّرْسُ صَعْبٌ أَمْ سَهْلٌ؟", "qe": "Is the lesson difficult or easy?", "a": "الدَّرْسُ صَعْبٌ قَلِيلاً.", "ae": "The lesson is a little difficult."}, {"q": "مَنْ زَمِيلُ{كَ|كِ} فِي الصَّفِّ؟", "qe": "Who is your classmate in class?", "a": "زَمِيلِي اِسْمُهُ [أَحْمَدُ].", "ae": "My classmate is called [Ahmad]."}, {"q": "هَلْ {تَسْتَمِعُ|تَسْتَمِعِينَ} إِلَى المُوسِيقَى؟", "qe": "Do you listen to music?", "a": "نَعَمْ، أَسْتَمِعُ إِلَى المُوسِيقَى كَثِيراً.", "ae": "Yes, I listen to music a lot."}, {"q": "ما هِوايَتُ{كَ|كِ}؟", "qe": "What is your hobby?", "a": "هِوايَتِي [القِراءةُ].", "ae": "My hobby is [reading]."}, {"q": "أَيْنَ جامِعَتُ{كَ|كِ}؟", "qe": "Where is your university?", "a": "جامِعَتِي فِي [مَدِينةِ واشِنْطُن].", "ae": "My university is in [the city of Washington]."}]}, {"id": "child", "title": "Childhood and school", "desc": "Al-Kitaab lesson 4. Past tense with كان, school, friends, memorizing, traveling.", "qs": [{"q": "أَيْنَ {كُنْتَ|كُنْتِ} قَبْلَ الجامِعةِ؟", "qe": "Where were you before the university?", "a": "كُنْتُ فِي مَدْرَسةٍ ابْتِدائِيّةٍ فِي [مَدِينةِ ...].", "ae": "I was in a primary school in [the city of ...]."}, {"q": "هَلْ {تَتَذَكَّرُ|تَتَذَكَّرِينَ} الطُّفُولةَ؟", "qe": "Do you remember your childhood?", "a": "نَعَمْ، أَتَذَكَّرُ طُفُولَتِي جَيِّداً.", "ae": "Yes, I remember my childhood well."}, {"q": "مَنْ كانَ صَدِيقَ{كَ|كِ} فِي المَدْرَسةِ؟", "qe": "Who was your friend at school?", "a": "كانَ صَدِيقِي [سامِي].", "ae": "My friend was [Sami]."}, {"q": "هَلْ كانَ لَ{كَ|كِ} زُمَلاءُ كَثِيرُونَ؟", "qe": "Did you have many classmates?", "a": "نَعَمْ، كانَ لِي زُمَلاءُ كَثِيرُونَ.", "ae": "Yes, I had many classmates."}, {"q": "هَلْ {تَحْفَظُ|تَحْفَظِينَ} أَسْماءَ كُلِّ الزُّمَلاءِ؟", "qe": "Do you remember the names of all the classmates?", "a": "لا، لا أَحْفَظُ أَسْماءَ كُلِّ الزُّمَلاءِ.", "ae": "No, I do not remember the names of all the classmates."}, {"q": "هَلْ {تُسافِرُ|تُسافِرِينَ} كَثِيراً؟", "qe": "Do you travel a lot?", "a": "أُسافِرُ إِلَى [مَدِينةِ ...] أَحْياناً.", "ae": "I travel to [the city of ...] sometimes."}, {"q": "إِلَى أَيْنَ {سافَرْتَ|سافَرْتِ} قَبْلَ الجامِعةِ؟", "qe": "Where did you travel to before the university?", "a": "سافَرْتُ إِلَى [الأُرْدُنِّ].", "ae": "I traveled to [Jordan]."}, {"q": "كَيْفَ كانَتْ مَدْرَسَتُ{كَ|كِ}؟", "qe": "How was your school?", "a": "كانَتْ مَدْرَسَتِي كَبِيرةً وَجَمِيلةً.", "ae": "My school was big and beautiful."}, {"q": "هَلْ {كُنْتَ|كُنْتِ} {سَعِيداً|سَعِيدةً} فِي المَدْرَسةِ؟", "qe": "Were you happy at school?", "a": "نَعَمْ، كُنْتُ {سَعِيداً|سَعِيدةً} فِي المَدْرَسةِ.", "ae": "Yes, I was happy at school."}]}, {"id": "weather", "title": "Weather, seasons and cities", "desc": "Al-Kitaab lesson 5. Weather, seasons, likes, loneliness, descent.", "qs": [{"q": "كَيْفَ الطَّقْسُ اليَوْمَ؟", "qe": "How is the weather today?", "a": "الطَّقْسُ [بارِدٌ] اليَوْمَ.", "ae": "The weather is [cold] today."}, {"q": "كَيْفَ الطَّقْسُ فِي مَدِينَتِ{كَ|كِ} فِي الشِّتاءِ؟", "qe": "How is the weather in your city in winter?", "a": "الطَّقْسُ بارِدٌ جِدّاً فِي الشِّتاءِ.", "ae": "The weather is very cold in winter."}, {"q": "وَكَيْفَ الطَّقْسُ فِي الصَّيْفِ؟", "qe": "And how is the weather in summer?", "a": "الطَّقْسُ حارٌّ وَالرُّطُوبةُ عالِيةٌ.", "ae": "The weather is hot and the humidity is high."}, {"q": "ما دَرَجةُ الحَرارةِ اليَوْمَ؟", "qe": "What is the temperature today?", "a": "دَرَجةُ الحَرارةِ [عِشْرُونَ] دَرَجةً.", "ae": "The temperature is [twenty] degrees."}, {"q": "أَيُّ فَصْلٍ {تُحِبُّ|تُحِبِّينَ}؟", "qe": "Which season do you like?", "a": "أُحِبُّ [الرَّبِيعَ].", "ae": "I like [spring]."}, {"q": "لِماذا {تُحِبُّ|تُحِبِّينَ} هَذا الفَصْلَ؟", "qe": "Why do you like this season?", "a": "أُحِبُّهُ بِسَبَبِ الطَّقْسِ الجَمِيلِ.", "ae": "I like it because of the beautiful weather."}, {"q": "هَلْ {تُحِبُّ|تُحِبِّينَ} مَدِينةَ نِيويُورْك؟", "qe": "Do you like the city of New York?", "a": "لا، لا أُحِبُّ نِيويُورْك بِسَبَبِ الازْدِحامِ.", "ae": "No, I do not like New York because of the crowding."}, {"q": "هَلْ {تَشْعُرُ|تَشْعُرِينَ} بِالوِحْدةِ؟", "qe": "Do you feel lonely?", "a": "نَعَمْ، أَشْعُرُ بِالوِحْدةِ أَحْياناً.", "ae": "Yes, I sometimes feel lonely."}, {"q": "بِالنِّسْبةِ لَ{كَ|كِ}، ما أَحْسَنُ فَصْلٍ؟", "qe": "As far as you are concerned, what is the best season?", "a": "بِالنِّسْبةِ لِي، أَحْسَنُ فَصْلٍ هُوَ [الخَرِيفُ].", "ae": "As far as I am concerned, the best season is [autumn]."}, {"q": "مِنْ أَيِّ أَصْلٍ {أَنْتَ|أَنْتِ}؟", "qe": "What is your descent?", "a": "أَنا مِنْ أَصْلٍ [لُبْنانِيٍّ].", "ae": "I am of [Lebanese] descent."}, {"q": "هَلْ {تُحِبُّ|تُحِبِّينَ} الصَّيْفَ؟", "qe": "Do you like summer?", "a": "أُحِبُّ الصَّيْفَ حُبّاً كَبِيراً.", "ae": "I like summer very much."}]}, {"id": "cafe", "title": "Feelings, drinks and everyday needs", "desc": "Alif Baa units 5 to 8. Ordering, feelings, asking for help.", "qs": [{"q": "كَيْفَ {أَنْتَ|أَنْتِ} اليَوْمَ؟", "qe": "How are you today?", "a": "أَنا {سَعِيدٌ|سَعِيدةٌ} الحَمْدُ لِلّٰهِ.", "ae": "I am happy, praise be to God."}, {"q": "ما بِ{كَ|كِ}؟", "qe": "What is wrong?", "a": "أَنا {تَعْبانُ|تَعْبانةُ}.", "ae": "I am tired."}, {"q": "هَلْ {أَنْتَ|أَنْتِ} {جَوْعانُ|جَوْعانةُ}؟", "qe": "Are you hungry?", "a": "نَعَمْ، أَنا {جَوْعانُ|جَوْعانةُ}. أُرِيدُ خُبْزاً وَدَجاجاً.", "ae": "Yes, I am hungry. I want bread and chicken."}, {"q": "هَلْ {أَنْتَ|أَنْتِ} {عَطْشانُ|عَطْشانةُ}؟", "qe": "Are you thirsty?", "a": "نَعَمْ، أُرِيدُ ماءً مِنْ فَضْلِكَ.", "ae": "Yes, I want water, please."}, {"q": "ماذا {تَشْرَبُ|تَشْرَبِينَ}؟", "qe": "What do you drink?", "a": "أَشْرَبُ [قَهْوةً].", "ae": "I drink [coffee]."}, {"q": "هَلْ {تَشْرَبُ|تَشْرَبِينَ} القَهْوةَ بِسُكَّرٍ؟", "qe": "Do you drink coffee with sugar?", "a": "نَعَمْ، سُكَّرٌ وَسَطٌ مِنْ فَضْلِكَ.", "ae": "Yes, medium sugar, please."}, {"q": "هَلْ {تُحِبُّ|تُحِبِّينَ} الشّايَ أَوِ القَهْوةَ؟", "qe": "Do you like tea or coffee?", "a": "أُحِبُّ [القَهْوةَ].", "ae": "I like [coffee]."}, {"q": "أَيْنَ الحَمّامُ؟", "qe": "Where is the bathroom?", "a": "الحَمّامُ هُناكَ.", "ae": "The bathroom is there."}, {"q": "عَن إِذْنِ{كَ|كِ}.", "qe": "Excuse me.", "a": "تَفَضَّلْ. (to a man) / تَفَضَّلِي. (to a woman)", "ae": "Please, go ahead."}]}, {"id": "describe", "title": "Describing people, places and things", "desc": "Alif Baa units 6, 8 and 9. Adjectives and agreement.", "qs": [{"q": "كَيْفَ بَيْتُ{كَ|كِ}؟", "qe": "How is your house?", "a": "بَيْتِي [كَبِيرٌ] وَجَمِيلٌ.", "ae": "My house is [big] and beautiful."}, {"q": "هَلْ غُرْفَتُ{كَ|كِ} واسِعةٌ؟", "qe": "Is your room spacious?", "a": "نَعَمْ، غُرْفَتِي واسِعةٌ.", "ae": "Yes, my room is spacious."}, {"q": "هَلِ الجامِعةُ قَرِيبةٌ مِنْ بَيْتِ{كَ|كِ}؟", "qe": "Is the university close to your house?", "a": "نَعَمْ، الجامِعةُ قَرِيبةٌ مِنْ بَيْتِي.", "ae": "Yes, the university is close to my house."}, {"q": "كَيْفَ أُسْتاذُ{كَ|كِ}؟", "qe": "How is your teacher?", "a": "أُسْتاذِي لَطِيفٌ.", "ae": "My teacher is nice."}, {"q": "هَلْ {أَنْتَ|أَنْتِ} {طَوِيلٌ|طَوِيلةٌ} أَمْ {قَصِيرٌ|قَصِيرةٌ}؟", "qe": "Are you tall or short?", "a": "أَنا {طَوِيلٌ|طَوِيلةٌ}.", "ae": "I am tall."}, {"q": "هَلْ سَيّارَتُ{كَ|كِ} جَدِيدةٌ؟", "qe": "Is your car new?", "a": "لا، سَيّارَتِي قَدِيمةٌ.", "ae": "No, my car is old."}, {"q": "ما هَذا؟", "qe": "What is this?", "a": "هَذا [كِتابٌ].", "ae": "This is [a book]."}, {"q": "مَنْ هَذِهِ؟", "qe": "Who is this (f.)?", "a": "هَذِهِ [صَدِيقَتِي].", "ae": "This is [my friend]."}, {"q": "هَلْ هُناكَ مُشْكِلةٌ؟", "qe": "Is there a problem?", "a": "لا، لَيْسَ هُناكَ مُشْكِلةٌ.", "ae": "No, there is no problem."}]}, {"id": "story", "title": "Tell your story", "desc": "A short monologue about yourself. Uses past, present, negation, plurals, idafa, possessive endings and connectors.", "qs": [{"q": "{تَكَلَّمْ|تَكَلَّمِي} عَنْ نَفْسِ{كَ|كِ}.", "qe": "Tell me about yourself.", "a": "اِسْمِي [سامِي]. أَنا {طالِبٌ|طالِبةٌ} فِي جامِعةِ [جورجتاون]، وَأَدْرُسُ [العَرَبِيّةَ]. أَسْكُنُ فِي [واشِنْطُن]. أُسْرَتِي [كَبِيرةٌ]. والِدِي [مُتَرْجِمٌ] وَوالِدَتِي [مُوَظَّفةٌ]. لِي [أَخٌ وَأُخْتٌ].", "ae": "My name is [Sami]. I am a student at [Georgetown] and I study [Arabic]. I live in [Washington]. My family is [big]. My father is [a translator] and my mother is [an employee]. I have [a brother and a sister]."}, {"q": "{تَكَلَّمْ|تَكَلَّمِي} عَنْ طُفُولَتِ{كَ|كِ}.", "qe": "Tell me about your childhood.", "a": "كُنْتُ فِي مَدْرَسةٍ ابْتِدائِيّةٍ فِي [مَدِينةِ ...] قَبْلَ الجامِعةِ. كانَتْ لِي صَدِيقةٌ اسْمُها [سارة]، وَكانَتْ زَمِيلَتِي فِي المَدْرَسةِ. أَتَذَكَّرُ الطُّفُولةَ، وَلَكِنْ لا أَحْفَظُ أَسْماءَ كُلِّ الأَفْرادِ.", "ae": "I was in a primary school in [the city of ...] before the university. I had a friend called [Sara], and she was my classmate at school. I remember childhood, but I do not remember the names of all the individuals."}, {"q": "{تَكَلَّمْ|تَكَلَّمِي} عَنِ الطَّقْسِ فِي مَدِينَتِ{كَ|كِ}.", "qe": "Tell me about the weather in your city.", "a": "الطَّقْسُ فِي مَدِينَتِي [جَمِيلٌ] فِي الخَرِيفِ. فِي الصَّيْفِ الطَّقْسُ حارٌّ جِدّاً وَالرُّطُوبةُ عالِيةٌ. لا أُحِبُّ الصَّيْفَ بِسَبَبِ الحَرارةِ. بِالنِّسْبةِ لِي، أَحْسَنُ فَصْلٍ هُوَ [الرَّبِيعُ].", "ae": "The weather in my city is [beautiful] in autumn. In summer the weather is very hot and the humidity is high. I do not like summer because of the heat. As far as I am concerned, the best season is [spring]."}, {"q": "{تَكَلَّمْ|تَكَلَّمِي} عَنْ أُسْرَتِ{كَ|كِ}.", "qe": "Tell me about your family.", "a": "أُسْرَتِي [كَبِيرةٌ]. فِي أُسْرَتِي [خَمْسةُ] أَفْرادٍ. والِدِي مَشْغُولٌ دائِماً بِالعَمَلِ، وَوالِدَتِي تَعْمَلُ فِي [مَكْتَبٍ]. لِي أَقارِبُ فِي [لُبْنانَ]، وَأَعْرِفُهُمْ مِنَ الصُّوَرِ وَالرَّسائِلِ.", "ae": "My family is [big]. There are [five] people in my family. My father is always busy with work, and my mother works in [an office]. I have relatives in [Lebanon], and I know them from the pictures and the letters."}, {"q": "ماذا {تُحِبُّ|تُحِبِّينَ} وَماذا لا {تُحِبُّ|تُحِبِّينَ}؟", "qe": "What do you like and what do you not like?", "a": "أُحِبُّ [الخَرِيفَ] كَثِيراً وَ[القِراءةَ] حُبّاً كَبِيراً. لا أُحِبُّ [الازْدِحامَ]. أَشْعُرُ أَحْياناً بِالوِحْدةِ.", "ae": "I like [autumn] a lot and [reading] very much. I do not like [crowding]. Sometimes I feel lonely."}]}];
+let oralGender = loadProgress('oralGender', 'm');
+let oralDone = loadProgress('oralDone', {});      // 'topic-i' -> 'got' | 'weak'
+let oralPlan = loadProgress('oralPlan', {});
+let oralTimer = null;
+function oralFmt(t){
+  return t.replace(/\{([^{}|]*)\|([^{}]*)\}/g, (_,m,f)=> oralGender==='f' ? f : m)
+          .replace(/\[([^\]]*)\]/g, '<span class="ph">$1</span>');
+}
+function oralId(t, i){ return t.id+'-'+i; }
+function oralSetDone(id, val){ if(val) oralDone[id]=val; else delete oralDone[id]; saveProgress('oralDone', oralDone); }
+function oralCounts(t){ return {got: t.qs.filter((_,i)=>oralDone[oralId(t,i)]==='got').length, weak: t.qs.filter((_,i)=>oralDone[oralId(t,i)]==='weak').length, n: t.qs.length}; }
+const ORAL_PLAN = [
+  ['Mon, Nov 16', ['Read Phrases and tips: the person-flip table and the question-word table', 'Rehearse Greetings and Introducing yourself aloud']],
+  ['Tue, Nov 17', ['Lesson 5 quiz', 'Rehearse Family']],
+  ['Wed, Nov 18', ['Rehearse Study and free time, and Childhood and school', 'Record yourself answering five questions and listen back']],
+  ['Thu, Nov 19', ['Conversation class: ask a classmate the questions from Weather and Feelings, drinks and needs', 'Mark the questions you stumbled on as "Need practice"']],
+  ['Fri, Nov 20', ['Rehearse Weather, seasons and cities, and Describing people, places and things', 'Redo every question marked "Need practice"']],
+  ['Sat, Nov 21', ['Write and memorize your own Tell your story monologue (8 to 10 sentences)', 'Answer the reading-passage questions aloud']],
+  ['Sun, Nov 22', ['Full mock interview: Practice mode, all topics, 15 questions, 30-second think time', 'Redo the weak list once more; sleep early']],
+  ['Mon, Nov 23 and Tue, Nov 24', ['Final speaking test in class. Read Phrases and tips once in the morning (10 minutes)']]
+];
+function oralNav(main, current){
+  const items = [['','Overview'],['practice','Practice mode'],['phrases','Phrases and tips'],['passages','Reading passages']];
+  const row = mkEl(`<div class="row" style="margin-bottom:12px;flex-wrap:wrap;"></div>`);
+  items.forEach(([id,l])=>{ const b = mkEl(`<button class="btn ${current===id?'':'ghost'}">${l}</button>`); b.onclick=()=>go('oral', id||undefined); row.appendChild(b); });
+  const spacer = mkEl(`<div class="spacer"></div>`); row.appendChild(spacer);
+  const g = mkEl(`<label class="pill" style="cursor:pointer;">I am: <select id="oralGender" style="margin-left:6px;"><option value="m">male</option><option value="f">female</option></select></label>`);
+  g.querySelector('select').value = oralGender;
+  g.querySelector('select').onchange = e=>{ oralGender = e.target.value; saveProgress('oralGender', oralGender); showPage('oral', parseHash().param); };
+  row.appendChild(g);
+  main.appendChild(row);
+}
+function renderOral(main, param){
+  if(oralTimer){ clearInterval(oralTimer); oralTimer = null; }
+  main.appendChild(mkEl(`<div><h1>Oral Exam Preparation</h1></div>`));
+  oralNav(main, param==='practice'||param==='phrases'||param==='passages' ? param : '');
+  if(param==='practice') return oralPractice(main);
+  if(param==='phrases') return oralPhrases(main);
+  if(param==='passages') return oralPassages(main);
+  const topic = ORAL_TOPICS.find(t=>t.id===param);
+  if(topic) return oralTopic(main, topic);
+  oralHome(main);
+}
+function oralHome(main){
+  main.appendChild(mkEl(`<div class="card">
+    <h3 style="margin-top:0;">What is known about the oral exam</h3>
+    <ul>
+      <li>The class schedule has the <b>final speaking test in class on Monday, Nov 23 and Tuesday, Nov 24</b>, and a conversation class on Thursday, Nov 19.</li>
+      <li>The format, length and grading of the test are not on the site. Ask your instructor: is it an interview, a presentation or a picture description; how long; and whether case endings are expected when you speak.</li>
+      <li>Because the exact questions are not known, this area covers every topic the course has taught, in the order it came: greetings, introductions, family, study, childhood and school, weather and seasons, feelings and drinks, and description. The model answers use only vocabulary and grammar from those lessons.</li>
+      <li>Words in <span class="ph">brackets</span> are the parts you replace with your own details.</li>
+    </ul>
+  </div>`));
+  main.appendChild(mkEl(`<h2 style="margin-top:22px;">Topics</h2>`));
+  const grid = mkEl(`<div class="grid cols2"></div>`);
+  ORAL_TOPICS.forEach(t=>{
+    const c = oralCounts(t);
+    const card = mkEl(`<div class="card lesson-card"><h3>${t.title}</h3><p class="muted" style="margin:0 0 8px;">${t.desc}</p><div class="pill">${c.n} questions</div><div class="pill">${c.got} rehearsed</div>${c.weak?`<div class="pill" style="color:var(--bad);">${c.weak} need practice</div>`:''}</div>`);
+    card.onclick=()=>go('oral', t.id);
+    grid.appendChild(card);
+  });
+  main.appendChild(grid);
+  main.appendChild(mkEl(`<h2 style="margin-top:26px;">Preparation plan</h2>`));
+  ORAL_PLAN.forEach(([day, tasks], di)=>{
+    const card = mkEl(`<div class="card" style="margin-bottom:10px;"><h3 style="margin:0 0 6px;">${day}</h3></div>`);
+    tasks.forEach((t,ti)=>{
+      const key = di+'-'+ti;
+      const row = mkEl(`<label style="display:flex;gap:10px;align-items:flex-start;cursor:pointer;margin:4px 0;"><input type="checkbox" ${oralPlan[key]?'checked':''} style="margin-top:5px;"><span>${t}</span></label>`);
+      row.querySelector('input').onchange = e=>{ if(e.target.checked) oralPlan[key]=true; else delete oralPlan[key]; saveProgress('oralPlan', oralPlan); };
+      card.appendChild(row);
+    });
+    main.appendChild(card);
+  });
+  main.appendChild(mkEl(`<div class="card"><h3 style="margin-top:0;">Printable question bank</h3><p>Every question and model answer on one document, for practicing with a partner. Male and female forms are shown with a slash.</p><div class="row"><a class="btn" href="practice-exams/Arabic011_Oral_Exam_Question_Bank.pdf" target="_blank" rel="noopener">Question bank (PDF)</a></div></div>`));
+}
+function oralTopic(main, topic){
+  main.appendChild(mkEl(`<div class="row" style="margin-bottom:6px;"><button class="btn ghost" id="otBack">&larr; Topics</button></div>`));
+  main.querySelector('#otBack').onclick=()=>go('oral');
+  main.appendChild(mkEl(`<div><h2 style="margin:6px 0 4px;">${topic.title}</h2><p class="muted" style="margin:0 0 12px;">${topic.desc} Say each answer aloud before you open the model answer.</p></div>`));
+  const counter = mkEl(`<div class="pill" id="otCount"></div>`);
+  main.appendChild(counter);
+  const paint = ()=>{ const c = oralCounts(topic); counter.textContent = `${c.got} of ${c.n} rehearsed`; };
+  topic.qs.forEach((q,i)=>{
+    const id = oralId(topic, i);
+    const card = mkEl(`<div class="card" style="margin-top:12px;">
+      <div class="muted" style="font-size:12px;">Question ${i+1}</div>
+      <div class="arabic big-ar" style="margin:6px 0 2px;">${oralFmt(q.q)}</div>
+      <div class="muted en-toggle">${oralFmt(q.qe)}</div>
+      <div class="row" style="margin-top:10px;"><button class="btn ghost" data-act="show">Show model answer</button></div>
+      <div data-ans style="display:none;margin-top:10px;"><div class="arabic big-ar">${oralFmt(q.a)}</div><div class="muted en-toggle">${oralFmt(q.ae)}</div></div>
+      <label style="display:flex;gap:8px;align-items:center;margin-top:10px;cursor:pointer;"><input type="checkbox" ${oralDone[id]==='got'?'checked':''}> I can say this without looking</label>
+    </div>`);
+    const ans = card.querySelector('[data-ans]'), btn = card.querySelector('[data-act=show]');
+    btn.onclick=()=>{ const open = ans.style.display==='none'; ans.style.display = open?'':'none'; btn.textContent = open?'Hide model answer':'Show model answer'; };
+    card.querySelector('input').onchange = e=>{ oralSetDone(id, e.target.checked?'got':null); paint(); };
+    main.appendChild(card);
+  });
+  paint();
+}
+function oralPassages(main){
+  main.appendChild(mkEl(`<p class="muted">The class reading passages with their comprehension questions. Read the passage, then answer each question aloud in a full sentence before opening the answer.</p>`));
+  READING_PASSAGES.forEach(p=>{
+    if(!p.comprehension || !p.comprehension.length) return;
+    const box = mkEl(`<div class="card" style="margin-top:12px;"><h3 style="margin-top:0;">${p.title}</h3><div class="arabic" style="font-size:20px;line-height:2;">${p.text}</div></div>`);
+    p.comprehension.forEach((x,i)=>{
+      const row = mkEl(`<div style="margin-top:12px;border-top:1px solid var(--line, #444);padding-top:8px;"><div class="arabic big-ar">${i+1}) ${x.q}</div><div class="row" style="margin-top:6px;"><button class="btn ghost">Show answer</button></div><div style="display:none;margin-top:6px;" class="arabic big-ar">${x.a}</div></div>`);
+      const b = row.querySelector('button'), a = row.children[2];
+      b.onclick=()=>{ const o = a.style.display==='none'; a.style.display=o?'':'none'; b.textContent=o?'Hide answer':'Show answer'; };
+      box.appendChild(row);
+    });
+    main.appendChild(box);
+  });
+}
+function oralPractice(main){
+  const cfg = loadProgress('oralPracticeCfg', {topics: ORAL_TOPICS.map(t=>t.id), count:'10', think:'30', weakOnly:false});
+  const setup = mkEl(`<div class="card"><h3 style="margin-top:0;">Mock interview</h3>
+    <p class="muted">You get one question at a time, like an examiner. Answer aloud, then check the model answer and mark it.</p>
+    <div id="opTopics" class="row" style="flex-wrap:wrap;gap:6px;"></div>
+    <div class="row" style="margin-top:12px;flex-wrap:wrap;">
+      <label>Questions <select id="opCount"><option>5</option><option>10</option><option>15</option><option>20</option><option value="all">all</option></select></label>
+      <label>Think time <select id="opThink"><option value="0">off</option><option value="15">15 s</option><option value="30">30 s</option><option value="60">60 s</option></select></label>
+      <label><input type="checkbox" id="opWeak"> only questions not yet rehearsed</label>
+    </div>
+    <div class="row" style="margin-top:12px;"><button class="btn" id="opStart">Start</button></div></div>`);
+  main.appendChild(setup);
+  const tops = setup.querySelector('#opTopics');
+  ORAL_TOPICS.forEach(t=>{
+    const l = mkEl(`<label class="pill" style="cursor:pointer;"><input type="checkbox" value="${t.id}" ${cfg.topics.includes(t.id)?'checked':''}> ${t.title}</label>`);
+    tops.appendChild(l);
+  });
+  setup.querySelector('#opCount').value = cfg.count; setup.querySelector('#opThink').value = cfg.think; setup.querySelector('#opWeak').checked = !!cfg.weakOnly;
+  const area = mkEl(`<div id="opArea"></div>`); main.appendChild(area);
+  setup.querySelector('#opStart').onclick=()=>{
+    const topics = [...tops.querySelectorAll('input:checked')].map(i=>i.value);
+    const c = {topics, count:setup.querySelector('#opCount').value, think:setup.querySelector('#opThink').value, weakOnly:setup.querySelector('#opWeak').checked};
+    saveProgress('oralPracticeCfg', c);
+    let pool = [];
+    ORAL_TOPICS.filter(t=>topics.includes(t.id)).forEach(t=>t.qs.forEach((q,i)=>{ const id = oralId(t,i); if(!c.weakOnly || oralDone[id]!=='got') pool.push({t, q, i, id}); }));
+    pool = shuffle(pool);
+    if(c.count!=='all') pool = pool.slice(0, Number(c.count));
+    if(!pool.length){ area.innerHTML=''; area.appendChild(mkEl(`<p class="muted" style="margin-top:12px;">No questions match. Pick at least one topic.</p>`)); return; }
+    runOralPractice(area, pool, Number(c.think));
+  };
+}
+function runOralPractice(area, pool, think){
+  let idx = 0; const results = {};
+  function stopTimer(){ if(oralTimer){ clearInterval(oralTimer); oralTimer=null; } }
+  function show(){
+    stopTimer();
+    area.innerHTML='';
+    if(idx>=pool.length) return summary();
+    const {t,q,id} = pool[idx];
+    const card = mkEl(`<div class="card" style="margin-top:14px;">
+      <div class="row"><span class="pill">${idx+1} of ${pool.length}</span><span class="pill">${t.title}</span><div class="spacer"></div><span class="pill" id="opClock"></span></div>
+      <div class="arabic" style="font-size:30px;margin:16px 0 4px;">${oralFmt(q.q)}</div>
+      <div class="muted en-toggle">${oralFmt(q.qe)}</div>
+      <div class="row" style="margin-top:14px;"><button class="btn" id="opShow">Show model answer</button><button class="btn ghost" id="opSkip">Skip</button></div>
+      <div id="opAns" style="display:none;margin-top:14px;"><div class="arabic big-ar">${oralFmt(q.a)}</div><div class="muted en-toggle">${oralFmt(q.ae)}</div>
+        <div class="row" style="margin-top:12px;"><button class="btn ghost" id="opWeakBtn" style="border-color:var(--bad);color:var(--bad);">Need practice</button><button class="btn ghost" id="opGotBtn" style="border-color:var(--good);color:var(--good);">Got it</button></div></div>
+      <div id="opRec" style="margin-top:14px;"></div>
+    </div>`);
+    area.appendChild(card);
+    const clock = card.querySelector('#opClock');
+    if(think>0){
+      let left = think; clock.textContent = left+' s';
+      oralTimer = setInterval(()=>{ if(currentTab!=='oral'){ stopTimer(); return; } left--; clock.textContent = left>0 ? left+' s' : 'time'; if(left<=0) stopTimer(); }, 1000);
+    }
+    card.querySelector('#opShow').onclick=()=>{ stopTimer(); card.querySelector('#opAns').style.display=''; card.querySelector('#opShow').style.display='none'; };
+    card.querySelector('#opSkip').onclick=()=>{ results[id]='skip'; idx++; show(); };
+    const mark = v=>{ oralSetDone(id, v); results[id]=v; idx++; show(); };
+    card.querySelector('#opGotBtn').onclick=()=>mark('got');
+    card.querySelector('#opWeakBtn').onclick=()=>mark('weak');
+    oralRecorder(card.querySelector('#opRec'));
+  }
+  function summary(){
+    const got = pool.filter(p=>results[p.id]==='got').length, weak = pool.filter(p=>results[p.id]==='weak');
+    area.appendChild(mkEl(`<div class="card" style="margin-top:14px;"><h3 style="margin-top:0;">Done</h3><p>${got} of ${pool.length} marked "Got it".</p>
+      ${weak.length ? `<p>To practice again:</p><ul>${weak.map(p=>`<li><span class="arabic">${oralFmt(p.q.q)}</span></li>`).join('')}</ul>` : '<p>Nothing marked for practice.</p>'}
+      <div class="row"><button class="btn" id="opAgain">Practice again</button></div></div>`));
+    area.querySelector('#opAgain').onclick=()=>showPage('oral','practice');
+  }
+  show();
+}
+function oralRecorder(box){
+  if(!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia && window.MediaRecorder)){ return; }
+  const ui = mkEl(`<div><div class="row"><button class="btn ghost" id="rcStart">Record my answer</button><button class="btn ghost" id="rcStop" style="display:none;">Stop</button><span class="muted" id="rcMsg" style="font-size:13px;"></span></div><div id="rcPlay"></div></div>`);
+  box.appendChild(ui);
+  let rec = null, chunks = [], stream = null;
+  const msg = ui.querySelector('#rcMsg'), st = ui.querySelector('#rcStart'), sp = ui.querySelector('#rcStop');
+  st.onclick = async ()=>{
+    try{
+      stream = await navigator.mediaDevices.getUserMedia({audio:true});
+      rec = new MediaRecorder(stream); chunks = [];
+      rec.ondataavailable = e=>chunks.push(e.data);
+      rec.onstop = ()=>{ stream.getTracks().forEach(t=>t.stop()); const url = URL.createObjectURL(new Blob(chunks, {type:rec.mimeType||'audio/webm'})); const p = ui.querySelector('#rcPlay'); p.innerHTML=''; p.appendChild(mkEl(`<audio controls src="${url}" style="margin-top:8px;width:100%;"></audio>`)); msg.textContent='Recorded on this device only; nothing is uploaded.'; };
+      rec.start(); st.style.display='none'; sp.style.display=''; msg.textContent='Recording...';
+    }catch(e){ msg.textContent = 'Microphone not available in this browser.'; }
+  };
+  sp.onclick = ()=>{ if(rec && rec.state!=='inactive') rec.stop(); sp.style.display='none'; st.style.display=''; st.textContent='Record again'; };
+}
+function oralPhrases(main){
+  const sec = (title, html)=>main.appendChild(mkEl(`<div class="card" style="margin-top:14px;"><h3 style="margin-top:0;">${title}</h3>${html}</div>`));
+  const ar = t=>`<span class="arabic big-ar">${t}</span>`;
+  const table = (head, rows)=>`<table><tr>${head.map(h=>`<th>${h}</th>`).join('')}</tr>${rows.map(r=>`<tr>${r.map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</table>`;
+  sec('1. Turn the question into your answer (you to I)', `<p>Answer in a full sentence that reuses the question's verb or noun, with the person changed. This keeps the grammar correct without having to think of new words.</p>`+
+    table(['In the question (you)','In your answer (I)','Example'], [
+      [ar('أَنْتَ / أَنْتِ'), ar('أَنا'), ar('مِنْ أَيْنَ أَنْتَ؟ ← أَنا مِنْ ...')],
+      [ar('تَسْكُنُ / تَدْرُسُ / تَعْمَلُ'), ar('أَسْكُنُ / أَدْرُسُ / أَعْمَلُ'), ar('أَيْنَ تَسْكُنُ؟ ← أَسْكُنُ فِي ...')],
+      [ar('تَسْكُنِينَ / تَدْرُسِينَ'), ar('أَسْكُنُ / أَدْرُسُ'), ar('ماذا تَدْرُسِينَ؟ ← أَدْرُسُ العَرَبِيّةَ.')],
+      [ar('كُنْتَ / كُنْتِ'), ar('كُنْتُ'), ar('أَيْنَ كُنْتَ؟ ← كُنْتُ فِي ...')],
+      [ar('سافَرْتَ / سافَرْتِ'), ar('سافَرْتُ'), ar('إِلَى أَيْنَ سافَرْتَ؟ ← سافَرْتُ إِلَى ...')],
+      [ar('ـكَ / ـكِ (your)'), ar('ـي (my)'), ar('ما اسْمُكَ؟ ← اِسْمِي ...  /  أُسْرَتُكَ ← أُسْرَتِي')],
+      [ar('لَكَ / لَكِ'), ar('لِي'), ar('هَلْ لَكَ أَخٌ؟ ← نَعَمْ، لِي أَخٌ.')],
+      [ar('هَلْ ...؟ (yes/no)'), ar('نَعَمْ، ... / لا، ...'), ar('هَلْ تُحِبُّ الشِّتاءَ؟ ← نَعَمْ، أُحِبُّ الشِّتاءَ. / لا، لا أُحِبُّ الشِّتاءَ.')]
+    ]));
+  sec('2. What each question word asks for', table(['Question word','Asks for','Answer begins with','Example'], [
+      [ar('هَل'), 'yes or no', ar('نَعَمْ / لا') + ', then a full sentence', ar('هَلْ أَنْتَ طالِبٌ؟ ← نَعَمْ، أَنا طالِبٌ.')],
+      [ar('مَن'), 'a person', 'the person', ar('مَنْ هَذا؟ ← هَذا أَخِي.')],
+      [ar('ما'), 'a thing, a name (no verb follows)', 'the noun', ar('ما اسْمُكَ؟ ← اِسْمِي سامِي.')],
+      [ar('ماذا'), 'a thing (a verb follows)', 'verb + object', ar('ماذا تَدْرُسُ؟ ← أَدْرُسُ العَرَبِيّةَ.')],
+      [ar('كَيْفَ'), 'how, in what state', 'an adjective', ar('كَيْفَ الطَّقْسُ؟ ← الطَّقْسُ بارِدٌ.')],
+      [ar('أَيْنَ'), 'a place', ar('فِي') + ' + genitive', ar('أَيْنَ تَسْكُنُ؟ ← أَسْكُنُ فِي واشِنْطُنَ.')],
+      [ar('مِن أَيْنَ'), 'origin', ar('مِنْ') + ' + genitive', ar('مِنْ أَيْنَ أَنْتَ؟ ← أَنا مِنْ لُبْنانَ.')],
+      [ar('إِلَى أَيْنَ'), 'a destination', ar('إِلَى') + ' + genitive', ar('إِلَى أَيْنَ سافَرْتَ؟ ← سافَرْتُ إِلَى الأُرْدُنِّ.')],
+      [ar('مَتى'), 'a time', 'a time word', ar('مَتى تَدْرُسُ؟ ← أَدْرُسُ فِي المَساءِ.')],
+      [ar('كَم'), 'a number', 'a number + singular accusative noun (11 to 99)', ar('كَمْ طالِباً فِي الصَّفِّ؟ ← فِي الصَّفِّ خَمْسةَ عَشَرَ طالِباً.')],
+      [ar('أَيّ'), 'which one', 'the chosen noun', ar('أَيُّ فَصْلٍ تُحِبُّ؟ ← أُحِبُّ الرَّبِيعَ.')],
+      [ar('لِماذا'), 'a reason', ar('بِسَبَبِ') + ' + genitive, or ' + ar('لِأَنَّ'), ar('لِماذا لا تُحِبُّ نِيويُورْك؟ ← بِسَبَبِ الازْدِحامِ.')]
+    ]));
+  sec('3. Sentence patterns you can always fall back on', table(['Pattern','Example','Rule'], [
+      ['Verbal sentence', ar('تَدْرُسُ الطّالِبةُ العَرَبِيّةَ.'), 'verb first and singular, then subject (nominative), then object (accusative)'],
+      ['Nominal sentence', ar('الطَّقْسُ بارِدٌ.'), 'subject and predicate both nominative; the adjective agrees in gender'],
+      ['Negation of a verb', ar('لا أُحِبُّ الازْدِحامَ.'), ar('لا') + ' directly before the present-tense verb'],
+      ['Negation of a nominal sentence', ar('لَسْتُ مَشْغُولاً.'), ar('لَيْسَ') + ' and its forms; the predicate is accusative'],
+      ['Past tense', ar('كُنْتُ فِي مَدْرَسةٍ ابْتِدائِيّةٍ.'), ar('كانَ') + ' plus a prepositional phrase; a predicate noun or adjective is accusative'],
+      ['Idafa', ar('جامِعةُ جورجتاون'), 'no ' + ar('ال') + ' on the first word; second word genitive'],
+      ['Possessive ending', ar('صَدِيقَتِي، أُسْرَتُهُ'), ar('ة') + ' becomes ' + ar('ت') + ' before the ending'],
+      ['Absolute object', ar('أُحِبُّ الرَّبِيعَ حُبّاً كَبِيراً.'), 'masdar of the same verb, accusative, plus an accusative adjective'],
+      ['Adverbs', ar('جِدّاً، كَثِيراً، أَحْياناً، دائِماً'), 'accusative with tanween fatha']
+    ]));
+  sec('4. Connectors and small words that make answers longer', table(['Word','Meaning','Example'], [
+      [ar('وَ'), 'and', ar('أَدْرُسُ العَرَبِيّةَ وَالتّارِيخَ.')], [ar('أَوْ / أَمْ'), 'or (' + ar('أَمْ') + ' in a question)', ar('هَلِ الدَّرْسُ صَعْبٌ أَمْ سَهْلٌ؟')],
+      [ar('لَكِنْ'), 'but', ar('العَرَبِيّةُ صَعْبةٌ، وَلَكِنْ هِيَ جَمِيلةٌ.')], [ar('أَيْضاً'), 'also', ar('أُحِبُّ الخَرِيفَ أَيْضاً.')],
+      [ar('جِدّاً / كَثِيراً / قَلِيلاً'), 'very / a lot / a little', ar('أَنا مَشْغُولٌ جِدّاً.')], [ar('دائِماً / أَحْياناً'), 'always / sometimes', ar('أَشْعُرُ أَحْياناً بِالوِحْدةِ.')],
+      [ar('فَقَط'), 'only', ar('أَدْرُسُ العَرَبِيّةَ فَقَط.')], [ar('فِي الحَقِيقةِ'), 'actually', ar('فِي الحَقِيقةِ، لا أُحِبُّ الصَّيْفَ.')],
+      [ar('بِالنِّسْبةِ لِي'), 'as far as I am concerned', ar('بِالنِّسْبةِ لِي، العَرَبِيّةُ جَمِيلةٌ.')], [ar('بِسَبَبِ'), 'because of', ar('بِسَبَبِ الطَّقْسِ')],
+      [ar('قَبْلَ'), 'before', ar('قَبْلَ الجامِعةِ')], [ar('الآنَ'), 'now', ar('الآنَ أَدْرُسُ فِي الجامِعةِ.')]
+    ]));
+  sec('5. If you do not understand', table(['Say','Meaning'], [
+      [ar('لا أَفْهَمُ.'), 'I do not understand.'], [ar('ماذا يَعْنِي ...؟'), 'What does ... mean?'],
+      [ar('مِنْ فَضْلِكَ، مَرّةً أُخْرَى.'), 'Please, once more. (standard phrase, not in the vocabulary lists)'], [ar('عَفْواً.'), 'Excuse me. / Pardon.'], [ar('شُكْراً.'), 'Thank you.']
+    ]) + '<p>Give a short answer you are sure of rather than staying silent. A correct short sentence earns more than a long attempt that falls apart.</p>');
+  sec('6. Pronunciation and endings when speaking', `<ul>
+      <li><b>Pausal form.</b> At the end of a sentence or phrase, standard spoken Arabic drops the final short vowel and the tanween: ${ar('الطَّقْسُ بارِدٌ')} is said <i>aT-Taqsu baarid</i>; ${ar('جَمِيلةٌ')} is said <i>jamiila</i> (the ${ar('ة')} is read <b>a</b>); tanween fatha ${ar('ـاً')} is said as a long <i>aa</i>: ${ar('كَثِيراً')} is <i>kathiiraa</i>.</li>
+      <li><b>Inside a sentence</b>, say the endings you know, or leave all of them off consistently. Do not mix. Ask your instructor which is expected.</li>
+      <li><b>The ${ar('ة')} in an idafa</b> is read <b>t</b>: ${ar('جامِعةُ جورجتاون')} is <i>jaamiʿatu jorjtaawn</i>.</li>
+      <li><b>Emphatic letters</b> ${ar('ص ض ط ظ')} are heavier than ${ar('س د ت ذ')}. <b>${ar('ع')}</b> and <b>${ar('ح')}</b> are throat sounds, not ${ar('أ')} and ${ar('ه')}.</li>
+      <li><b>Long and short vowels</b> change the meaning: ${ar('كَتَبَ')} (he wrote) and ${ar('كاتِب')} (writer); hold a long vowel about twice as long as a short one.</li>
+      <li><b>Shadda</b> means a doubled consonant: ${ar('دَرَّسَ')} is <i>darrasa</i>, with a held <i>rr</i>.</li>
+      <li><b>Hamzat al-waSl</b> disappears after a vowel: ${ar('فِي الجامِعةِ')} is <i>fi l-jaamiʿa</i>; hamzat al-qaTʿ is always pronounced.</li>
+    </ul>`);
+  sec('7. How to prepare', `<ol>
+      <li>Say every answer <b>aloud</b>. Reading silently does not train the mouth. Do each topic until you can answer without looking.</li>
+      <li>For each topic, replace the bracketed parts with <b>your own true details</b> and memorize those three or four sentences. Real details are easier to remember than invented ones.</li>
+      <li>Record yourself on your phone or with the recorder in Practice mode, listen back, and check the vowels and the endings.</li>
+      <li>Practice with a partner on the printable question bank: one asks, one answers, then swap.</li>
+      <li>Use the Practice mode with a think time of 30 seconds, then 15 seconds, so you get used to answering fast.</li>
+      <li>Keep a "Need practice" list and clear it before the test. Questions you have marked "Got it" still need a quick pass the day before.</li>
+      <li>Revise by lesson with the flashcards and the Games tab: Lessons 1 to 5 vocabulary, the verbs deck and the verbal nouns deck.</li>
+      <li>In the test: listen for the question word first, answer with a full sentence that reuses the question's verb, then add one more detail (a connector, an adverb, a reason).</li>
+    </ol>`);
+}
 
 /* ============================================================
    INIT
