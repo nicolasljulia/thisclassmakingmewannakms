@@ -1284,6 +1284,7 @@ function pageTitle(tab, param){
   else if(tab==='flashcards' && param==='plurals') sub = 'Plurals flashcards';
   else if(tab==='flashcards' && param==='verbs') sub = 'Verb flashcards';
   else if(tab==='flashcards' && param==='masdar') sub = 'Verbal noun flashcards';
+  else if(tab==='flashcards' && param==='adverbs') sub = 'Adverb flashcards';
   else if(tab==='flashcards' && (param==='lesson3' || param==='unit2')) sub = 'Lesson 3 exam flashcards';
   else if(tab==='conjugations' && param!==undefined){ const v = CONJUGATIONS[param]; if(v) sub = v.english; }
   return (sub ? sub+' | ' : (t && tab!=='home' ? t.label+' | ' : ''))+base;
@@ -2436,12 +2437,12 @@ function renderLessonDetail(main, lesson){
 /* ============================================================
    FLASHCARDS
    ============================================================ */
-let fcState = { deckId:'vocab', book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', pdir:'sg2pl', pbook:'all', punit:'all', lkind:'all', vbook:'all', vform:'all', vdir:'ar2en', msrc:'all', mform:'all', mdir:'m2en' };
+let fcState = { deckId:'vocab', book:'alifbaa', unit:'all', type:'all', status:'all', deck:[], idx:0, flipped:false, dir:'ar2en', pdir:'sg2pl', pbook:'all', punit:'all', lkind:'all', vbook:'all', vform:'all', vdir:'ar2en', akind:'all', adir:'ar2en', msrc:'all', mform:'all', mdir:'m2en' };
 const WORD_TYPES = ["noun","verb","adjective","pronoun","question","number","particle","phrase"];
 const WORD_TYPE_LABELS = { noun:"Nouns", verb:"Verbs", adjective:"Adjectives", pronoun:"Pronouns", question:"Question words", number:"Numbers", particle:"Particles", phrase:"Phrases" };
 let knownWords = loadProgress('knownWords', {});
 (function(){ let changed=false; Object.keys(knownWords).forEach(k=>{ if(k.indexOf('plural|')===0){ const nk='plural|'+stripAr(k.slice(7)); if(nk!==k){ knownWords[nk]=true; delete knownWords[k]; changed=true; } } }); if(changed) saveProgress('knownWords', knownWords); })();
-function vocabKey(v){ return v.deck==='plurals' ? 'plural|'+v.key : (v.deck==='lesson3' || v.deck==='verbs' || v.deck==='masdar') ? v.key : v.book+'|'+v.en+'|'+v.ar; }
+function vocabKey(v){ return v.deck==='plurals' ? 'plural|'+v.key : (v.deck==='lesson3' || v.deck==='verbs' || v.deck==='masdar' || v.deck==='adverbs') ? v.key : v.book+'|'+v.en+'|'+v.ar; }
 // Lesson 3 exam deck: Al-Kitaab Lesson 3 vocabulary and plurals, possessive endings, question words, kaana and laysa
 const LESSON3_KIND_LABELS = {endings:'possessive endings', questions:'question words', kaana:'kaana and laysa'};
 const LESSON3_ENDING_ROWS = [[0,'my'],[1,'your (m)'],[2,'your (f)'],[3,'his, its'],[4,'her, its'],[5,'our'],[10,'your (pl)'],[12,'their (m)']];
@@ -2577,6 +2578,28 @@ function verbCards(){
   verbCardsCache = cards;
   return cards;
 }
+
+// Adverbs deck: the adverbs in the vocabulary lists of both books. kind: degree, frequency, time and place, or other.
+const ADVERB_KINDS = {degree:'Degree and amount', frequency:'Frequency', place:'Time and place', other:'Also, really, where'};
+const ADVERB_SRC = [
+  ['جِدّاً','very','degree','ـاً','الطَّقْسُ بارِدٌ جِدّاً.','The weather is very cold.','الطَّقْسُ بارِدٌ ____.','jiddan'],
+  ['كَثِيراً','a lot, much','degree','ـاً','أُحِبُّ الرَّبِيعَ كَثِيراً.','I like spring a lot.','أُحِبُّ الرَّبِيعَ ____.','kathiiran'],
+  ['قَلِيلاً','a little','degree','ـاً','العَرَبِيّةُ صَعْبةٌ قَلِيلاً.','Arabic is a little difficult.','العَرَبِيّةُ صَعْبةٌ ____.','qaliilan'],
+  ['فَقَط','only, that is all','degree','','أَدْرُسُ العَرَبِيّةَ فَقَط.','I study only Arabic.','أَدْرُسُ العَرَبِيّةَ ____.','faqaT'],
+  ['دائِماً','always','frequency','ـاً','والِدِي مَشْغُولٌ دائِماً.','My father is always busy.','والِدِي مَشْغُولٌ ____.','daa’iman'],
+  ['أَحْياناً','sometimes','frequency','ـاً','أَشْعُرُ أَحْياناً بِالوِحْدةِ.','Sometimes I feel lonely.','أَشْعُرُ ____ بِالوِحْدةِ.','aHyaanan'],
+  ['الآنَ','now','place','','أَنا مَشْغُولٌ الآنَ.','I am busy now.','أَنا مَشْغُولٌ ____.','al-aan'],
+  ['هُناكَ','there; there is','place','','الحَمّامُ هُناكَ.','The bathroom is there.','الحَمّامُ ____.','hunaak'],
+  ['حَيْثُ','where (not in questions)','place','','أَسْكُنُ فِي واشِنْطُنَ حَيْثُ أَدْرُسُ العَرَبِيّةَ.','I live in Washington, where I study Arabic.','أَسْكُنُ فِي واشِنْطُنَ ____ أَدْرُسُ العَرَبِيّةَ.','Haythu'],
+  ['أَيْضاً','also, too','other','ـاً','أُحِبُّ الخَرِيفَ أَيْضاً.','I like autumn too.','أُحِبُّ الخَرِيفَ ____.','ayDan'],
+  ['فِعْلاً','really, truly','other','ـاً','أَنا فِعْلاً مَشْغُولٌ.','I am really busy.','أَنا ____ مَشْغُولٌ.','fiʿlan']
+];
+let adverbCardsCache = null;
+function adverbCards(){
+  if(!adverbCardsCache) adverbCardsCache = ADVERB_SRC.map(([ar,en,kind,end,ex,exEn,exBlank,tr])=>({deck:'adverbs', key:'adverb|'+stripAr(ar), ar, en, kind, ex, exEn, exBlank, tr,
+    note: end ? 'accusative, tanween fatha ('+end+')' : 'does not change'}));
+  return adverbCardsCache;
+}
 function formOptions(cards){
   const forms = VERB_FORM_ORDER.filter(f=>cards.some(c=>c.form===f));
   return [['all','All forms'], ...forms.map(f=>[f, VERB_FORM_NAMES[f]])];
@@ -2584,11 +2607,11 @@ function formOptions(cards){
 
 function renderFlashcards(main, param){
   if(param==='unit2'){ param = 'lesson3'; history.replaceState(null,'',routeHash('flashcards','lesson3')); }
-  fcState.deckId = ['plurals','lesson3','verbs','masdar'].includes(param) ? param : 'vocab';
+  fcState.deckId = ['plurals','lesson3','verbs','masdar','adverbs'].includes(param) ? param : 'vocab';
   fcState.idx = 0; fcState.flipped = false;
   buildDeck();
   main.appendChild(mkEl(`<div><h1>Flashcards</h1></div>`));
-  const deckSwitch = mkEl(`<div class="row" style="margin-bottom:12px;"><button class="btn" id="fcTabVocab">Vocabulary (${VOCAB.length})</button><button class="btn" id="fcTabPlurals">Plurals (${getPluralCards().length})</button><button class="btn" id="fcTabLesson3">Lesson 3 Exam (${lesson3Cards().length})</button><button class="btn" id="fcTabVerbs">Verbs (${verbCards().length})</button><button class="btn" id="fcTabMasdar">Verbal Nouns (${masdarCards().length})</button></div>`);
+  const deckSwitch = mkEl(`<div class="row" style="margin-bottom:12px;"><button class="btn" id="fcTabVocab">Vocabulary (${VOCAB.length})</button><button class="btn" id="fcTabPlurals">Plurals (${getPluralCards().length})</button><button class="btn" id="fcTabLesson3">Lesson 3 Exam (${lesson3Cards().length})</button><button class="btn" id="fcTabVerbs">Verbs (${verbCards().length})</button><button class="btn" id="fcTabMasdar">Verbal Nouns (${masdarCards().length})</button><button class="btn" id="fcTabAdverbs">Adverbs (${adverbCards().length})</button></div>`);
   main.appendChild(deckSwitch);
   const controls = mkEl(`
     <div class="row" style="margin-bottom:16px;">
@@ -2598,6 +2621,7 @@ function renderFlashcards(main, param){
         <option value="lesson3">Lesson 3 Exam</option>
         <option value="verbs">Verbs</option>
         <option value="masdar">Verbal Nouns</option>
+        <option value="adverbs">Adverbs</option>
       </select>
       <select id="fcBook"></select>
       <select id="fcUnit"></select>
@@ -2611,8 +2635,8 @@ function renderFlashcards(main, param){
   main.appendChild(controls);
   const deckSel = controls.querySelector('#fcDeck');
   deckSel.value = fcState.deckId;
-  const tabV = deckSwitch.querySelector('#fcTabVocab'), tabP = deckSwitch.querySelector('#fcTabPlurals'), tabL = deckSwitch.querySelector('#fcTabLesson3'), tabVb = deckSwitch.querySelector('#fcTabVerbs'), tabM = deckSwitch.querySelector('#fcTabMasdar');
-  function paintDeckSwitch(){ tabV.className = fcState.deckId==='vocab' ? 'btn' : 'btn ghost'; tabP.className = fcState.deckId==='plurals' ? 'btn' : 'btn ghost'; tabL.className = fcState.deckId==='lesson3' ? 'btn' : 'btn ghost'; tabVb.className = fcState.deckId==='verbs' ? 'btn' : 'btn ghost'; tabM.className = fcState.deckId==='masdar' ? 'btn' : 'btn ghost'; }
+  const tabV = deckSwitch.querySelector('#fcTabVocab'), tabP = deckSwitch.querySelector('#fcTabPlurals'), tabL = deckSwitch.querySelector('#fcTabLesson3'), tabVb = deckSwitch.querySelector('#fcTabVerbs'), tabM = deckSwitch.querySelector('#fcTabMasdar'), tabA = deckSwitch.querySelector('#fcTabAdverbs');
+  function paintDeckSwitch(){ tabV.className = fcState.deckId==='vocab' ? 'btn' : 'btn ghost'; tabP.className = fcState.deckId==='plurals' ? 'btn' : 'btn ghost'; tabL.className = fcState.deckId==='lesson3' ? 'btn' : 'btn ghost'; tabVb.className = fcState.deckId==='verbs' ? 'btn' : 'btn ghost'; tabM.className = fcState.deckId==='masdar' ? 'btn' : 'btn ghost'; tabA.className = fcState.deckId==='adverbs' ? 'btn' : 'btn ghost'; }
   function syncDeckUrl(){
     const p = fcState.deckId==='vocab' ? undefined : fcState.deckId, t = routeHash('flashcards', p);
     if(location.hash!==t) history.replaceState(null,'',t);
@@ -2624,27 +2648,29 @@ function renderFlashcards(main, param){
   tabL.onclick=()=>{ deckSel.value='lesson3'; deckSel.onchange(); };
   tabVb.onclick=()=>{ deckSel.value='verbs'; deckSel.onchange(); };
   tabM.onclick=()=>{ deckSel.value='masdar'; deckSel.onchange(); };
+  tabA.onclick=()=>{ deckSel.value='adverbs'; deckSel.onchange(); };
   paintDeckSwitch();
   const bookSel = controls.querySelector('#fcBook');
   const unitSel = controls.querySelector('#fcUnit');
   function populateBookOptions(){
-    const plurals = fcState.deckId==='plurals', verbs = fcState.deckId==='verbs', masdar = fcState.deckId==='masdar';
+    const plurals = fcState.deckId==='plurals', verbs = fcState.deckId==='verbs', masdar = fcState.deckId==='masdar', advb = fcState.deckId==='adverbs';
     bookSel.innerHTML='';
     const l3 = fcState.deckId==='lesson3';
-    const opts = verbs ? [['all','Alif Baa and Al-Kitaab'], ...BOOKS.map(b=>[b.id,b.label])] : masdar ? [['all','All verbal nouns'],['l','From the lesson and vocabulary'],['s','Other standard forms']] : l3 ? [['all','All Lesson 3 cards'],['vocab','Vocabulary'],['plurals','Plurals'],['endings','Possessive endings'],['questions','Question words'],['kaana','Kaana and laysa']] : plurals ? [['all','All books'], ...BOOKS.map(b=>[b.id,b.label]), ['other','Not in a lesson']] : [...BOOKS.map(b=>[b.id,b.label]), ['both','Alif Baa and Al-Kitaab']];
+    const opts = advb ? [['all','All adverbs'], ...Object.keys(ADVERB_KINDS).map(k=>[k,ADVERB_KINDS[k]])] : verbs ? [['all','Alif Baa and Al-Kitaab'], ...BOOKS.map(b=>[b.id,b.label])] : masdar ? [['all','All verbal nouns'],['l','From the lesson and vocabulary'],['s','Other standard forms']] : l3 ? [['all','All Lesson 3 cards'],['vocab','Vocabulary'],['plurals','Plurals'],['endings','Possessive endings'],['questions','Question words'],['kaana','Kaana and laysa']] : plurals ? [['all','All books'], ...BOOKS.map(b=>[b.id,b.label]), ['other','Not in a lesson']] : [...BOOKS.map(b=>[b.id,b.label]), ['both','Alif Baa and Al-Kitaab']];
     opts.forEach(([v,l])=>bookSel.appendChild(mkEl(`<option value="${v}">${l}</option>`)));
-    bookSel.value = l3 ? fcState.lkind : plurals ? fcState.pbook : verbs ? fcState.vbook : masdar ? fcState.msrc : fcState.book;
+    bookSel.value = l3 ? fcState.lkind : plurals ? fcState.pbook : verbs ? fcState.vbook : masdar ? fcState.msrc : advb ? fcState.akind : fcState.book;
   }
   bookSel.onchange=()=>{
     if(fcState.deckId==='lesson3'){ fcState.lkind=bookSel.value; }
     else if(fcState.deckId==='plurals'){ fcState.pbook=bookSel.value; fcState.punit='all'; }
     else if(fcState.deckId==='verbs'){ fcState.vbook=bookSel.value; fcState.vform='all'; }
     else if(fcState.deckId==='masdar'){ fcState.msrc=bookSel.value; fcState.mform='all'; }
+    else if(fcState.deckId==='adverbs'){ fcState.akind=bookSel.value; }
     else { fcState.book=bookSel.value; fcState.unit='all'; }
     populateUnitOptions(); buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea();
   };
   function populateUnitOptions(){
-    if(fcState.deckId==='lesson3'){ unitSel.style.display='none'; return; }
+    if(fcState.deckId==='lesson3' || fcState.deckId==='adverbs'){ unitSel.style.display='none'; return; }
     if(fcState.deckId==='verbs' || fcState.deckId==='masdar'){
       const vb = fcState.deckId==='verbs';
       unitSel.innerHTML=''; unitSel.style.display='';
@@ -2679,19 +2705,20 @@ function renderFlashcards(main, param){
   statusSel.value = fcState.status;
   statusSel.onchange=()=>{ fcState.status=statusSel.value; buildDeck(); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
   const dirSel = controls.querySelector('#fcDir');
-  dirSel.onchange=()=>{ if(fcState.deckId==='plurals') fcState.pdir=dirSel.value; else if(fcState.deckId==='verbs') fcState.vdir=dirSel.value; else if(fcState.deckId==='masdar') fcState.mdir=dirSel.value; else fcState.dir=dirSel.value; fcState.flipped=false; renderCardArea(); };
+  dirSel.onchange=()=>{ if(fcState.deckId==='plurals') fcState.pdir=dirSel.value; else if(fcState.deckId==='verbs') fcState.vdir=dirSel.value; else if(fcState.deckId==='masdar') fcState.mdir=dirSel.value; else if(fcState.deckId==='adverbs') fcState.adir=dirSel.value; else fcState.dir=dirSel.value; fcState.flipped=false; renderCardArea(); };
   function applyDeckControls(){
-    const plurals = fcState.deckId==='plurals', verbs = fcState.deckId==='verbs', masdar = fcState.deckId==='masdar';
-    typeSel.style.display = (plurals || verbs || masdar) ? 'none' : '';
+    const plurals = fcState.deckId==='plurals', verbs = fcState.deckId==='verbs', masdar = fcState.deckId==='masdar', advb = fcState.deckId==='adverbs';
+    typeSel.style.display = (plurals || verbs || masdar || advb) ? 'none' : '';
     populateBookOptions(); populateUnitOptions();
     const opts = plurals
       ? [['sg2pl','Singular → Plural'],['pl2sg','Plural → Singular'],['en2ar','English → Arabic']]
       : verbs ? [['ar2en','Arabic → English'],['en2ar','English → Arabic'],['past2pres','Past → Present']]
+      : advb ? [['ar2en','Arabic → English'],['en2ar','English → Arabic'],['cloze','Sentence with a blank → Adverb']]
       : masdar ? [['m2en','Verbal noun → English (to ...)'],['en2m','English (to ...) → Verbal noun'],['v2m','Verb → Verbal noun'],['m2v','Verbal noun → Verb']]
       : [['ar2en','Arabic → English'],['en2ar','English → Arabic']];
     dirSel.innerHTML='';
     opts.forEach(o=>dirSel.appendChild(mkEl(`<option value="${o[0]}">${o[1]}</option>`)));
-    dirSel.value = plurals ? fcState.pdir : verbs ? fcState.vdir : masdar ? fcState.mdir : fcState.dir;
+    dirSel.value = plurals ? fcState.pdir : verbs ? fcState.vdir : masdar ? fcState.mdir : advb ? fcState.adir : fcState.dir;
   }
   applyDeckControls();
   controls.querySelector('#fcShuffle').onclick=()=>{ fcState.deck=shuffle(fcState.deck); fcState.idx=0; fcState.flipped=false; renderCardArea(); };
@@ -2705,6 +2732,12 @@ function renderFlashcards(main, param){
       fcState.deck = getPluralCards().filter(v=>
         (fcState.pbook==='all' || v.book===fcState.pbook) &&
         (fcState.punit==='all' || v.unit===Number(fcState.punit)) &&
+        (fcState.status==='all' || (fcState.status==='known')===isKnown(v)));
+      return;
+    }
+    if(fcState.deckId==='adverbs'){
+      fcState.deck = adverbCards().filter(v=>
+        (fcState.akind==='all' || v.kind===fcState.akind) &&
         (fcState.status==='all' || (fcState.status==='known')===isKnown(v)));
       return;
     }
@@ -2738,7 +2771,7 @@ function renderFlashcards(main, param){
   }
   function updateKnownCount(){
     const el = document.getElementById('fcKnownCount');
-    const pool = fcState.deckId==='verbs' ? verbCards() : fcState.deckId==='masdar' ? masdarCards() : fcState.deckId==='lesson3' ? lesson3Cards() : fcState.deckId==='plurals' ? getPluralCards().filter(v=>fcState.pbook==='all' || v.book===fcState.pbook) : VOCAB.filter(v=>fcState.book==='both' || v.book===fcState.book);
+    const pool = fcState.deckId==='adverbs' ? adverbCards() : fcState.deckId==='verbs' ? verbCards() : fcState.deckId==='masdar' ? masdarCards() : fcState.deckId==='lesson3' ? lesson3Cards() : fcState.deckId==='plurals' ? getPluralCards().filter(v=>fcState.pbook==='all' || v.book===fcState.pbook) : VOCAB.filter(v=>fcState.book==='both' || v.book===fcState.book);
     if(el) el.textContent = `${pool.filter(isKnown).length}/${pool.length} known`;
   }
   function advanceAfterMark(){
@@ -2786,6 +2819,14 @@ function renderFlashcards(main, param){
       else { showFront = big(v.past, v.pastTr) + `<div class="muted" style="margin-top:6px;">he, past</div>`; showBack = `<div>${v.en}</div>` + formLine + presBlock + msd + note; }
       const bookInfo = BOOKS.find(b=>b.id===v.book);
       tagText = `Verbs, ${bookInfo.label} · ${VERB_FORM_NAMES[v.form]} · ${fcState.idx+1}/${fcState.deck.length}${knownTag}`;
+    } else if(v.deck==='adverbs'){
+      const big = (ar,tr)=>`<div class="arabic" style="font-size:34px;">${ar}</div>${tr?`<div class="translit tr-toggle">${tr}</div>`:''}`;
+      const exBlock = `<div class="arabic" style="font-size:22px;margin-top:12px;">${v.ex}</div><div class="muted en-toggle" style="margin-top:4px;">${v.exEn}</div>`;
+      const noteLine = `<div class="muted" style="margin-top:10px;font-size:14px;">${v.note}</div>`;
+      if(fcState.adir==='en2ar'){ showFront = `<div>${v.en}</div>`; showBack = big(v.ar, v.tr) + noteLine + exBlock; }
+      else if(fcState.adir==='cloze'){ showFront = `<div class="arabic" style="font-size:26px;">${v.exBlank}</div><div class="muted en-toggle" style="margin-top:6px;">${v.exEn}</div>`; showBack = big(v.ar, v.tr) + `<div>${v.en}</div>` + noteLine + `<div class="arabic" style="font-size:22px;margin-top:12px;">${v.ex}</div>`; }
+      else { showFront = big(v.ar, v.tr); showBack = `<div>${v.en}</div>` + noteLine + exBlock; }
+      tagText = `Adverbs, ${ADVERB_KINDS[v.kind]} · ${fcState.idx+1}/${fcState.deck.length}${knownTag}`;
     } else if(v.deck==='masdar'){
       const big = (ar,tr)=>`<div class="arabic" style="font-size:34px;">${ar}</div>${tr?`<div class="translit tr-toggle">${tr}</div>`:''}`;
       const extra = (v.pat ? `<div class="muted" style="margin-top:10px;">pattern ${v.pat}</div>` : '') + (v.ex ? `<div class="arabic" style="font-size:20px;margin-top:10px;">${v.ex}</div>` : '') + (v.src==='s' ? `<div class="muted" style="margin-top:10px;font-size:14px;">standard form, not in the lesson</div>` : '');
